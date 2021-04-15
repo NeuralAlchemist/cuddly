@@ -31,7 +31,7 @@ Your first task is
 to brand your page by switching out all the SDA starter template placeholders and replacing them with your own
 brand name and logo. You should also give a quick introduction text on the landing page (and home page) that says what your forum is about.
 You are free to choose the theme of your forum (could be environment, food/drinks, agriculture or even a forum entirely dedicated
-to [this guy](https://upload.wikimedia.org/wikipedia/commons/7/7b/Richard_Stallman_-_F%C3%AAte_de_l%27Humanit%C3%A9_2014_-_010.jpg)).
+to [this](https://images-na.ssl-images-amazon.com/images/I/81JSMr%2BIR6L._AC_SL1500_.jpg).
 The UI components that you need to change are:
 ​
 
