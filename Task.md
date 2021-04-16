@@ -10,6 +10,7 @@ Simplified, the functionalities to add are:
 
 - Make a post
 - Delete a post
+- Update a post
 - View all posts
 - Write a comment on a post
 - Delete a comment on a post
