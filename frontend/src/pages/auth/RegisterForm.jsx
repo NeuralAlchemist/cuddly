@@ -9,10 +9,10 @@ export default function RegisterForm({ onSubmit }) {
 
   return (
     <div>
-      <div >
-        <h4 >Sign up</h4>
+      <div>
+        <h4>Sign up</h4>
         <div>
-          <div >
+          <div>
             <label>Name:</label>
             <input
               type="text"
@@ -43,9 +43,7 @@ export default function RegisterForm({ onSubmit }) {
           </div>
 
           <div>
-            <button
-              onClick={(e) => onSubmit({ name, email, password })}
-            >
+            <button onClick={(e) => onSubmit({ name, email, password })}>
               Create account
             </button>
           </div>

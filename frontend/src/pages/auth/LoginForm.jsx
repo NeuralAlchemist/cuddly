@@ -7,11 +7,11 @@ export default function LoginForm({ onSubmit }) {
   const [password, setPassword] = useState("");
 
   return (
-    <div >
-      <div >
-        <h4 >Login</h4>
+    <div>
+      <div>
+        <h4>Login</h4>
         <div>
-          <div >
+          <div>
             <label>Email:</label>
             <input
               type="email"
@@ -31,12 +31,8 @@ export default function LoginForm({ onSubmit }) {
             />
           </div>
 
-          <div >
-            <button
-              onClick={() => onSubmit({ email, password })}
-            >
-              Login
-            </button>
+          <div>
+            <button onClick={() => onSubmit({ email, password })}>Login</button>
           </div>
         </div>
       </div>

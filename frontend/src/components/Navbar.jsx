@@ -13,7 +13,7 @@ export default function Navbar({ onLogout }) {
           </li>
 
           <li>
-            <Link to="/profile/:id">Profile</Link>
+            <Link to="/profile">Profile</Link> 
           </li>
 
           <li>

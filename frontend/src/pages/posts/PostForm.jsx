@@ -1,5 +1,5 @@
 // NPM Packages
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export default function PostForm({ onSubmit }) {
   // Local State
@@ -20,15 +20,10 @@ export default function PostForm({ onSubmit }) {
         <h4>What's on your mind?</h4>
         <div>
           <div>
-            <textarea
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
+            <textarea value={body} onChange={(e) => setBody(e.target.value)} />
           </div>
           <div>
-            <button onClick={handleSubmit}>
-              Post
-            </button>
+            <button onClick={handleSubmit}>Post</button>
           </div>
         </div>
       </div>

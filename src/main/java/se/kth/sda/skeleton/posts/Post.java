@@ -7,6 +7,9 @@ import javax.persistence.Id;
 
 @Entity
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String body;
@@ -18,8 +21,6 @@ public class Post {
         this.body = body;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

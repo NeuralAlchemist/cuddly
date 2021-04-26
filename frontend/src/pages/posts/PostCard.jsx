@@ -5,12 +5,10 @@ import React from "react";
 export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
-      <div >
+      <div>
         <p>{post.body}</p>
 
-        <button onClick={onDeleteClick}>
-          Delete
-        </button>
+        <button onClick={onDeleteClick}>Delete</button>
       </div>
     </div>
   );
