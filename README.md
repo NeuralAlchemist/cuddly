@@ -1,13 +1,5 @@
 # SDA starter template
 
-This web starter template is based on Spring, PostgreSQL, React, React router and Axios. Check the following links for documentation and guides:
-
-- [Spring](https://spring.io/projects/spring-boot)
-- [PostgreSQL](https://www.postgresql.org)
-- [React](https://reactjs.org)
-- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-- [Axios](https://github.com/axios/axios)
-
 ## Setup
 Our development environment for a full-stack web application will consist of three main parts:
 
@@ -43,11 +35,3 @@ Then start the frontend application by running
 npm start
 ```
 
-### Inviting collaborators
-The following should be done by one person in each group.
-
-Now that you have a repo, you can start inviting your group members as collaborators so that they can work
-with you on your repo. Go to `Settings` -> `Manage Access` and then add your group members via their usernames.
-
-### Task
-You will find your task in [`Task.md`](Task.md)
