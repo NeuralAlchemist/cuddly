@@ -1,4 +1,4 @@
-# SDA starter template
+# Cuddly App
 
 ## Setup
 Our development environment for a full-stack web application will consist of three main parts:
