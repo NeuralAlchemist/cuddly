@@ -1,12 +1,14 @@
+// NPM Packages
+
 import React from "react";
 
 export default function PostCard({ post, onDeleteClick }) {
   return (
-    <div className="card mt-3">
-      <div className="card-body">
+    <div>
+      <div >
         <p>{post.body}</p>
 
-        <button className="btn btn-danger" onClick={onDeleteClick}>
+        <button onClick={onDeleteClick}>
           Delete
         </button>
       </div>

@@ -1,8 +1,11 @@
-import React from "react";
+// NPM Packages
+import React, {useState} from "react";
 
 export default function PostForm({ onSubmit }) {
-  const [body, setBody] = React.useState("");
+  // Local State
+  const [body, setBody] = useState("");
 
+  // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
     onSubmit({ body: body });
@@ -12,20 +15,18 @@ export default function PostForm({ onSubmit }) {
   };
 
   return (
-    <div className="card">
-      <div className="card-body">
-        <h4 className="card-title">What's on your mind?</h4>
+    <div>
+      <div>
+        <h4>What's on your mind?</h4>
         <div>
-          <div className="form-group">
+          <div>
             <textarea
-              className="form-control"
               value={body}
               onChange={(e) => setBody(e.target.value)}
             />
           </div>
-
-          <div className="form-group">
-            <button className="btn btn-primary" onClick={handleSubmit}>
+          <div>
+            <button onClick={handleSubmit}>
               Post
             </button>
           </div>
