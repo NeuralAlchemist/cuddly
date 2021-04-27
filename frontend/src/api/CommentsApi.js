@@ -9,12 +9,12 @@ class CommentsApi {
         return Api.post('/posts/' + postId + '/comments', comment);
     }
 
-    updateComment(id, comment) {
-        return Api.post('/comments' + id, comment);
+    updateComment(postId, commentId, comment) {
+        return Api.post('/posts/' + postId + '/comments' + commentId, comment);
     }
 
-    deleteComment(id) {
-        return Api.delete('/comments/' + id);
+    deleteComment(postId, commentId) {
+        return Api.delete('/posts/' + postId + '/comments/' + commentId);
     }
 }
 
