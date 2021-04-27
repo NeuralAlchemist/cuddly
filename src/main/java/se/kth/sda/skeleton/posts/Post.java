@@ -16,15 +16,15 @@ public class Post {
 
     @NotBlank
     @Column(nullable = false)
-    private String body;
+    private String contentText;
 
     // Constructor
     public Post() {
     }
 
     // Getters and Setters
-    public Post(String body) {
-        this.body = body;
+    public Post(String contentText) {
+        this.contentText = contentText;
     }
 
     public Long getId() {
@@ -35,12 +35,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
+    public String getContentText() {
+        return contentText;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setContentText(String contentText) {
+        this.contentText = contentText;
     }
 
 }
