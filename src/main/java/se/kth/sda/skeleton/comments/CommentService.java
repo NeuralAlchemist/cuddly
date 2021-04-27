@@ -6,6 +6,7 @@ import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.posts.PostRepository;
 import java.util.List;
+
 /**
  * Represents the service layer. It contains defined functionalities according to business logic for Comments.
  */
@@ -13,6 +14,7 @@ import java.util.List;
 public class CommentService {
     private CommentRepository commentRepository;
     private PostRepository postRepository;
+
     /**
      * Constructs a CommentService and automatically assigns its {@code postRepository} and {@code commentRepository} fields.
      * @param commentRepository an object that implements interface CommentRepository
@@ -64,11 +66,12 @@ public class CommentService {
      * Creates a Comment for a Post with the given {@code postId} or throws a {@link ResourceNotFoundException} if there is no Post with the given {@code postId}.
      * @param postId the Post for whom a new Comment is created
      * @param comment the Comment that will be associated with the Post whose id is {@code postId}
+     * @return the created comment
      * @throws ResourceNotFoundException if there is no Post with the given {@code postId}
      */
-    public void createComment(Long postId, Comment comment){
+    public Comment createComment(Long postId, Comment comment){
         Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
         comment.setRelatedPost(relatedPost);
-        commentRepository.save(comment);
+        return commentRepository.save(comment);
     }
 }

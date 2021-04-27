@@ -25,6 +25,7 @@ public class Comment {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
+    @NotNull
     @JsonIgnore
     private Post relatedPost;
 

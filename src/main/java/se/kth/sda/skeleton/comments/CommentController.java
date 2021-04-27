@@ -49,10 +49,10 @@ public class CommentController {
     }
 
     /**
-     * Handler method for endpoint "/comments/{id}" with GET HttpRequest. Returns a {@link ResponseEntity} containing a Comment with the
-     * given {@code id} and HTTP status {@code OK}.
+     * Handler method for endpoint "/comments/{id}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
+     * relating to the given {@code id} and HTTP status {@code OK}.
      * @param id the id used to find the Comment associated with it
-     * @return {@link ResponseEntity} containing a Comment with the given {@code id} and HTTP status {@code OK}
+     * @return {@link ResponseEntity} containing updated Comment of the given {@code id} and HTTP status {@code OK}
      */
     @PutMapping("/comments/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment updatedComment){
