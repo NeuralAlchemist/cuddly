@@ -25,6 +25,9 @@ public class Comment {
     @JsonIgnore
     private Post relatedPost;
 
+    public Comment() {
+    }
+
     public Long getId() {
         return id;
     }
