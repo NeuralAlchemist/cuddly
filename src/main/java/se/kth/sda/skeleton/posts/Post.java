@@ -31,7 +31,6 @@ public class Post {
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    @NotNull
     private User relatedUser;
     // Constructor
     public Post() {

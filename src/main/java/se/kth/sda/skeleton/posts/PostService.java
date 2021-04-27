@@ -62,11 +62,11 @@ public class PostService {
      * @return newly created post
      */
     public Post createPost(Post newPost) {
-        Post post = postRepository.save(newPost);
         String email = authService.getLoggedInUserEmail();
         User relatedUser = userRepository.findByEmail(email);
-        post.setRelatedUser(relatedUser);
+        newPost.setRelatedUser(relatedUser);
         relatedUser.getCreatedPosts().add(newPost);
+        Post post = postRepository.save(newPost);
         return post;
     }
 
