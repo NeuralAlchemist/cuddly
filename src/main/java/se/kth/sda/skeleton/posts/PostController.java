@@ -11,8 +11,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
+
     PostService postService;
 
+    /**
+     * Constructs a PostController and automatically assigns its postService field.
+     *
+     * @param postService an object that implements interface PostService
+     */
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
