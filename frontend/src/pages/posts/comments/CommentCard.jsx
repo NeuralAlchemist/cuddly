@@ -1,7 +1,7 @@
 // NPM Packages
 import React from "react";
 
-export default function Comment({ postId, comment, onDeleteClick }) {
+export default function CommentCard({ postId, comment, onDeleteClick }) {
   // Methods
   const handleDelete = () => {
     // Invoke the passed in event callback
