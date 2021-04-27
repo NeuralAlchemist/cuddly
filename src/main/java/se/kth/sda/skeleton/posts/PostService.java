@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class PostService {
 
     public List<Post> listAllPosts() {
         List<Post> posts = postRepository.findAll();
+        Collections.reverse(posts);
         return posts;
     }
 
