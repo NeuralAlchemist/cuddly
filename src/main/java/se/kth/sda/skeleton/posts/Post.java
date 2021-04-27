@@ -2,9 +2,11 @@ package se.kth.sda.skeleton.posts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import se.kth.sda.skeleton.comments.Comment;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 /**
  * Represents a post in a cuddly app as a JPA entity. This implementation of post will autogenerate a primary key of type
@@ -21,7 +23,8 @@ public class Post {
     @NotBlank
     @Column(nullable = false)
     private String contentText;
-
+    @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
+    private List<Comment> relatedComments;
     // Constructor
     public Post() {
     }
@@ -47,4 +50,11 @@ public class Post {
         this.contentText = contentText;
     }
 
+    public List<Comment> getRelatedComments() {
+        return relatedComments;
+    }
+
+    public void setRelatedComments(List<Comment> relatedComments) {
+        this.relatedComments = relatedComments;
+    }
 }
