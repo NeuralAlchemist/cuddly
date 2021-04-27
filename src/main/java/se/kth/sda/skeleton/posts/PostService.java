@@ -63,7 +63,7 @@ public class PostService {
         Post post = postRepository.save(updatedPost);
         return post;
     }
-    
+
     /**
      * Delete a post based on ID
      *

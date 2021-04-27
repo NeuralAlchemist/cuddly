@@ -6,7 +6,7 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
       <div>
-        <p>{post.body}</p>
+        <p>{post.contentText}</p>
 
         <button onClick={onDeleteClick}>Delete</button>
       </div>

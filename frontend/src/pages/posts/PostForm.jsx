@@ -3,15 +3,15 @@ import React, { useState } from "react";
 
 export default function PostForm({ onSubmit }) {
   // Local State
-  const [body, setBody] = useState("");
+  const [contentText, setContentText] = useState("");
 
   // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
-    onSubmit({ body: body });
+    onSubmit({ contentText: contentText });
 
     // Clear the input field
-    setBody("");
+    setContentText("");
   };
 
   return (
@@ -20,7 +20,7 @@ export default function PostForm({ onSubmit }) {
         <h4>What's on your mind?</h4>
         <div>
           <div>
-            <textarea value={body} onChange={(e) => setBody(e.target.value)} />
+            <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
           </div>
           <div>
             <button onClick={handleSubmit}>Post</button>
