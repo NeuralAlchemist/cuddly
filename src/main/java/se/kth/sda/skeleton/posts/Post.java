@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Represents a post in a cuddly app as a JPA entity. This implementation of post will autogenerate a primary key of type
+ * {@link Long} to indicate the current Post entity. A Post has a {@link String} contentText.
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {

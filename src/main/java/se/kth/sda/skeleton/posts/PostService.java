@@ -7,6 +7,9 @@ import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents the service layer. It contains defined functionalities according to business logic for Posts.
+ */
 @Service
 public class PostService {
 

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Represents the controller layer (or the API). This exposes application functionality of Post as RESTful webservices.
+ */
 @RestController
 @RequestMapping("/posts")
 public class PostController {
