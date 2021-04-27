@@ -1,10 +1,7 @@
 package se.kth.sda.skeleton.posts;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
-/*
-    @TODO Implement service methods.
- */
+@Service
 public class PostService {
 }

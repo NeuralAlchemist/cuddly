@@ -6,20 +6,20 @@ class PostsApi {
     }
 
     getPostById(id) {
-        return Api.get('/posts/'+id);
+        return Api.get('/posts/' + id);
     }
 
     createPost(post) {
         return Api.post('/posts', post);
     }
 
-    updatePost(post) {
-        return Api.put('/posts', post);
+    updatePost(post, id) {
+        return Api.put('/posts/' + id, post);
     }
 
     deletePost(id) {
-        return Api.delete('/posts/'+id);
-    } 
+        return Api.delete('/posts/' + id);
+    }
 }
 
 export default new PostsApi();

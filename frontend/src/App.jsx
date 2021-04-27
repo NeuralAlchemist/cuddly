@@ -9,10 +9,9 @@ import AuthPage from "./pages/auth/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import PostsPage from "./pages/posts/PostsPage";
 import ChatPage from "./pages/chat/ChatPage";
-import "./App.css";
 
 export default function App() {
-  // State
+  // Local State
   const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
 
   // Constants
@@ -23,7 +22,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar onLogout={() => Auth.logout()} />
 
-      <div className="container mt-5">
+      <div>
         <Switch>
           <Route path="/posts">
             <PostsPage />
