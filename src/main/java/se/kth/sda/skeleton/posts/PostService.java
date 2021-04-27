@@ -81,10 +81,17 @@ public class PostService {
      * @return updated post
      */
     public Post updatePost(Long id, Post updatedPost) {
-        postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
+        if(!loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
+            throw new ForbiddenException();
+        }
+        System.out.println("continues after exception");
         updatedPost.setId(id);
-        Post post = postRepository.save(updatedPost);
-        return post;
+        updatedPost.setRelatedUser(loggedInUser);
+        Post newPost = postRepository.save(updatedPost);
+        return newPost;
     }
 
     /**
