@@ -46,9 +46,9 @@ useEffect( () => {
       <div>
         <p>{post.contentText}</p>
 
-        <button onClick={onDeleteClick}>Delete</button>
-        <CommentForm post={post} onSubmit={createComment}/>
+        <button onClick={onDeleteClick}>Delete</button>        
         <CommentList comments={comments} onDelete={deleteComment}/>
+        <CommentForm post={post} onSubmit={createComment}/>
       </div>
     </div>
   );
