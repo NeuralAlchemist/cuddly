@@ -23,49 +23,50 @@ public class CommentController {
     }
 
     /**
-     * Handler method for endpoint "/posts/{id}/comments" with GET HttpRequest. Returns a {@link ResponseEntity}
+     * Handler method for endpoint "/posts/{postId}/comments" with GET HttpRequest. Returns a {@link ResponseEntity}
      * containing the list of Comments associated with a Post of the given {@code postId} and HTTP status {@code OK}.
-     * @param id the Post whose entire list of Comments is returned
+     * @param postId the Post whose entire list of Comments is returned
      * @return {@link ResponseEntity} containing the list of Comments associated with a Post of the given {@code postId}
      * and HTTP status {@code OK}
      */
-    @GetMapping("/posts/{id}/comments")
-    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long id){
-        return ResponseEntity.ok(commentService.getAllComments(id));
+    @GetMapping("/posts/{postId}/comments")
+    public ResponseEntity<List<Comment>> getAllComments(@PathVariable Long postId){
+        return ResponseEntity.ok(commentService.getAllComments(postId));
     }
 
     /**
-     * Handler method for endpoint "/posts/{id}/comments" with POST HttpRequest. Returns a {@link ResponseEntity} containing the created
+     * Handler method for endpoint "/posts/{postId}/comments" with POST HttpRequest. Returns a {@link ResponseEntity} containing the created
      * comment and HTTP status {@code OK}. Requires that the HttpRequest from client include Comment object {@code comment}
      * which is the Comment to be created.
-     * @param id the Post for whom a new Comment is created
-     * @param comment the comment that will be associated with the Post whose id is {@code id}
+     * @param postId the Post for whom a new Comment is created
+     * @param comment the comment that will be associated with the Post whose postId is {@code postId}
      * @return {@link ResponseEntity} containing the created Comment and HTTP status {@code OK}
      */
-    @PostMapping("/posts/{id}/comments")
-    public ResponseEntity<Comment> createComment(@PathVariable Long id, @RequestBody Comment comment){
-        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createComment(id, comment));
+    @PostMapping("/posts/{postId}/comments")
+    public ResponseEntity<Comment> createComment(@PathVariable Long postId, @RequestBody Comment comment){
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createComment(postId, comment));
     }
 
     /**
-     * Handler method for endpoint "/comments/{id}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
-     * relating to the given {@code id} and HTTP status {@code OK}.
-     * @param id the id used to find the Comment associated with it
-     * @return {@link ResponseEntity} containing updated Comment of the given {@code id} and HTTP status {@code OK}
+     * Handler method for endpoint "posts/{postId}/comments/{postId}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
+     * relating to the given {@code postId} and HTTP status {@code OK}.
+     * @param commentId the postId used to find the Comment associated with it
+     * @param postId the postId used to find the Post associated with the Comment.
+     * @return {@link ResponseEntity} containing updated Comment of the given {@code postId} and HTTP status {@code OK}
      */
-    @PutMapping("/comments/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment updatedComment){
-        return ResponseEntity.ok(commentService.updateComment(id, updatedComment));
+    @PutMapping("/posts/{postId}/comments/{commentId}")
+    public ResponseEntity<Comment> updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody Comment updatedComment){
+        return ResponseEntity.ok(commentService.updateComment(postId, commentId, updatedComment));
     }
 
     /**
-     * Handler method for endpoint "/comments/{id}" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
-     * NO_CONTENT. Deletes the Comment given by {@code id}.
-     * @param id the id used to find the Comment associated with it and delete it
+     * Handler method for endpoint "/posts/{postId}/comments/{postId}" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
+     * NO_CONTENT. Deletes the Comment given by {@code postId}.
+     * @param commentId the postId used to find the Comment associated with it and delete it
      */
-    @DeleteMapping("/comments/{id}")
+    @DeleteMapping("/posts/{postId}/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable Long id){
-        commentService.deleteComment(id);
+    public void deleteComment(@PathVariable Long commentId){
+        commentService.deleteComment(commentId);
     }
 }

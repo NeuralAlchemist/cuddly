@@ -52,37 +52,37 @@ public class PostController {
     /**
      * Return a specific post based on ID
      *
-     * @param id the id of the specific post
+     * @param postId the id of the specific post
      * @return HTTP ok status of displaying post
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
-        Post post = postService.getPostById(id);
+    @GetMapping("/{postId}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long postId) {
+        Post post = postService.getPostById(postId);
         return ResponseEntity.ok(post);
     }
 
     /**
      * Update a post based on ID
      *
-     * @param id          ID of the post to edit
+     * @param postId ID of the post to edit
      * @param updatedPost newly created body to update the post
      * @return status 200 and updated post
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post updatedPost) {
-        Post post = postService.updatePost(id, updatedPost);
+    @PutMapping("/{postId}")
+    public ResponseEntity<Post> updatePost(@PathVariable Long postId, @RequestBody Post updatedPost) {
+        Post post = postService.updatePost(postId, updatedPost);
         return ResponseEntity.ok(post);
     }
 
     /**
      * Delete a post based on ID
      *
-     * @param id ID of the post to delete
+     * @param postId ID of the post to delete
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{postId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+    public void deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
     }
 
 }
