@@ -3,12 +3,10 @@ package se.kth.sda.skeleton.posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -27,9 +25,28 @@ public class PostController {
      */
     @PostMapping("")
     public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
-
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(postService.createPost(post));
+    }
+
+    /**
+     * Return a list of all posts
+     * @return status 200 and list of posts
+     */
+    @GetMapping("")
+    public ResponseEntity <List<Post>>listAllPosts() {
+        return ResponseEntity.ok(postService.listAllPosts());
+    }
+
+    /**
+     * Return a specific post based on ID
+     * @param id the id of the specific post
+     * @return HTTP ok status of displaying post
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id){
+        Post post = postService.getPostById(id);
+        return ResponseEntity.ok(post);
     }
 
 
