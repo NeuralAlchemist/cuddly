@@ -25,9 +25,9 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
-  async function deleteComment(commentToDelete) {
+  async function deleteComment(postId, commentToDelete) {
     try {
-      await CommentsApi.deleteComment(commentToDelete.id);
+      await CommentsApi.deleteComment(postId, commentToDelete.id);
       const newComments = comments.filter(
         (comment) => comment.id !== commentToDelete.id
       );
@@ -49,7 +49,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <p>{post.contentText}</p>
 
         <button onClick={onDeleteClick}>Delete</button>
-        <CommentList comments={comments} onDelete={deleteComment} />
+        <CommentList postId={postId} comments={comments} onDelete={deleteComment} />
         <CommentForm post={post} onSubmit={createComment} />
       </div>
     </div>
