@@ -18,9 +18,11 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    // Constructor
     public Post() {
     }
 
+    // Getters and Setters
     public Post(String body) {
         this.body = body;
     }
