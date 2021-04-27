@@ -1,14 +1,20 @@
 package se.kth.sda.skeleton.user;
 
 import org.hibernate.validator.constraints.Length;
+import se.kth.sda.skeleton.posts.Post;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Table(name="account")
 public class User {
+
+    @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    List<Post> createdPosts;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -36,7 +42,6 @@ public class User {
         this.password = password;
         this.name = name;
     }
-
 
     public Long getId() {
         return id;
@@ -69,4 +74,9 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Post> getCreatedPosts() {
+        return createdPosts;
+    }
+
 }
