@@ -48,7 +48,7 @@ public class CommentService {
      */
     public List<Comment> getAllComments(Long postId){
         Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
-        return relatedPost.getComments();
+        return relatedPost.getRelatedComments();
     }
 
     /**
