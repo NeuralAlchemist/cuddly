@@ -1,24 +1,34 @@
 package se.kth.sda.skeleton.posts;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+/**
+ * Represents a post in a cuddly app as a JPA entity. This implementation of post will autogenerate a primary key of type
+ * {@link Long} to indicate the current Post entity. A Post has a {@link String} contentText.
+ */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String body;
+    @NotBlank
+    @Column(nullable = false)
+    private String contentText;
 
+    // Constructor
     public Post() {
     }
 
-    public Post(String body) {
-        this.body = body;
+    // Getters and Setters
+    public Post(String contentText) {
+        this.contentText = contentText;
     }
 
     public Long getId() {
@@ -29,12 +39,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
+    public String getContentText() {
+        return contentText;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setContentText(String contentText) {
+        this.contentText = contentText;
     }
 
 }
