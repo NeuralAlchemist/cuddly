@@ -20,26 +20,26 @@ public class CommentService {
     }
 
     public Comment updateComment(Long id, Comment updatedComment) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        updatedComment.setPost(comment.getPost());
+        Comment comment = commentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        updatedComment.setRelatedPost(comment.getRelatedPost());
         updatedComment.setId(id);
         return  commentRepository.save(updatedComment);
     }
 
     public List<Comment> getAllComments(Long postId){
-        Post relatedPost = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(postId));
+        Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
         return relatedPost.getComments();
     }
 
 
     public void deleteComment(Long id) {
-        Comment comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        Comment comment = commentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         commentRepository.delete(comment);
     }
 
     public void createComment(Long postId, Comment comment){
-        Post relatedPost = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(postId));
-        comment.setUser(relatedPost);
+        Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
+        comment.setRelatedPost(relatedPost);
         commentRepository.save(comment);
     }
 }
