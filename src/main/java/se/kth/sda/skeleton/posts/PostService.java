@@ -19,11 +19,11 @@ public class PostService {
 
     public List<Post> listAllPosts() {
         List<Post> posts = postRepository.findAll();
-        Collections.reverse(posts);
+        Collections.reverse(posts); //Shows newer posts first
         return posts;
     }
 
-    public Post getPostById(Long id){
+    public Post getPostById(Long id) {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return post;
     }
