@@ -16,39 +16,41 @@ export default function PostCard({ post, onDeleteClick }) {
   // Methods
   async function createComment(postId, commentData) {
     try {
-        const response = await CommentsApi.createComment(postId, commentData);
-        const comment = response.data;
-        const newComments = comments.concat(comment);
-        setComments(newComments);
+      const response = await CommentsApi.createComment(postId, commentData);
+      const comment = response.data;
+      const newComments = comments.concat(comment);
+      setComments(newComments);
     } catch (e) {
-        console.error(e);
+      console.error(e);
     }
-}
+  }
 
-async function deleteComment(commentToDelete) {
+  async function deleteComment(commentToDelete) {
     try {
-        await CommentsApi.deleteComment(commentToDelete.id);
-        const newComments = comments.filter((comment) => comment.id !== commentToDelete.id);
-        setComments(newComments);
-    } catch(e) {
-        console.error(e);
+      await CommentsApi.deleteComment(commentToDelete.id);
+      const newComments = comments.filter(
+        (comment) => comment.id !== commentToDelete.id
+      );
+      setComments(newComments);
+    } catch (e) {
+      console.error(e);
     }
-}
+  }
 
-useEffect( () => {
+  useEffect(() => {
     CommentsApi.getAllComments(postId)
-        .then(({data}) => setComments(data))
-        .catch((err) => console.error(err));
-}, [setComments, postId]);
+      .then(({ data }) => setComments(data))
+      .catch((err) => console.error(err));
+  }, [setComments, postId]);
 
   return (
     <div>
       <div>
         <p>{post.contentText}</p>
 
-        <button onClick={onDeleteClick}>Delete</button>        
-        <CommentList comments={comments} onDelete={deleteComment}/>
-        <CommentForm post={post} onSubmit={createComment}/>
+        <button onClick={onDeleteClick}>Delete</button>
+        <CommentList comments={comments} onDelete={deleteComment} />
+        <CommentForm post={post} onSubmit={createComment} />
       </div>
     </div>
   );
