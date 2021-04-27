@@ -39,4 +39,9 @@ public class PostService {
         Post post = postRepository.save(updatedPost);
         return post;
     }
+
+    public void deletePost(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        postRepository.delete(post);
+    }
 }

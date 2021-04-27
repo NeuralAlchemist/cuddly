@@ -52,8 +52,8 @@ public class PostController {
     /**
      * Update a post based on ID
      * @param id ID of the post to edit
-     * @param updatedPost new user-created body to update the post
-     * @return HTTP ok status of updated post
+     * @param updatedPost newly created body to update the post
+     * @return status 200 and updated post
      */
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post updatedPost){
@@ -61,5 +61,14 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
+    /**
+     * Delete a post based on ID
+     * @param id ID of the post to delete
+     */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePost(@PathVariable Long id){
+        postService.deletePost(id);
+    }
 
 }
