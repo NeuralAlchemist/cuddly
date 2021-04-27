@@ -25,4 +25,9 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return post;
     }
+
+    public Post createPost(Post newPost) {
+        Post post = postRepository.save(newPost);
+        return post;
+    }
 }
