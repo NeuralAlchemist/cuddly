@@ -1,8 +1,11 @@
 package se.kth.sda.skeleton.posts;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
@@ -91,6 +94,12 @@ public class PostService {
      */
     public void deletePost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        postRepository.delete(post);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        if(loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
+            post.getRelatedUser().getCreatedPosts().remove(post);
+            postRepository.delete(post);
+        }else{
+            throw new ForbiddenException();
+        }
     }
 }
