@@ -47,7 +47,6 @@ export default function PostCard({ post, onDeleteClick }) {
     <div>
       <div>
         <p>{post.contentText}</p>
-
         <button onClick={onDeleteClick}>Delete</button>
         <CommentList postId={postId} comments={comments} onDelete={deleteComment} />
         <CommentForm post={post} onSubmit={createComment} />

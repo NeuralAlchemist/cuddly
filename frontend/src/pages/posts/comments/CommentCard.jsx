@@ -11,7 +11,6 @@ export default function Comment({ postId, comment, onDeleteClick }) {
   return (
     <div>
       <p>{comment.contentText}</p>
-
       <button onClick={handleDelete}>Delete</button>
     </div>
   );
