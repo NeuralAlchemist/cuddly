@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * Represents the database of domain type Comment as a JPA Repository
  */
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long>{
 }
