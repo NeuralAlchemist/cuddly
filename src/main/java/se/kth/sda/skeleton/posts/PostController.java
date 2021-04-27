@@ -49,5 +49,17 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
+    /**
+     * Update a post based on ID
+     * @param id ID of the post to edit
+     * @param updatedPost new user-created body to update the post
+     * @return HTTP ok status of updated post
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post updatedPost){
+        Post post = postService.updatePost(id, updatedPost);
+        return ResponseEntity.ok(post);
+    }
+
 
 }
