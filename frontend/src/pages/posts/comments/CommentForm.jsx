@@ -16,11 +16,15 @@ export default function CommentForm({ post, onSubmit }) {
 
   return (
     <form className="CommentForm">
-      <textarea
-        value={commentContentText}
-        onChange={(e) => setCommentContentText(e.target.value)}
-      />
-      <button onClick={handleSubmit}> Comment </button>
+        <div>
+            <textarea
+            value={commentContentText}
+            onChange={(e) => setCommentContentText(e.target.value)}
+        />
+        </div>
+        <div>
+            <button onClick={handleSubmit}>Comment</button>
+        </div>
     </form>
   );
 }
