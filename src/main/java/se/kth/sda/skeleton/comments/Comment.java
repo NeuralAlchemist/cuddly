@@ -4,9 +4,12 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import se.kth.sda.skeleton.posts.Post;
-import se.kth.sda.skeleton.user.User;
 
-
+/**
+ * Represents a comment on a {@link Post} as a JPA Entity. This implementation of comment will autogenerate a primary key of type
+ * {@link Long} to indicate the current Comment entity. A Comment has a non-null field called {@code relatedPost}. The {@code relatedPost}
+ * is a {@link Post} to which the Comment is related. The body of a {@code Comment} cannot be null and is limited to 1500 characters.
+ */
 @Entity
 public class Comment {
 
