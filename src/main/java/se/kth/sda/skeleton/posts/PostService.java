@@ -2,7 +2,10 @@ package se.kth.sda.skeleton.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
+import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.user.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +16,10 @@ import java.util.List;
 @Service
 public class PostService {
 
-    PostRepository postRepository;
+    private PostRepository postRepository;
+    private UserRepository userRepository;
+    private AuthService authService;
+
 
     /**
      * Constructs a PostService and automatically assigns its postRepository field
@@ -21,8 +27,10 @@ public class PostService {
      * @param postRepository an object that implements interface PostRepository
      */
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, UserRepository userRepository, AuthService authService) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
+        this.authService = authService;
     }
 
     /**
@@ -55,6 +63,10 @@ public class PostService {
      */
     public Post createPost(Post newPost) {
         Post post = postRepository.save(newPost);
+        String email = authService.getLoggedInUserEmail();
+        User relatedUser = userRepository.findByEmail(email);
+        post.setRelatedUser(relatedUser);
+        relatedUser.getCreatedPosts().add(newPost);
         return post;
     }
 
