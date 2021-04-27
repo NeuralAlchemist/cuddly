@@ -27,15 +27,15 @@ public class CommentService {
     }
 
     /**
-     * Updates a Comment for the given Comment {@code id} or throws a {@link ResourceNotFoundException} if there is no Post with the given {@code id}.
-     * @param id the Comment which will be updated
-     * @param updatedComment the Comment that will added to the Comment given by {@code id}
-     * @throws ResourceNotFoundException if there is no Post with the given {@code id}
+     * Updates a Comment for the given Comment {@code commentId} or throws a {@link ResourceNotFoundException} if there is no Post with the given {@code commentId}.
+     * @param commentId the Comment which will be updated
+     * @param updatedComment the Comment that will added to the Comment given by {@code commentId}
+     * @throws ResourceNotFoundException if there is no Post with the given {@code commentId}
      */
-    public Comment updateComment(Long id, Comment updatedComment) {
-        Comment comment = commentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        updatedComment.setRelatedPost(comment.getRelatedPost());
-        updatedComment.setId(id);
+    public Comment updateComment(Long postId, Long commentId, Comment updatedComment) {
+        Comment comment = commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
+        updatedComment.setRelatedPost(postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new));
+        updatedComment.setId(commentId);;
         return  commentRepository.save(updatedComment);
     }
 
@@ -48,7 +48,7 @@ public class CommentService {
      */
     public List<Comment> getAllComments(Long postId){
         Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
-        return relatedPost.getComments();
+        return relatedPost.getRelatedComments();
     }
 
     /**
