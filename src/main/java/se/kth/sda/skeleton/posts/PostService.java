@@ -32,4 +32,11 @@ public class PostService {
         Post post = postRepository.save(newPost);
         return post;
     }
+
+    public Post updatePost(Long id, Post updatedPost) {
+        postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        updatedPost.setId(id);
+        Post post = postRepository.save(updatedPost);
+        return post;
+    }
 }
