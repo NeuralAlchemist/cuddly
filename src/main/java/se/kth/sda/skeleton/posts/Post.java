@@ -1,11 +1,13 @@
 package se.kth.sda.skeleton.posts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.comments.Comment;
-
+import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -25,6 +27,12 @@ public class Post {
     private String contentText;
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
+    @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(nullable = false)
+    @NotNull
+    private User relatedUser;
     // Constructor
     public Post() {
     }
@@ -56,5 +64,13 @@ public class Post {
 
     public void setRelatedComments(List<Comment> relatedComments) {
         this.relatedComments = relatedComments;
+    }
+
+    public User getRelatedUser() {
+        return relatedUser;
+    }
+
+    public void setRelatedUser(User relatedUser) {
+        this.relatedUser = relatedUser;
     }
 }
