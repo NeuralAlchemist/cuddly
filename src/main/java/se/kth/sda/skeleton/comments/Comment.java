@@ -55,5 +55,4 @@ public class Comment {
     public void setRelatedPost(Post relatedPost) {
         this.relatedPost = relatedPost;
     }
-
 }
