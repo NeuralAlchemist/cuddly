@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import se.kth.sda.skeleton.posts.Post;
+import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.postlikes.PostLike;
+import java.util.List;
 
 /**
  * Represents a comment on a {@link Post} as a JPA Entity. This implementation of comment will autogenerate a primary key of type
@@ -20,6 +23,15 @@ public class Comment {
     @Column(nullable = false, length=1500)
     @NotBlank
     private String contentText;
+
+    @ManyToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(nullable = false)
+    private User relatedUser;
+    
+    @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
+    private List<PostLike> listOfCommentLikes;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -54,5 +66,21 @@ public class Comment {
 
     public void setRelatedPost(Post relatedPost) {
         this.relatedPost = relatedPost;
+    }
+    
+    public User getRelatedUser() {
+        return relatedUser;
+    }
+
+    public void setRelatedUser(User relatedUser) {
+        this.relatedUser = relatedUser;
+    }
+
+    public List<PostLike> getListOfLikes() {
+        return listOfCommentLikes;
+    }
+
+    public void setListOfLikes(List<PostLike> listOfCommentLikes) {
+        this.listOfCommentLikes = listOfCommentLikes;
     }
 }
