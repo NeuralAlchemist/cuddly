@@ -1,6 +1,7 @@
 package se.kth.sda.skeleton.user;
 
 import org.hibernate.validator.constraints.Length;
+import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
 
 import javax.persistence.*;
@@ -14,6 +15,9 @@ public class User {
 
     @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
     List<Post> createdPosts;
+
+    @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
+    List<PostLike> likedPosts;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,4 +83,15 @@ public class User {
         return createdPosts;
     }
 
+    public void setCreatedPosts(List<Post> createdPosts) {
+        this.createdPosts = createdPosts;
+    }
+
+    public List<PostLike> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(List<PostLike> likedPosts) {
+        this.likedPosts = likedPosts;
+    }
 }
