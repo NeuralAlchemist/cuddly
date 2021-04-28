@@ -84,7 +84,6 @@ public class PostService {
         if(!loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
             throw new ForbiddenException();
         }
-        System.out.println("continues after exception");
         updatedPost.setId(id);
         updatedPost.setRelatedUser(loggedInUser);
         Post newPost = postRepository.save(updatedPost);
