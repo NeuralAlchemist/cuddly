@@ -15,7 +15,7 @@ export default function PostForm({ onSubmit }) {
   };
 
   return (
-    <div>
+    <form>
       <div>
         <h4>What's on your mind?</h4>
         <div>
@@ -27,6 +27,6 @@ export default function PostForm({ onSubmit }) {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
