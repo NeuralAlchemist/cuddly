@@ -1,9 +1,9 @@
 // NPM Packages
 import React, { useState } from "react";
 
-export default function PostUpdateForm({ onSubmit, post }) {
+export default function CommentUpdateForm({ onSubmit, comment }) {
   // Local State
-  const [contentText, setContentText] = useState(post.contentText);
+  const [contentText, setContentText] = useState(comment.contentText);
 
   // Methods
   const handleSubmit = () => {
@@ -24,7 +24,7 @@ export default function PostUpdateForm({ onSubmit, post }) {
           />
         </div>
         <div>
-          <button onClick={handleSubmit}>Update post</button>
+          <button onClick={handleSubmit}>Update comment</button>
         </div>
       </div>
     </form>

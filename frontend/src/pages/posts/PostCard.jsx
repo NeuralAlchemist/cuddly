@@ -21,19 +21,10 @@ export default function PostCard({ post, onDeleteClick }) {
   async function updatePost(updatedPost) {
     try {
       await PostsApi.updatePost(updatedPost, post.id);
-      PostsApi.getPostById(post.id)
-          .then((response) => setThisPost(response))
+      PostsApi.getPostById(post.id).then((response) => setThisPost(response));
     } catch (e) {
       console.error(e);
     }
-  }
-
-  function showUpdate() {
-    setToggleUpdatePost(true);
-  }
-
-  function hideUpdate() {
-    setToggleUpdatePost(false);
   }
 
   async function createComment(postId, commentData) {
@@ -70,10 +61,22 @@ export default function PostCard({ post, onDeleteClick }) {
       <div>
         <p>{post.contentText}</p>
         <button onClick={onDeleteClick}>Delete</button>
-        {!toggleUpdatePost && <button onClick={showUpdate}>Update</button>}
-        {toggleUpdatePost && <button onClick={hideUpdate}>Hide update form</button>}
-        {toggleUpdatePost && <PostUpdateForm onSubmit={updatePost} post={post} />}
-        <CommentList postId={postId} comments={comments} onDelete={deleteComment} />
+        {!toggleUpdatePost && (
+          <button onClick={() => setToggleUpdatePost(true)}>Update</button>
+        )}
+        {toggleUpdatePost && (
+          <button onClick={() => setToggleUpdatePost(false)}>
+            Hide update form
+          </button>
+        )}
+        {toggleUpdatePost && (
+          <PostUpdateForm onSubmit={updatePost} post={post} />
+        )}
+        <CommentList
+          postId={postId}
+          comments={comments}
+          onDelete={deleteComment}
+        />
         <CommentForm post={post} onSubmit={createComment} />
       </div>
     </div>
