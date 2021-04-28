@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Represents the controller layer (or the API). This exposes application functionality of PostLike as RESTful webservices.
+ */
 @RestController
 @RequestMapping("/posts")
 public class PostLikeController {

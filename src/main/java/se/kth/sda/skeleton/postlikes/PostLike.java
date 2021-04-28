@@ -6,10 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Represents a Like on a {@code Post} in a cuddly app as a JPA entity. This implementation of PostLike will autogenerate a primary key of type
+ * {@link Long} to indicate the current PostLike entity. A Post has a {@link String} contentText.
+ */
 @Entity
 public class PostLike {
     @Id
