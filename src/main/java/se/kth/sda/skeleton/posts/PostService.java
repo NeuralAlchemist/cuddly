@@ -2,8 +2,11 @@ package se.kth.sda.skeleton.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
-
+import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.user.UserRepository;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +16,10 @@ import java.util.List;
 @Service
 public class PostService {
 
-    PostRepository postRepository;
+    private PostRepository postRepository;
+    private UserRepository userRepository;
+    private AuthService authService;
+
 
     /**
      * Constructs a PostService and automatically assigns its postRepository field
@@ -21,8 +27,10 @@ public class PostService {
      * @param postRepository an object that implements interface PostRepository
      */
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, UserRepository userRepository, AuthService authService) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
+        this.authService = authService;
     }
 
     /**
@@ -54,6 +62,10 @@ public class PostService {
      * @return newly created post
      */
     public Post createPost(Post newPost) {
+        String email = authService.getLoggedInUserEmail();
+        User relatedUser = userRepository.findByEmail(email);
+        newPost.setRelatedUser(relatedUser);
+        relatedUser.getCreatedPosts().add(newPost);
         Post post = postRepository.save(newPost);
         return post;
     }
@@ -66,10 +78,16 @@ public class PostService {
      * @return updated post
      */
     public Post updatePost(Long id, Post updatedPost) {
-        postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
+        if(!loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
+            throw new ForbiddenException();
+        }
         updatedPost.setId(id);
-        Post post = postRepository.save(updatedPost);
-        return post;
+        updatedPost.setRelatedUser(loggedInUser);
+        Post newPost = postRepository.save(updatedPost);
+        return newPost;
     }
 
     /**
@@ -79,6 +97,12 @@ public class PostService {
      */
     public void deletePost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        postRepository.delete(post);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        if(loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
+            post.getRelatedUser().getCreatedPosts().remove(post);
+            postRepository.delete(post);
+        }else{
+            throw new ForbiddenException();
+        }
     }
 }
