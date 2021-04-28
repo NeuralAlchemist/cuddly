@@ -2,18 +2,29 @@
 import React, { useEffect, useState } from "react";
 
 // Project files
-import CommentForm from "./comments/CommentForm";
-import CommentList from "./comments/CommentList";
+import CommentForm from "../comments/CommentForm";
+import CommentList from "../comments/CommentList";
 import CommentsApi from "../../api/CommentsApi";
+import PostsApi from "../../api/PostsApi";
+import PostUpdateForm from "./PostUpdateForm";
 
 export default function PostCard({ post, onDeleteClick }) {
   // Local state
   const [comments, setComments] = useState([]);
+  const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
 
   // Constants
   const postId = post.id;
 
   // Methods
+  async function updatePost(updatedPost) {
+    try {
+      await PostsApi.updatePost(updatedPost, post.id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async function createComment(postId, commentData) {
     try {
       const response = await CommentsApi.createComment(postId, commentData);
@@ -48,7 +59,26 @@ export default function PostCard({ post, onDeleteClick }) {
       <div>
         <p>{post.contentText}</p>
         <button onClick={onDeleteClick}>Delete</button>
-        <CommentList postId={postId} comments={comments} onDelete={deleteComment} />
+        <button
+          onClick={() =>
+            toggleUpdatePost
+              ? setToggleUpdatePost(false)
+              : setToggleUpdatePost(true)
+          }
+        >
+          {toggleUpdatePost ? "Cancel Update" : "Update"}
+        </button>
+        {toggleUpdatePost && (
+          <PostUpdateForm
+            onSubmit={(postData) => updatePost(postData)}
+            post={post}
+          />
+        )}
+        <CommentList
+          postId={postId}
+          comments={comments}
+          onDelete={deleteComment}
+        />
         <CommentForm post={post} onSubmit={createComment} />
       </div>
     </div>

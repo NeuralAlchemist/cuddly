@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
-import PostForm from "./PostForm";
-import PostCard from "./PostCard";
+import PostForm from "../../components/posts/PostForm";
+import PostCard from "../../components/posts/PostCard";
 
 export default function PostsPage() {
   // Local state

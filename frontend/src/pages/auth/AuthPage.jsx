@@ -2,8 +2,8 @@
 import React from "react";
 
 // Project files
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import LoginForm from "../../components/auth/LoginForm";
+import RegisterForm from "../../components/auth/RegisterForm";
 import Auth from "../../services/Auth";
 
 export default function LoginPage() {
