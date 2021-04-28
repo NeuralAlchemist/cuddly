@@ -25,7 +25,6 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    // @JsonIgnoreProperties("password")
     public ResponseEntity<User> getUser() {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
