@@ -11,7 +11,6 @@ import PostUpdateForm from "./PostUpdateForm";
 export default function PostCard({ post, onDeleteClick }) {
   // Local state
   const [comments, setComments] = useState([]);
-  const [thisPost, setThisPost] = useState(post);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
 
   // Constants
@@ -21,7 +20,6 @@ export default function PostCard({ post, onDeleteClick }) {
   async function updatePost(updatedPost) {
     try {
       await PostsApi.updatePost(updatedPost, post.id);
-      PostsApi.getPostById(post.id).then((response) => setThisPost(response));
     } catch (e) {
       console.error(e);
     }
@@ -70,7 +68,7 @@ export default function PostCard({ post, onDeleteClick }) {
           </button>
         )}
         {toggleUpdatePost && (
-          <PostUpdateForm onSubmit={updatePost} post={post} />
+          <PostUpdateForm onSubmit={(postData) => updatePost(postData)} post={post} />
         )}
         <CommentList
           postId={postId}

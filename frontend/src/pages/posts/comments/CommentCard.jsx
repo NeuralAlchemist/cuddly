@@ -6,7 +6,6 @@ import CommentUpdateForm from "./CommentUpdateForm";
 
 export default function CommentCard({ postId, comment, onDeleteClick }) {
   // Local State
-  const [thisComment, setThisComment] = useState(comment);
   const [toggle, setToggle] = useState(false);
 
   // Methods
