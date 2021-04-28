@@ -2,9 +2,15 @@ package se.kth.sda.skeleton.comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.posts.PostRepository;
+import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.user.UserRepository;
+
 import java.util.List;
 
 /**
@@ -14,6 +20,8 @@ import java.util.List;
 public class CommentService {
     private CommentRepository commentRepository;
     private PostRepository postRepository;
+    private AuthService authService;
+    private UserRepository userRepository;
 
     /**
      * Constructs a CommentService and automatically assigns its {@code postRepository} and {@code commentRepository} fields.
@@ -21,9 +29,11 @@ public class CommentService {
      * @param postRepository an object that implements interface PostRepository
      */
     @Autowired
-    public CommentService(CommentRepository commentRepository, PostRepository postRepository){
+    public CommentService(CommentRepository commentRepository, PostRepository postRepository, AuthService authService, UserRepository userRepository){
         this.commentRepository = commentRepository;
         this.postRepository = postRepository;
+        this.authService = authService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -34,8 +44,14 @@ public class CommentService {
      */
     public Comment updateComment(Long postId, Long commentId, Comment updatedComment) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
+        if(!loggedInUserEmail.equals(comment.getRelatedUser().getEmail())){
+            throw new ForbiddenException();
+        }
         updatedComment.setRelatedPost(postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new));
-        updatedComment.setId(commentId);;
+        updatedComment.setId(commentId);
+        updatedComment.setRelatedUser(loggedInUser);
         return  commentRepository.save(updatedComment);
     }
 
@@ -59,7 +75,13 @@ public class CommentService {
      */
     public void deleteComment(Long id) {
         Comment comment = commentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        commentRepository.delete(comment);
+        String loggedInUserEmail = authService.getLoggedInUserEmail();
+        if(loggedInUserEmail.equals(comment.getRelatedUser().getEmail())){
+            comment.getRelatedUser().getCreatedPosts().remove(comment);
+            commentRepository.delete(comment);
+        }else{
+            throw new ForbiddenException();
+        }
     }
 
     /**
@@ -70,8 +92,12 @@ public class CommentService {
      * @throws ResourceNotFoundException if there is no Post with the given {@code postId}
      */
     public Comment createComment(Long postId, Comment comment){
+        String email = authService.getLoggedInUserEmail();
+        User relatedUser = userRepository.findByEmail(email);
         Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
         comment.setRelatedPost(relatedPost);
+        comment.setRelatedUser(relatedUser);
+        relatedUser.getCreatedComments().add(comment);
         return commentRepository.save(comment);
     }
 }
