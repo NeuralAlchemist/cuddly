@@ -1,6 +1,8 @@
 package se.kth.sda.skeleton.user;
 
 import org.hibernate.validator.constraints.Length;
+
+import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
 
@@ -16,8 +18,14 @@ public class User {
     @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
     List<Post> createdPosts;
 
+    @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    List<Comment> createdComments;
+
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
+
+    @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
+    List<PostLike> likedComments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -93,5 +101,21 @@ public class User {
 
     public void setLikedPosts(List<PostLike> likedPosts) {
         this.likedPosts = likedPosts;
+    }
+
+    public List<PostLike> getLikedComments() {
+        return likedComments;
+    }
+
+    public void setLikedComments(List<PostLike> likedComments) {
+        this.likedComments = likedComments;
+    }
+
+    public List<Comment> getCreatedComments() {
+        return createdComments;
+    }
+
+    public void setCreatedComments(List<Comment> createdComments) {
+        this.createdComments = createdComments;
     }
 }
