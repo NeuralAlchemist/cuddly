@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 
 // Project files
-import CommentForm from "./comments/CommentForm";
-import CommentList from "./comments/CommentList";
+import CommentForm from "../comments/CommentForm";
+import CommentList from "../comments/CommentList";
 import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import PostUpdateForm from "./PostUpdateForm";

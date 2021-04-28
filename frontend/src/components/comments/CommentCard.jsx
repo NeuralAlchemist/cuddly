@@ -1,6 +1,6 @@
 // NPM Packages
 import React, { useState } from "react";
-import CommentsApi from "../../../api/CommentsApi";
+import CommentsApi from "../../api/CommentsApi";
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
 
