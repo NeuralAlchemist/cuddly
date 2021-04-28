@@ -25,18 +25,16 @@ export default function CommentCard({ postId, comment, onDeleteClick }) {
   return (
     <div>
       <p>{comment.contentText}</p>
-      {!toggle && <button onClick={() => setToggle(true)}>Update</button>}
-      {toggle && (
-        <button onClick={() => setToggle(false)}>Hide update form</button>
-      )}
+      <button onClick={handleDelete}>Delete</button>
+      <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
+        {toggle ? "Cancel Update" : "Update"}
+      </button>
       {toggle && (
         <CommentUpdateForm
           onSubmit={(commentData) => updateComment(commentData)}
           comment={comment}
         />
       )}
-
-      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }

@@ -59,16 +59,20 @@ export default function PostCard({ post, onDeleteClick }) {
       <div>
         <p>{post.contentText}</p>
         <button onClick={onDeleteClick}>Delete</button>
-        {!toggleUpdatePost && (
-          <button onClick={() => setToggleUpdatePost(true)}>Update</button>
-        )}
+        <button
+          onClick={() =>
+            toggleUpdatePost
+              ? setToggleUpdatePost(false)
+              : setToggleUpdatePost(true)
+          }
+        >
+          {toggleUpdatePost ? "Cancel Update" : "Update"}
+        </button>
         {toggleUpdatePost && (
-          <button onClick={() => setToggleUpdatePost(false)}>
-            Hide update form
-          </button>
-        )}
-        {toggleUpdatePost && (
-          <PostUpdateForm onSubmit={(postData) => updatePost(postData)} post={post} />
+          <PostUpdateForm
+            onSubmit={(postData) => updatePost(postData)}
+            post={post}
+          />
         )}
         <CommentList
           postId={postId}
