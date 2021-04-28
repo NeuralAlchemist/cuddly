@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.comments.Comment;
+import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -32,6 +32,8 @@ public class Post {
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User relatedUser;
+    @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
+    private List<PostLike> listOfPostLikes;
     // Constructor
     public Post() {
     }
@@ -71,5 +73,13 @@ public class Post {
 
     public void setRelatedUser(User relatedUser) {
         this.relatedUser = relatedUser;
+    }
+
+    public List<PostLike> getListOfLikes() {
+        return listOfPostLikes;
+    }
+
+    public void setListOfLikes(List<PostLike> listOfPostLikes) {
+        this.listOfPostLikes = listOfPostLikes;
     }
 }
