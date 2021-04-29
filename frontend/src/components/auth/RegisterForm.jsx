@@ -8,45 +8,43 @@ export default function RegisterForm({ onSubmit }) {
   const [password, setPassword] = useState("");
 
   return (
-    <div>
-      <div>
-        <h4>Sign up</h4>
-        <div>
-          <div>
-            <label>Name:</label>
+    <div className="auth-form">
+      <div className="auth-grid">
+        <h2>Register</h2>
+        <div className="field-grid">
+          <div className="field">
+            <label>Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
+              placeholder=" Name"
             />
           </div>
 
-          <div>
-            <label>Email:</label>
+          <div className="field">
+            <label>Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder=" Email"
             />
           </div>
 
-          <div>
-            <label>Password:</label>
+          <div className="field">
+            <label>Password</label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder=" Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <div>
-            <button onClick={(e) => onSubmit({ name, email, password })}>
-              Create account
-            </button>
-          </div>
+          <button className="button-auth" onClick={(e) => onSubmit({ name, email, password })}>
+            Create account
+          </button>
         </div>
       </div>
     </div>

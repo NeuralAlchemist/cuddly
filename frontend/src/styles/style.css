@@ -3,9 +3,10 @@
 @import url("./base/typography.css");
 
 /* Pages/Templates */
-
+@import url("./pages/authPage.css");
 
 /* Modules */
 
 
 /* Components */
+@import url("./components/loginForm.css");

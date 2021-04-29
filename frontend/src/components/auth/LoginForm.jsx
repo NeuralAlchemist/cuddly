@@ -7,33 +7,36 @@ export default function LoginForm({ onSubmit }) {
   const [password, setPassword] = useState("");
 
   return (
-    <div>
-      <div>
-        <h4>Login</h4>
-        <div>
-          <div>
-            <label>Email:</label>
+    <div className="auth-form">
+      <div className="auth-grid">
+        <h2>Log in</h2>
+        <div className="field-grid">
+          <div className="field">
+            <label>Email</label>
             <input
               type="email"
-              placeholder="Email"
+              placeholder=" Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div>
-            <label>Password:</label>
+          <div className="field">
+            <label>Password</label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder=" Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <div>
-            <button onClick={() => onSubmit({ email, password })}>Login</button>
-          </div>
+          <button
+            className="button-auth"
+            onClick={() => onSubmit({ email, password })}
+          >
+            Login
+          </button>
         </div>
       </div>
     </div>

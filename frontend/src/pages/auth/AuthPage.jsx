@@ -23,24 +23,20 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
+    <div className="AuthPage">
+      <div className="welcome">
+        <h1>Woof woof (welcome)</h1>
+        <p>Ever wonder if you take too many photos of your pet? At Cuddly believe there’s no such thing! We are a community of animal-lovers who delight in sharing the special moments from our pet’s lives. Log in or register today!</p>
+      </div>
+
       <div>
         <div>
           <div>
-            <h1>Logo</h1>
-            <p>Intro Text to Cuddly</p>
+            <LoginForm onSubmit={login} />
           </div>
 
           <div>
-            <div>
-              <div>
-                <LoginForm onSubmit={login} />
-              </div>
-
-              <div>
-                <RegisterForm onSubmit={register} />
-              </div>
-            </div>
+            <RegisterForm onSubmit={register} />
           </div>
         </div>
       </div>
