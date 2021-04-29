@@ -26,7 +26,8 @@ public class Comment {
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    private User relatedUser;
+    @JsonIgnoreProperties({"createdPosts", "likedPosts"})
+    private User relatedCommentUser;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -65,12 +66,12 @@ public class Comment {
         this.relatedPost = relatedPost;
     }
     
-    public User getRelatedUser() {
-        return relatedUser;
+    public User getRelatedCommentUser() {
+        return relatedCommentUser;
     }
 
-    public void setRelatedUser(User relatedUser) {
-        this.relatedUser = relatedUser;
+    public void setRelatedCommentUser(User relatedCommentUser) {
+        this.relatedCommentUser = relatedCommentUser;
     }
 
     public LocalDateTime getCreatedTime() {

@@ -7,6 +7,8 @@ import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
+
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -63,8 +65,12 @@ public class PostService {
      */
     public Post createPost(Post newPost) {
         String email = authService.getLoggedInUserEmail();
+        LocalDateTime createdTime = LocalDateTime.now();
+
         User relatedUser = userRepository.findByEmail(email);
-        newPost.setRelatedUser(relatedUser);
+        newPost.setRelatedPostUser(relatedUser);
+        newPost.setCreatedTime(createdTime);
+
         relatedUser.getCreatedPosts().add(newPost);
         Post post = postRepository.save(newPost);
         return post;
@@ -79,13 +85,17 @@ public class PostService {
      */
     public Post updatePost(Long id, Post updatedPost) {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        LocalDateTime createdTime = LocalDateTime.now();
         String loggedInUserEmail = authService.getLoggedInUserEmail();
+
         User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
-        if(!loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
+        if (!loggedInUserEmail.equals(post.getRelatedPostUser().getEmail())) {
             throw new ForbiddenException();
         }
         updatedPost.setId(id);
-        updatedPost.setRelatedUser(loggedInUser);
+        updatedPost.setCreatedTime(createdTime);
+        updatedPost.setRelatedPostUser(loggedInUser);
+
         Post newPost = postRepository.save(updatedPost);
         return newPost;
     }
@@ -98,10 +108,10 @@ public class PostService {
     public void deletePost(Long id) {
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         String loggedInUserEmail = authService.getLoggedInUserEmail();
-        if(loggedInUserEmail.equals(post.getRelatedUser().getEmail())){
-            post.getRelatedUser().getCreatedPosts().remove(post);
+        if (loggedInUserEmail.equals(post.getRelatedPostUser().getEmail())) {
+            post.getRelatedPostUser().getCreatedPosts().remove(post);
             postRepository.delete(post);
-        }else{
+        } else {
             throw new ForbiddenException();
         }
     }

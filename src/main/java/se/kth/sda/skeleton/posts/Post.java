@@ -2,6 +2,7 @@ package se.kth.sda.skeleton.posts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
@@ -33,7 +34,8 @@ public class Post {
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    private User relatedUser;
+    @JsonIgnoreProperties("createdPosts")
+    private User relatedPostUser;
     
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
     private List<PostLike> listOfPostLikes;
@@ -72,12 +74,12 @@ public class Post {
         this.relatedComments = relatedComments;
     }
 
-    public User getRelatedUser() {
-        return relatedUser;
+    public User getRelatedPostUser() {
+        return relatedPostUser;
     }
 
-    public void setRelatedUser(User relatedUser) {
-        this.relatedUser = relatedUser;
+    public void setRelatedPostUser(User relatedUser) {
+        this.relatedPostUser = relatedUser;
     }
 
     public List<PostLike> getListOfLikes() {

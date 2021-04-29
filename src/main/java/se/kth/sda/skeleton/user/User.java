@@ -19,10 +19,10 @@ import java.util.List;
 @Table(name="account")
 public class User {
 
-    @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "relatedPostUser", cascade = CascadeType.ALL)
     List<Post> createdPosts;
 
-    @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "relatedCommentUser", cascade = CascadeType.ALL)
     @JsonIgnore
     List<Comment> createdComments;
 
