@@ -9,6 +9,7 @@ import AuthPage from "./pages/auth/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import PostsPage from "./pages/posts/PostsPage";
 import ChatPage from "./pages/chat/ChatPage";
+import "./styles/style.css";
 
 export default function App() {
   // Local State
