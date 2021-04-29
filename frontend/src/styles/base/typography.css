@@ -5,21 +5,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap");
 
 h1 {
+  font-family: "Nunito", sans-serif;
   font-size: var(--font-size-x-big);
+  font-weight: 700;
 }
 
 h2 {
+  font-family: "Nunito", sans-serif;
   font-size: var(--font-size-big);
+  font-weight: 700;
 }
 
 h3 {
+  font-family: "Nunito", sans-serif;
   font-size: var(--font-size-medium-big);
+  font-weight: 700;
 }
 
 h4 {
+  font-family: "Nunito", sans-serif;
   font-size: var(--font-size-medium);
+  font-weight: 700;
 }
 
 p {
+  font-family: "Open Sans", sans-serif;
   font-size: var(--font-size-medium-small);
 }
