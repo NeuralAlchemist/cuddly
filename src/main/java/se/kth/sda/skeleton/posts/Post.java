@@ -28,12 +28,12 @@ public class Post {
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User relatedUser;
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
     private List<PostLike> listOfPostLikes;
+
     // Constructor
     public Post() {
     }
