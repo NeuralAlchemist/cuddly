@@ -50,6 +50,13 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
+  function checkUserEmail() {
+    if (post.relatedUser.email === user.email) {
+      return true;
+    }
+    return false;
+  }
+
   useEffect(() => {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
@@ -67,22 +74,26 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
       <div>
-        <p>{post.contentText}</p>
-        <button onClick={onDeleteClick}>Delete</button>
-        <button
-          onClick={() =>
-            toggleUpdatePost
-              ? setToggleUpdatePost(false)
-              : setToggleUpdatePost(true)
-          }
-        >
-          {toggleUpdatePost ? "Cancel Update" : "Update"}
-        </button>
-        {toggleUpdatePost && (
-          <PostUpdateForm
-            onSubmit={(postData) => updatePost(postData)}
-            post={post}
-          />
+        <p>{post.relatedUser.name}: {post.contentText}</p>
+        {checkUserEmail() && (
+          <div>
+            <button onClick={onDeleteClick}>Delete</button>
+            <button
+              onClick={() =>
+                toggleUpdatePost
+                  ? setToggleUpdatePost(false)
+                  : setToggleUpdatePost(true)
+              }
+            >
+              {toggleUpdatePost ? "Cancel Update" : "Update"}
+            </button>
+            {toggleUpdatePost && (
+              <PostUpdateForm
+                onSubmit={(postData) => updatePost(postData)}
+                post={post}
+              />
+            )}
+          </div>
         )}
         <CommentList
           postId={postId}
