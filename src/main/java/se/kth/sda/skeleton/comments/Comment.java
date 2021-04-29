@@ -5,8 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
-import se.kth.sda.skeleton.postlikes.PostLike;
-import java.util.List;
+import java.time.LocalDateTime;
 
 /**
  * Represents a comment on a {@link Post} as a JPA Entity. This implementation of comment will autogenerate a primary key of type
@@ -29,9 +28,6 @@ public class Comment {
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User relatedUser;
-    
-    @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
-    private List<PostLike> listOfCommentLikes;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -40,6 +36,8 @@ public class Comment {
     @NotNull
     @JsonIgnore
     private Post relatedPost;
+
+    LocalDateTime createdTime;
 
     public Comment() {
     }
@@ -76,11 +74,11 @@ public class Comment {
         this.relatedUser = relatedUser;
     }
 
-    public List<PostLike> getListOfLikes() {
-        return listOfCommentLikes;
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
-    public void setListOfLikes(List<PostLike> listOfCommentLikes) {
-        this.listOfCommentLikes = listOfCommentLikes;
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }

@@ -24,9 +24,6 @@ public class User {
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
 
-    @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
-    List<PostLike> likedComments;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -101,14 +98,6 @@ public class User {
 
     public void setLikedPosts(List<PostLike> likedPosts) {
         this.likedPosts = likedPosts;
-    }
-
-    public List<PostLike> getLikedComments() {
-        return likedComments;
-    }
-
-    public void setLikedComments(List<PostLike> likedComments) {
-        this.likedComments = likedComments;
     }
 
     public List<Comment> getCreatedComments() {
