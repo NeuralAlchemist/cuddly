@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  min-height: 64px;
+  height: 64px;
+  background-color: white;
+}
+
+.logo {
+  width: auto;
+  height: 40px;
+  margin-top: 8px;
+}
+
+.homeIcon {
+  width: auto;
+  height: 24px;
+  color: #bc3908;
+  margin: 8px;
+}
+
+.user {
+  width: auto;
+  height: 24px;
+  color: #bc3908;
+  margin: 8px;
+}
+
+.notification {
+  width: auto;
+  height: 24px;
+  color: #bc3908;
+  margin: 8px;
+}
+
+.logout {
+  width: auto;
+  color: #bc3908;
+  margin-left: 24px;
+
+}
+
+
+

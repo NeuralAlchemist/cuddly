@@ -1,5 +1,6 @@
 // NPM Packages
 import React, { useState } from "react";
+import '../posts/postform.css';
 
 export default function PostForm({ onSubmit }) {
   // Local State
@@ -15,7 +16,7 @@ export default function PostForm({ onSubmit }) {
   };
 
   return (
-    <div>
+    <form className="postform">
       <div>
         <h4>What's on your mind?</h4>
         <div>
@@ -27,6 +28,6 @@ export default function PostForm({ onSubmit }) {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

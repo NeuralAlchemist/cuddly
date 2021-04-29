@@ -4,11 +4,12 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Project files
 import Auth from "./services/Auth";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navigation/Navbar";
 import AuthPage from "./pages/auth/AuthPage";
 import HomePage from "./pages/home/HomePage";
 import PostsPage from "./pages/posts/PostsPage";
 import ChatPage from "./pages/chat/ChatPage";
+import "./styles/style.css";
 
 export default function App() {
   // Local State

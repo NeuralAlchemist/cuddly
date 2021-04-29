@@ -1,10 +1,12 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
+import '../posts/postcard-container.css';
+import '../posts/postcard-item.css';
 
 // Project files
 import PostsApi from "../../api/PostsApi";
-import PostForm from "./PostForm";
-import PostCard from "./PostCard";
+import PostForm from "../../components/posts/PostForm";
+import PostCard from "../../components/posts/PostCard";
 
 export default function PostsPage() {
   // Local state
@@ -46,8 +48,8 @@ export default function PostsPage() {
   ));
 
   return (
-    <div>
-      <PostForm onSubmit={(postData) => createPost(postData)} />
+    <div className="postcard-container">
+      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} />
 
       {CardsArray}
     </div>
