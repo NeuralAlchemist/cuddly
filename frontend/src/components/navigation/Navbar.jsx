@@ -15,7 +15,6 @@ export default function Navbar({ onLogout }) {
   return (
     <nav>
       <Link to="/posts">
-        {' '}
         <img className="logo" src={logoURL} alt="Logo" />
       </Link>
 
