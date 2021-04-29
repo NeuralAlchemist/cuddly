@@ -1,0 +1,25 @@
+/* Nunito - regular, regular italic, bold */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;1,400;1,700&display=swap");
+
+/* Open Sans - regular, regular italic, bold */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap");
+
+h1 {
+  font-size: var(--font-size-x-big);
+}
+
+h2 {
+  font-size: var(--font-size-big);
+}
+
+h3 {
+  font-size: var(--font-size-medium-big);
+}
+
+h4 {
+  font-size: var(--font-size-medium);
+}
+
+p {
+  font-size: var(--font-size-medium-small);
+}
