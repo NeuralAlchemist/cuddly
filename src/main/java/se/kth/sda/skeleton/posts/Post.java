@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -29,12 +30,12 @@ public class Post {
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
     @ManyToOne
-    @JsonIgnoreProperties("password")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User relatedUser;
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
     private List<PostLike> listOfPostLikes;
+
     // Constructor
     public Post() {
     }
