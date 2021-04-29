@@ -5,31 +5,37 @@ import './navbar.css';
 
 export default function Navbar({ onLogout }) {
   const logoObject = require('../../assets/images/logo.svg');
-  const lgoURL = logoObject;
+  const logoURL = logoObject;
+  const homeObject = require('../../assets/images/home.svg');
+  const homeURL = homeObject;
+  const userObject = require('../../assets/images/user.svg');
+  const userURL = userObject;
+  const bellObject = require('../../assets/images/bell.svg');
+  const bellURL = bellObject;
   return (
     <nav>
-      <Link to="/">
+      <Link to="/posts">
         {' '}
-        <img className="logo" src={lgoURL} alt="Logo" />
+        <img className="logo" src={logoURL} alt="Logo" />
       </Link>
 
-      <div>
-        <ul>
-          <li>
-            <Link to="/posts">Home</Link>
-          </li>
 
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+        <Link to="/posts">
+          <img className="homeIcon" src={homeURL} alt="Home" />
+          </Link>
 
-          <li>
-            <Link to="/chat">Chat</Link>
-          </li>
-        </ul>
-
-        <button onClick={onLogout}>Logout</button>
-      </div>
+        
+            <Link to="/profile">
+            <img className="user" src={userURL} alt="Profile" />
+            </Link>
+  
+      
+            <Link to="/notification">
+            <img className="notification" src={bellURL} alt="Notificaton" />
+            </Link>
+     
+        <button className="logout" onClick={onLogout}>Logout</button>
+ 
     </nav>
   );
 }

@@ -1,5 +1,7 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
+import '../posts/postcard-container.css';
+import '../posts/postcard-item.css';
 
 // Project files
 import PostsApi from "../../api/PostsApi";
@@ -46,8 +48,8 @@ export default function PostsPage() {
   ));
 
   return (
-    <div>
-      <PostForm onSubmit={(postData) => createPost(postData)} />
+    <div className="postcard-container">
+      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} />
 
       {CardsArray}
     </div>

@@ -1,6 +1,7 @@
 // NPM Packages
 import React, { useState } from "react";
 import CommentsApi from "../../api/CommentsApi";
+
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
 
@@ -23,7 +24,7 @@ export default function CommentCard({ postId, comment, onDeleteClick }) {
   }
 
   return (
-    <div>
+    <div >
       <p>{comment.contentText}</p>
       <button onClick={handleDelete}>Delete</button>
       <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>

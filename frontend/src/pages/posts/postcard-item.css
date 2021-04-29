@@ -1,0 +1,21 @@
+.postcard-item {
+    border: 2px solid #d8f3dc;
+    border-radius: 16px;
+    margin: 8px;
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    background-color: #F6F2F0
+}
+@media screen and (max-width: 992px) {
+    .postcard-item {
+        flex-basis: calc(50% - 52px);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .postcard-item {
+        flex-basis: 100%;
+    }
+}
+
