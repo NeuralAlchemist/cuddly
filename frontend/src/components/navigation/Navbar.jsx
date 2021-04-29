@@ -1,10 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './navbar.css';
 
 export default function Navbar({ onLogout }) {
+  const logoObject = require('../../assets/images/logo.svg');
+  const lgoURL = logoObject;
   return (
     <nav>
-      <Link to="/">Logo</Link>
+      <Link to="/">
+        {' '}
+        <img className="logo" src={lgoURL} alt="Logo" />
+      </Link>
 
       <div>
         <ul>
@@ -13,7 +20,7 @@ export default function Navbar({ onLogout }) {
           </li>
 
           <li>
-            <Link to="/profile">Profile</Link> 
+            <Link to="/profile">Profile</Link>
           </li>
 
           <li>
