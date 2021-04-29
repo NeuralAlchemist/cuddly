@@ -17,8 +17,8 @@ export default function PostCard({ post, onDeleteClick }) {
 
   // Constants
   const postId = post.id;
-  const postCreatorName = post.relatedUser.name;
-  const postCreatorEmail = post.relatedUser.email;
+  const postCreatorName = post.relatedPostUser.name;
+  const postCreatorEmail = post.relatedPostUser.email;
 
   // Methods
   async function updatePost(updatedPost) {
