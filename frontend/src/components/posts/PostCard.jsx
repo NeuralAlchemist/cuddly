@@ -17,6 +17,8 @@ export default function PostCard({ post, onDeleteClick }) {
 
   // Constants
   const postId = post.id;
+  const postCreatorName = post.relatedUser.name;
+  const postCreatorEmail = post.relatedUser.email;
 
   // Methods
   async function updatePost(updatedPost) {
@@ -51,7 +53,7 @@ export default function PostCard({ post, onDeleteClick }) {
   }
 
   function checkUserEmail() {
-    if (post.relatedUser.email === user.email) {
+    if (postCreatorEmail === user.email) {
       return true;
     }
     return false;
@@ -74,7 +76,9 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
       <div>
-        <p>{post.relatedUser.name}: {post.contentText}</p>
+        <p>
+          {postCreatorName}: {post.contentText}
+        </p>
         {checkUserEmail() && (
           <div>
             <button onClick={onDeleteClick}>Delete</button>
