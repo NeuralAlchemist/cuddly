@@ -1,0 +1,5 @@
+.postcard-container{
+    flex-flow: column wrap;
+    height: 108px;
+    background-color: #F6F2F0;
+}
