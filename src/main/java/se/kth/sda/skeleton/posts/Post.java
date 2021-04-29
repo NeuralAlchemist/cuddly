@@ -8,6 +8,8 @@ import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -27,13 +29,16 @@ public class Post {
     private String contentText;
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
+    
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User relatedUser;
+    
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
     private List<PostLike> listOfPostLikes;
+
+    LocalDateTime createdTime;
     // Constructor
     public Post() {
     }
@@ -81,5 +86,13 @@ public class Post {
 
     public void setListOfLikes(List<PostLike> listOfPostLikes) {
         this.listOfPostLikes = listOfPostLikes;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }

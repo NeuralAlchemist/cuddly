@@ -9,6 +9,10 @@ import se.kth.sda.skeleton.posts.Post;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 @Entity
@@ -19,6 +23,7 @@ public class User {
     List<Post> createdPosts;
 
     @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Comment> createdComments;
 
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
@@ -68,6 +73,8 @@ public class User {
         this.email = email;
     }
 
+    @JsonIgnore
+    @JsonProperty(value = "password")
     public String getPassword() {
         return password;
     }
