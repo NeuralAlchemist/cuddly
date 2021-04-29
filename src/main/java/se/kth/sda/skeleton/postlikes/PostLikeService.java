@@ -49,7 +49,7 @@ public class PostLikeService {
         String loggedUserEmail = authService.getLoggedInUserEmail();
         User loggedUser = userRepository.findByEmail(loggedUserEmail);
         List<PostLike> listOfAllLikedByUser = loggedUser.getLikedPosts();
-        for(PostLike postLike :listOfAllLikedByUser){
+        for(PostLike postLike : listOfAllLikedByUser){
             if(postLike.getLikedPost().getId().equals(postId)){
                 throw new ForbiddenException();
             }
@@ -58,5 +58,24 @@ public class PostLikeService {
         newPostLike.setLikedPost(likedPost);
         newPostLike.setLikedUser(loggedUser);
         return postLikeRepository.save(newPostLike);
+    }
+    /**
+     * Removes a like to the given post an throws a {@link ForbiddenException} if the post has not been already liked.
+     * @param postId the post to which a like is to be removed
+     * @throws ForbiddenException if the post has not been already liked.
+     */
+    public void removeLike(Long postId){
+        Post likedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
+        String loggedUserEmail = authService.getLoggedInUserEmail();
+        User loggedUser = userRepository.findByEmail(loggedUserEmail);
+        List<PostLike> listOfAllLikedByUser = loggedUser.getLikedPosts();
+        for(PostLike postLike : listOfAllLikedByUser){
+            if(postLike.getLikedPost().getId().equals(postId)){
+                loggedUser.getLikedPosts().remove(postLike);
+                postLikeRepository.delete(postLike);
+                return;
+            }
+        }
+        throw new ForbiddenException();
     }
 }

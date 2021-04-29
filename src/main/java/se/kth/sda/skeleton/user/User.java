@@ -3,20 +3,30 @@ package se.kth.sda.skeleton.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
+
+import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 @Entity
 @Table(name = "account")
 public class User {
 
-    @OneToMany(mappedBy = "relatedUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "relatedPostUser", cascade = CascadeType.ALL)
     List<Post> createdPosts;
+
+    @OneToMany(mappedBy = "relatedCommentUser", cascade = CascadeType.ALL)
+    @JsonIgnore
+    List<Comment> createdComments;
 
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
@@ -98,5 +108,13 @@ public class User {
 
     public void setLikedPosts(List<PostLike> likedPosts) {
         this.likedPosts = likedPosts;
+    }
+
+    public List<Comment> getCreatedComments() {
+        return createdComments;
+    }
+
+    public void setCreatedComments(List<Comment> createdComments) {
+        this.createdComments = createdComments;
     }
 }

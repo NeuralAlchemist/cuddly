@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import se.kth.sda.skeleton.posts.Post;
+import se.kth.sda.skeleton.user.User;
+import java.time.LocalDateTime;
 
 /**
  * Represents a comment on a {@link Post} as a JPA Entity. This implementation of comment will autogenerate a primary key of type
@@ -22,12 +24,20 @@ public class Comment {
     private String contentText;
 
     @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(nullable = false)
+    @JsonIgnoreProperties({"createdPosts", "likedPosts"})
+    private User relatedCommentUser;
+
+    @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     @NotNull
     @JsonIgnore
     private Post relatedPost;
+
+    LocalDateTime createdTime;
 
     public Comment() {
     }
@@ -54,5 +64,21 @@ public class Comment {
 
     public void setRelatedPost(Post relatedPost) {
         this.relatedPost = relatedPost;
+    }
+    
+    public User getRelatedCommentUser() {
+        return relatedCommentUser;
+    }
+
+    public void setRelatedCommentUser(User relatedCommentUser) {
+        this.relatedCommentUser = relatedCommentUser;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }

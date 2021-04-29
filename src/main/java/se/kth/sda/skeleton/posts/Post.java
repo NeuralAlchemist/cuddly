@@ -2,12 +2,15 @@ package se.kth.sda.skeleton.posts;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -27,12 +30,17 @@ public class Post {
     private String contentText;
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
+    
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    private User relatedUser;
+    @JsonIgnoreProperties("createdPosts")
+    private User relatedPostUser;
+    
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
     private List<PostLike> listOfPostLikes;
+
+    LocalDateTime createdTime;
 
     // Constructor
     public Post() {
@@ -67,12 +75,12 @@ public class Post {
         this.relatedComments = relatedComments;
     }
 
-    public User getRelatedUser() {
-        return relatedUser;
+    public User getRelatedPostUser() {
+        return relatedPostUser;
     }
 
-    public void setRelatedUser(User relatedUser) {
-        this.relatedUser = relatedUser;
+    public void setRelatedPostUser(User relatedUser) {
+        this.relatedPostUser = relatedUser;
     }
 
     public List<PostLike> getListOfLikes() {
@@ -81,5 +89,13 @@ public class Post {
 
     public void setListOfLikes(List<PostLike> listOfPostLikes) {
         this.listOfPostLikes = listOfPostLikes;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 }
