@@ -8,12 +8,14 @@ h1 {
   font-family: "Nunito", sans-serif;
   font-size: var(--font-size-x-big);
   font-weight: 700;
+  color: var(--color-red-brown);
 }
 
 h2 {
   font-family: "Nunito", sans-serif;
   font-size: var(--font-size-big);
   font-weight: 700;
+  color: var(--color-red-brown);
 }
 
 h3 {
