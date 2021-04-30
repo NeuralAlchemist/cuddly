@@ -13,7 +13,7 @@ export default function PostCard({ post, onDeleteClick }) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
-  const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
   // Constants
   const postId = post.id;
@@ -53,10 +53,7 @@ export default function PostCard({ post, onDeleteClick }) {
   }
 
   function checkUserEmail() {
-    if (postCreatorEmail === user.email) {
-      return true;
-    }
-    return false;
+    return postCreatorEmail === currentUser.email;
   }
 
   useEffect(() => {
@@ -68,10 +65,10 @@ export default function PostCard({ post, onDeleteClick }) {
   useEffect(() => {
     UserApi.getUser()
       .then(({ data }) => {
-        setUser(data);
+        setCurrentUser(data);
       })
       .catch((err) => console.error(err));
-  }, [setUser]);
+  }, [setCurrentUser]);
 
   return (
     <div>
@@ -102,6 +99,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <CommentList
           postId={postId}
           comments={comments}
+          currentUser={currentUser}
           onDelete={deleteComment}
         />
         <CommentForm post={post} onSubmit={createComment} />
