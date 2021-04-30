@@ -9,6 +9,7 @@ import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
+import PostLikeApi from "../../api/PostLikeApi";
 
 export default function PostCard({ post, onDeleteClick }) {
   // Local state
@@ -53,6 +54,14 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
+  async function addLike() {
+    try {
+      await PostLikeApi.addLike(postId);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkUserEmail() {
     return postCreatorEmail === currentUser.email;
   }
@@ -78,9 +87,9 @@ export default function PostCard({ post, onDeleteClick }) {
         <span>
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
-        <p>{post.listOfLikes.length} like(s)</p>
         <p>{post.contentText}</p>
-
+        <p>{post.listOfLikes.length} like(s)</p>
+        <button onClick={(postId) => addLike(postId)}>Like</button>
         {checkUserEmail() && (
           <div>
             <button onClick={onDeleteClick}>Delete</button>
