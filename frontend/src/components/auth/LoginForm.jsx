@@ -1,10 +1,15 @@
 // NPM packages
 import React, { useState } from "react";
 
-export default function LoginForm({ onSubmit }) {
+export default function LoginForm({ onSubmit, onToggle }) {
   // Local State
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Methods
+  const handleToggle = () => {
+    onToggle(true);
+  };
 
   return (
     <div className="auth-form">
@@ -38,6 +43,12 @@ export default function LoginForm({ onSubmit }) {
             Login
           </button>
         </div>
+        <div className="toggle-register-login">
+            <span>
+              New to Cuddly?
+              <span className="link" onClick={handleToggle}>Register today!</span>
+            </span>
+          </div>
       </div>
     </div>
   );

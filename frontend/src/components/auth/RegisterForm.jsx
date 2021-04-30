@@ -1,11 +1,16 @@
 // NPM Packages
 import React, { useState } from "react";
 
-export default function RegisterForm({ onSubmit }) {
+export default function RegisterForm({ onSubmit, onToggle }) {
   // Local States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Methods
+  const handleToggle = () => {
+    onToggle(false);
+  };
 
   return (
     <div className="auth-form">
@@ -42,10 +47,19 @@ export default function RegisterForm({ onSubmit }) {
             />
           </div>
 
-          <button className="button-auth" onClick={(e) => onSubmit({ name, email, password })}>
+          <button
+            className="button-auth"
+            onClick={(e) => onSubmit({ name, email, password })}
+          >
             Create account
           </button>
         </div>
+        <div className="toggle-register-login">
+            <span>
+              Already joined?
+              <span className="link" onClick={handleToggle}>Log in</span>
+            </span>
+          </div>
       </div>
     </div>
   );

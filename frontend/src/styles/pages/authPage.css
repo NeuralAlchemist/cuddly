@@ -1,10 +1,77 @@
+/* Classes */
 .AuthPage {
-    background-color: var(--color-light-neutral);
+  background-color: var(--color-light-neutral);
+  display: grid;
+  grid-template-rows: auto auto;
 }
+
 .welcome {
-    background-color: white;
-    padding: var(--space-small);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    width: 300px; 
-    margin: var(--space-medium);
+  background-color: white;
+  padding: var(--space-small);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: var(--space-medium);
+}
+
+.image-welcome {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.auth-page-header {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-auth {
+  margin-bottom: var(--space-x-small);
+}
+
+.link {
+  color: var(--color-teal);
+  text-decoration: underline;
+  font-weight: 700;
+  margin-left: var(--space-x-small);
+}
+
+.link:hover {
+  color: var(--color-red-brown);
+  cursor: pointer;
+}
+
+.toggle-register-login {
+  margin: var(--space-small) 0;
+}
+
+/* Desktops */
+@media (min-width: 750px) {
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    max-width: 960px;
+    justify-self: center;
+  }
+
+  .image-welcome {
+    /* Span the whole first row */
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    /* Reduce image height while maintaining aspect ratio */
+    object-fit: cover;
+    height: 350px;
+    width: 100%;
+  }
+
+  .welcome {
+    margin-left: 0;
+  }
 }
