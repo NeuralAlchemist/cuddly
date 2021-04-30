@@ -27,18 +27,31 @@ export default function CommentCard({ postId, comment, onDeleteClick, user }) {
     }
   }
 
+  function checkCommentUserEmail() {
+    if (commentCreatorEmail === user.email) {
+      return true;
+    }
+    return false;
+  }
+
   return (
-    <div >
-      <p>{commentCreatorName}: {comment.contentText}</p>
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
-        {toggle ? "Cancel Update" : "Update"}
-      </button>
-      {toggle && (
-        <CommentUpdateForm
-          onSubmit={(commentData) => updateComment(commentData)}
-          comment={comment}
-        />
+    <div>
+      <p>
+        {commentCreatorName}: {comment.contentText}
+      </p>
+      {checkCommentUserEmail() && (
+        <div>
+          <button onClick={handleDelete}>Delete</button>
+          <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
+            {toggle ? "Cancel Update" : "Update"}
+          </button>
+          {toggle && (
+            <CommentUpdateForm
+              onSubmit={(commentData) => updateComment(commentData)}
+              comment={comment}
+            />
+          )}
+        </div>
       )}
     </div>
   );
