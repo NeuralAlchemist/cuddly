@@ -1,5 +1,6 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 
 // Project files
 import CommentForm from "../comments/CommentForm";
@@ -73,9 +74,12 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
       <div>
-        <p>
-          {postCreatorName}: {post.contentText}
-        </p>
+        <span>{postCreatorName} </span>
+        <span>
+          <Moment fromNow>{post.createdTime}</Moment>
+        </span>
+        <p>{post.contentText}</p>
+
         {checkUserEmail() && (
           <div>
             <button onClick={onDeleteClick}>Delete</button>
