@@ -33,10 +33,7 @@ export default function CommentCard({
   }
 
   function checkCommentUserEmail() {
-    if (commentCreatorEmail === currentUser.email) {
-      return true;
-    }
-    return false;
+    return commentCreatorEmail === currentUser.email;
   }
 
   return (

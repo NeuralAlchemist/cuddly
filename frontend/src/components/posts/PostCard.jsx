@@ -53,10 +53,7 @@ export default function PostCard({ post, onDeleteClick }) {
   }
 
   function checkUserEmail() {
-    if (postCreatorEmail === currentUser.email) {
-      return true;
-    }
-    return false;
+    return postCreatorEmail === currentUser.email;
   }
 
   useEffect(() => {
