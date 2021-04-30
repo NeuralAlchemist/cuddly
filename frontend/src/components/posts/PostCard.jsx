@@ -102,6 +102,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <CommentList
           postId={postId}
           comments={comments}
+          user={user}
           onDelete={deleteComment}
         />
         <CommentForm post={post} onSubmit={createComment} />
