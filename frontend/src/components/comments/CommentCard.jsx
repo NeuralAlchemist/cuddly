@@ -5,7 +5,12 @@ import CommentsApi from "../../api/CommentsApi";
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
 
-export default function CommentCard({ postId, comment, onDeleteClick, user }) {
+export default function CommentCard({
+  postId,
+  comment,
+  onDeleteClick,
+  currentUser,
+}) {
   // Local State
   const [toggle, setToggle] = useState(false);
 
@@ -28,7 +33,7 @@ export default function CommentCard({ postId, comment, onDeleteClick, user }) {
   }
 
   function checkCommentUserEmail() {
-    if (commentCreatorEmail === user.email) {
+    if (commentCreatorEmail === currentUser.email) {
       return true;
     }
     return false;
