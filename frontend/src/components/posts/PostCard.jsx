@@ -78,6 +78,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <span>
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
+        <p>{post.listOfLikes.length} like(s)</p>
         <p>{post.contentText}</p>
 
         {checkUserEmail() && (
