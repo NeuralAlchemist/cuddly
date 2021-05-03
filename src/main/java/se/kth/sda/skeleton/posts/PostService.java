@@ -9,11 +9,7 @@ import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -97,23 +93,19 @@ public class PostService {
         newPost.setContentText(text);
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
-        // Add post to
-        File directory = new File(imageDirectory);
-        if(!directory.exists()){
-            directory.mkdir();
-        }
-        Path fileName = Paths.get(imageDirectory, relatedUser.getEmail().concat(file.getOriginalFilename()));
-        try {
-            Files.write(fileName, file.getBytes());
-            newPost.setImageType(file.getContentType());
-            byte[] bytes = new byte[file.getBytes().length];
-            int i = 0;
-            for (byte b : file.getBytes()){
-                bytes[i++] = b;
+
+        if(!file.isEmpty()){
+            try {
+                Byte[] bytes = new Byte[file.getBytes().length];
+                int i = 0;
+                for (byte b : file.getBytes()){
+                    bytes[i++] = b;
+                }
+                newPost.setImage(bytes);
+                newPost = postRepository.save(newPost);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            newPost.setImage(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return postRepository.save(newPost);
     }
