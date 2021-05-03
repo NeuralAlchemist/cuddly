@@ -5,7 +5,8 @@ import '../posts/postform.css';
 export default function PostForm({ onSubmit }) {
   // Local State
   const [contentText, setContentText] = useState("");
-
+  const [contentFile, setContentFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
   // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
@@ -16,7 +17,8 @@ export default function PostForm({ onSubmit }) {
   };
 
   const setFile = (event) => {
-    console.log(`selected file is now: ${event.target.files[0]}`);
+    setContentFile(event.target.files[0]);
+    setIsFilePicked(true);
   }
 
   const handleUpload = () => {
@@ -35,7 +37,7 @@ export default function PostForm({ onSubmit }) {
           <div>
             <button onClick={handleSubmit}>Post</button>
           </div>
-          <button onClick={handleUpload}>Upload Image</button>
+          {isFilePicked && (<button onClick={handleUpload}>Upload Image</button>) }
         </div>
       </div>
     </form>
