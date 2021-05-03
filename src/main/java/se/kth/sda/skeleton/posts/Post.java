@@ -44,12 +44,7 @@ public class Post {
     LocalDateTime createdTime;
 
     @Lob
-    private byte[] image;
-
-    private String imageType;
-
-    @Embedded
-    private ContentFile contentFile;
+    private Byte[] image;
 
     // Constructor
     public Post() {
@@ -109,27 +104,11 @@ public class Post {
         this.createdTime = createdTime;
     }
 
-    public byte[] getImage() {
+    public Byte[] getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Byte[] image) {
         this.image = image;
-    }
-
-    public ContentFile getContentFile() {
-        return contentFile;
-    }
-
-    public void setContentFile(ContentFile contentFile) {
-        this.contentFile = contentFile;
-    }
-
-    public String getImageType() {
-        return imageType;
-    }
-
-    public void setImageType(String imageType) {
-        this.imageType = imageType;
     }
 }
