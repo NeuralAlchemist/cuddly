@@ -62,6 +62,14 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
+  async function removeLike() {
+    try {
+      await PostLikeApi.removeLike(postId);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkUserEmail() {
     return postCreatorEmail === currentUser.email;
   }
