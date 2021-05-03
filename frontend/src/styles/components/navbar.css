@@ -1,0 +1,75 @@
+.navbar {
+  display: flex;
+  min-height: 48px;
+  align-items: baseline;
+  width: 100%;
+  background-color: white;
+}
+
+.navbar-container{
+  margin-top: 24px;
+}
+
+.logo {
+  width: auto;
+  height: 48px;
+}
+
+.homepageIcon {
+  width: auto;
+  height: 32px;
+  fill: #bc3908;
+  margin:10px;
+  margin-left: 24px;
+  margin-right: 32px;
+}
+
+.user {
+  width: auto;
+  height: 32px;
+  color: #bc3908;
+  margin: 10px;
+  margin-right: 32px;
+}
+
+.notification {
+  width: auto;
+  height: 32px;
+  color: #bc3908;
+  margin: 10px;
+  margin-right: 32px;
+}
+
+.button {
+  background-color: white;
+  color:#bc3908;
+  border-radius: 8px;
+  border-width: 0px;
+  align-items: center;
+  margin-right: 32px;
+  font-family: "Nunito", sans-serif;
+  font-size: medium;
+}
+
+.button:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.button-search {
+  background-color: white;
+  color: grey;
+  border-radius: 8px;
+  border-width: 0px;
+  align-items: flex-end;
+  margin-right: 32px;
+  font-style: normal;
+  font-family: "Nunito", sans-serif;
+  font-size: medium;
+}
+
+.button-search:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
