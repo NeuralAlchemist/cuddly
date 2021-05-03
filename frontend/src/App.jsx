@@ -1,19 +1,20 @@
 // NPM Packages
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Project files
-import Auth from "./services/Auth";
-import Navbar from "./components/navigation/Navbar";
-import AuthPage from "./pages/auth/AuthPage";
-import HomePage from "./pages/home/HomePage";
-import PostsPage from "./pages/posts/PostsPage";
-import ChatPage from "./pages/chat/ChatPage";
-import "./styles/style.css";
+import Auth from './services/Auth';
+import Navbar from './components/navigation/Navbar';
+import AuthPage from './pages/auth/AuthPage';
+import HomePage from './pages/home/HomePage';
+import PostsPage from './pages/posts/PostsPage';
+import ChatPage from './pages/chat/ChatPage';
+import Footer from './components/Footer';
+import './styles/style.css';
 
 export default function App() {
   // Local State
-  const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
+  const [loggedIn, setLoggedIn] = useState(true);
 
   // Constants
   Auth.bindLoggedInStateSetter(setLoggedIn);
@@ -38,6 +39,8 @@ export default function App() {
           </Route>
         </Switch>
       </div>
+
+      <Footer />
     </BrowserRouter>
   );
 
