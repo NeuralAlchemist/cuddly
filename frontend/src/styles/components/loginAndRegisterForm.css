@@ -3,7 +3,7 @@ label {
   font-family: "Nunito", sans-serif;
 }
 
-input {
+.auth-form input {
   border-radius: 100px;
   height: var(--space-big);
   border: 1px solid var(--color-black-brown);
