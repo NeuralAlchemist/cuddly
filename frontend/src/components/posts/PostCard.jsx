@@ -60,7 +60,7 @@ export default function PostCard({ post, onDeleteClick }) {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
-  }, [comments, setComments, postId]);
+  }, [setComments, postId]);
 
   useEffect(() => {
     UserApi.getUser()
