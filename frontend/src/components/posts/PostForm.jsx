@@ -15,6 +15,14 @@ export default function PostForm({ onSubmit }) {
     setContentText("");
   };
 
+  const setFile = (event) => {
+    console.log(`selected file is now: ${event.target.files[0]}`);
+  }
+
+  const handleUpload = () => {
+    console.log(`make a call to upload endpoint with selected file`);
+  }
+
   return (
     <form className="postform">
       <div>
@@ -23,9 +31,11 @@ export default function PostForm({ onSubmit }) {
           <div>
             <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
           </div>
+          <input type="file" onChange={setFile}/>
           <div>
             <button onClick={handleSubmit}>Post</button>
           </div>
+          <button onClick={handleUpload}>Upload Image</button>
         </div>
       </div>
     </form>
