@@ -49,21 +49,10 @@ public class PostController {
      * @param text  the contentText of the post
      * @return http status created and post
      */
-    @PostMapping(value="/upload")
-    public ResponseEntity<Post> createImagePost(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
-        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
-    }
+    @PostMapping("/upload")
+    public ResponseEntity<Post> createPost(@RequestParam("contentFile") MultipartFile file, @RequestParam("contentText") String text){
 
-    @PostMapping(value="/test", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity uploadFile(@RequestParam("file") MultipartFile file){
-        try {
-            postService.uploadFile(file);
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(String.format("File uploaded successfully: %s", file.getOriginalFilename()));
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(String.format("Could not upload the file: %s!", file.getOriginalFilename()));
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
     }
 
     /**
