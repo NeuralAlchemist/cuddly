@@ -40,7 +40,7 @@ export default function PostsPage() {
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
-  }, [setPosts]);
+  }, [posts, setPosts]);
 
   // Components
   const CardsArray = posts.map((post) => (

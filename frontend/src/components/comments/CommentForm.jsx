@@ -23,7 +23,7 @@ export default function CommentForm({ post, onSubmit }) {
         />
         </div>
         <div>
-            <button onClick={handleSubmit}>Comment</button>
+            <button type="button" onClick={handleSubmit}>Comment</button>
         </div>
     </form>
   );

@@ -43,8 +43,8 @@ export default function CommentCard({
       </p>
       {checkCommentUserEmail() && (
         <div>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
+          <button type="button" onClick={handleDelete}>Delete</button>
+          <button type="button" onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
             {toggle ? "Cancel Update" : "Update"}
           </button>
           {toggle && (

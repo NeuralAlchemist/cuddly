@@ -60,7 +60,7 @@ export default function PostCard({ post, onDeleteClick }) {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
-  }, [setComments, postId]);
+  }, [comments, setComments, postId]);
 
   useEffect(() => {
     UserApi.getUser()
@@ -78,8 +78,8 @@ export default function PostCard({ post, onDeleteClick }) {
         </p>
         {checkUserEmail() && (
           <div>
-            <button onClick={onDeleteClick}>Delete</button>
-            <button
+            <button type="button" onClick={onDeleteClick}>Delete</button>
+            <button type="button"
               onClick={() =>
                 toggleUpdatePost
                   ? setToggleUpdatePost(false)

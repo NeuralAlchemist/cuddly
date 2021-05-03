@@ -24,7 +24,7 @@ export default function PostForm({ onSubmit }) {
             <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
           </div>
           <div>
-            <button onClick={handleSubmit}>Post</button>
+            <button type="button" onClick={handleSubmit}>Post</button>
           </div>
         </div>
       </div>

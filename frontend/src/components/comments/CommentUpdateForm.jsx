@@ -24,7 +24,7 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
           />
         </div>
         <div>
-          <button onClick={handleSubmit}>Update comment</button>
+          <button type="button" onClick={handleSubmit}>Update comment</button>
         </div>
       </div>
     </form>

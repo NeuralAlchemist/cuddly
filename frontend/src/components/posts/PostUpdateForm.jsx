@@ -24,7 +24,7 @@ export default function PostUpdateForm({ onSubmit, post }) {
           />
         </div>
         <div>
-          <button onClick={handleSubmit}>Update post</button>
+          <button type="button" onClick={handleSubmit}>Update post</button>
         </div>
       </div>
     </form>
