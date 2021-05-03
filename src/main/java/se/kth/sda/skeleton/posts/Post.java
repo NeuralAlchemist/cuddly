@@ -42,9 +42,13 @@ public class Post {
 
     LocalDateTime createdTime;
 
+    @Lob
+    private Byte[] image;
+
     // Constructor
     public Post() {
     }
+
 
     // Getters and Setters
     public Post(String contentText) {
@@ -97,5 +101,13 @@ public class Post {
 
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }
