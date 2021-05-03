@@ -1,9 +1,8 @@
 .footer {
-    display: flex;
-    justify-content: center;
- 
+  display: flex;
+  justify-content: center;
 }
 
-.h5 {   
-    margin: 16px;
+.h5 {
+  margin: 16px;
 }

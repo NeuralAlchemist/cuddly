@@ -6,7 +6,7 @@
   background-color: white;
 }
 
-.navbar-container{
+.navbar-container {
   margin-top: 24px;
 }
 
@@ -19,7 +19,7 @@
   width: auto;
   height: 32px;
   fill: #bc3908;
-  margin:10px;
+  margin: 10px;
   margin-left: 24px;
   margin-right: 32px;
 }
@@ -42,12 +42,12 @@
 
 .button {
   background-color: white;
-  color:#bc3908;
+  color: #bc3908;
   border-radius: 8px;
   border-width: 0px;
   align-items: center;
   margin-right: 32px;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: medium;
 }
 
@@ -64,7 +64,7 @@
   align-items: flex-end;
   margin-right: 32px;
   font-style: normal;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: medium;
 }
 
@@ -72,4 +72,3 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
 }
-

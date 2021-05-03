@@ -10,15 +10,13 @@ import '../../src/styles/components/footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      
-        <Link>
-          <h5>About us</h5>
-        </Link>
+      <Link>
+        <h5>About us</h5>
+      </Link>
 
-        <Link>
+      <Link>
         <h5>Terms and conditions</h5>
-        </Link>
-
+      </Link>
     </footer>
   );
 }

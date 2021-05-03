@@ -5,7 +5,6 @@ import '../../styles/components/navbar.css';
 import '../../styles/base/typography.css';
 import '../../styles/base/variables.css';
 
-
 export default function Navbar({ onLogout }) {
   const logoObject = require('../../assets/images/logo.svg');
   const logoURL = logoObject;
@@ -35,14 +34,13 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <button className="button" onClick={onLogout}>
-          Logout 
+          Logout
         </button>
 
-            <input type="text" class="searchTerm" id="input_text"></input>
-            <button className="button-search" type="search">
-            Search
-            </button>
-  
+        <input type="text" class="searchTerm" id="input_text"></input>
+        <button className="button-search" type="search">
+          Search
+        </button>
       </div>
     </nav>
   );
