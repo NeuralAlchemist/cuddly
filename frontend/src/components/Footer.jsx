@@ -10,11 +10,11 @@ import '../../src/styles/components/footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <Link>
+      <Link className="footer-link">
         <h5>About us</h5>
       </Link>
 
-      <Link>
+      <Link className="footer-link">
         <h5>Terms and conditions</h5>
       </Link>
     </footer>

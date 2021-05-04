@@ -1,9 +1,12 @@
 .footer {
   display: flex;
   justify-content: center;
-  background-color: #F6F2F0;
+  background-color: #f6f2f0;
 }
 
-.h5 {
+.footer-link {
   margin: 16px;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
 }
