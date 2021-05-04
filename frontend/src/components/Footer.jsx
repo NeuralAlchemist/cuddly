@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import '../../src/styles/base/typography.css';
-import '../../src/styles/base/variables.css';
-import '../../src/styles/components/footer.css';
+import '../../src/styles/style.css';
 
 function Footer() {
   return (

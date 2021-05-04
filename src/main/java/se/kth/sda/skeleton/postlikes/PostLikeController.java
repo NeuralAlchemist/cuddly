@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Represents the controller layer (or the API). This exposes application functionality of PostLike as RESTful webservices.
  */
@@ -19,11 +21,29 @@ public class PostLikeController {
         this.postLikeService = postLikeService;
     }
 
+    /**
+     * Handler method for endpoint "/posts/{postId}/likes" with POST HttpRequest. Returns a {@link ResponseEntity} containing the created
+     * post like and HTTP status {@code OK}.
+     * @param postId the Post for whom a new PostLike is added
+     * @return {@link ResponseEntity} containing the added PostLike and HTTP status {@code OK}
+     */
     @PostMapping("/{postId}/likes")
     public ResponseEntity<PostLike> addLike(@PathVariable Long postId){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(postLikeService.addLike(postId));
+    }
+
+    /**
+     * Handler method for endpoint "/posts/{postId}/likes" with GET HttpRequest. Returns a {@link ResponseEntity}
+     * containing the list of Likes associated with a Post of the given {@code postId} and HTTP status {@code OK}.
+     * @param postId the Post whose entire list of Likes is returned
+     * @return {@link ResponseEntity} containing the list of Likes associated with a Post of the given {@code postId}
+     * and HTTP status {@code OK}
+     */
+    @GetMapping("/{postId}/likes")
+    public ResponseEntity<List<PostLike>> getAllLikes(@PathVariable Long postId){
+        return ResponseEntity.ok(postLikeService.getAllLikes(postId));
     }
 
     /**
