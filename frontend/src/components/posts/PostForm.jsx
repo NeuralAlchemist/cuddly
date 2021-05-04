@@ -1,5 +1,6 @@
 // NPM Packages
 
+<<<<<<< HEAD
 import React, { useState } from 'react';
 
 <<<<<<< HEAD
@@ -23,6 +24,13 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
+=======
+export default function PostForm({ onSubmit, onImagePostSubmit }) {
+  // Local State
+  const [contentText, setContentText] = useState("");
+  const [contentFile, setContentFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+>>>>>>> d48cf09 (add logic to obtain contentText and contentFile)
   // Methods
   const handleSubmit = (event) => {
     if (isFilePicked) {
@@ -49,6 +57,32 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     setIsFilePicked(true);
   };
 
+<<<<<<< HEAD
+=======
+  const handleImagePostSubmit = () => {
+    const formData = new FormData();
+    formData.append('image',contentFile);
+    onImagePostSubmit({formData,contentText});
+    setContentFile(null);
+    setContentText("");
+    setIsFilePicked(false);
+  }
+  const setFile = (event) => {
+    setContentFile(event.target.files[0]);
+    setIsFilePicked(true);
+    const formData = new FormData();
+    formData.append('file', contentFile);
+    formData.append('contentText', contentText);
+    formData.forEach(item => console.log(item))
+    console.log(formData);
+    console.log(formData.contentText)
+    console.log(`selected file is now: ${event.target.files[0]}`);
+  }
+
+  const handleUpload = () => {
+    console.log(`make a call to upload endpoint with selected file`);
+  }
+>>>>>>> d48cf09 (add logic to obtain contentText and contentFile)
 
   return (
     <div className="form-container">
@@ -85,6 +119,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
       <form className="postform">
         <div>
           <div>
+<<<<<<< HEAD
             <div className="postform-field">
               <textarea 
                 className="postform-input"
@@ -101,6 +136,15 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
           </div>
           <button onClick={handleImagePostSubmit}>Upload Image</button>
 >>>>>>> 2c12a9d (add logic to obtain contentText and contentFile)
+=======
+            <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
+          </div>
+          <input type="file" onChange={setFile}/>
+          <div>
+            <button onClick={handleSubmit}>Post</button>
+          </div>
+          <button onClick={handleImagePostSubmit}>Upload Image</button>
+>>>>>>> d48cf09 (add logic to obtain contentText and contentFile)
         </div>
         <FormFooter
           isFilePicked={isFilePicked}
