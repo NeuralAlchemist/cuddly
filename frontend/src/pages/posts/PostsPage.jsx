@@ -72,6 +72,18 @@ export default function PostsPage() {
     }
   }
 
+  async function uploadFile(file){
+    try{
+      const response = await PostsApi.uploadFile(file);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      setPosts(newPosts);
+    }catch (e) {
+      console.error(e);
+      alert("Image failed to upload");
+    }
+  }
+
   useEffect(() => {
     PostsApi.getAllPosts()
         .then(({data}) => setPosts(data))
@@ -112,7 +124,7 @@ export default function PostsPage() {
       </div>
 =======
     <div className="postcard-container">
-      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} onImagePostSubmit={(text, file) => createImagePost(text, file)}/>
+      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} onImagePostSubmit={(file) => uploadFile(file)}/>
 
       {CardsArray}
     </div>
