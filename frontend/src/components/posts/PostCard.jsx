@@ -16,7 +16,9 @@ export default function PostCard({ post, onDeleteClick }) {
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [postLikes, setPostLikes] = useState([]),
   const [liked, setLiked] = useState(false);
+
 
   // Constants
   const postId = post.id;
