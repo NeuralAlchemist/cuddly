@@ -19,7 +19,6 @@ export default function PostCard({ post, onDeleteClick }) {
   const [postLikes, setPostLikes] = useState([]);
   const [liked, setLiked] = useState(false);
 
-
   // Constants
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
@@ -46,6 +45,8 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
+  console.log(listOfLikedUsers);
+
   async function deleteComment(postId, commentToDelete) {
     try {
       await CommentsApi.deleteComment(postId, commentToDelete.id);
@@ -63,7 +64,7 @@ export default function PostCard({ post, onDeleteClick }) {
       const response = await PostLikeApi.addLike(postId);
       const like = response.data;
       const newPostLike = postLikes.concat(like);
-      setPostLikes(newPostLike)
+      setPostLikes(newPostLike);
     } catch (e) {
       console.error(e);
     }
@@ -72,6 +73,10 @@ export default function PostCard({ post, onDeleteClick }) {
   async function removeLike() {
     try {
       await PostLikeApi.removeLike(postId);
+      const newPostLikes = postLikes.filter(
+        (postLike) => postLike.likedUser.email !== currentUser.email
+      );
+      setPostLikes(newPostLikes);
     } catch (e) {
       console.error(e);
     }
@@ -82,7 +87,10 @@ export default function PostCard({ post, onDeleteClick }) {
   }
 
   function checkForLikedUser() {
-    return listOfLikedUsers.map((user) => user === currentUser.name);
+    const likedEmail = listOfLikedUsers.find(
+      (user) => user.email === currentUser.email
+    );
+    return likedEmail != null;
   }
 
   useEffect(() => {
@@ -114,8 +122,8 @@ export default function PostCard({ post, onDeleteClick }) {
         </span>
         <p>{post.contentText}</p>
         <p>{postLikes.length} like(s)</p>
-        <button onClick={(postId) => addLike(postId)}>
-          {liked ? "Dislike" : "Like"}
+        <button onClick={checkForLikedUser() ? removeLike : addLike}>
+          {checkForLikedUser() ? "Dislike" : "Like"}
         </button>
         {checkUserEmail() && (
           <div>
