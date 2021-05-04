@@ -1,11 +1,12 @@
 /* Base */
-@import url("./base/variables.css");
-@import url("./base/typography.css");
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+@import url('./base/layout.css');
 
 /* Pages/Templates */
-@import url("./pages/authPage.css");
+@import url('./pages/authPage.css');
 
 /* Modules */
 
 /* Components */
-@import url("./components/loginAndRegisterForm.css");
+@import url('./components/loginAndRegisterForm.css');

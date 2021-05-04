@@ -1,16 +1,14 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import '../../styles/components/postcard-container.css';
 import '../../styles/components/postcard-item.css';
-import '../../styles/components/postpage.css';
 import '../../styles/base/typography.css';
 import '../../styles/base/variables.css';
 
 // Project files
-import PostsApi from "../../api/PostsApi";
-import PostForm from "../../components/posts/PostForm";
-import PostCard from "../../components/posts/PostCard";
-
+import PostsApi from '../../api/PostsApi';
+import PostForm from '../../components/posts/PostForm';
+import PostCard from '../../components/posts/PostCard';
 
 export default function PostsPage() {
   // Local state
@@ -48,19 +46,24 @@ export default function PostsPage() {
 
   // Components
   const CardsArray = posts.map((post) => (
-    <PostCard key={post.id} post={post} onDeleteClick={() => deletePost(post)} />
+    <PostCard
+      key={post.id}
+      post={post}
+      onDeleteClick={() => deletePost(post)}
+    />
   ));
 
   return (
-    <div className="postspage">
-    <div className="main-content">
-    <div className="postcard-container">
-      <PostForm className= "postform" onSubmit={(postData) => createPost(postData)} />
-      {CardsArray}
-      
+    <div>
+      <div className="main-content">
+        <div className="postcard-container">
+          <PostForm
+            className="postform"
+            onSubmit={(postData) => createPost(postData)}
+          />
+          {CardsArray}
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    
   );
 }

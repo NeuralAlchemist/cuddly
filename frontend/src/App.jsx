@@ -14,7 +14,7 @@ import './styles/style.css';
 
 export default function App() {
   // Local State
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(Auth.isLoggedIn());
 
   // Constants
   Auth.bindLoggedInStateSetter(setLoggedIn);
@@ -24,7 +24,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar onLogout={() => Auth.logout()} />
 
-      <div>
+      <div className="container">
         <Switch>
           <Route path="/posts">
             <PostsPage />

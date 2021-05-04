@@ -15,7 +15,7 @@ export default function Navbar({ onLogout }) {
   const bellObject = require('../../assets/images/bell.svg');
   const bellURL = bellObject;
   return (
-    <nav>
+    <nav className="navbar">
       <div className="navbar-container">
         <Link to="/posts">
           <img className="logo" src={logoURL} alt="Logo" />
