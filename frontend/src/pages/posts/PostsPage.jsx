@@ -36,10 +36,22 @@ export default function PostsPage() {
     }
   }
 
+  async function createImagePost(text, file) {
+    try {
+      const response = await PostsApi.createPost(text, file);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      setPosts(newPosts);
+    } catch (e) {
+      console.error(e);
+      alert("Post with Image failed to post");
+    }
+  }
+
   useEffect(() => {
     PostsApi.getAllPosts()
-      .then(({ data }) => setPosts(data))
-      .catch((err) => console.error(err));
+        .then(({data}) => setPosts(data))
+        .catch((err) => console.error(err));
   }, [setPosts]);
 
   useEffect(() => {
@@ -52,25 +64,25 @@ export default function PostsPage() {
 
   // Components
   const CardsArray = posts.map((post) => (
-    <PostCard
-      key={post.id}
-      post={post}
-      currentUser={currentUser}
-      onDeleteClick={() => deletePost(post)}
-    />
+      <PostCard
+          key={post.id}
+          post={post}
+          onDeleteClick={() => deletePost(post)}
+      />
   ));
 
   return (
-    <div className="post-grid-item">
-      <div className="post-main-content">
-        <div className="postcard-container">
-          <PostForm
-            className="postform"
-            onSubmit={(postData) => createPost(postData)}
-          />
-          {CardsArray}
+      <div className="post-grid-item">
+        <div className="post-main-content">
+          <div className="postcard-container">
+            <PostForm
+                className="postform"
+                onSubmit={(postData) => createPost(postData)}
+                onImagePostSubmit={(text, file) => createImagePost(text, file)}
+            />
+            {CardsArray}
+          </div>
         </div>
       </div>
-    </div>
   );
 }
