@@ -95,7 +95,7 @@ public class PostService {
         newPost.setCreatedTime(createdTime);
         if(!file.isEmpty()){
             try {
-                Byte[] bytes = new Byte[file.getBytes().length];
+                byte[] bytes = new byte[file.getBytes().length];
                 int i = 0;
                 for (byte b : file.getBytes()){
                     bytes[i++] = b;
@@ -147,4 +147,20 @@ public class PostService {
             throw new ForbiddenException();
         }
     }
+
+    public void uploadFile(MultipartFile file) throws IOException {
+        Post post = new Post();
+        String email = authService.getLoggedInUserEmail();
+        LocalDateTime createdTime = LocalDateTime.now();
+        User relatedUser = userRepository.findByEmail(email);
+        post.setRelatedPostUser(relatedUser);
+        post.setCreatedTime(createdTime);
+        System.out.println("works till here");
+        post.setImage(file.getBytes());
+        System.out.println("got bytes");
+        post.setContentText("This is just UPLOADING");
+        postRepository.save(post);
+    }
+
+
 }
