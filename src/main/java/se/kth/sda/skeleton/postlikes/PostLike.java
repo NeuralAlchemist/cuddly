@@ -1,9 +1,6 @@
 package se.kth.sda.skeleton.postlikes;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
@@ -28,8 +25,7 @@ public class PostLike {
     private Post likedPost;
 
     @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnoreProperties({"createdPosts", "likedPosts"})
     @JoinColumn(nullable = false)
     private User likedUser;
 
