@@ -3,7 +3,6 @@ package se.kth.sda.skeleton.postlikes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.auth.AuthService;
-import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
