@@ -16,11 +16,13 @@ export default function PostCard({ post, onDeleteClick }) {
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [liked, setLiked] = useState(false);
 
   // Constants
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
   const postCreatorEmail = post.relatedPostUser.email;
+  const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
 
   // Methods
   async function updatePost(updatedPost) {
@@ -74,6 +76,10 @@ export default function PostCard({ post, onDeleteClick }) {
     return postCreatorEmail === currentUser.email;
   }
 
+  function checkForLikedUser() {
+    return listOfLikedUsers.map((user) => user === currentUser.name);
+  }
+
   useEffect(() => {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
@@ -97,7 +103,9 @@ export default function PostCard({ post, onDeleteClick }) {
         </span>
         <p>{post.contentText}</p>
         <p>{post.listOfLikes.length} like(s)</p>
-        <button onClick={(postId) => addLike(postId)}>Like</button>
+        <button onClick={(postId) => addLike(postId)}>
+          {liked ? "Dislike" : "Like"}
+        </button>
         {checkUserEmail() && (
           <div>
             <button onClick={onDeleteClick}>Delete</button>
