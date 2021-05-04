@@ -113,6 +113,10 @@ export default function PostCard({ post, onDeleteClick }) {
       .catch((err) => console.error(err));
   }, [setCurrentUser]);
 
+  // useEffect(() => {
+  //   checkForLikedUser() ? setLiked(true) : setLiked(false);
+  // }, [listOfLikedUsers]);
+
   return (
     <div>
       <div>
@@ -122,9 +126,17 @@ export default function PostCard({ post, onDeleteClick }) {
         </span>
         <p>{post.contentText}</p>
         <p>{postLikes.length} like(s)</p>
-        <button onClick={checkForLikedUser() ? removeLike : addLike}>
-          {checkForLikedUser() ? "Dislike" : "Like"}
+
+        <button
+          onClick={() => {
+            checkForLikedUser() || liked
+              ? removeLike() && setLiked(false)
+              : addLike() && setLiked(true);
+          }}
+        >
+          {checkForLikedUser() || liked ? "Dislike" : "Like"}
         </button>
+
         {checkUserEmail() && (
           <div>
             <button onClick={onDeleteClick}>Delete</button>
