@@ -46,6 +46,11 @@ public class Post {
     @Lob
     private Byte[] image;
 
+    private String imageType;
+
+    @Embedded
+    private ContentFile contentFile;
+
     // Constructor
     public Post() {
     }
@@ -110,5 +115,21 @@ public class Post {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public ContentFile getContentFile() {
+        return contentFile;
+    }
+
+    public void setContentFile(ContentFile contentFile) {
+        this.contentFile = contentFile;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
     }
 }

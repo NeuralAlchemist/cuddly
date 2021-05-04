@@ -93,7 +93,6 @@ public class PostService {
         newPost.setContentText(text);
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
-
         if(!file.isEmpty()){
             try {
                 Byte[] bytes = new Byte[file.getBytes().length];
