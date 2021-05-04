@@ -48,6 +48,18 @@ export default function PostsPage() {
     }
   }
 
+  async function uploadFile(file){
+    try{
+      const response = await PostsApi.uploadFile(file);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      setPosts(newPosts);
+    }catch (e) {
+      console.error(e);
+      alert("Image failed to upload");
+    }
+  }
+
   useEffect(() => {
     PostsApi.getAllPosts()
         .then(({data}) => setPosts(data))
