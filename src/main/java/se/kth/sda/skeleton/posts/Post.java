@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.web.multipart.MultipartFile;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
@@ -44,6 +45,11 @@ public class Post {
 
     @Lob
     private Byte[] image;
+
+    private String imageType;
+
+    @Embedded
+    private ContentFile contentFile;
 
     // Constructor
     public Post() {
@@ -109,5 +115,21 @@ public class Post {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public ContentFile getContentFile() {
+        return contentFile;
+    }
+
+    public void setContentFile(ContentFile contentFile) {
+        this.contentFile = contentFile;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
     }
 }

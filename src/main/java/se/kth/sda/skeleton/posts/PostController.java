@@ -2,6 +2,7 @@ package se.kth.sda.skeleton.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -47,8 +48,8 @@ public class PostController {
      * @param text  the contentText of the post
      * @return http status created and post
      */
-    @PostMapping("/upload")
-    public ResponseEntity<Post> createPost(@RequestParam("contentFile") MultipartFile file, @RequestParam("contentText") String text){
+    @PostMapping(value="/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<Post> createImagePost(@RequestParam("contentFile") MultipartFile file, @RequestParam("contentText") String text){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
     }
