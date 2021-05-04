@@ -16,7 +16,7 @@ export default function PostCard({ post, onDeleteClick }) {
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [postLikes, setPostLikes] = useState([]),
+  const [postLikes, setPostLikes] = useState([]);
   const [liked, setLiked] = useState(false);
 
 
@@ -60,7 +60,10 @@ export default function PostCard({ post, onDeleteClick }) {
 
   async function addLike() {
     try {
-      await PostLikeApi.addLike(postId);
+      const response = await PostLikeApi.addLike(postId);
+      const like = response.data;
+      const newPostLike = postLikes.concat(like);
+      setPostLikes(newPostLike)
     } catch (e) {
       console.error(e);
     }
@@ -89,6 +92,12 @@ export default function PostCard({ post, onDeleteClick }) {
   }, [setComments, postId]);
 
   useEffect(() => {
+    PostLikeApi.getAllPostLikes(postId)
+      .then(({ data }) => setPostLikes(data))
+      .catch((err) => console.error(err));
+  }, [setPostLikes, postId]);
+
+  useEffect(() => {
     UserApi.getUser()
       .then(({ data }) => {
         setCurrentUser(data);
@@ -104,7 +113,7 @@ export default function PostCard({ post, onDeleteClick }) {
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
         <p>{post.contentText}</p>
-        <p>{post.listOfLikes.length} like(s)</p>
+        <p>{postLikes.length} like(s)</p>
         <button onClick={(postId) => addLike(postId)}>
           {liked ? "Dislike" : "Like"}
         </button>
