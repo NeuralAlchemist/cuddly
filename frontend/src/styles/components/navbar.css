@@ -39,10 +39,15 @@
   margin-right: var(--space-medium-small);
 }
 
+.logout {
+  width: auto;
+  height: 24px;
+  color: grey;
+  margin-right: var(--space-medium-small);
+}
+
 .logout-button-container {
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
+  display: none;
 }
 
 .button {
@@ -101,5 +106,15 @@
 
   .button {
     margin-right: 32px;
+  }
+
+  .logout {
+    display: none;
+  }
+
+  .logout-button-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
   }
 }

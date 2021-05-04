@@ -14,6 +14,8 @@ export default function Navbar({ onLogout }) {
   const userURL = userObject;
   const bellObject = require('../../assets/images/bell.svg');
   const bellURL = bellObject;
+  const logoutObject = require('../../assets/images/logout.svg');
+  const logoutURL = logoutObject;
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -31,6 +33,10 @@ export default function Navbar({ onLogout }) {
 
         <Link to="/notification">
           <img className="notification" src={bellURL} alt="Notification" />
+        </Link>
+
+        <Link onClick={onLogout}>
+          <img className="logout" src={logoutURL} alt="Logout" />
         </Link>
 
         <div className="logout-button-container">
