@@ -26,7 +26,6 @@ public class PostLike {
 
     @ManyToOne
     @JsonIgnoreProperties({"createdPosts", "likedPosts"})
-    @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     private User likedUser;
 
