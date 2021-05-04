@@ -1,5 +1,6 @@
 package se.kth.sda.skeleton.user;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
@@ -7,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
+import se.kth.sda.skeleton.profile.Profile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -30,6 +32,9 @@ public class User {
 
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
+
+    @OneToMany(mappedBy = "relatedProfileUser", cascade = CascadeType.ALL)
+    List<Profile> createdProfiles;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -117,4 +122,13 @@ public class User {
     public void setCreatedComments(List<Comment> createdComments) {
         this.createdComments = createdComments;
     }
+
+    public List<Profile> getCreatedProfiles() {
+        return createdProfiles;
+    }
+
+    public void setCreatedProfiles(List<Profile> createdProfiles) {
+        this.createdProfiles = createdProfiles;
+    }
+    
 }
