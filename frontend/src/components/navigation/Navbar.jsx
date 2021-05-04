@@ -39,9 +39,8 @@ export default function Navbar({ onLogout }) {
 
         {/* <input type="text" class="searchTerm" id="input_text"></input>
         <button className="button-search" type="search">
-          Search */}
-          
-        </button>
+          Search
+        </button> */}
       </div>
     </nav>
   );
