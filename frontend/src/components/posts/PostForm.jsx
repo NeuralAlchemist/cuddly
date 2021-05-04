@@ -1,12 +1,11 @@
 // NPM Packages
 import React, { useState } from "react";
 import '../posts/postform.css';
+import axios from "axios";
 
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
   // Local State
   const [contentText, setContentText] = useState("");
-  const [contentFile, setContentFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
   // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
@@ -18,21 +17,16 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 
   const handleImagePostSubmit = () => {
     const formData = new FormData();
-    formData.append('image',contentFile);
-    onImagePostSubmit({formData,contentText});
-    setContentFile(null);
-    setContentText("");
-    setIsFilePicked(false);
+    onImagePostSubmit({formData});
   }
-  const setFile = (event) => {
-    setContentFile(event.target.files[0]);
-    setIsFilePicked(true);
+
+  const setFile = async (event) => {
     const formData = new FormData();
-    formData.append('file', contentFile);
-    formData.append('contentText', contentText);
+    var file = event.target.files[0];
+    console.log(file)
+    formData.append('file', event.target.files[0]);
     formData.forEach(item => console.log(item))
-    console.log(formData);
-    console.log(formData.contentText)
+    onImagePostSubmit({file: formData});
     console.log(`selected file is now: ${event.target.files[0]}`);
   }
 
@@ -48,7 +42,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
           <div>
             <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
           </div>
-          <input type="file" onChange={setFile}/>
+          <input formEncType="multipart/form-data" type="file" onChange={(e) => setFile(e)}/>
           <div>
             <button onClick={handleSubmit}>Post</button>
           </div>
