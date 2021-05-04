@@ -44,7 +44,7 @@ public class Post {
     LocalDateTime createdTime;
 
     @Lob
-    private Byte[] image;
+    private byte[] image;
 
     private String imageType;
 
@@ -109,11 +109,11 @@ public class Post {
         this.createdTime = createdTime;
     }
 
-    public Byte[] getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Byte[] image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
