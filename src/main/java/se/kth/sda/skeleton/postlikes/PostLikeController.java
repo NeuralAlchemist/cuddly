@@ -22,6 +22,12 @@ public class PostLikeController {
         this.postLikeService = postLikeService;
     }
 
+    /**
+     * Handler method for endpoint "/posts/{postId}/likes" with POST HttpRequest. Returns a {@link ResponseEntity} containing the created
+     * post like and HTTP status {@code OK}.
+     * @param postId the Post for whom a new PostLike is added
+     * @return {@link ResponseEntity} containing the added PostLike and HTTP status {@code OK}
+     */
     @PostMapping("/{postId}/likes")
     public ResponseEntity<PostLike> addLike(@PathVariable Long postId){
         return ResponseEntity
