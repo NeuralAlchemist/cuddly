@@ -95,7 +95,7 @@ public class PostService {
         newPost.setCreatedTime(createdTime);
         if(!file.isEmpty()){
             try {
-                Byte[] bytes = new Byte[file.getBytes().length];
+                byte[] bytes = new byte[file.getBytes().length];
                 int i = 0;
                 for (byte b : file.getBytes()){
                     bytes[i++] = b;
