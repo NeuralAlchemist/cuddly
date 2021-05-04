@@ -36,6 +36,18 @@ export default function PostsPage() {
     }
   }
 
+  async function createImagePost(text, file){
+    try{
+      const response = await PostsApi.createPost(text, file);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      setPosts(newPosts);
+    } catch (e) {
+      console.error(e);
+      alert("Post with Image failed to post");
+    }
+  }
+
   useEffect(() => {
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
@@ -49,7 +61,7 @@ export default function PostsPage() {
 
   return (
     <div className="postcard-container">
-      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} />
+      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} onImagePostSubmit={(text, file) => createImagePost(text, file)}/>
 
       {CardsArray}
     </div>
