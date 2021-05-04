@@ -1,40 +1,48 @@
+@import url('../base/variables.css');
+
+.navbar {
+  background-color: white;
+  width: 100%;
+}
 
 .navbar-container {
   display: flex;
   min-height: 48px;
-  align-items:center;
-  width: 100%;
-  background-color: white;
+  align-items: center;
+  margin: var(--space-x-small);
 }
 
 .logo {
   width: auto;
-  height: 48px;
+  height: 32px;
 }
 
 .homepageIcon {
   width: auto;
-  height: 32px;
+  height: 24px;
   fill: #bc3908;
-  /* margin: 10px; */
-  margin-left: 24px;
-  margin-right: 32px;
+  margin-left: var(--space-medium-small);
+  margin-right: var(--space-medium-small);
 }
 
 .user {
   width: auto;
-  height: 32px;
+  height: 24px;
   color: #bc3908;
-  /* margin: 10px; */
-  margin-right: 32px;
+  margin-right: var(--space-medium-small);
 }
 
 .notification {
   width: auto;
-  height: 32px;
+  height: 24px;
   color: #bc3908;
-  /* margin: 10px; */
-  margin-right: 32px;
+  margin-right: var(--space-medium-small);
+}
+
+.logout-button-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .button {
@@ -43,7 +51,7 @@
   border-radius: 8px;
   border-width: 0px;
   align-items: center;
-  margin-right: 32px;
+
   font-family: 'Nunito', sans-serif;
   font-size: medium;
 }
@@ -68,4 +76,30 @@
 .button-search:hover {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
+}
+
+@media screen and (min-width: 640px) {
+  .logo {
+    height: 48px;
+  }
+
+  .homepageIcon {
+    height: 32px;
+    margin-left: 24px;
+    margin-right: 32px;
+  }
+
+  .user {
+    height: 32px;
+    margin-right: 32px;
+  }
+
+  .notification {
+    height: 32px;
+    margin-right: 32px;
+  }
+
+  .button {
+    margin-right: 32px;
+  }
 }

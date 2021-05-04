@@ -1,10 +1,10 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import '../posts/postform.css';
 
 export default function PostForm({ onSubmit }) {
   // Local State
-  const [contentText, setContentText] = useState("");
+  const [contentText, setContentText] = useState('');
 
   // Methods
   const handleSubmit = () => {
@@ -12,7 +12,7 @@ export default function PostForm({ onSubmit }) {
     onSubmit({ contentText: contentText });
 
     // Clear the input field
-    setContentText("");
+    setContentText('');
   };
 
   return (
@@ -21,7 +21,10 @@ export default function PostForm({ onSubmit }) {
         <h4>What's on your mind?</h4>
         <div>
           <div>
-            <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} />
+            <textarea
+              value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
+            />
           </div>
           <div>
             <button onClick={handleSubmit}>Post</button>

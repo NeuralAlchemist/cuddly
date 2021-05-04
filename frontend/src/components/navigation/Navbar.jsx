@@ -33,9 +33,11 @@ export default function Navbar({ onLogout }) {
           <img className="notification" src={bellURL} alt="Notification" />
         </Link>
 
-        <button className="button" onClick={onLogout}>
-          Logout
-        </button>
+        <div className="logout-button-container">
+          <button className="button" onClick={onLogout}>
+            Logout
+          </button>
+        </div>
 
         {/* <input type="text" class="searchTerm" id="input_text"></input>
         <button className="button-search" type="search">
