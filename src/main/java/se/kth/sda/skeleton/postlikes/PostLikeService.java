@@ -3,6 +3,7 @@ package se.kth.sda.skeleton.postlikes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
@@ -77,5 +78,18 @@ public class PostLikeService {
             }
         }
         throw new ForbiddenException();
+    }
+
+    /**
+     * Returns all Like of a Post with the given {@code postId} or throws a {@link ResourceNotFoundException} if there is no
+     * Post with the given {@code postId}.
+     *
+     * @param postId the Post whose entire list of Likes is returned
+     * @return a list of Likes of the Post with id equal to {@code postId}
+     * @throws ResourceNotFoundException if there is no Post with the given {@code postId}
+     */
+    public List<PostLike> getAllLikes(Long postId) {
+        Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
+        return relatedPost.getListOfLikes();
     }
 }
