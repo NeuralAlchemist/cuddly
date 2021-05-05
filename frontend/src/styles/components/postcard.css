@@ -9,14 +9,6 @@
     margin: var(--space-medium);
 }
 
-.posted-by-text {
-    color: var(--color-red-brown);
-    font-size: var(--font-size-medium);
-    font-weight: 700;
-    font-family: 'Nunito', sans-serif;
-    margin-top: 0;
-}
-
 .content-text {
     font-size: var(--font-size-small);
 }
@@ -34,4 +26,8 @@
 
 .post-info {
     color: var(--color-red-brown);
+    font-size: var(--font-size-medium);
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 0;
 }
