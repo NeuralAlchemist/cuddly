@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../styles/components/navbar.css';
-import '../../styles/base/typography.css';
-import '../../styles/base/variables.css';
-
 export default function Navbar({ onLogout }) {
   const logoObject = require('../../assets/images/logo.svg');
   const logoURL = logoObject;

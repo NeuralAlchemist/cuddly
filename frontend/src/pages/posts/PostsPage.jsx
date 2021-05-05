@@ -1,9 +1,5 @@
 // NPM Packages
 import React, { useEffect, useState } from 'react';
-import '../../styles/components/postcard-container.css';
-import '../../styles/components/postcard-item.css';
-import '../../styles/base/typography.css';
-import '../../styles/base/variables.css';
 
 // Project files
 import PostsApi from '../../api/PostsApi';

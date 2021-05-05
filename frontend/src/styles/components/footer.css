@@ -6,7 +6,7 @@
 
 .footer-link {
   margin: 16px;
-  color: black;
+  color: var(--color-black-brown);
   font-weight: bold;
   text-decoration: none;
 }
