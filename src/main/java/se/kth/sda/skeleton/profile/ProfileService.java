@@ -62,17 +62,22 @@ public class ProfileService {
 
     //TODO
     // profile image updates
-    public Profile updateProfile(Long id, Profile updatedUpdate){
-        Profile updatedProfile = profileRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    public Profile updateProfile(Long id, Profile updatedProfile){
+        Profile profile = profileRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         LocalDateTime createdTime = LocalDateTime.now();
         String loggedInUserEmail = authService.getLoggedInUserEmail();
-        if(!loggedInUserEmail.equals(updatedProfile.getRelatedProfileUser().getEmail())){
+
+        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
+        if (!loggedInUserEmail.equals(profile.getRelatedProfileUser().getEmail())) {
             throw new ForbiddenException();
         }
-        updatedUpdate.setCreatedTime(createdTime);
+        updatedProfile.setId(id);
+        updatedProfile.setCreatedTime(createdTime);
+        updatedProfile.setRelatedProfileUser(loggedInUser);
+        updatedProfile.setActiveProfile(true);
 
-        Profile newUpdatedProfile = profileRepository.save(updatedUpdate);
-        return newUpdatedProfile;
+        Profile newProfile = profileRepository.save(updatedProfile);
+        return newProfile;
     }
 
     /**
