@@ -1,12 +1,10 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
-import '../posts/postcard-container.css';
-import '../posts/postcard-item.css';
+import React, { useEffect, useState } from 'react';
 
 // Project files
-import PostsApi from "../../api/PostsApi";
-import PostForm from "../../components/posts/PostForm";
-import PostCard from "../../components/posts/PostCard";
+import PostsApi from '../../api/PostsApi';
+import PostForm from '../../components/posts/PostForm';
+import PostCard from '../../components/posts/PostCard';
 
 export default function PostsPage() {
   // Local state
@@ -44,14 +42,24 @@ export default function PostsPage() {
 
   // Components
   const CardsArray = posts.map((post) => (
-    <PostCard key={post.id} post={post} onDeleteClick={() => deletePost(post)} />
+    <PostCard
+      key={post.id}
+      post={post}
+      onDeleteClick={() => deletePost(post)}
+    />
   ));
 
   return (
-    <div className="postcard-container">
-      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} />
-
-      {CardsArray}
+    <div>
+      <div className="main-content">
+        <div className="postcard-container">
+          <PostForm
+            className="postform"
+            onSubmit={(postData) => createPost(postData)}
+          />
+          {CardsArray}
+        </div>
+      </div>
     </div>
   );
 }

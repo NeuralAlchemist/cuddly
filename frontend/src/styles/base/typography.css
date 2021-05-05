@@ -30,6 +30,13 @@ h4 {
   font-weight: 700;
 }
 
+h5 {
+  font-family: "Nunito", sans-serif;
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  margin: 8px;
+}
+
 p {
   font-family: "Open Sans", sans-serif;
   font-size: var(--font-size-medium-small);
