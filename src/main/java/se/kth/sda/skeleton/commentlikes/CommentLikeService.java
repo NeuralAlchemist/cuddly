@@ -74,7 +74,7 @@ public class CommentLikeService {
         commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
         String loggedUserEmail = authService.getLoggedInUserEmail();
         User loggedUser = userRepository.findByEmail(loggedUserEmail);
-        
+
         List<CommentLike> listOfLikedComments = loggedUser.getLikedComments();
         for(CommentLike commentLike : listOfLikedComments){
             if(commentLike.getLikedComment().getId().equals(commentId)){

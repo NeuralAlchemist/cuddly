@@ -36,4 +36,15 @@ public class CommentLikeController {
                 .status(HttpStatus.CREATED)
                 .body(commentLikeService.addCommentLike(commentId));
     }
+
+    /**
+     * Handler method for endpoint "/posts/{postId}/likes" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
+     * NO_CONTENT. Deletes the like made by the logged in user for post given by {@code postId}
+     * @param postId the post for which the user's like will be removed
+     */
+    @DeleteMapping("/{postId}/likes")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeLike(@PathVariable Long postId){
+        commentLikeService.removeCommentLike(postId);
+    }
 }
