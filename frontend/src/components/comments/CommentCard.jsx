@@ -1,6 +1,7 @@
 // NPM Packages
 import React, { useState } from "react";
 import CommentsApi from "../../api/CommentsApi";
+import Moment from "react-moment";
 
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
@@ -38,9 +39,13 @@ export default function CommentCard({
 
   return (
     <div>
-      <p>
-        {commentCreatorName}: {comment.contentText}
-      </p>
+      <span>
+        {commentCreatorName}: </span>
+        <span>{comment.contentText} </span>
+        <span>
+          <Moment fromNow>{comment.createdTime}</Moment>
+        </span>
+
       {checkCommentUserEmail() && (
         <div>
           <button onClick={handleDelete}>Delete</button>
