@@ -48,13 +48,13 @@ public class CommentLikeController {
     }
 
     /**
-     * Handler method for endpoint "/posts/{postId}/likes" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
-     * NO_CONTENT. Deletes the like made by the logged in user for post given by {@code postId}
-     * @param postId the post for which the user's like will be removed
+     * Handler method for endpoint "/comments/{commentId}/likes" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
+     * NO_CONTENT. Deletes the like made by the logged in user for comment given by {@code commentId}
+     * @param commentId the comment for which the user's like will be removed
      */
-    @DeleteMapping("/{postId}/likes")
+    @DeleteMapping("/{commentId}/likes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeLike(@PathVariable Long postId){
-        commentLikeService.removeCommentLike(postId);
+    public void removeLike(@PathVariable Long commentId){
+        commentLikeService.removeCommentLike(commentId);
     }
 }
