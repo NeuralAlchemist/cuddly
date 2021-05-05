@@ -2,14 +2,13 @@ package se.kth.sda.skeleton.commentlikes;
 
 import com.fasterxml.jackson.annotation.*;
 import se.kth.sda.skeleton.comments.Comment;
-import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Represents a Like on a {@code Post} in a cuddly app as a JPA entity. This implementation of PostLike will autogenerate a primary key of type
- * {@link Long} to indicate the current PostLike entity. A Post has a {@link String} contentText.
+ * Represents a Like on a {@code Comment} in a cuddly app as a JPA entity. This implementation of CommentLike will autogenerate a primary key of type
+ * {@link Long} to indicate the current CommentLike entity. A Comment has a {@link String} contentText.
  */
 @Entity
 public class CommentLike {
