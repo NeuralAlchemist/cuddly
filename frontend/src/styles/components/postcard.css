@@ -11,6 +11,9 @@
 
 .content-text {
     font-size: var(--font-size-small);
+    border-top: solid 1px rgb(208, 201, 201);
+    padding: 10px 0;
+    margin: 0;
 }
 
 .button-post-card {
@@ -63,4 +66,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.time-lapse{
+    font-style: italic;
+    font-size: smaller;
 }

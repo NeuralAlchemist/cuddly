@@ -116,10 +116,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <div className="PostCard">
             <div>
                 <div className="postcard-header">
-                    <span className="post-info">
-                        {postCreatorName} posted{" "}
-                        <Moment fromNow>{post.createdTime}</Moment>
-                    </span>
+                    <div className="post-info">{postCreatorName} posted</div>
                     <div className="delete-edit-icons">
                         {checkUserEmail() && (
                             <span>
@@ -141,6 +138,7 @@ export default function PostCard({ post, onDeleteClick }) {
                         )}
                     </div>
                 </div>
+                <Moment className="time-lapse" fromNow>{post.createdTime}</Moment>
                 <p className="content-text">
                     {!toggleUpdatePost ? (
                         post.contentText
@@ -160,7 +158,7 @@ export default function PostCard({ post, onDeleteClick }) {
                 </p>
                 <div className="like-counter">
                     <img className="icon-like" src={pawURL} alt="like(s)" />
-                    <span>  {post.listOfLikes.length}</span>
+                    <span> {post.listOfLikes.length}</span>
                 </div>
                 <button onClick={likeAction} className="like-button">
                     {checkForLikedUser() ? "Remove Like" : "Like"}
