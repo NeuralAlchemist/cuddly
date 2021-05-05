@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
+import se.kth.sda.skeleton.commentlikes.CommentLike;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
@@ -30,6 +31,9 @@ public class User {
 
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
+
+    @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
+    List<CommentLike> likedComments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -116,5 +120,13 @@ public class User {
 
     public void setCreatedComments(List<Comment> createdComments) {
         this.createdComments = createdComments;
+    }
+
+    public List<CommentLike> getLikedComments() {
+        return likedComments;
+    }
+
+    public void setLikedComments(List<CommentLike> likedComments) {
+        this.likedComments = likedComments;
     }
 }
