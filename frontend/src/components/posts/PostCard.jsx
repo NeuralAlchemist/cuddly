@@ -106,21 +106,21 @@ export default function PostCard({ post, onDeleteClick }) {
   }, [setCurrentUser]);
 
   return (
-    <div>
+    <div className="PostCard">
       <div>
         <span>{postCreatorName} posted </span>
         <span>
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
-        <p>{post.contentText}</p>
+        <p className="content-text">{post.contentText}</p>
         <p>{post.listOfLikes.length} like(s)</p>
         <button onClick={likeAction} className="like-button">
           {checkForLikedUser() ? "Remove Like" : "Like"}
         </button>
         {checkUserEmail() && (
           <div>
-            <button onClick={onDeleteClick}>Delete</button>
-            <button
+            <button className="button-post-card" onClick={onDeleteClick}>Delete</button>
+            <button className="button-post-card"
               onClick={() =>
                 toggleUpdatePost
                   ? setToggleUpdatePost(false)
