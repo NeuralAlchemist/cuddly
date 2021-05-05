@@ -15,25 +15,31 @@
 
 .button-post-card {
     background-color: white;
-    color: #bc3908;
-    border-radius: 8px;
     border-width: 0;
     align-items: center;
     margin-right: 32px;
     font-family: 'Nunito', sans-serif;
     font-size: var(--font-size-small);
-    width: 25px;
-    height: 25px;
+    width: var(--space-medium-big);
+    height: var(--space-medium-big);
 }
 
-#edit-button{
-    background-image: url(../../assets/images/edit.png);
+.delete-icon{
+    background-image: url(../../assets/images/delete.svg);
     background-repeat: no-repeat;
-    width: 30px;
-    height: 30px;
-    border-radius: 0%;
+    background-size: var(--space-medium-big) var(--space-medium-big);
+}
+.active{
+    background-image: url(../../assets/images/edit.svg);
+    background-repeat: no-repeat;
+    background-size: var(--space-medium-big) var(--space-medium-big);
 }
 
+.cancel{
+    background-image: url(../../assets/images/cancel-edit.svg);
+    background-repeat: no-repeat;
+    background-size: var(--space-medium-big) var(--space-medium-big);
+}
 .post-info {
     color: var(--color-red-brown);
     font-size: var(--font-size-medium);
@@ -52,9 +58,4 @@
     height: 16px;
 }
 
-.delete-icon {
-    width: 25px;
-    height: 25px;
-    fill:#bc3908;
-}
 

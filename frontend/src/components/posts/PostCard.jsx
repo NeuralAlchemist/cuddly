@@ -20,6 +20,7 @@ export default function PostCard({ post, onDeleteClick }) {
     // Constants
     const deleteURL = require("../../assets/images/delete.svg");
     const editURL = require("../../assets/images/edit.svg");
+    const pawURL = require("../../assets/images/paw.svg");
     const postId = post.id;
     const postCreatorName = post.relatedPostUser.name;
     const postCreatorEmail = post.relatedPostUser.email;
@@ -116,32 +117,26 @@ export default function PostCard({ post, onDeleteClick }) {
             <div>
                 <div className="postcard-header">
                     <span className="post-info">
-                        {post.listOfLikes.length} {postCreatorName} posted{" "}
+                        {postCreatorName} posted{" "}
                         <Moment fromNow>{post.createdTime}</Moment>
                     </span>
                     <div className="delete-edit-icons">
                         {checkUserEmail() && (
                             <span>
                                 <button
-                                    className="button-post-card"
+                                    className="button-post-card delete-icon"
                                     onClick={onDeleteClick}
-                                >
-                                    <img
-                                        src={deleteURL}
-                                        alt="delete-icon"
-                                        className="delete-icon"
-                                    ></img>
-                                </button>
+                                ></button>
                                 <button
-                                    className="button-post-card"
-                                    id="edit-button"
+                                    className={`button-post-card + ${
+                                        toggleUpdatePost ? " cancel" : " active"
+                                    }`}
                                     onClick={() =>
                                         toggleUpdatePost
                                             ? setToggleUpdatePost(false)
                                             : setToggleUpdatePost(true)
                                     }
-                                >
-                                </button>
+                                ></button>
                             </span>
                         )}
                     </div>
@@ -164,11 +159,8 @@ export default function PostCard({ post, onDeleteClick }) {
                     )}
                 </p>
                 <div className="like-counter">
-                    <img
-                        className="icon-like"
-                        src={likeIconURL}
-                        alt="like(s)"
-                    />
+                    <img className="icon-like" src={pawURL} alt="like(s)" />
+                    <span>  {post.listOfLikes.length}</span>
                 </div>
                 <button onClick={likeAction} className="like-button">
                     {checkForLikedUser() ? "Remove Like" : "Like"}
