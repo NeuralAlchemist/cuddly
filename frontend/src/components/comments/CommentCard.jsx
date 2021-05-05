@@ -42,9 +42,19 @@ export default function CommentCard({
     }
   }
 
+  async function removeCommentLike() {
+    try {
+      await CommentLikeApi.removeCommentLike(comment.id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkCommentUserEmail() {
     return commentCreatorEmail === currentUser.email;
   }
+
+
 
   return (
     <div>
@@ -55,7 +65,7 @@ export default function CommentCard({
           <Moment fromNow>{comment.createdTime}</Moment>
         </span>
         <p>{comment.listOfCommentLikes.length} like(s)</p>
-        <button onClick={addCommentLike}>
+        <button onClick={removeCommentLike}>
            Like Comment
         </button>
 
