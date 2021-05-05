@@ -17,11 +17,11 @@
     background-color: white;
     border-width: 0;
     align-items: center;
-    margin-right: 32px;
     font-family: 'Nunito', sans-serif;
     font-size: var(--font-size-small);
     width: var(--space-medium-big);
     height: var(--space-medium-big);
+    margin: 0 0 10px 10px;
 }
 
 .delete-icon{
@@ -49,8 +49,9 @@
 }
 
 .postcard-header{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 80px;
+    align-items: center;
 }
 
 .icon-like {
@@ -58,4 +59,8 @@
     height: 16px;
 }
 
-
+.delete-edit-icons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
