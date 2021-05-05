@@ -32,7 +32,7 @@ public class User {
     @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
     List<PostLike> likedPosts;
 
-    @OneToMany(mappedBy = "likedUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "likedCommentUser", cascade = CascadeType.ALL)
     List<CommentLike> likedComments;
 
     @Id

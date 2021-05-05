@@ -7,6 +7,8 @@ import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.comments.CommentRepository;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
+import se.kth.sda.skeleton.postlikes.PostLike;
+import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
 import java.util.List;
@@ -61,5 +63,26 @@ public class CommentLikeService {
         newCommentLike.setLikedComment(likedComment);
         newCommentLike.setLikedCommentUser(loggedUser);
         return commentLikeRepository.save(newCommentLike);
+    }
+
+    /**
+     * Removes a like to the given comment an throws a {@link ForbiddenException} if the comment has not been already liked.
+     * @param commentId the comment to which a like is to be removed
+     * @throws ForbiddenException if the comment has not been already liked.
+     */
+    public void removeCommentLike(Long commentId){
+        commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
+        String loggedUserEmail = authService.getLoggedInUserEmail();
+        User loggedUser = userRepository.findByEmail(loggedUserEmail);
+        
+        List<CommentLike> listOfLikedComments = loggedUser.getLikedComments();
+        for(CommentLike commentLike : listOfLikedComments){
+            if(commentLike.getLikedComment().getId().equals(commentId)){
+                loggedUser.getLikedComments().remove(commentLike);
+                commentLikeRepository.delete(commentLike);
+                return;
+            }
+        }
+        throw new ForbiddenException();
     }
 }

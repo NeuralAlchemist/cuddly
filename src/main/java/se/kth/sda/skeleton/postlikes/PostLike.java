@@ -25,7 +25,7 @@ public class PostLike {
     private Post likedPost;
 
     @ManyToOne
-    @JsonIgnoreProperties({"createdPosts", "likedPosts"})
+    @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments"})
     @JoinColumn(nullable = false)
     private User likedUser;
 
