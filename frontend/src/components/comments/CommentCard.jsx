@@ -5,6 +5,7 @@ import Moment from "react-moment";
 
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
+import CommentLikeApi from "../../api/CommentLikeApi";
 
 export default function CommentCard({
   postId,
@@ -33,6 +34,14 @@ export default function CommentCard({
     }
   }
 
+  async function addCommentLike() {
+    try {
+      await CommentLikeApi.addCommentLike(comment.id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkCommentUserEmail() {
     return commentCreatorEmail === currentUser.email;
   }
@@ -45,6 +54,10 @@ export default function CommentCard({
         <span>
           <Moment fromNow>{comment.createdTime}</Moment>
         </span>
+        <p>{comment.listOfCommentLikes.length} like(s)</p>
+        <button onClick={addCommentLike}>
+           Like Comment
+        </button>
 
       {checkCommentUserEmail() && (
         <div>
