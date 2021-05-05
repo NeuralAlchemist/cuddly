@@ -51,7 +51,7 @@ export default function PostsPage() {
 
   return (
     <div>
-      <div className="main-content">
+      <div className="post-main-content">
         <div className="postcard-container">
           <PostForm
             className="postform"
