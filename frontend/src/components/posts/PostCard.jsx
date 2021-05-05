@@ -16,7 +16,6 @@ export default function PostCard({ post, onDeleteClick }) {
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [liked, setLiked] = useState(false);
 
   // Constants
   const postId = post.id;
@@ -56,13 +55,13 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
-  async function likeAction(){
-      if(checkForLikedUser()){
-        await removeLike();
-      } else {
-        await addLike();
-      }
-      window.location.reload();
+  function likeAction() {
+    if (checkForLikedUser()) {
+      removeLike();
+    } else {
+      addLike();
+    }
+    window.location.reload();
   }
 
   async function addLike() {
@@ -87,7 +86,7 @@ export default function PostCard({ post, onDeleteClick }) {
 
   function checkForLikedUser() {
     const likedEmail = listOfLikedUsers.find(
-        (user) => user.email === currentUser.email
+      (user) => user.email === currentUser.email
     );
     return likedEmail != null;
   }
@@ -109,14 +108,14 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div>
       <div>
-        <span>{postCreatorName} </span>
+        <span>{postCreatorName} posted </span>
         <span>
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
         <p>{post.contentText}</p>
         <p>{post.listOfLikes.length} like(s)</p>
-        <button onClick={(postId) => likeAction(postId)}
-                className="like"> Like
+        <button onClick={likeAction} className="like-button">
+          {checkForLikedUser() ? "Remove Like" : "Like"}
         </button>
         {checkUserEmail() && (
           <div>
