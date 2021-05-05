@@ -45,4 +45,5 @@ p {
 span {
   font-family: "Open Sans", sans-serif;
   font-size: var(--font-size-medium-small);
+  color: var(--color-black-brown);
 }

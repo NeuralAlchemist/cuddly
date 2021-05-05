@@ -1,7 +1,7 @@
 .PostCard {
     background-color: white;
     padding: var(--space-small);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
     width: auto;
     height: auto;
     max-width: 100%;
@@ -17,7 +17,7 @@
     background-color: white;
     color: #bc3908;
     border-radius: 8px;
-    border-width: 0px;
+    border-width: 0;
     align-items: center;
     margin-right: 32px;
     font-family: 'Nunito', sans-serif;
@@ -30,4 +30,9 @@
     font-weight: 700;
     font-family: 'Nunito', sans-serif;
     margin-top: 0;
+}
+
+.icon-like {
+    width: 16px;
+    height: 16px;
 }

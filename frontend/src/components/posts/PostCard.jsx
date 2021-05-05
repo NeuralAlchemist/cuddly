@@ -22,6 +22,7 @@ export default function PostCard({ post, onDeleteClick }) {
   const postCreatorName = post.relatedPostUser.name;
   const postCreatorEmail = post.relatedPostUser.email;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
+  const likeIconURL = require('../../assets/images/like.svg');
 
   // Methods
   async function updatePost(updatedPost) {
@@ -113,7 +114,10 @@ export default function PostCard({ post, onDeleteClick }) {
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
         <p className="content-text">{post.contentText}</p>
-        <p>{post.listOfLikes.length} like(s)</p>
+        <div className="like-counter">
+          <img className="icon-like" src={likeIconURL} alt="like(s)"/>
+          <span>  {post.listOfLikes.length}</span>
+        </div>
         <button onClick={likeAction} className="like-button">
           {checkForLikedUser() ? "Remove Like" : "Like"}
         </button>
