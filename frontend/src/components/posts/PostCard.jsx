@@ -112,7 +112,7 @@ export default function PostCard({ post, onDeleteClick }) {
         <span>
           <Moment fromNow>{post.createdTime}</Moment>
         </span>
-        <p className="content-text">{post.contentText}</p>
+        <p>{post.contentText}</p>
         <p>{post.listOfLikes.length} like(s)</p>
         <button onClick={likeAction} className="like-button">
           {checkForLikedUser() ? "Remove Like" : "Like"}
