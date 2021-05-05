@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.kth.sda.skeleton.postlikes.PostLike;
-import se.kth.sda.skeleton.postlikes.PostLikeService;
 
 import java.util.List;
 
@@ -35,6 +33,18 @@ public class CommentLikeController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(commentLikeService.addCommentLike(commentId));
+    }
+
+    /**
+     * Handler method for endpoint "/comments/{commentId}/likes" with GET HttpRequest. Returns a {@link ResponseEntity}
+     * containing the list of Likes associated with a Comment of the given {@code commentId} and HTTP status {@code OK}.
+     * @param commentId the Comment whose entire list of Likes is returned
+     * @return {@link ResponseEntity} containing the list of Likes associated with a Comment of the given {@code commentId}
+     * and HTTP status {@code OK}
+     */
+    @GetMapping("/{commentId}/likes")
+    public ResponseEntity<List<CommentLike>> getAllLikes(@PathVariable Long commentId){
+        return ResponseEntity.ok(commentLikeService.getAllLikes(commentId));
     }
 
     /**

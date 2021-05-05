@@ -66,6 +66,19 @@ public class CommentLikeService {
     }
 
     /**
+     * Returns all Like of a Comment with the given {@code commentId} or throws a {@link ResourceNotFoundException} if there is no
+     * Comment with the given {@code commentId}.
+     *
+     * @param commentId the Comment whose entire list of Likes is returned
+     * @return a list of Likes of the Comment with id equal to {@code commentId}
+     * @throws ResourceNotFoundException if there is no Comment with the given {@code commentId}
+     */
+    public List<CommentLike> getAllLikes(Long commentId) {
+        Comment relatedComment = commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
+        return relatedComment.getListOfCommentLikes();
+    }
+
+    /**
      * Removes a like to the given comment an throws a {@link ForbiddenException} if the comment has not been already liked.
      * @param commentId the comment to which a like is to be removed
      * @throws ForbiddenException if the comment has not been already liked.
