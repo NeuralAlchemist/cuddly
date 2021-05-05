@@ -56,6 +56,15 @@ export default function PostCard({ post, onDeleteClick }) {
     }
   }
 
+  async function likeAction(){
+      if(checkForLikedUser()){
+        await removeLike();
+      } else {
+        await addLike();
+      }
+      window.location.reload();
+  }
+
   async function addLike() {
     try {
       await PostLikeApi.addLike(postId);
@@ -77,7 +86,10 @@ export default function PostCard({ post, onDeleteClick }) {
   }
 
   function checkForLikedUser() {
-    return listOfLikedUsers.map((user) => user === currentUser.name);
+    const likedEmail = listOfLikedUsers.find(
+        (user) => user.email === currentUser.email
+    );
+    return likedEmail != null;
   }
 
   useEffect(() => {
@@ -103,8 +115,8 @@ export default function PostCard({ post, onDeleteClick }) {
         </span>
         <p>{post.contentText}</p>
         <p>{post.listOfLikes.length} like(s)</p>
-        <button onClick={(postId) => addLike(postId)}>
-          {liked ? "Dislike" : "Like"}
+        <button onClick={(postId) => likeAction(postId)}
+                className="like"> Like
         </button>
         {checkUserEmail() && (
           <div>
