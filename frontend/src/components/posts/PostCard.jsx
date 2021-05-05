@@ -128,7 +128,7 @@ export default function PostCard({ post, onDeleteClick }) {
                                     onClick={onDeleteClick}
                                 ></button>
                                 <button
-                                    className={`button-post-card + ${
+                                    className={`button-post-card ${
                                         toggleUpdatePost ? " cancel" : " active"
                                     }`}
                                     onClick={() =>
