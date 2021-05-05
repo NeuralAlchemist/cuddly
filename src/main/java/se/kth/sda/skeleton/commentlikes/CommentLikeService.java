@@ -14,7 +14,7 @@ import se.kth.sda.skeleton.user.UserRepository;
 import java.util.List;
 
 /**
- * Represents the service layer. It contains defined functionalities according to business logic for PostLike.
+ * Represents the service layer. It contains defined functionalities according to business logic for CommentLike.
  */
 @Service
 public class CommentLikeService {
@@ -28,8 +28,8 @@ public class CommentLikeService {
      * Constructs a CommentLikeService assigns its {@code commentRepository}, {@code commentLikeRepository},
      * {@code authService} and {@code userRepository}
      *
-     * @param commentRepository     an object that implements interface PostRepository
-     * @param commentLikeRepository object that implements interface PostLikeRepository
+     * @param commentRepository     an object that implements interface CommentRepository
+     * @param commentLikeRepository object that implements interface CommentLikeRepository
      * @param authService           an object that implements interface AuthService
      * @param userRepository        an object that implements interface UserRepository
      */
