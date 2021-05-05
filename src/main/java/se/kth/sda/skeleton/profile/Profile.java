@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -17,12 +18,15 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String displayDescription;
 
+    @NotBlank
     @Column(nullable = false)
     private String displayName;
 
+    @NotBlank
     @Column(nullable = false)
     private Boolean activeProfile;
 
