@@ -19,6 +19,9 @@ export default function CommentCard({
   // Constants
   const commentCreatorName = comment.relatedCommentUser.name;
   const commentCreatorEmail = comment.relatedCommentUser.email;
+  const listOfCommentLikedUsers = comment.listOfCommentLikes.map(
+    (commentLike) => commentLike.likedCommentUser
+  );
 
   // Methods
   const handleDelete = () => {
@@ -50,24 +53,37 @@ export default function CommentCard({
     }
   }
 
+  function commentLikeAction() {
+    if (checkForCommentLikeUser()) {
+      removeCommentLike();
+    } else {
+      addCommentLike();
+    }
+    window.location.reload();
+  }
+
   function checkCommentUserEmail() {
     return commentCreatorEmail === currentUser.email;
   }
 
-
+  function checkForCommentLikeUser() {
+    const likeUserEmail = listOfCommentLikedUsers.find(
+      (user) => user.email === currentUser.email
+    );
+    return likeUserEmail != null;
+  }
 
   return (
     <div>
+      <span>{commentCreatorName}: </span>
+      <span>{comment.contentText} </span>
       <span>
-        {commentCreatorName}: </span>
-        <span>{comment.contentText} </span>
-        <span>
-          <Moment fromNow>{comment.createdTime}</Moment>
-        </span>
-        <p>{comment.listOfCommentLikes.length} like(s)</p>
-        <button onClick={removeCommentLike}>
-           Like Comment
-        </button>
+        <Moment fromNow>{comment.createdTime}</Moment>
+      </span>
+      <p>{comment.listOfCommentLikes.length} comment like(s)</p>
+      <button onClick={commentLikeAction}>
+        {checkForCommentLikeUser() ? "Remove Comment Like" : "Like Comment"}
+      </button>
 
       {checkCommentUserEmail() && (
         <div>
