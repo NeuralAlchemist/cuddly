@@ -57,11 +57,6 @@
     align-items: center;
 }
 
-.icon-like {
-    width: 16px;
-    height: 16px;
-}
-
 .delete-edit-icons{
     display: flex;
     justify-content: flex-end;
@@ -71,4 +66,23 @@
 .time-lapse{
     font-style: italic;
     font-size: smaller;
+}
+
+.like-button{
+    
+    width: 35px;
+    height: 30px;
+    margin: 0;
+}
+
+.liked{
+    background-image: url(../../assets/images/liked.svg);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+}
+
+.not-liked{
+    background-image: url(../../assets/images/paw.svg);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
 }
