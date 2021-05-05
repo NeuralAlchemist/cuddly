@@ -43,7 +43,7 @@ export default function CommentCard({
         {commentCreatorName}: </span>
         <span>{comment.contentText} </span>
         <span>
-          <Moment fromNow>{comment.createdTime}</Moment>
+        <Moment fromNow>{comment.createdTime}</Moment> 
         </span>
 
       {checkCommentUserEmail() && (

@@ -5,6 +5,8 @@ import '../posts/postform.css';
 export default function PostForm({ onSubmit }) {
   // Local State
   const [contentText, setContentText] = useState('');
+  const postObject = require('../../assets/images/post.svg');
+  const postURL = postObject;
 
   // Methods
   const handleSubmit = () => {
@@ -16,21 +18,27 @@ export default function PostForm({ onSubmit }) {
   };
 
   return (
-    <form className="postform">
-      <div>
-        <h4>What's on your mind?</h4>
+    <div className="postform-container">
+      <form className="postform">
         <div>
           <div>
-            <textarea
-              value={contentText}
-              onChange={(e) => setContentText(e.target.value)}
-            />
-          </div>
-          <div>
-            <button onClick={handleSubmit}>Post</button>
+            <div className="postform-field">
+              <input
+                className="postform-input"
+                type="content-text"
+                placeholder="What's on your mind?"
+                value={contentText}
+                onChange={(e) => setContentText(e.target.value)}
+              />
+            </div>
+
+            <button className="button-post" onClick={onSubmit}>
+              <img className="post" src={postURL} alt="Post" />
+              <span>Post</span>
+            </button>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
