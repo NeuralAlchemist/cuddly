@@ -18,14 +18,10 @@ export default function PostCard({ post, onDeleteClick }) {
     const [currentUser, setCurrentUser] = useState({});
 
     // Constants
-    const deleteURL = require("../../assets/images/delete.svg");
-    const editURL = require("../../assets/images/edit.svg");
-    const pawURL = require("../../assets/images/paw.svg");
     const postId = post.id;
     const postCreatorName = post.relatedPostUser.name;
     const postCreatorEmail = post.relatedPostUser.email;
     const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
-    const likeIconURL = require("../../assets/images/like.svg");
 
     // Methods
     async function updatePost(updatedPost) {
@@ -158,9 +154,18 @@ export default function PostCard({ post, onDeleteClick }) {
                         </div>
                     )}
                 </p>
-                <button onClick={likeAction} className={`like-button button-post-card ${checkForLikedUser() ? "liked" : "not-liked"}`}>
-                </button>
-                <span className="like-counter"> {post.listOfLikes.length}</span>
+                <div className="like-container">
+                    <button
+                        onClick={likeAction}
+                        className={`like-button button-post-card ${
+                            checkForLikedUser() ? "liked" : "not-liked"
+                        }`}
+                    ></button>
+                    <span className="like-counter">
+                        {" "}
+                        {post.listOfLikes.length}
+                    </span>
+                </div>
                 <CommentList
                     postId={postId}
                     comments={comments}
