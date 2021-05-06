@@ -3,9 +3,13 @@ package se.kth.sda.skeleton.comments;
 import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
+import se.kth.sda.skeleton.commentlikes.CommentLike;
+import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.posts.Post;
 import se.kth.sda.skeleton.user.User;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Represents a comment on a {@link Post} as a JPA Entity. This implementation of comment will autogenerate a primary key of type
@@ -36,6 +40,9 @@ public class Comment {
     @NotNull
     @JsonIgnore
     private Post relatedPost;
+
+    @OneToMany(mappedBy = "likedComment", cascade = CascadeType.ALL)
+    private List<CommentLike> listOfCommentLikes;
 
     LocalDateTime createdTime;
 
@@ -80,5 +87,13 @@ public class Comment {
 
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public List<CommentLike> getListOfCommentLikes() {
+        return listOfCommentLikes;
+    }
+
+    public void setListOfCommentLikes(List<CommentLike> listOfCommentLikes) {
+        this.listOfCommentLikes = listOfCommentLikes;
     }
 }

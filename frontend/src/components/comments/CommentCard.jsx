@@ -5,6 +5,7 @@ import Moment from "react-moment";
 
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
+import CommentLikeApi from "../../api/CommentLikeApi";
 
 export default function CommentCard({
   postId,
@@ -18,6 +19,9 @@ export default function CommentCard({
   // Constants
   const commentCreatorName = comment.relatedCommentUser.name;
   const commentCreatorEmail = comment.relatedCommentUser.email;
+  const listOfCommentLikedUsers = comment.listOfCommentLikes.map(
+    (commentLike) => commentLike.likedCommentUser
+  );
 
   // Methods
   const handleDelete = () => {
@@ -33,18 +37,53 @@ export default function CommentCard({
     }
   }
 
+  async function addCommentLike() {
+    try {
+      await CommentLikeApi.addCommentLike(comment.id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function removeCommentLike() {
+    try {
+      await CommentLikeApi.removeCommentLike(comment.id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function commentLikeAction() {
+    if (checkForCommentLikeUser()) {
+      removeCommentLike();
+    } else {
+      addCommentLike();
+    }
+    window.location.reload();
+  }
+
   function checkCommentUserEmail() {
     return commentCreatorEmail === currentUser.email;
   }
 
+  function checkForCommentLikeUser() {
+    const likeUserEmail = listOfCommentLikedUsers.find(
+      (user) => user.email === currentUser.email
+    );
+    return likeUserEmail != null;
+  }
+
   return (
     <div>
+      <span>{commentCreatorName}: </span>
+      <span>{comment.contentText} </span>
       <span>
-        {commentCreatorName}: </span>
-        <span>{comment.contentText} </span>
-        <span>
-        <Moment fromNow>{comment.createdTime}</Moment> 
-        </span>
+        <Moment fromNow>{comment.createdTime}</Moment>
+      </span>
+      <p>{comment.listOfCommentLikes.length} comment like(s)</p>
+      <button onClick={commentLikeAction}>
+        {checkForCommentLikeUser() ? "Remove Comment Like" : "Like Comment"}
+      </button>
 
       {checkCommentUserEmail() && (
         <div>
