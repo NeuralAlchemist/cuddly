@@ -50,7 +50,7 @@ export default function PostsPage() {
   ));
 
   return (
-    <div>
+    <div className="post-grid-item">
       <div className="post-main-content">
         <div className="postcard-container">
           <PostForm
