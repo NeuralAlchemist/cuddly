@@ -43,7 +43,6 @@
   width: auto;
   height: 24px;
   color: grey;
-  margin-right: var(--space-medium-small);
 }
 
 .logout-button-container {
