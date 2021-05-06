@@ -6,7 +6,7 @@ label {
 input {
   border-radius: 100px;
   height: var(--space-big);
-  border: px solid var(--color-black-brown);
+  border: 1px solid var(--color-black-brown);
 }
 
 /* Classes */
