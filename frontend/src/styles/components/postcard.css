@@ -15,6 +15,10 @@
     margin: 0;
 }
 
+.word-wrap{
+    word-wrap: break-word;
+}
+
 .button-post-card {
     background-color: white;
     border-width: 0;

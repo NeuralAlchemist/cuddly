@@ -76,7 +76,7 @@ export default function CommentCard({
   return (
     <div>
       <span>{commentCreatorName}: </span>
-      <span>{comment.contentText} </span>
+      <span className="word-wrap">{comment.contentText} </span>
       <span>
         <Moment fromNow>{comment.createdTime}</Moment>
       </span>
@@ -85,20 +85,24 @@ export default function CommentCard({
         {checkForCommentLikeUser() ? "Remove Comment Like" : "Like Comment"}
       </button>
 
-      {checkCommentUserEmail() && (
-        <div>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={() => (toggle ? setToggle(false) : setToggle(true))}>
-            {toggle ? "Cancel Update" : "Update"}
-          </button>
-          {toggle && (
-            <CommentUpdateForm
-              onSubmit={(commentData) => updateComment(commentData)}
-              comment={comment}
-            />
+          {checkCommentUserEmail() && (
+              <div>
+                  <button onClick={handleDelete}>Delete</button>
+                  <button
+                      onClick={() =>
+                          toggle ? setToggle(false) : setToggle(true)
+                      }
+                  >
+                      {toggle ? "Cancel Update" : "Update"}
+                  </button>
+                  {toggle && (
+                      <CommentUpdateForm
+                          onSubmit={(commentData) => updateComment(commentData)}
+                          comment={comment}
+                      />
+                  )}
+              </div>
           )}
-        </div>
-      )}
-    </div>
+      </div>
   );
 }

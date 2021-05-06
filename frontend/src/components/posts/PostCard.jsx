@@ -137,7 +137,7 @@ export default function PostCard({ post, onDeleteClick }) {
                 <Moment className="time-lapse" fromNow>
                     {post.createdTime}
                 </Moment>
-                <p className="content-text">
+                <p className="content-text word-wrap">
                     {!toggleUpdatePost ? (
                         post.contentText
                     ) : (
