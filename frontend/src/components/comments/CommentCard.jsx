@@ -74,16 +74,23 @@ export default function CommentCard({
   }
 
   return (
-    <div>
-      <span>{commentCreatorName}: </span>
-      <span className="word-wrap">{comment.contentText} </span>
-      <span>
-        <Moment fromNow>{comment.createdTime}</Moment>
-      </span>
-      <p>{comment.listOfCommentLikes.length} comment like(s)</p>
-      <button onClick={commentLikeAction}>
-        {checkForCommentLikeUser() ? "Remove Comment Like" : "Like Comment"}
-      </button>
+      <div className="comment-card">
+          <span>
+              {commentCreatorName}{" "}
+              <Moment className="time-lapse" fromNow>
+                  {comment.createdTime}
+              </Moment>
+          </span>
+          <div className="word-wrap comment-content">
+              {comment.contentText}{" "}
+          </div>
+          <button
+              onClick={commentLikeAction}
+              className={`like-button button-post-card ${
+                  checkForCommentLikeUser() ? "liked" : "not-liked"
+              }`}
+          ></button>
+          <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
 
           {checkCommentUserEmail() && (
               <div>

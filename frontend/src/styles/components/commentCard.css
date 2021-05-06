@@ -1,0 +1,8 @@
+.comment-card{
+    margin: var(--space-medium) 0;
+}
+
+.comment-content{
+    border-top: solid 1px rgb(208, 201, 201);
+    padding: var(--space-small) 0;
+}
