@@ -21,7 +21,12 @@
 textarea.postform-input{
   font-size: var(--space-medium);
   font-family: "Nunito", sans-serif ;
-  resize: none;
+  resize: vertical;
+}
+
+.postform-input{
+  overflow: auto;
+  height: 60px;
 }
 
 .button-post {
