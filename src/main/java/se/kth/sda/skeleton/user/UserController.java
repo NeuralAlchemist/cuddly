@@ -37,7 +37,7 @@ public class UserController {
     }
 
     /**
-     * Update user description based on user id
+     * Update user description for logged in user
      * @param description the user description
      * @return HTTP ok status and the updated user
      */
