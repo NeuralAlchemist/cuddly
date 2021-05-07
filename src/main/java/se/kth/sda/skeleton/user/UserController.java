@@ -18,11 +18,13 @@ public class UserController {
 
     private UserRepository userRepository;
     private AuthService authService;
+    private UserService userService;
 
     @Autowired
     public UserController(UserService userService, UserRepository userRepository, AuthService authService) {
         this.userRepository = userRepository;
         this.authService = authService;
+        this. userService = userService;
     }
 
     /**
@@ -35,5 +37,20 @@ public class UserController {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
         return ResponseEntity.ok(user);
+    }
+
+    /**
+     * Update user description based on user id
+     * @param userId the id of the user to update
+     * @return HTTP ok status and the update user
+     */
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> updateUserDescription(@PathVariable Long id, @RequestBody String description) {
+        String email = authService.getLoggedInUserEmail();
+        User user = userRepository.findByEmail(email);
+        user.setDescription(description);
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updateUser);
+
     }
 }

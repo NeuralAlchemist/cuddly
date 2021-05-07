@@ -54,7 +54,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
+
+    @Column(name = "description", length = 1000)
     private String description;
 
     // Hibernate needs a default constructor to function
