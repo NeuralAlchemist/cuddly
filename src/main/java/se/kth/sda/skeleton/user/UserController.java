@@ -39,7 +39,7 @@ public class UserController {
     /**
      * Update user description based on user id
      * @param description the user description
-     * @return HTTP ok status and the update user
+     * @return HTTP ok status and the updated user
      */
     @PutMapping("/users")
     public ResponseEntity<User> updateUserDescription(@RequestBody String description) {
