@@ -23,9 +23,8 @@ export default function PostForm({ onSubmit }) {
         <div>
           <div>
             <div className="postform-field">
-              <input 
+              <textarea contentEditable
                 className="postform-input"
-                type="text"
                 placeholder="What's on your mind?"
                 value={contentText}
                 onChange={(e) => setContentText(e.target.value)}
