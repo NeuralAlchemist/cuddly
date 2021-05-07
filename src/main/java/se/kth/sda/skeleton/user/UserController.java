@@ -15,13 +15,11 @@ public class UserController {
 
     private UserRepository userRepository;
     private AuthService authService;
-    private UserService userService;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository, AuthService authService) {
+    public UserController(UserRepository userRepository, AuthService authService) {
         this.userRepository = userRepository;
         this.authService = authService;
-        this. userService = userService;
     }
 
     /**
