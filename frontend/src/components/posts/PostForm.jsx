@@ -1,6 +1,5 @@
 // NPM Packages
 import React, { useState } from 'react';
-import '../../styles/components/postform.css';
 
 export default function PostForm({ onSubmit }) {
   // Local State
