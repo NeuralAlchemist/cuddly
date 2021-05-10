@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
 
 export default function PostForm({ onSubmit }) {
-
     // Local State
     const [contentText, setContentText] = useState("");
     const postObject = require("../../assets/images/post.svg");
@@ -46,23 +45,19 @@ export default function PostForm({ onSubmit }) {
     return (
         <div className="postform-container">
             <form className="postform">
-                <div>
-                    <div>
-                        <div className="postform-field">
-                            <textarea
-                                className="postform-input"
-                                placeholder="What's on your mind?"
-                                value={contentText}
-                                onChange={(e) => setContentText(e.target.value)}
-                            />
-                        </div>
-                        <input type="file" onChange={setFile} />
-                        <button className="button-post" onClick={handleSubmit}>
-                            <img className="post" src={postURL} alt="Post" />
-                            <span>Post</span>
-                        </button>
-                    </div>
+                <div className="postform-field">
+                    <textarea
+                        className="postform-input"
+                        placeholder="What's on your mind?"
+                        value={contentText}
+                        onChange={(e) => setContentText(e.target.value)}
+                    />
                 </div>
+                <input type="file" onChange={setFile} />
+                <button className="button-post" onClick={handleSubmit}>
+                    <img className="post" src={postURL} alt="Post" />
+                    <span>Post</span>
+                </button>
             </form>
         </div>
     );
