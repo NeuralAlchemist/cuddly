@@ -23,16 +23,34 @@ export default function ProfileCard() {
   //       return currentUser.description != null;
   //   }
 
+  useEffect(() => {
+    UserApi.getUser()
+      .then(({ data }) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.error(err));
+  }, [setCurrentUser]);
+
   return (
-    <div>
-      <h2>About you</h2>
-      {/* {currentUser.description === null && (
-        <p>Why not add a description to your profile?</p>
-      )} */}
-      {/* {currentUser.description != null && (
-        <p>Description: {currentUser.description}</p>
-      )} */}
-      <p>Debug description: {currentUser.description}</p>
+    <div className="ProfileCard">
+      <h2>Your information</h2>
+      <div className="name-pair">
+        <p>Name</p>
+        <p>{currentUser.name}</p>
+      </div>
+      <div className="email-pair">
+        <p>Email</p>
+        <p>{currentUser.email}</p>
+      </div>
+      <div className="description-pair">
+        <p>About</p>
+        {currentUser.description === null && (
+          <p>
+            Let us know who you are! Add a short description to your profile
+          </p>
+        )}
+        {currentUser.description != null && <p>{currentUser.description}</p>}
+      </div>
     </div>
   );
 }
