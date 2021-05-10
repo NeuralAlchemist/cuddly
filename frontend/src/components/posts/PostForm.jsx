@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
 
-export default function PostForm({ onSubmit, onImagePostSubmit }) {
+export default function PostForm({ onSubmit }) {
     // Local State
 
     const [contentText, setContentText] = useState("");
@@ -19,9 +19,9 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
         } else {
             // Invoke the passed in event callback
             onSubmit({ contentText: contentText });
-            // Clear the input field
-            setContentText("");
         }
+        // Clear the input field
+        setContentText("");
     };
 
     const handleImagePostSubmit = (event) => {
@@ -34,16 +34,13 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
         });
         setContentFile(null);
         setIsFilePicked(false);
+        window.location.reload();
     };
 
     const setFile = async (event) => {
         setContentFile(event.target.files[0]);
         setIsFilePicked(true);
         console.log(`selected file is now: ${event.target.files[0]}`);
-    };
-
-    const handleUpload = () => {
-        console.log(`make a call to upload endpoint with selected file`);
     };
 
     return (
