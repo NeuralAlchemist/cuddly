@@ -1,8 +1,7 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
-import {Base64, getEncoder} from "js-base64";
 import Moment from "react-moment";
-
+import ReactPlayer from "react-player";
 // Project files
 import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
@@ -10,11 +9,17 @@ import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
+//import videoLocal from "../../videos/test@test.comVID_20190824_175056.mp4";
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
     // Local state
     const [comments, setComments] = useState([]);
     const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+    const hasImage =
+        post.imageType == null ? false : post.imageType.includes("image");
+    const hasVideo =
+        post.imageType == null ? false : post.imageType.includes("video");
 
     // Constants
     const postId = post.id;
@@ -153,10 +158,21 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                         </div>
                     )}
                 </p>
-                <img src={`data:${post.imageType};base64, ${post.image}`} />
-                <video
-                    src={`data:${post.imageType};base64, ${post.image}`}
-                />
+                {hasImage && (
+                    <img
+                        src={`data:${post.imageType};base64, ${post.image}`}
+                        height="100%"
+                        width="100%"
+                    />
+                )}
+                {hasVideo && (
+                    <ReactPlayer
+                        url={require(`../../videos/${post.videoName}`)}
+                        width="100%"
+                        height="100%"
+                        controls={true}
+                    />
+                )}
                 <div className="like-container">
                     <button
                         onClick={likeAction}
