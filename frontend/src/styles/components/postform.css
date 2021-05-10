@@ -27,6 +27,12 @@ textarea.postform-input{
 .postform-input{
   overflow: auto;
   height: 60px;
+  border: 2px solid black;;
+}
+
+.postform-input:focus{
+  border-color: var(--color-teal) ;
+  outline: none;
 }
 
 .button-post {
