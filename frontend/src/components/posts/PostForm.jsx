@@ -1,7 +1,6 @@
 // NPM Packages
 
 import React, { useState, useRef, useEffect } from 'react';
-import '../../styles/components/postform.css';
 
 export default function PostForm({ onSubmit }) {
   // Local State
@@ -19,7 +18,7 @@ export default function PostForm({ onSubmit }) {
     // Clear the input field
     setContentText('');
   };
-
+  // Make textArea placeholder's height adaptive to the content
   useEffect(() => {
     const originalHeight = '52px';
     textArea.current.style.height = originalHeight;
