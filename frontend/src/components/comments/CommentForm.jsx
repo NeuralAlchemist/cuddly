@@ -16,9 +16,9 @@ export default function CommentForm({ post, onSubmit }) {
 
   return (
     <form>
-      <div className="postform-field">
+      <div className="form-field">
         <textarea
-          className="postform-input"
+          className="form-input"
           placeholder="Comment"
           value={commentContentText}
           onChange={(e) => setCommentContentText(e.target.value)}
