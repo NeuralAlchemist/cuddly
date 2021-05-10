@@ -1,0 +1,40 @@
+.postform {
+  margin: 0px;
+}
+
+.postform-container {
+  background-color: white;
+  padding: var(--space-small);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  margin: var(--space-medium);
+}
+
+.postform-field {
+  display: grid;
+  margin-bottom: var(--space-x-small);
+}
+
+textarea.postform-input {
+  font-size: var(--space-medium);
+  font-family: 'Nunito', sans-serif;
+  max-height: 200px;
+  resize: none;
+}
+
+.button-post {
+  background-color: transparent;
+  border-width: 0px;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+}
+
+.post {
+  margin-right: var(--space-xx-small);
+  height: var(--space-medium);
+}

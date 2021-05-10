@@ -1,0 +1,8 @@
+.button-comment {
+  background-color: transparent;
+  border-width: 0px;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+}
