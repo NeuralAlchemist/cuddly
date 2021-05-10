@@ -20,12 +20,16 @@ import ResponsiveTextArea from '../ResponsiveTextArea';
 import FormFooter from "../FormFooter";
 
 
+<<<<<<< HEAD
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
   const [contentText, setContentText] = useState("");
   const [length, setLength] = useState();
 =======
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
+=======
+export default function PostForm({ onSubmit }) {
+>>>>>>> db5676e (force reload after image upload)
     // Local State
 
 <<<<<<< HEAD
@@ -91,9 +95,9 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
         } else {
             // Invoke the passed in event callback
             onSubmit({ contentText: contentText });
-            // Clear the input field
-            setContentText("");
         }
+        // Clear the input field
+        setContentText("");
     };
 >>>>>>> 419884e (remove commented lines and console.log)
 
@@ -167,6 +171,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 =======
         setContentFile(null);
         setIsFilePicked(false);
+        window.location.reload();
     };
 
     const setFile = async (event) => {
@@ -176,6 +181,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     };
 >>>>>>> 419884e (remove commented lines and console.log)
 
+<<<<<<< HEAD
     const handleUpload = () => {
         console.log(`make a call to upload endpoint with selected file`);
     };
@@ -228,6 +234,8 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     </div>
   );
 =======
+=======
+>>>>>>> db5676e (force reload after image upload)
     return (
         <div className="postform-container">
             <form className="postform">
