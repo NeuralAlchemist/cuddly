@@ -1,5 +1,6 @@
 // NPM Packages
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import React, { useState } from "react";
 import '../posts/postform.css';
@@ -10,6 +11,8 @@ import axios from "axios";
 <<<<<<< HEAD
 import React, { useState } from 'react';
 =======
+=======
+>>>>>>> c3bb370 (remove empty lines)
 import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
 >>>>>>> 419884e (remove commented lines and console.log)
@@ -29,6 +32,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
 =======
 export default function PostForm({ onSubmit }) {
+<<<<<<< HEAD
 >>>>>>> db5676e (force reload after image upload)
     // Local State
 
@@ -82,12 +86,17 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
       setContentText('');
     }
 =======
+=======
+
+    // Local State
+>>>>>>> c3bb370 (remove empty lines)
     const [contentText, setContentText] = useState("");
     const postObject = require("../../assets/images/post.svg");
     const postURL = postObject;
     const [contentFile, setContentFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
     const formData = new FormData();
+
     // Methods
     const handleSubmit = (event) => {
         if (isFilePicked) {
