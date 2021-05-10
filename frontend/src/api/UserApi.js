@@ -2,11 +2,11 @@ import Api from "./Api";
 
 class UserApi {
   getUser() {
-    return Api.get("/users");
+    return Api.get('/users');
   }
 
   updateUserDescription(description) {
-    return Api.put("/users", description)
+    return Api.put('/users', description);
   }
 }
 
