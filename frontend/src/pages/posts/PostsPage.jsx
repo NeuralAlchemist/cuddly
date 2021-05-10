@@ -48,6 +48,7 @@ export default function PostsPage() {
     }
   }
 
+<<<<<<< HEAD
   async function createImagePost(text, file) {
     try {
       const response = await PostsApi.createPost(text, file);
@@ -84,6 +85,8 @@ export default function PostsPage() {
     }
   }
 
+=======
+>>>>>>> 419884e (remove commented lines and console.log)
   useEffect(() => {
     PostsApi.getAllPosts()
         .then(({data}) => setPosts(data))

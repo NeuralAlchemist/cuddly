@@ -13,7 +13,6 @@ import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
-//import videoLocal from "../../videos/test@test.comVID_20190824_175056.mp4";
 
 <<<<<<< HEAD
 export default function PostCard({ post, currentUser, onDeleteClick }) {
@@ -163,7 +162,7 @@ export default function PostCard({ post, onDeleteClick }) {
             })
             .catch((err) => console.error(err));
     }, [setCurrentUser]);
-    console.log(post);
+
     return (
         <div className="PostCard">
             <div>

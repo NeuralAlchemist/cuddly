@@ -7,7 +7,12 @@ import axios from "axios";
 >>>>>>> 1fc5758 (re structure setFile remove unused local states)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, { useState } from "react";
+import PostsApi from "../../api/PostsApi";
+>>>>>>> 419884e (remove commented lines and console.log)
 
 <<<<<<< HEAD
 // Project Files
@@ -21,8 +26,9 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   const [length, setLength] = useState();
 =======
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
-  // Local State
+    // Local State
 
+<<<<<<< HEAD
   const [contentText, setContentText] = useState('');
   const postObject = require('../../assets/images/post.svg');
   const postURL = postObject;
@@ -71,18 +77,35 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
       // Clear the input field
       setContentText('');
     }
+=======
+    const [contentText, setContentText] = useState("");
+    const postObject = require("../../assets/images/post.svg");
+    const postURL = postObject;
+    const [contentFile, setContentFile] = useState();
+    const [isFilePicked, setIsFilePicked] = useState(false);
+    const formData = new FormData();
+    // Methods
+    const handleSubmit = (event) => {
+        if (isFilePicked) {
+            handleImagePostSubmit(event);
+        } else {
+            // Invoke the passed in event callback
+            onSubmit({ contentText: contentText });
+            // Clear the input field
+            setContentText("");
+        }
+    };
+>>>>>>> 419884e (remove commented lines and console.log)
 
-  };
-
-  const handleImagePostSubmit = (event) => {
-    event.preventDefault();
-    formData.append('file', contentFile);
-    formData.append('text', contentText);
-    PostsApi.createImagePost(formData)
-        .catch((err) => {
-          alert("FAILED");
-          console.error(err);
+    const handleImagePostSubmit = (event) => {
+        event.preventDefault();
+        formData.append("file", contentFile);
+        formData.append("text", contentText);
+        PostsApi.createImagePost(formData).catch((err) => {
+            alert("FAILED");
+            console.error(err);
         });
+<<<<<<< HEAD
     setContentFile(null);
     setIsFilePicked(false);
 >>>>>>> 6f2bfb3 (remove post with media button and make post use one of the API calls based on media present)
@@ -141,11 +164,23 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     onImagePostSubmit({file: formData});
     console.log(`selected file is now: ${event.target.files[0]}`);
   }
+=======
+        setContentFile(null);
+        setIsFilePicked(false);
+    };
 
-  const handleUpload = () => {
-    console.log(`make a call to upload endpoint with selected file`);
-  }
+    const setFile = async (event) => {
+        setContentFile(event.target.files[0]);
+        setIsFilePicked(true);
+        console.log(`selected file is now: ${event.target.files[0]}`);
+    };
+>>>>>>> 419884e (remove commented lines and console.log)
 
+    const handleUpload = () => {
+        console.log(`make a call to upload endpoint with selected file`);
+    };
+
+<<<<<<< HEAD
   return (
     <div className="postform-container">
       <form className="postform">
@@ -192,4 +227,29 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
       </form>
     </div>
   );
+=======
+    return (
+        <div className="postform-container">
+            <form className="postform">
+                <div>
+                    <div>
+                        <div className="postform-field">
+                            <textarea
+                                className="postform-input"
+                                placeholder="What's on your mind?"
+                                value={contentText}
+                                onChange={(e) => setContentText(e.target.value)}
+                            />
+                        </div>
+                        <input type="file" onChange={setFile} />
+                        <button className="button-post" onClick={handleSubmit}>
+                            <img className="post" src={postURL} alt="Post" />
+                            <span>Post</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    );
+>>>>>>> 419884e (remove commented lines and console.log)
 }
