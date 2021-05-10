@@ -1,10 +1,12 @@
 // NPM Packages
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import PostsApi from "../../api/PostsApi";
 
 export default function PostForm({ onSubmit }) {
   // Local State
-  const [contentText, setContentText] = useState('');
-  const postObject = require('../../assets/images/post.svg');
+  const [contentText, setContentText] = useState("");
+  const [file, setFile] = useState([])
+  const postObject = require("../../assets/images/post.svg");
   const postURL = postObject;
 
   // Methods
@@ -13,8 +15,21 @@ export default function PostForm({ onSubmit }) {
     onSubmit({ contentText: contentText });
 
     // Clear the input field
-    setContentText('');
+    setContentText("");
   };
+
+  const onFileChangeHandler = (e) => {
+    e.preventDefault();
+    setFile(e.target.files[0])
+
+    const formData = new FormData();
+    formData.append('file', file);
+    PostsApi.upload(formData)
+        .then(res => {
+                console.log(res.data);
+                alert("File uploaded successfully.")
+        })
+};
 
   return (
     <div className="postform-container">
@@ -22,7 +37,7 @@ export default function PostForm({ onSubmit }) {
         <div>
           <div>
             <div className="postform-field">
-              <textarea 
+              <textarea
                 className="postform-input"
                 placeholder="What's on your mind?"
                 value={contentText}
@@ -32,6 +47,15 @@ export default function PostForm({ onSubmit }) {
 
             <button className="button-post" onClick={handleSubmit}>
               <img className="post" src={postURL} alt="Post" />
+              <div className="form-group files color">
+                {/* <label>Upload Your File </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  name="file"
+                  onChange={onFileChangeHandler}
+                /> */}
+              </div>
               <span>Post</span>
             </button>
           </div>

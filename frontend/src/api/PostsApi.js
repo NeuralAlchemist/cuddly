@@ -20,6 +20,10 @@ class PostsApi {
     deletePost(id) {
         return Api.delete('/posts/' + id);
     }
+
+    upload(data) {
+        return Api.post("/upload", data);
+    }
 }
 
 export default new PostsApi();
