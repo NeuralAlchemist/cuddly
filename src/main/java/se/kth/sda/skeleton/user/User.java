@@ -54,6 +54,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
+
+    @Column(name = "description", length = 1000)
+    private String description;
+
     // Hibernate needs a default constructor to function
     public User() {
     }
@@ -128,5 +132,13 @@ public class User {
 
     public void setLikedComments(List<CommentLike> likedComments) {
         this.likedComments = likedComments;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

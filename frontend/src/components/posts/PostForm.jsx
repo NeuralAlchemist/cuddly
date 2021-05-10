@@ -1,6 +1,5 @@
 // NPM Packages
 import React, { useState } from 'react';
-import "../../styles/components/postform.css"
 
 export default function PostForm({ onSubmit }) {
   // Local State
@@ -23,9 +22,8 @@ export default function PostForm({ onSubmit }) {
         <div>
           <div>
             <div className="postform-field">
-              <input 
+              <textarea 
                 className="postform-input"
-                type="text"
                 placeholder="What's on your mind?"
                 value={contentText}
                 onChange={(e) => setContentText(e.target.value)}
