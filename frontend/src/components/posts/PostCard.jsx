@@ -1,5 +1,6 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
+import {Base64, getEncoder} from "js-base64";
 import Moment from "react-moment";
 
 // Project files
@@ -107,7 +108,7 @@ export default function PostCard({ post, onDeleteClick }) {
             })
             .catch((err) => console.error(err));
     }, [setCurrentUser]);
-
+    console.log(post);
     return (
         <div className="PostCard">
             <div>
@@ -154,6 +155,10 @@ export default function PostCard({ post, onDeleteClick }) {
                         </div>
                     )}
                 </p>
+                <img src={`data:${post.imageType};base64, ${post.image}`} />
+                <video
+                    src={`data:${post.imageType};base64, ${post.image}`}
+                />
                 <div className="like-container">
                     <button
                         onClick={likeAction}
