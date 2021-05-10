@@ -8,7 +8,7 @@ import ProfileCard from "../../components/profile/ProfileCard";
 export default function ProfilePage() {
   return (
     <div className="ProfilePage">
-      <p>*PROFILE PAGE placeholder*</p>
+      <h1>PROFILE</h1>
       <ProfileCard />
       <ProfileForm />
     </div>
