@@ -14,12 +14,16 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   const [isFilePicked, setIsFilePicked] = useState(false);
   const formData = new FormData();
   // Methods
-  const handleSubmit = () => {
-    // Invoke the passed in event callback
-    onSubmit({ contentText: contentText });
+  const handleSubmit = (event) => {
+    if(isFilePicked){
+      handleImagePostSubmit(event);
+    }else {
+      // Invoke the passed in event callback
+      onSubmit({ contentText: contentText });
+      // Clear the input field
+      setContentText('');
+    }
 
-    // Clear the input field
-    setContentText('');
   };
 
   const onFormContentChange = (value) => {
@@ -35,14 +39,12 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     formData.append('file', contentFile);
     formData.append('text', contentText);
     PostsApi.createImagePost(formData)
-        .then ((response) => {
-          console.log(response);
-          alert("Image uploaded successfully");
-        })
         .catch((err) => {
           alert("FAILED");
           console.error(err);
         });
+    setContentFile(null);
+    setIsFilePicked(false);
   };
 
   const handleImagePostSubmit = () => {
@@ -83,8 +85,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
               <span>Post</span>
             </button>
           </div>
-          <button onClick={handleImagePostSubmit}>Post with media and text</button>
-        </div>
+          </div>
       </form>
     </div>
   );
