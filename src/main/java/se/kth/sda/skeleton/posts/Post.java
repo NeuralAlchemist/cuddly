@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.web.multipart.MultipartFile;
 import se.kth.sda.skeleton.comments.Comment;
 import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
@@ -48,8 +47,7 @@ public class Post {
 
     private String imageType;
 
-    @Embedded
-    private ContentFile contentFile;
+    private String videoName;
 
     // Constructor
     public Post() {
@@ -57,6 +55,23 @@ public class Post {
 
 
     // Getters and Setters
+
+    public List<PostLike> getListOfPostLikes() {
+        return listOfPostLikes;
+    }
+
+    public void setListOfPostLikes(List<PostLike> listOfPostLikes) {
+        this.listOfPostLikes = listOfPostLikes;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoURL) {
+        this.videoName = videoURL;
+    }
+
     public Post(String contentText) {
         this.contentText = contentText;
     }
@@ -115,14 +130,6 @@ public class Post {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public ContentFile getContentFile() {
-        return contentFile;
-    }
-
-    public void setContentFile(ContentFile contentFile) {
-        this.contentFile = contentFile;
     }
 
     public String getImageType() {
