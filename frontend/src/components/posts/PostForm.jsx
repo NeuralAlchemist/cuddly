@@ -56,12 +56,6 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   const setFile = (event) => {
     setContentFile(event.target.files[0]);
     setIsFilePicked(true);
-    const formData = new FormData();
-    formData.append('file', contentFile);
-    formData.append('contentText', contentText);
-    formData.forEach(item => console.log(item))
-    console.log(formData);
-    console.log(formData.contentText)
     console.log(`selected file is now: ${event.target.files[0]}`);
   }
 
@@ -89,7 +83,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
               <span>Post</span>
             </button>
           </div>
-          <button onClick={handleImagePostSubmit}>Upload Image</button>
+          <button onClick={handleImagePostSubmit}>Post with media and text</button>
         </div>
       </form>
     </div>
