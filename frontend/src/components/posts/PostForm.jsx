@@ -1,6 +1,7 @@
 // NPM Packages
 
 import React, { useState } from 'react';
+import PostsApi from "../../api/PostsApi";
 
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
   // Local State
@@ -10,7 +11,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   const postURL = postObject;
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-
+  const formData = new FormData();
   // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
@@ -20,18 +21,24 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     setContentText('');
   };
 
-  const handleImagePostSubmit = () => {
-    const formData = new FormData();
-    onImagePostSubmit({formData});
-  }
+  const handleImagePostSubmit = (event) => {
+    event.preventDefault();
+    formData.append('file', contentFile);
+    formData.append('text', contentText);
+    PostsApi.createImagePost(formData)
+        .then ((response) => {
+          console.log(response);
+          alert("Image uploaded successfully");
+        })
+        .catch((err) => {
+          alert("FAILED");
+          console.error(err);
+        });
+  };
 
   const setFile = async (event) => {
-    const formData = new FormData();
-    var file = event.target.files[0];
-    console.log(file)
-    formData.append('file', event.target.files[0]);
-    formData.forEach(item => console.log(item))
-    onImagePostSubmit({file: formData});
+    setContentFile(event.target.files[0]);
+
     console.log(`selected file is now: ${event.target.files[0]}`);
   }
 
