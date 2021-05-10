@@ -1,6 +1,7 @@
 // NPM Packages
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 // Project files
 import Auth from "./services/Auth";
@@ -22,31 +23,33 @@ export default function App() {
 
   // Components
   const loggedInRouter = (
-    <BrowserRouter>
-      <Navbar onLogout={() => Auth.logout()} />
+    <RecoilRoot>
+      <BrowserRouter>
+        <Navbar onLogout={() => Auth.logout()} />
 
-      <div className="container">
-        <Switch>
-          <Route path="/posts">
-            <PostsPage />
-          </Route>
+        <div className="container">
+          <Switch>
+            <Route path="/posts">
+              <PostsPage />
+            </Route>
 
-          <Route path="/chat">
-            <ChatPage />
-          </Route>
+            <Route path="/chat">
+              <ChatPage />
+            </Route>
 
-          <Route exact path="/">
-            <HomePage />
-          </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
 
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-        </Switch>
-      </div>
+            <Route path="/profile">
+              <ProfilePage />
+            </Route>
+          </Switch>
+        </div>
 
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </RecoilRoot>
   );
 
   return loggedIn ? loggedInRouter : <AuthPage />;
