@@ -7,7 +7,7 @@ import ProfileCard from "../../components/profile/ProfileCard";
 import UserApi from "../../api/UserApi";
 
 export default function ProfilePage() {
-  // Lobal state
+  // Local state
   const [thisUser, setThisUser] = useState({});
 
   // Methods
