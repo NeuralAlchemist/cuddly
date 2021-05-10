@@ -21,14 +21,8 @@ class PostsApi {
         return Api.delete('/posts/' + id);
     }
 
-    createImagePost(text, file){
-        return Api.post('/posts/upload', text, file);
-    }
-
-    uploadFile(file){
-        return Api.post('/posts/test', file, {headers:{
-            'Content-type': `multipart/form-data ; boundary = ???`
-        }});
+    createImagePost(contentFile){
+        return Api.post('/posts/upload', contentFile);
     }
 }
 
