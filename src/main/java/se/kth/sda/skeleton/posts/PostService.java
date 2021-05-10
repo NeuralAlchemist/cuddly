@@ -93,7 +93,7 @@ public class PostService {
         newPost.setContentText(text);
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
-        newPost.setImageType(file.getContentType());
+        newPost.setMediaType(file.getContentType());
         if(!file.isEmpty()){
             if(file.getContentType().contains("image")){
                 byte[] bytes;

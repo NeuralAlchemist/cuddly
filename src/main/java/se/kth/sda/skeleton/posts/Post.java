@@ -45,7 +45,7 @@ public class Post {
     @Lob
     private byte[] image;
 
-    private String imageType;
+    private String mediaType;
 
     private String videoName;
 
@@ -132,11 +132,11 @@ public class Post {
         this.image = image;
     }
 
-    public String getImageType() {
-        return imageType;
+    public String getMediaType() {
+        return mediaType;
     }
 
-    public void setImageType(String imageType) {
-        this.imageType = imageType;
+    public void setMediaType(String imageType) {
+        this.mediaType = imageType;
     }
 }
