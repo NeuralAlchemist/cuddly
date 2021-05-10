@@ -1,5 +1,6 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
+import {Base64, getEncoder} from "js-base64";
 import Moment from "react-moment";
 import ReactPlayer from "react-player";
 
@@ -94,6 +95,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     return likedEmail != null;
   }
 
+<<<<<<< HEAD
   useEffect(() => {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
@@ -138,6 +140,83 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                 <PostUpdateForm
                   onSubmit={(postData) => updatePost(postData)}
                   post={post}
+=======
+    useEffect(() => {
+        UserApi.getUser()
+            .then(({ data }) => {
+                setCurrentUser(data);
+            })
+            .catch((err) => console.error(err));
+    }, [setCurrentUser]);
+    console.log(post);
+    return (
+        <div className="PostCard">
+            <div>
+                <div className="postcard-header">
+                    <div className="post-info">{postCreatorName} posted</div>
+                    <div className="delete-edit-icons">
+                        {checkUserEmail() && (
+                            <span>
+                                <button
+                                    className="button-post-card delete-icon"
+                                    onClick={onDeleteClick}
+                                ></button>
+                                <button
+                                    className={`button-post-card ${
+                                        toggleUpdatePost ? " cancel" : " active"
+                                    }`}
+                                    onClick={() =>
+                                        toggleUpdatePost
+                                            ? setToggleUpdatePost(false)
+                                            : setToggleUpdatePost(true)
+                                    }
+                                ></button>
+                            </span>
+                        )}
+                    </div>
+                </div>
+                <Moment className="time-lapse" fromNow>
+                    {post.createdTime}
+                </Moment>
+                <p className="content-text word-wrap">
+                    {!toggleUpdatePost ? (
+                        post.contentText
+                    ) : (
+                        <div>
+                            <span>
+                                <PostUpdateForm
+                                    onSubmit={(postData) =>
+                                        updatePost(postData)
+                                    }
+                                    post={post}
+                                />
+                            </span>
+                            <span></span>
+                        </div>
+                    )}
+                </p>
+                <img src={`data:${post.imageType};base64, ${post.image}`} />
+                <video
+                    src={`data:${post.imageType};base64, ${post.image}`}
+                />
+                <div className="like-container">
+                    <button
+                        onClick={likeAction}
+                        className={`like-button button-post-card ${
+                            checkForLikedUser() ? "liked" : "not-liked"
+                        }`}
+                    ></button>
+                    <span className="like-counter">
+                        {" "}
+                        {post.listOfLikes.length}
+                    </span>
+                </div>
+                <CommentList
+                    postId={postId}
+                    comments={comments}
+                    currentUser={currentUser}
+                    onDelete={deleteComment}
+>>>>>>> 8d9c8c3 (add image and video tag to display)
                 />
               </span>
               <span></span>
