@@ -6,3 +6,8 @@
   align-items: center;
   padding: 0px;
 }
+
+.comment {
+  margin-right: var(--space-xx-small);
+  height: var(--space-medium);
+}
