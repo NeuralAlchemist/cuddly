@@ -1,17 +1,17 @@
 // NPM Packages
-
 import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
 
 export default function PostForm({ onSubmit }) {
-    // Local State
 
+    // Local State
     const [contentText, setContentText] = useState("");
     const postObject = require("../../assets/images/post.svg");
     const postURL = postObject;
     const [contentFile, setContentFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
     const formData = new FormData();
+
     // Methods
     const handleSubmit = (event) => {
         if (isFilePicked) {
