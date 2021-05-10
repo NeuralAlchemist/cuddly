@@ -29,6 +29,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 >>>>>>> 2c12a9d (add logic to obtain contentText and contentFile)
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
+<<<<<<< HEAD
 
 =======
 export default function PostForm({ onSubmit, onImagePostSubmit }) {
@@ -58,6 +59,33 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   const onFormContentChange = (value) => {
     setContentText(value);
     setLength(value.length);
+=======
+  const formData = new FormData();
+  // Methods
+  const handleSubmit = (event) => {
+    if(isFilePicked){
+      handleImagePostSubmit(event);
+    }else {
+      // Invoke the passed in event callback
+      onSubmit({ contentText: contentText });
+      // Clear the input field
+      setContentText('');
+    }
+
+  };
+
+  const handleImagePostSubmit = (event) => {
+    event.preventDefault();
+    formData.append('file', contentFile);
+    formData.append('text', contentText);
+    PostsApi.createImagePost(formData)
+        .catch((err) => {
+          alert("FAILED");
+          console.error(err);
+        });
+    setContentFile(null);
+    setIsFilePicked(false);
+>>>>>>> 6f2bfb3 (remove post with media button and make post use one of the API calls based on media present)
   };
 
 <<<<<<< HEAD
@@ -138,6 +166,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
               <span>Post</span>
             </button>
           </div>
+<<<<<<< HEAD
           <button onClick={handleImagePostSubmit}>Upload Image</button>
 >>>>>>> 2c12a9d (add logic to obtain contentText and contentFile)
 =======
@@ -157,6 +186,9 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
           setFile={setFile}
           handleSubmit={handleSubmit}
         />
+=======
+          </div>
+>>>>>>> 6f2bfb3 (remove post with media button and make post use one of the API calls based on media present)
       </form>
     </div>
   );
