@@ -49,9 +49,8 @@ public class PostController {
      * @param text  the contentText of the post
      * @return http status created and post
      */
-    @PostMapping(value="/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Post> createImagePost(@RequestParam("contentFile") MultipartFile file, @RequestParam("contentText") String text){
-
+    @PostMapping(value="/upload")
+    public ResponseEntity<Post> createImagePost(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
     }
 
@@ -66,6 +65,7 @@ public class PostController {
                     .body(String.format("Could not upload the file: %s!", file.getOriginalFilename()));
         }
     }
+
     /**
      * Return a list of all posts
      *
