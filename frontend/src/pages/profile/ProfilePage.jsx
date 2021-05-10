@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 // Project files
-
 import ProfileCard from "../../components/profile/ProfileCard";
 import UserApi from "../../api/UserApi";
 
