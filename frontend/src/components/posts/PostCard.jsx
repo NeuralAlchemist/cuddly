@@ -10,7 +10,6 @@ import PostsApi from "../../api/PostsApi";
 import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
-//import videoLocal from "../../videos/test@test.comVID_20190824_175056.mp4";
 
 export default function PostCard({ post, onDeleteClick }) {
     // Local state
@@ -112,7 +111,7 @@ export default function PostCard({ post, onDeleteClick }) {
             })
             .catch((err) => console.error(err));
     }, [setCurrentUser]);
-    console.log(post);
+
     return (
         <div className="PostCard">
             <div>
