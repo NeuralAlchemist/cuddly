@@ -21,6 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 
 src/videos/*
 !/src/videos/README.md
+=======
+/src/videos
+>>>>>>> 5dfc5f8 (ignore videos folder)
