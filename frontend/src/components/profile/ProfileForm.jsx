@@ -6,19 +6,20 @@ import UserApi from "../../api/UserApi";
 
 export default function ProfileForm() {
   // Local state
-  const [description, setDescription] = useState("");
   const [currentUser, setCurrentUser] = useState({});
+  const [description, setDescription] = useState("");
 
   // Methods
-  async function updateUser() {
+  async function updateUser(event) {
     try {
-      const response = await UserApi.updateUserDescription(description);
+      // assign the current user's description
+      currentUser.description = description;
+      const response = await UserApi.updateUserDescription(currentUser);
+      // update user details
       const user = response.data;
       setCurrentUser(user);
-      // clear the input field
-      setDescription("");
     } catch (e) {
-      console.error(e);
+      console.error(e.response);
     }
   }
 
@@ -28,23 +29,20 @@ export default function ProfileForm() {
         setCurrentUser(data);
       })
       .catch((err) => console.error(err));
-  }, [setCurrentUser]);
+  }, [setCurrentUser, setDescription]);
 
   return (
     <div className="ProfileForm">
       <form>
-        <input
+        <textarea
           className="description-input"
-          type="text"
-          placeholder="Share something about yourself..."
-          value={description}
           onChange={(e) => setDescription(e.target.value)}
+          value={description}
         />
-        <button className="button-post" onClick={updateUser}>
+        <button className="button-update" onClick={updateUser}>
           Update
         </button>
       </form>
-      <p>{currentUser.description}</p>
     </div>
   );
 }
