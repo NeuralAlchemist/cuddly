@@ -33,6 +33,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 =======
 export default function PostForm({ onSubmit }) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> db5676e (force reload after image upload)
     // Local State
 
@@ -88,6 +89,8 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 =======
 =======
 
+=======
+>>>>>>> ef1400f (remove unused div tags)
     // Local State
 >>>>>>> c3bb370 (remove empty lines)
     const [contentText, setContentText] = useState("");
@@ -248,23 +251,19 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     return (
         <div className="postform-container">
             <form className="postform">
-                <div>
-                    <div>
-                        <div className="postform-field">
-                            <textarea
-                                className="postform-input"
-                                placeholder="What's on your mind?"
-                                value={contentText}
-                                onChange={(e) => setContentText(e.target.value)}
-                            />
-                        </div>
-                        <input type="file" onChange={setFile} />
-                        <button className="button-post" onClick={handleSubmit}>
-                            <img className="post" src={postURL} alt="Post" />
-                            <span>Post</span>
-                        </button>
-                    </div>
+                <div className="postform-field">
+                    <textarea
+                        className="postform-input"
+                        placeholder="What's on your mind?"
+                        value={contentText}
+                        onChange={(e) => setContentText(e.target.value)}
+                    />
                 </div>
+                <input type="file" onChange={setFile} />
+                <button className="button-post" onClick={handleSubmit}>
+                    <img className="post" src={postURL} alt="Post" />
+                    <span>Post</span>
+                </button>
             </form>
         </div>
     );
