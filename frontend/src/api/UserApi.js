@@ -5,8 +5,8 @@ class UserApi {
     return Api.get('/users');
   }
 
-  updateUserDescription(description) {
-    return Api.put('/users', description);
+  updateUserDescription(updatedUser) {
+    return Api.put('/users', updatedUser);
   }
 }
 
