@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 public class PostService {
-    private static String imageDirectory = System.getProperty("user.dir") + "/images/";
+    private static String videoDirectory = System.getProperty("user.dir") + "/frontend/src/videos/";
     private PostRepository postRepository;
     private UserRepository userRepository;
     private AuthService authService;
@@ -93,17 +93,32 @@ public class PostService {
         newPost.setContentText(text);
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
+        newPost.setImageType(file.getContentType());
         if(!file.isEmpty()){
-            try {
-                byte[] bytes = new byte[file.getBytes().length];
-                int i = 0;
-                for (byte b : file.getBytes()){
-                    bytes[i++] = b;
+            if(file.getContentType().contains("image")){
+                byte[] bytes;
+                try {
+                    bytes = new byte[file.getBytes().length];
+                    int i = 0;
+                    for (byte b : file.getBytes()){
+                        bytes[i++] = b;
+                    }
+                    newPost.setImage(bytes);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                newPost.setImage(bytes);
-                newPost = postRepository.save(newPost);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                try {
+                    File directory = new File(videoDirectory);
+                    if(!directory.exists()){
+                        directory.mkdir();
+                    }
+                    Path fileName = Paths.get(videoDirectory, relatedUser.getEmail().concat(file.getOriginalFilename()));
+                    Files.write(fileName, file.getBytes());
+                    newPost.setVideoName(fileName.getFileName().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return postRepository.save(newPost);
@@ -147,20 +162,4 @@ public class PostService {
             throw new ForbiddenException();
         }
     }
-
-    public void uploadFile(MultipartFile file) throws IOException {
-        Post post = new Post();
-        String email = authService.getLoggedInUserEmail();
-        LocalDateTime createdTime = LocalDateTime.now();
-        User relatedUser = userRepository.findByEmail(email);
-        post.setRelatedPostUser(relatedUser);
-        post.setCreatedTime(createdTime);
-        System.out.println("works till here");
-        post.setImage(file.getBytes());
-        System.out.println("got bytes");
-        post.setContentText("This is just UPLOADING");
-        postRepository.save(post);
-    }
-
-
 }
