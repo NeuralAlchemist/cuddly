@@ -99,8 +99,12 @@ public class PostService {
         newPost.setContentText(text);
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
+<<<<<<< HEAD
         newPost.setMediaType(file.getContentType());
         newPost.setListOfLikes( new ArrayList<PostLike>());
+=======
+        newPost.setImageType(file.getContentType());
+>>>>>>> 90d3fdd (save type of media, save video to src/frontend/videos if present otherwise store the byte array of image)
         if(!file.isEmpty()){
             if(file.getContentType().contains("image")){
                 byte[] bytes;
