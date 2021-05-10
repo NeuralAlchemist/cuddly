@@ -1,43 +1,20 @@
 // NPM Packages
 import React, { useState, useEffect } from "react";
-import { useRecoilState} from "recoil";
 
-// Project files
-import UserApi from "../../api/UserApi";
-import { userState } from "../../state/userData";
-
-export default function ProfileForm() {
-  // Global state
-  const [thisUser, setThisUser] = useRecoilState(userState);
-  console.log(thisUser);
-
+export default function ProfileForm({ desc, onSubmit }) {
   // Local state
-  //const [currentUser, setCurrentUser] = useState({});
-  const [description, setDescription] = useState(thisUser.data.description);
-  console.log(description);
+  const [description, setDescription] = useState("");
 
   // Methods
-  async function updateUser(event) {
-    try {
-      // assign the current user's description
-      thisUser.description = description;
-      const response = await UserApi.updateUserDescription(thisUser);
-      // update user details
-      const user = response.data;
-      setThisUser(user);
-    } catch (e) {
-      console.error(e.response);
-    }
-  }
+  const handleSubmit = () => {
+    onSubmit({ description: description });
+    setDescription("");
+  };
 
-  useEffect(() => {
-    UserApi.getUser()
-      .then((response) => {
-        response.json()
-      })
-      .then((json) => setThisUser(json))
-      .catch((err) => console.error(err));
-  }, [setThisUser, setDescription]);
+  // Set the initial description passed as props
+    useEffect(() => {
+        setDescription(desc);
+    }, [desc]);
 
   return (
     <div className="ProfileForm">
@@ -45,8 +22,9 @@ export default function ProfileForm() {
         <textarea
           className="description-input"
           onChange={(e) => setDescription(e.target.value)}
+          value={description}
         />
-        <button className="button-update" onClick={updateUser}>
+        <button className="button-update" onClick={handleSubmit}>
           Update
         </button>
       </form>

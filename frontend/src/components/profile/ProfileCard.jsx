@@ -1,28 +1,21 @@
 // NPM packages
-import React, { useEffect } from "react";
-import { useRecoilState} from "recoil";
+import React from "react";
 
 // Project files
 import UserApi from "../../api/UserApi";
-import { userState } from "../../state/userData";
+import ProfileForm from "../../components/profile/ProfileForm";
 
-export default function ProfileCard() {
-  // Global state
-  const [thisUser, setThisUser] = useRecoilState(userState);
-  console.log(thisUser);
+export default function ProfileCard({thisUser}) {
+// Methods
+async function updateDescription(updatedUserDescription) {
+  try {
+    await UserApi.updateUserDescription(updatedUserDescription);
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-  // Local state
-  //const [currentUser, setCurrentUser] = useState({});
-
-  // Methods
-  useEffect(() => {
-    UserApi.getUser()
-      .then((response) => {
-        response.json()
-      })
-      .then((json) => setThisUser(json))
-      .catch((err) => console.error(err));
-  }, [setThisUser]);
+console.log('card test');
 
   return (
     <div className="ProfileCard">
@@ -35,7 +28,7 @@ export default function ProfileCard() {
         <p>Email</p>
         <p>{thisUser.email}</p>
       </div>
-      {/* <div className="description-pair">
+      <div className="description-pair">
         <p>About</p>
         {thisUser.description === null && (
           <p>
@@ -43,7 +36,8 @@ export default function ProfileCard() {
           </p>
         )}
         {thisUser.description != null && <p>{thisUser.description}</p>}
-      </div> */}
+      </div> 
+      <ProfileForm desc={thisUser.description} onSubmit={(update) => updateDescription(update)}/>
     </div>
   );
 }
