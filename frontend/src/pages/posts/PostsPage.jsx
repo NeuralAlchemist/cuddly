@@ -34,9 +34,9 @@ export default function PostsPage() {
     }
   }
 
-  async function createImagePost(text, file) {
+  /*async function createImagePost(text, file) {
     try {
-      const response = await PostsApi.createPost(text, file);
+      const response = await PostsApi.createImagePost(text, file);
       const post = response.data;
       const newPosts = posts.concat(post);
       setPosts(newPosts);
@@ -44,9 +44,9 @@ export default function PostsPage() {
       console.error(e);
       alert("Post with Image failed to post");
     }
-  }
+  }*/
 
-  async function uploadFile(file){
+  /*async function uploadFile(file){
     try{
       const response = await PostsApi.uploadFile(file);
       const post = response.data;
@@ -56,7 +56,7 @@ export default function PostsPage() {
       console.error(e);
       alert("Image failed to upload");
     }
-  }
+  }*/
 
   useEffect(() => {
     PostsApi.getAllPosts()
@@ -80,7 +80,6 @@ export default function PostsPage() {
             <PostForm
                 className="postform"
                 onSubmit={(postData) => createPost(postData)}
-                onImagePostSubmit={(text, file) => createImagePost(text, file)}
             />
             {CardsArray}
           </div>
