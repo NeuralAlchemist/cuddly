@@ -38,14 +38,14 @@ export default function PostForm({ onSubmit }) {
   };
 
   return (
-    <div className="postform-container">
-      <form className="postform">
+    <div className="form-container">
+      <form className="form">
         <div>
           <div>
-            <div className="postform-field">
+            <div className="form-field">
               <textarea
                 ref={textArea}
-                className="postform-input"
+                className="form-input"
                 placeholder="What's on your mind?"
                 value={contentText}
                 onChange={(e) => onTextAreaValueChange(e.target.value)}

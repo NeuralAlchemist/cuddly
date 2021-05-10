@@ -1,8 +1,8 @@
-.postform {
+.form {
   margin: 0px;
 }
 
-.postform-container {
+.form-container {
   background-color: white;
   padding: var(--space-small);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -13,12 +13,12 @@
   margin: var(--space-medium);
 }
 
-.postform-field {
+.form-field {
   display: grid;
   margin-bottom: var(--space-x-small);
 }
 
-textarea.postform-input {
+textarea.form-input {
   font-size: var(--space-medium);
   font-family: 'Nunito', sans-serif;
   max-height: 200px;
