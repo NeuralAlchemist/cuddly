@@ -38,7 +38,6 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 
   const setFile = async (event) => {
     setContentFile(event.target.files[0]);
-
     console.log(`selected file is now: ${event.target.files[0]}`);
   }
 

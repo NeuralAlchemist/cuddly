@@ -65,7 +65,6 @@ public class PostController {
                     .body(String.format("Could not upload the file: %s!", file.getOriginalFilename()));
         }
     }
-
     /**
      * Return a list of all posts
      *

@@ -58,6 +58,7 @@ export default function PostsPage() {
     }
   }*/
 
+
   useEffect(() => {
     PostsApi.getAllPosts()
         .then(({data}) => setPosts(data))
