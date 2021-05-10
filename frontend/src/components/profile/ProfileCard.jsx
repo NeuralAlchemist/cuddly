@@ -17,23 +17,25 @@ export default function ProfileCard({ thisUser }) {
 
   return (
     <div className="ProfileCard">
-      <h2>Your information</h2>
-      <div className="name-pair">
-        <p>Name</p>
-        <p>{thisUser.name}</p>
-      </div>
-      <div className="email-pair">
-        <p>Email</p>
-        <p>{thisUser.email}</p>
-      </div>
-      <div className="description-pair">
-        <p>About</p>
-        {thisUser.description === null && (
-          <p>
-            Let us know who you are! Add a short description to your profile
-          </p>
-        )}
-        {thisUser.description != null && <p>{thisUser.description}</p>}
+      <div className="user-fields">
+        <h2>Your information</h2>
+        <div className="name-pair">
+          <p>Name</p>
+          <p>{thisUser.name}</p>
+        </div>
+        <div className="email-pair">
+          <p>Email</p>
+          <p>{thisUser.email}</p>
+        </div>
+        <div className="description-pair">
+          <p>About</p>
+          {thisUser.description === null && (
+            <p>
+              Let us know who you are! Add a short description to your profile
+            </p>
+          )}
+          {thisUser.description != null && <p>{thisUser.description}</p>}
+        </div>
       </div>
       <ProfileForm
         desc={thisUser.description}
