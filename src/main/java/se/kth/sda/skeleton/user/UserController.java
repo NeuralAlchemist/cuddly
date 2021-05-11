@@ -40,9 +40,10 @@ public class UserController {
      * @return HTTP ok status and the updated user
      */
     @PutMapping("/users")
-    public ResponseEntity<User> updateUserDescription(@RequestBody String description) {
+    public ResponseEntity<User> updateUserDescription(@RequestBody User userWithUpdatedDescription) {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
+        String description = userWithUpdatedDescription.getDescription();
         user.setDescription(description);
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
