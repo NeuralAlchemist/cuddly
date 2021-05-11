@@ -1,6 +1,6 @@
 // NPM Packages
 import React, { useState } from 'react';
-import AutoFitContentPlaceholder from '../AutoFitContentPlaceholder';
+import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function PostForm({ onSubmit }) {
   // Local State
@@ -29,19 +29,17 @@ export default function PostForm({ onSubmit }) {
         <div>
           <div>
             <div className="form-field">
-              <AutoFitContentPlaceholder
+              <ResponsiveTextArea
                 placeholder="What's on your mind?"
                 contentText={contentText}
                 onFormContentChange={onFormContentChange}
               />
             </div>
-            <div>
+            <p className="length">{length == null ? 0 : length}/255</p>
               <button className="button-post" onClick={handleSubmit}>
                 <img className="post" src={postURL} alt="Post" />
                 <span>Post</span>
               </button>
-              <p>{length == null ? 0 : length}/255</p>
-            </div>
           </div>
         </div>
       </form>

@@ -1,10 +1,11 @@
 // NPM Packages
-import React, { useState } from 'react';
-import AutoFitContentPlaceholder from '../AutoFitContentPlaceholder';
+import React, { useState} from 'react';
+import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function CommentForm({ post, onSubmit }) {
   // Local State
   const [commentContentText, setCommentContentText] = useState('');
+  const [length, setLength] = useState();
   const commentObject = require('../../assets/images/comment.svg');
   const commentURL = commentObject;
 
@@ -17,16 +18,22 @@ export default function CommentForm({ post, onSubmit }) {
     setCommentContentText('');
   };
 
+  const onFormContentChange = (value) => {
+    setCommentContentText(value);
+    setLength(value.length);
+  };
+
   return (
     <form>
       <div className="form-field">
-        <AutoFitContentPlaceholder
+        <ResponsiveTextArea
           placeholder="Write your comment here."
           contentText={commentContentText}
           setContentText={setCommentContentText}
         />
       </div>
       <div>
+        <p className="length">{length == null ? 0 : length}/255</p>
         <button className="button-comment" onClick={handleSubmit}>
           <img className="comment" src={commentURL} alt="Commment" />
           <span>Comment</span>
