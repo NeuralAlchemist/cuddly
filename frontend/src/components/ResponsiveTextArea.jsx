@@ -30,7 +30,7 @@ export default function AutoFitContentPlaceholder({
       placeholder={placeholder}
       value={contentText}
       onChange={(e) => onFormContentChange(e.target.value)}
-      maxlenght="255"
+      maxlength="255"
     />
   );
 }

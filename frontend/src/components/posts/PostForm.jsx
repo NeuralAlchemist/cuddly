@@ -36,10 +36,10 @@ export default function PostForm({ onSubmit }) {
               />
             </div>
             <p className="length">{length == null ? 0 : length}/255</p>
-              <button className="button-post" onClick={handleSubmit}>
-                <img className="post" src={postURL} alt="Post" />
-                <span>Post</span>
-              </button>
+            <button className="button-post" onClick={handleSubmit}>
+              <img className="post" src={postURL} alt="Post" />
+              <span>Post</span>
+            </button>
           </div>
         </div>
       </form>

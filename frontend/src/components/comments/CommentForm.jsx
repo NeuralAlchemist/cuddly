@@ -1,5 +1,5 @@
 // NPM Packages
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function CommentForm({ post, onSubmit }) {
@@ -29,7 +29,7 @@ export default function CommentForm({ post, onSubmit }) {
         <ResponsiveTextArea
           placeholder="Write your comment here."
           contentText={commentContentText}
-          setContentText={setCommentContentText}
+          onFormContentChange={onFormContentChange}
         />
       </div>
       <div>
