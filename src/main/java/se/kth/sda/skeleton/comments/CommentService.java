@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class CommentService {
+    private static String videoDirectory = System.getProperty("user.dir") + "/frontend/src/videos/comment";
     private CommentRepository commentRepository;
     private PostRepository postRepository;
     private AuthService authService;
@@ -113,5 +114,51 @@ public class CommentService {
 
         relatedUser.getCreatedComments().add(comment);
         return commentRepository.save(comment);
+    }
+
+    /**
+     * Create a comment with file
+     *
+     * @param text the contentText of the comment
+     * @param file the contentFile to be added to the comment
+     * @return newly created comment
+     */
+    public Comment createCoomentImage(String text, MultipartFile file){
+        Comment newComment = new Comment();
+        String email = authService.getLoggedInUserEmail();
+        LocalDateTime createdTime = LocalDateTime.now();
+        User loggedInUser = userRepository.findByEmail(email);
+        newComment.setContentText(text);
+        newComment.setRelatedPostUser(loggedInUser);
+        newComment.setCreatedTime(createdTime);
+        newComment.setMediaType(file.getContentType());
+        if(!file.isEmpty()){
+            if(file.getContentType().contains("image")){
+                byte[] bytes;
+                try {
+                    bytes = new byte[file.getBytes().length];
+                    int i = 0;
+                    for (byte b : file.getBytes()){
+                        bytes[i++] = b;
+                    }
+                    newComment.setImage(bytes);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    File directory = new File(videoDirectory);
+                    if(!directory.exists()){
+                        directory.mkdir();
+                    }
+                    Path fileName = Paths.get(videoDirectory, loggedInUser.getEmail().concat(file.getOriginalFilename()));
+                    Files.write(fileName, file.getBytes());
+                    newComment.setVideoName(fileName.getFileName().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return commentRepository.save(newComment);
     }
 }
