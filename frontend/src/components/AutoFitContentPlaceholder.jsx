@@ -1,6 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
-export default function AutoFitContentPlaceholder({ placeholder, contentText, setContentText}) {
+export default function AutoFitContentPlaceholder({
+  placeholder,
+  contentText,
+  onFormContentChange,
+}) {
   // Local State
   const textArea = useRef(null);
 
@@ -18,10 +22,6 @@ export default function AutoFitContentPlaceholder({ placeholder, contentText, se
       textArea.current.style.overflowY = 'none';
     }
   }, [contentText]);
-  
-  const onTextAreaValueChange = (value) => {
-    setContentText(value);
-  };
 
   return (
     <textarea
@@ -29,7 +29,8 @@ export default function AutoFitContentPlaceholder({ placeholder, contentText, se
       className="form-input"
       placeholder={placeholder}
       value={contentText}
-      onChange={(e) => onTextAreaValueChange(e.target.value)}
+      onChange={(e) => onFormContentChange(e.target.value)}
+      maxlenght="255"
     />
   );
 }
