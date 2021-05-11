@@ -7,7 +7,6 @@ export default function PostForm({ onSubmit }) {
   const [contentText, setContentText] = useState('');
   const postObject = require('../../assets/images/post.svg');
   const postURL = postObject;
-
   const textArea = useRef(null);
 
   // Methods
@@ -18,6 +17,7 @@ export default function PostForm({ onSubmit }) {
     // Clear the input field
     setContentText('');
   };
+  
   // Make textArea placeholder's height adaptive to the content
   useEffect(() => {
     const originalHeight = '52px';
