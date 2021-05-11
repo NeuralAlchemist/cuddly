@@ -7,7 +7,7 @@ export const postsState = atom({
 });
 
 export const allPosts = selector({
-  key: 'posts',
+  key: 'allPosts',
   get: async ({get}) => {
     const response = await PostsApi.getAllPosts({
       postsState: get(postsState),

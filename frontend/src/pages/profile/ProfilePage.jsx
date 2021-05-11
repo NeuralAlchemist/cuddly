@@ -12,12 +12,15 @@ import { postsState, allPosts } from "../../state/postsData";
 export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
-
   const postsGlobal = useRecoilValue(allPosts);
 
   // Local state
   const [thisUser, setThisUser] = useState({});
 
+  // Variables
+  let userPostLikes = [];
+  
+  // Methods
   useEffect(() => {
     UserApi.getUser()
       .then(({ data }) => {
@@ -48,8 +51,6 @@ export default function ProfilePage() {
         onDeleteClick={() => deletePost(post)}
       />
     ));
-
-  let userPostLikes = [];
 
   for (let i = 0; i < postsGlobal.length; i++) {
     for (let j = 0; j < postsGlobal[i].listOfLikes.length; j++) {
