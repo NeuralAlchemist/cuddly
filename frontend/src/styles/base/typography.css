@@ -22,6 +22,7 @@ h3 {
   font-family: "Nunito", sans-serif;
   font-size: var(--font-size-medium-big);
   font-weight: 700;
+  color: var(--color-black-brown);
 }
 
 h4 {
