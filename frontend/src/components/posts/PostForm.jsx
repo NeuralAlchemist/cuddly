@@ -1,9 +1,11 @@
 // NPM Packages
 import React, { useState } from 'react';
+import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function PostForm({ onSubmit }) {
   // Local State
   const [contentText, setContentText] = useState('');
+  const [length, setLength] = useState();
   const postObject = require('../../assets/images/post.svg');
   const postURL = postObject;
 
@@ -16,20 +18,25 @@ export default function PostForm({ onSubmit }) {
     setContentText('');
   };
 
+  const onFormContentChange = (value) => {
+    setContentText(value);
+    setLength(value.length);
+  };
+
   return (
-    <div className="postform-container">
-      <form className="postform">
+    <div className="form-container">
+      <form className="form">
         <div>
           <div>
-            <div className="postform-field">
-              <textarea 
-                className="postform-input"
+            <div className="form-field">
+              <ResponsiveTextArea
                 placeholder="What's on your mind?"
-                value={contentText}
-                onChange={(e) => setContentText(e.target.value)}
+                contentText={contentText}
+                onFormContentChange={onFormContentChange}
+                maxLength="255"
               />
             </div>
-
+            <p className="length">{length == null ? 0 : length}/255</p>
             <button className="button-post" onClick={handleSubmit}>
               <img className="post" src={postURL} alt="Post" />
               <span>Post</span>

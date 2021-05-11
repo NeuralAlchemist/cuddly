@@ -1,9 +1,13 @@
 // NPM Packages
-import React from "react";
+import React, { useState } from 'react';
+import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function CommentForm({ post, onSubmit }) {
   // Local State
-  const [commentContentText, setCommentContentText] = React.useState("");
+  const [commentContentText, setCommentContentText] = useState('');
+  const [length, setLength] = useState();
+  const commentObject = require('../../assets/images/comment.svg');
+  const commentURL = commentObject;
 
   // Methods
   const handleSubmit = () => {
@@ -11,20 +15,31 @@ export default function CommentForm({ post, onSubmit }) {
     onSubmit(post.id, { contentText: commentContentText });
 
     // Clear the input field
-      setCommentContentText("");
+    setCommentContentText('');
+  };
+
+  const onFormContentChange = (value) => {
+    setCommentContentText(value);
+    setLength(value.length);
   };
 
   return (
-    <form className="CommentForm">
-        <div>
-            <textarea
-            value={commentContentText}
-            onChange={(e) => setCommentContentText(e.target.value)}
+    <form>
+      <div className="form-field">
+        <ResponsiveTextArea
+          placeholder="Write your comment here."
+          contentText={commentContentText}
+          onFormContentChange={onFormContentChange}
+          maxLength="255"
         />
-        </div>
-        <div>
-            <button onClick={handleSubmit}>Comment</button>
-        </div>
+      </div>
+      <div>
+        <p className="length">{length == null ? 0 : length}/255</p>
+        <button className="button-comment" onClick={handleSubmit}>
+          <img className="comment" src={commentURL} alt="Commment" />
+          <span>Comment</span>
+        </button>
+      </div>
     </form>
   );
 }
