@@ -48,6 +48,17 @@ public class CommentController {
     }
 
     /**
+     * Create a new comment with image/video
+     * @param file the contentFile to be added to the comment
+     * @param text  the contentText of the comment
+     * @return http status created and comment
+     */
+    @PostMapping(value="/upload")
+    public ResponseEntity<Comment> createImageComment(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file));
+    }
+
+    /**
      * Handler method for endpoint "posts/{postId}/comments/{postId}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
      * relating to the given {@code postId} and HTTP status {@code OK}.
      * @param commentId the postId used to find the Comment associated with it
