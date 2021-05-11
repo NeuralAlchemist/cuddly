@@ -1,8 +1,8 @@
-.container{
+.main-container{
     display: grid;
     grid-template-columns:  1fr minmax(300px,600px) 1fr;
 }
 
-.post-grid-item{
+.main-container-item{
     grid-column-start: 2;
 }

@@ -27,7 +27,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar onLogout={() => Auth.logout()} />
 
-      <div className="container">
+      <div className="main-container">
         <Switch>
           <Route path="/posts">
             <PostsPage />

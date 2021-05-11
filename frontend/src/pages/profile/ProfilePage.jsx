@@ -70,7 +70,7 @@ export default function ProfilePage() {
   ));
 
   return (
-    <div className="ProfilePage">
+    <div className="main-container-item">
       <h1>Profile</h1>
       <ProfileCard thisUser={thisUser} />
       <p>My posts</p>
