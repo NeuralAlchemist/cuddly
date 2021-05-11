@@ -17,6 +17,7 @@
 }
 
 .length {
-  text-align: right !important;
+  text-align: right;
   font-size: small;
+  margin: 0px;
 }
