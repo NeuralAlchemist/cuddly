@@ -1,9 +1,13 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function CommentUpdateForm({ onSubmit, comment }) {
   // Local State
   const [contentText, setContentText] = useState(comment.contentText);
+  const [length, setLength] = useState(comment.contentText.length);
+  const commentObject = require('../../assets/images/comment.svg');
+  const commentURL = commentObject;
 
   // Methods
   const handleSubmit = () => {
@@ -11,21 +15,30 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
     onSubmit({ contentText: contentText });
 
     // Clear the input field
-    setContentText("");
+    setContentText('');
+  };
+
+  const onFormContentChange = (value) => {
+    setContentText(value);
+    setLength(value.length);
   };
 
   return (
     <form>
+      <div className="form-field">
+        <ResponsiveTextArea
+          placeholder="Update your comment here."
+          contentText={contentText}
+          onFormContentChange={onFormContentChange}
+          maxLength="255"
+        />
+      </div>
       <div>
-        <div>
-          <textarea
-            value={contentText}
-            onChange={(e) => setContentText(e.target.value)}
-          />
-        </div>
-        <div>
-          <button onClick={handleSubmit}>Update comment</button>
-        </div>
+        <p className="length">{length == null ? 0 : length}/255</p>
+        <button className="button-comment" onClick={handleSubmit}>
+          <img className="comment" src={commentURL} alt="Commment" />
+          <span>Update Comment</span>
+        </button>
       </div>
     </form>
   );

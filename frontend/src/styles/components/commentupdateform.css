@@ -1,0 +1,23 @@
+.button-comment {
+    background-color: transparent;
+    border-width: 0px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+  }
+  
+  .comment {
+    margin-right: var(--space-xx-small);
+    height: var(--space-medium);
+  }
+  
+  .icon-container {
+    display: flex;
+  }
+  
+  .length {
+    text-align: right !important;
+    font-size: small;
+  }
+  
