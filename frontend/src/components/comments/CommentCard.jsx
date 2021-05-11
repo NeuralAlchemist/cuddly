@@ -74,35 +74,46 @@ export default function CommentCard({
   }
 
   return (
-    <div>
-      <span>{commentCreatorName}: </span>
-      <span className="word-wrap">{comment.contentText} </span>
-      <span>
-        <Moment fromNow>{comment.createdTime}</Moment>
-      </span>
-      <p>{comment.listOfCommentLikes.length} comment like(s)</p>
-      <button onClick={commentLikeAction}>
-        {checkForCommentLikeUser() ? "Remove Comment Like" : "Like Comment"}
-      </button>
-
+    <div className="comment-card">
+      <div className="postcard-header">
+        <div className="post-info">{commentCreatorName}</div>
+        <div className="delete-edit-icons">
           {checkCommentUserEmail() && (
-              <div>
-                  <button onClick={handleDelete}>Delete</button>
-                  <button
-                      onClick={() =>
-                          toggle ? setToggle(false) : setToggle(true)
-                      }
-                  >
-                      {toggle ? "Cancel Update" : "Update"}
-                  </button>
-                  {toggle && (
-                      <CommentUpdateForm
-                          onSubmit={(commentData) => updateComment(commentData)}
-                          comment={comment}
-                      />
-                  )}
-              </div>
+            <span>
+              <button
+                className="button-post-card delete-icon"
+                onClick={handleDelete}
+              />
+              <button
+                className={`button-post-card ${toggle ? " cancel" : " active"}`}
+                onClick={() => (toggle ? setToggle(false) : setToggle(true))}
+              />
+            </span>
           )}
+        </div>
+        <Moment className="time-lapse" fromNow>
+          {comment.createdTime}
+        </Moment>
       </div>
+      <div className="word-wrap comment-content">
+        {!toggle ? (
+          <p>{comment.contentText}</p>
+        ) : (
+          <div>
+            <CommentUpdateForm
+              onSubmit={(commentData) => updateComment(commentData)}
+              comment={comment}
+            />
+          </div>
+        )}
+      </div>
+      <button
+        onClick={commentLikeAction}
+        className={`like-button button-post-card ${
+          checkForCommentLikeUser() ? "liked" : "not-liked"
+        }`}
+      ></button>
+      <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
+    </div>
   );
 }
