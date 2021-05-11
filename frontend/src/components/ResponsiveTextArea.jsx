@@ -5,7 +5,7 @@ export default function AutoFitContentPlaceholder({
   placeholder,
   contentText,
   onFormContentChange,
-  maxLength
+  maxLength,
 }) {
   // Local State
   const textArea = useRef(null);
@@ -32,6 +32,7 @@ export default function AutoFitContentPlaceholder({
       placeholder={placeholder}
       value={contentText}
       onChange={(e) => onFormContentChange(e.target.value)}
+      maxLength={maxLength}
      />
   )
 }
