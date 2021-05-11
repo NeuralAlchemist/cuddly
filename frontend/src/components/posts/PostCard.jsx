@@ -7,15 +7,13 @@ import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
 import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
-import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 
-export default function PostCard({ post, onDeleteClick }) {
+export default function PostCard({ post, currentUser, onDeleteClick }) {
     // Local state
     const [comments, setComments] = useState([]);
     const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
-    const [currentUser, setCurrentUser] = useState({});
 
     // Constants
     const postId = post.id;
@@ -99,14 +97,6 @@ export default function PostCard({ post, onDeleteClick }) {
             .then(({ data }) => setComments(data))
             .catch((err) => console.error(err));
     }, [setComments, postId]);
-
-    useEffect(() => {
-        UserApi.getUser()
-            .then(({ data }) => {
-                setCurrentUser(data);
-            })
-            .catch((err) => console.error(err));
-    }, [setCurrentUser]);
 
     return (
         <div className="PostCard">
