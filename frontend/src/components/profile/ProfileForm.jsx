@@ -17,8 +17,7 @@ export default function ProfileForm({ desc, onSubmit }) {
   }, [desc]);
 
   return (
-    <div className="ProfileForm">
-      <form>
+      <form className="ProfileForm">
         <textarea
           className="description-input"
           onChange={(e) => setDescription(e.target.value)}
@@ -28,6 +27,5 @@ export default function ProfileForm({ desc, onSubmit }) {
           Update
         </button>
       </form>
-    </div>
   );
 }
