@@ -33,6 +33,7 @@ export default function PostForm({ onSubmit }) {
                 placeholder="What's on your mind?"
                 contentText={contentText}
                 onFormContentChange={onFormContentChange}
+                maxLength="255"
               />
             </div>
             <p className="length">{length == null ? 0 : length}/255</p>

@@ -30,6 +30,7 @@ export default function CommentForm({ post, onSubmit }) {
           placeholder="Write your comment here."
           contentText={commentContentText}
           onFormContentChange={onFormContentChange}
+          maxLength="255"
         />
       </div>
       <div>

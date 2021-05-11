@@ -1,14 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react';
+// NPM Packages
+import React, { useRef, useEffect} from 'react';
 
 export default function AutoFitContentPlaceholder({
   placeholder,
   contentText,
   onFormContentChange,
+  maxLength
 }) {
   // Local State
   const textArea = useRef(null);
 
-  //Method
+  // Method
   // Make textArea placeholder's height adaptive to the content
   useEffect(() => {
     const originalHeight = '52px';
@@ -30,7 +32,6 @@ export default function AutoFitContentPlaceholder({
       placeholder={placeholder}
       value={contentText}
       onChange={(e) => onFormContentChange(e.target.value)}
-      maxlength="255"
-    />
-  );
+     />
+  )
 }
