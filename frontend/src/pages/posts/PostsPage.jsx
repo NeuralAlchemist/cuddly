@@ -1,10 +1,10 @@
 // NPM Packages
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 // Project files
-import PostsApi from '../../api/PostsApi';
-import PostForm from '../../components/posts/PostForm';
-import PostCard from '../../components/posts/PostCard';
+import PostsApi from "../../api/PostsApi";
+import PostForm from "../../components/posts/PostForm";
+import PostCard from "../../components/posts/PostCard";
 import UserApi from "../../api/UserApi";
 
 export default function PostsPage() {
@@ -44,11 +44,11 @@ export default function PostsPage() {
 
   useEffect(() => {
     UserApi.getUser()
-        .then(({ data }) => {
-            setCurrentUser(data);
-        })
-        .catch((err) => console.error(err));
-}, [setCurrentUser]);
+      .then(({ data }) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.error(err));
+  }, [setCurrentUser]);
 
   // Components
   const CardsArray = posts.map((post) => (
