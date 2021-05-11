@@ -6,11 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
+import se.kth.sda.skeleton.postlikes.PostLike;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -94,6 +96,7 @@ public class PostService {
         newPost.setRelatedPostUser(relatedUser);
         newPost.setCreatedTime(createdTime);
         newPost.setMediaType(file.getContentType());
+        newPost.setListOfLikes( new ArrayList<PostLike>());
         if(!file.isEmpty()){
             if(file.getContentType().contains("image")){
                 byte[] bytes;

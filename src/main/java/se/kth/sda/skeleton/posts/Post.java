@@ -42,7 +42,6 @@ public class Post {
 
     LocalDateTime createdTime;
 
-    @Lob
     private byte[] image;
 
     private String mediaType;

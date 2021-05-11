@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
 import PostsApi from "../../api/PostsApi";
 
-export default function PostForm({ onSubmit, onImagePostSubmit }) {
+export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
 
   const [contentText, setContentText] = useState('');
@@ -36,13 +36,8 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
   }
   const handleImagePostSubmit = (event) => {
     event.preventDefault();
-    formData.append('file', contentFile);
-    formData.append('text', contentText);
-    PostsApi.createImagePost(formData)
-        .catch((err) => {
-          alert("FAILED");
-          console.error(err);
-        });
+    console.log("inside content   " ,contentFile);
+    onSubmitMedia({file: contentFile, text: contentText});
     setContentFile(null);
     setIsFilePicked(false);
   };

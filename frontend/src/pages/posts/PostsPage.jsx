@@ -25,6 +25,21 @@ export default function PostsPage() {
     }
   }
 
+  async function createPostMedia(imageFile, textFile){
+    try{
+      let formData = new FormData();
+      console.log("should be same   ",imageFile.file);
+      formData.append('file', imageFile.file);
+      formData.append('text', imageFile.text);
+      const response = await PostsApi.createImagePost(formData);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      setPosts(newPosts);
+    } catch (e){
+      console.error(e);
+    }
+  }
+
   async function deletePost(post) {
     try {
       await PostsApi.deletePost(post.id);
@@ -96,10 +111,17 @@ export default function PostsPage() {
   ));
 
   return (
-    <div className="postcard-container">
-      <PostForm className= "postcard-item" onSubmit={(postData) => createPost(postData)} onImagePostSubmit={(file) => uploadFile(file)}/>
-
-      {CardsArray}
-    </div>
+      <div className="post-grid-item">
+        <div className="post-main-content">
+          <div className="postcard-container">
+            <PostForm
+                className="postform"
+                onSubmit={(postData) => createPost(postData)}
+                onSubmitMedia={(imageFile, textFile) => createPostMedia(imageFile, textFile)}
+            />
+            {CardsArray}
+          </div>
+        </div>
+      </div>
   );
 }
