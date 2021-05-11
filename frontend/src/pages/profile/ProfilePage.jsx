@@ -1,27 +1,22 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // Project files
 import ProfileCard from "../../components/profile/ProfileCard";
 import UserApi from "../../api/UserApi";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
-import { postsState } from "../../state/postsData";
+import { postsState, allPosts } from "../../state/postsData";
 
 export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
 
+  const postsGlobal = useRecoilValue(allPosts);
+
   // Local state
   const [thisUser, setThisUser] = useState({});
-
-  // Methods
-  useEffect(() => {
-    PostsApi.getAllPosts()
-      .then(({ data }) => setPosts(data))
-      .catch((err) => console.error(err));
-  }, [setPosts]);
 
   useEffect(() => {
     UserApi.getUser()
@@ -34,7 +29,7 @@ export default function ProfilePage() {
   async function deletePost(post) {
     try {
       await PostsApi.deletePost(post.id);
-      const newPosts = posts.filter((p) => p.id !== post.id);
+      const newPosts = postsGlobal.filter((p) => p.id !== post.id);
 
       setPosts(newPosts);
     } catch (e) {
@@ -43,7 +38,7 @@ export default function ProfilePage() {
   }
 
   // Components
-  const userPostCards = posts
+  const userPostCards = postsGlobal
     .filter((post) => thisUser.id === post.relatedPostUser.id)
     .map((post) => (
       <PostCard
@@ -56,16 +51,15 @@ export default function ProfilePage() {
 
   let userPostLikes = [];
 
-  for (let i = 0; i<posts.length; i++) {
-    for (let j = 0; j < posts[i].listOfLikes.length; j++) {
-      if (posts[i].listOfLikes[j].likedUser.id === thisUser.id ) {
-        userPostLikes.push(posts[i])
+  for (let i = 0; i < postsGlobal.length; i++) {
+    for (let j = 0; j < postsGlobal[i].listOfLikes.length; j++) {
+      if (postsGlobal[i].listOfLikes[j].likedUser.id === thisUser.id) {
+        userPostLikes.push(postsGlobal[i]);
       }
     }
   }
 
-  const userLikesPostCards = userPostLikes
-  .map((post) => (
+  const userLikesPostCards = userPostLikes.map((post) => (
     <PostCard
       key={post.id}
       post={post}
@@ -78,7 +72,7 @@ export default function ProfilePage() {
     <div className="ProfilePage">
       <h1>Profile</h1>
       <ProfileCard thisUser={thisUser} />
-      <p>my posts</p>
+      <p>My posts</p>
       {userPostCards}
       <p>Liked posts</p>
       {userLikesPostCards}

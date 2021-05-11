@@ -40,10 +40,11 @@ export default function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-
+          <React.Suspense fallback={<div>Loading...</div>}>
           <Route path="/profile">
             <ProfilePage />
           </Route>
+          </React.Suspense>
         </Switch>
       </div>
 
