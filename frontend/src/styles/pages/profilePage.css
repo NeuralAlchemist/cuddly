@@ -1,0 +1,9 @@
+.ProfilePage{
+    display:flex;
+    flex-direction: column;
+    margin: 0 var(--space-medium);
+}
+
+.page-name{
+    align-self: center;
+}

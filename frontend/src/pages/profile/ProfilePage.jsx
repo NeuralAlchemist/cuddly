@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
   // Variables
   let userPostLikes = [];
-  
+
   // Methods
   useEffect(() => {
     UserApi.getUser()
@@ -70,13 +70,15 @@ export default function ProfilePage() {
   ));
 
   return (
-    <div className="main-container-item">
-      <h1>Profile</h1>
+    <div className="main-container-item ProfilePage">
+      <h1 className="page-name">Profile</h1>
       <ProfileCard thisUser={thisUser} />
-      <p>My posts</p>
-      {userPostCards}
-      <p>Liked posts</p>
-      {userLikesPostCards}
+      <div className="user-feed">
+        <h3>My posts</h3>
+        {userPostCards}
+        <h3>My liked posts</h3>
+        {userLikesPostCards}
+      </div>
     </div>
   );
 }

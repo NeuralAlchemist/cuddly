@@ -3,11 +3,6 @@
     flex-direction: column;
 }
 
-
-.user-fields{
-    margin:var(--space-medium);
-}
-
 .user-avatar {
     width: auto;
     height: var(--space-xx-big);
