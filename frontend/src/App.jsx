@@ -1,6 +1,7 @@
 // NPM Packages
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 // Project files
 import Auth from "./services/Auth";
@@ -22,6 +23,7 @@ export default function App() {
 
   // Components
   const loggedInRouter = (
+    <RecoilRoot>
     <BrowserRouter>
       <Navbar onLogout={() => Auth.logout()} />
 
@@ -47,6 +49,7 @@ export default function App() {
 
       <Footer />
     </BrowserRouter>
+    </RecoilRoot>
   );
 
   return loggedIn ? loggedInRouter : <AuthPage />;
