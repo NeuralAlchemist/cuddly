@@ -1,11 +1,11 @@
 .comment-card{
     margin: var(--space-medium) 0;
     padding: var(--space-medium);
-    border: 2px solid rgb(242, 225, 188);
-    border-radius: 2em;
+    border: 2px solid var(--color-light-red);
+    border-radius: 1em;
 }
 
 .comment-content{
-    border-top: solid 1px rgb(208, 201, 201);
+    border-top: solid 1px var(--color-light-grey);
     padding: var(--space-small) 0;
 }
