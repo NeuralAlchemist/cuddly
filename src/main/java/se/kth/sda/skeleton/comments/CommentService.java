@@ -123,7 +123,7 @@ public class CommentService {
      * @param file the contentFile to be added to the comment
      * @return newly created comment
      */
-    public Comment createCoomentImage(String text, MultipartFile file){
+    public Comment createCommentImage(String text, MultipartFile file){
         Comment newComment = new Comment();
         String email = authService.getLoggedInUserEmail();
         LocalDateTime createdTime = LocalDateTime.now();
