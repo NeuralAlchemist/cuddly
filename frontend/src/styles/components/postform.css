@@ -24,7 +24,14 @@ textarea.form-input {
   max-height: 200px;
   resize: none;
   color: var(--color-black-brown);
+  box-sizing: border-box;
 }
+
+ textarea.form-input:focus {
+  border: 2px solid var(--color-teal);
+  border-radius: 2px;
+  outline: none;
+} 
 
 .button-post {
   background-color: transparent;
