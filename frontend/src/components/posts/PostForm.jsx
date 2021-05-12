@@ -32,10 +32,10 @@ export default function PostForm({ onSubmit }) {
                 placeholder="What's on your mind?"
                 contentText={contentText}
                 onFormContentChange={onFormContentChange}
-                maxLength="255"
+                maxLength="1000"
               />
             </div>
-            <p className="length">{length == null ? 0 : length}/255</p>
+            <p className="length">{length == null ? 0 : length}/1000</p>
             <button className="button-post" onClick={handleSubmit}>
               <img className="post" src={postURL} alt="Post" />
               <span>Post</span>
