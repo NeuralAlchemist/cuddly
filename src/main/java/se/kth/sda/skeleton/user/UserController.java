@@ -36,7 +36,7 @@ public class UserController {
 
     /**
      * Update user description for logged in user
-     * @param description the user description
+     * @param userWithUpdatedDescription the user description
      * @return HTTP ok status and the updated user
      */
     @PutMapping("/users")
@@ -48,5 +48,20 @@ public class UserController {
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
 
+    }
+
+    /**
+     * Update user's accountType for logged in user
+     * @param currentUser the user description
+     * @return HTTP ok status and the updated user
+     */
+    @PutMapping("/users/edit")
+    public ResponseEntity<User> updateUserAccountType(@RequestBody User currentUser) {
+        String email = authService.getLoggedInUserEmail();
+        User user = userRepository.findByEmail(email);
+        String accountType = currentUser.getAccountType();
+        user.setAccountType(accountType);
+        User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
     }
 }

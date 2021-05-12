@@ -22,4 +22,5 @@ public class UserService {
         user.setPassword(encryptedPass);
         userRepository.save(user);
     }
+
 }
