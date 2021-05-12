@@ -17,7 +17,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   const handleSubmit = (event) => {
     if (isFilePicked) {
       event.preventDefault();
-      onSubmitMedia({ file: contentFile, text: contentText });
+      onSubmitMedia({ contentFile, contentText });
       setContentFile(null);
       setIsFilePicked(false);
     } else {

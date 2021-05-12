@@ -24,13 +24,11 @@ export default function PostsPage() {
     }
   }
 
-  async function createPostMedia(imageFile, textFile) {
+  async function createPostMedia(imageFile) {
     try {
       let formData = new FormData();
-      console.log(imageFile);
-      console.log(textFile);
-      formData.append("file", imageFile.file);
-      formData.append("text", imageFile.text);
+      formData.append("file", imageFile.contentFile);
+      formData.append("text", imageFile.contentText);
       const response = await PostsApi.createImagePost(formData);
       const post = response.data;
       const newPosts = posts.concat(post);
