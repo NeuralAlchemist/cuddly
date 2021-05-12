@@ -6,10 +6,12 @@ import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
 export default function ProfileCard({ thisUser }) {
-  // Consts
-  const userURL = require("../../assets/images/user.svg");
+  // Local state
   const [toggleEdit, setToggleEdit] = useState(false);
 
+  // Consts
+  const userURL = require("../../assets/images/user.svg");
+  
   // Methods
   async function updateDescription(updatedUserDescription) {
     try {
@@ -31,10 +33,14 @@ export default function ProfileCard({ thisUser }) {
           <p className="field-data">{thisUser.email}</p>
         </div>
         <div>
+          <p className="field-label">Account type </p>
+          <p className="field-data">PLACEHOLDER eg pet</p>
+        </div>
+        <div>
           <p className="field-label">About</p>
           {thisUser.description === null && (
             <p className="field-data prompt">
-              Let us know who you are! Add a short description to your profile
+              Let us know who you are! Add a short description to your profile...
             </p>
           )}
           {thisUser.description != null && (
@@ -48,7 +54,7 @@ export default function ProfileCard({ thisUser }) {
           toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
         }
       >
-        {toggleEdit ? "Cancel edit" : "Edit description"}
+        {toggleEdit ? "Cancel edit" : "Edit profile"}
       </button>
       {toggleEdit && (
         <ProfileForm
