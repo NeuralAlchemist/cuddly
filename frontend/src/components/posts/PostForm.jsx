@@ -15,13 +15,16 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   const formData = new FormData();
   // Methods
   const handleSubmit = (event) => {
-    if(isFilePicked){
-      handleImagePostSubmit(event);
-    }else {
+    if (isFilePicked) {
+      event.preventDefault();
+      onSubmitMedia({ file: contentFile, text: contentText });
+      setContentFile(null);
+      setIsFilePicked(false);
+    } else {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
       // Clear the input field
-      setContentText('');
+      setContentText("");
     }
 
   };
@@ -30,10 +33,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     setContentText(value);
     setLength(value.length);
   };
-  const handleImagePostSubmit = () => {
-    const formData = new FormData();
-    onImagePostSubmit({formData});
-  }
+  
   const handleImagePostSubmit = (event) => {
     event.preventDefault();
     console.log("inside content   " ,contentFile);
@@ -42,23 +42,11 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     setIsFilePicked(false);
   };
 
-  const handleImagePostSubmit = () => {
-    const formData = new FormData();
-    formData.append('image',contentFile);
-    onImagePostSubmit({formData,contentText});
-    setContentFile(null);
-    setContentText("");
-    setIsFilePicked(false);
-  }
   const setFile = (event) => {
     setContentFile(event.target.files[0]);
     setIsFilePicked(true);
     console.log(`selected file is now: ${event.target.files[0]}`);
-  }
-
-  const handleUpload = () => {
-    console.log(`make a call to upload endpoint with selected file`);
-  }
+  };
 
   return (
     <div className="form-container">
@@ -80,7 +68,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
               <span>Post</span>
             </button>
           </div>
-          </div>
+        </div>
       </form>
     </div>
   );
