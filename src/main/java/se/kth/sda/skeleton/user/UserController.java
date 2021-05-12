@@ -16,11 +16,13 @@ public class UserController {
 
     private UserRepository userRepository;
     private AuthService authService;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository, AuthService authService) {
+    public UserController(UserRepository userRepository, AuthService authService, UserService userService) {
         this.userRepository = userRepository;
         this.authService = authService;
+        this.userService = userService;
     }
 
     /**
@@ -53,10 +55,7 @@ public class UserController {
         user.setDescription(description);
         user.setAccountType(accountType);
 
-        if (user.getAccountType().equals("human") ||
-                user.getAccountType().equals("pet") ||
-                user.getAccountType().equals("service provider") ||
-                user.getAccountType().equals("caretaker")) {
+        if (userService.isAccountTypeValid(user)) {
             User updatedUser = userRepository.save(user);
             return ResponseEntity.ok(updatedUser);
         } else
