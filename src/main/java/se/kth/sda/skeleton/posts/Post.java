@@ -42,11 +42,33 @@ public class Post {
 
     LocalDateTime createdTime;
 
+    private byte[] image;
+
+    private String mediaType;
+
+    private String videoName;
+
     // Constructor
     public Post() {
     }
 
     // Getters and Setters
+    public List<PostLike> getListOfPostLikes() {
+        return listOfPostLikes;
+    }
+
+    public void setListOfPostLikes(List<PostLike> listOfPostLikes) {
+        this.listOfPostLikes = listOfPostLikes;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoURL) {
+        this.videoName = videoURL;
+    }
+
     public Post(String contentText) {
         this.contentText = contentText;
     }
@@ -97,5 +119,21 @@ public class Post {
 
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String imageType) {
+        this.mediaType = imageType;
     }
 }

@@ -2,9 +2,13 @@ package se.kth.sda.skeleton.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,6 +41,17 @@ public class PostController {
     public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(postService.createPost(post));
+    }
+
+    /**
+     * Create a new post with image/video
+     * @param file the contentFile to be added to the post
+     * @param text  the contentText of the post
+     * @return http status created and post
+     */
+    @PostMapping("/upload")
+    public ResponseEntity<Post> createImagePost(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
     }
 
     /**
