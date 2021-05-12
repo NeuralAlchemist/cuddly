@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 // Project Files
 import ResponsiveTextArea from "../ResponsiveTextArea";
 
-export default function ProfileForm({ userDescription, userName, userAccountType, onSubmit }) {
+export default function ProfileForm({
+  userDescription,
+  userName,
+  userAccountType,
+  onSubmit,
+}) {
   // Local state
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
@@ -14,7 +19,11 @@ export default function ProfileForm({ userDescription, userName, userAccountType
   // Methods
   const handleSubmit = (event) => {
     console.log("handle submit called");
-    onSubmit({ name: name, accountType: accountType, description: description });
+    onSubmit({
+      name: name,
+      accountType: accountType,
+      description: description,
+    });
     setDescription("");
     setName("");
     setAccountType("");
@@ -34,40 +43,47 @@ export default function ProfileForm({ userDescription, userName, userAccountType
 
   const onFormContentChangeName = (value) => {
     setName(value);
-    setLength(value.length);
   };
 
   return (
-    <div className="form-container">
+    <div className="ProfileForm">
       <form className="form">
-      <div className="form-field">
-          <ResponsiveTextArea
-            placeholder="Update your name"
-            contentText={name}
-            onFormContentChange={onFormContentChangeName}
-            maxLength="1000"
-          />
-        </div>
-        <div className="form-field">
-          <label>I'm a:</label>
-          <select selected={accountType} onChange={(e) => setAccountType(e.target.value)}>
-            <option value="pet">pet</option>
-            <option value="human">human</option>
-            <option value="service provider">service provider</option>
-            <option value="caretaker">caretaker</option>
-          </select>
-        </div>
-        <div className="form-field">
-          <ResponsiveTextArea
-            placeholder="Update your profile description"
-            contentText={description}
-            onFormContentChange={onFormContentChangeDescription}
-            maxLength="1000"
-          />
+        <div className="profile-fields">
+          <div className="form-field">
+            <label className="field-label">Name</label>
+            <ResponsiveTextArea
+              placeholder="Update your name"
+              contentText={name}
+              onFormContentChange={onFormContentChangeName}
+              maxLength="100"
+            />
+          </div>
+          <div className="form-field">
+            <label className="field-label">I'm a</label>
+            <select
+              className="select-profile"
+              selected={accountType}
+              onChange={(e) => setAccountType(e.target.value)}
+            >
+              <option value="pet">pet</option>
+              <option value="human">human</option>
+              <option value="service provider">service provider</option>
+              <option value="caretaker">caretaker</option>
+            </select>
+          </div>
+          <div className="form-field">
+            <label className="field-label">About me</label>
+            <ResponsiveTextArea
+              placeholder="Update your profile description"
+              contentText={description}
+              onFormContentChange={onFormContentChangeDescription}
+              maxLength="1000"
+            />
+          </div>
         </div>
         <div className="button-counter">
           <button className="button" onClick={handleSubmit}>
-            <span>Update</span>
+            Update
           </button>
           <span className="length">{length == null ? 0 : length}/1000</span>{" "}
         </div>

@@ -1,19 +1,33 @@
-.button-update{
-    background-color: transparent;
-    border-width: 0px;
-    line-height: normal;
-    display: flex;
-    align-items: center;
-    padding: 0px;
+.ProfileForm {
+  margin-top: var(--space-medium-small);
 }
 
-.button-update:hover{
-    color: var(--color-red-brown);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.button-update {
+  background-color: transparent;
+  border-width: 0px;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin-top: var(--space-medium);
 }
 
-.button-counter{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.button-update:hover {
+  color: var(--color-red-brown);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.button-counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.select-profile {
+  height: 2em;
+  font-size: var(--font-size-medium-small);
+}
+
+.profile-fields {
+  font-size: var(--font-size-medium-small) !important;
 }

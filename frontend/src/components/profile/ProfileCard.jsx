@@ -28,35 +28,42 @@ export default function ProfileCard({ thisUser }) {
           <img className="user-avatar" src={userURL} alt="User" />
           <h2 className="name">{thisUser.name}</h2>
         </div>
-        <div>
-          <p className="field-label">Email </p>
-          <p className="field-data">{thisUser.email}</p>
-        </div>
-        <div>
-          <p className="field-label">Account type </p>
-          <p className="field-data">{thisUser.accountType}</p>
-        </div>
-        <div>
-          <p className="field-label">About</p>
-          <p
-            className={
-              thisUser.description === null ? "field-data prompt" : "field-data"
-            }
-          >
-            {thisUser.description === null &&
-              "Let us know who you are! Add a short description to your profile..."}
-            {thisUser.description != null && thisUser.description}
-          </p>
-        </div>
+        <button
+          className="button edit-profile"
+          onClick={() =>
+            toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
+          }
+        >
+          {toggleEdit ? "Cancel edit" : "Edit profile"}
+        </button>
+        {!toggleEdit && (
+          <section>
+            <div className="profile-field-pair">
+              <span className="field-label">I'm a: </span>
+              <span className="field-data">{thisUser.accountType}</span>
+            </div>
+            <div className="profile-field-pair">
+              <span className="field-label">About me: </span>
+              <span
+                className={
+                  thisUser.description === null
+                    ? "field-data prompt"
+                    : "field-data"
+                }
+              >
+                {thisUser.description === null &&
+                  "Let us know who you are! Add a short description to your profile..."}
+                {thisUser.description != null && thisUser.description}
+              </span>
+            </div>
+            <div className="profile-field-pair">
+              <span className="field-label">Email: </span>
+              <span className="field-data">{thisUser.email}</span>
+            </div>
+          </section>
+        )}
       </div>
-      <button
-        className="button edit-profile"
-        onClick={() =>
-          toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
-        }
-      >
-        {toggleEdit ? "Cancel edit" : "Edit profile"}
-      </button>
+
       {toggleEdit && (
         <ProfileForm
           userDescription={thisUser.description}
