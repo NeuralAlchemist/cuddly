@@ -38,7 +38,7 @@ export default function ProfileForm({ desc, onSubmit }) {
         </div>
         <div className="button-counter">
           <button className="button" onClick={handleSubmit}>
-            <span>Update</span>            
+            <span>Update</span>
           </button>
           <span className="length">{length == null ? 0 : length}/1000</span>{" "}
         </div>
