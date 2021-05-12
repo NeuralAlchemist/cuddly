@@ -50,7 +50,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
 
           <div className="field">
             <label>I'm a:</label>
-            <select onChange={(e) => setAccountType(e.target.value)}>
+            <select className="register" onChange={(e) => setAccountType(e.target.value)}>
               <option value="pet">pet</option>
               <option value="human">human</option>
               <option value="service provider">service provider</option>

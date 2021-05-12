@@ -3,14 +3,14 @@ label {
   font-family: "Nunito", sans-serif;
 }
 
-input, select {
+input, select.register {
   border-radius: 100px;
   height: var(--space-big);
   border: 1px solid var(--color-black-brown);
   box-sizing: border-box;
 }
 
-input:focus, select:focus {
+input:focus, select.register:focus {
   outline: none;
   border: 2px solid var(--color-teal);
 }
