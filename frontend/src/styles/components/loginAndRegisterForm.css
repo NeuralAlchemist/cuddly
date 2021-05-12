@@ -3,7 +3,7 @@ label {
   font-family: "Nunito", sans-serif;
 }
 
-input, select.register {
+.user-entered-input, select.register {
   border-radius: 100px;
   height: var(--space-big);
   border: 1px solid var(--color-black-brown);
