@@ -1,5 +1,5 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
 
 export default function PostUpdateForm({ onSubmit, post }) {
@@ -14,7 +14,7 @@ export default function PostUpdateForm({ onSubmit, post }) {
     onSubmit({ contentText: contentText });
 
     // Clear the input field
-    setContentText("");
+    setContentText('');
   };
 
   const onFormContentChange = (value) => {
@@ -25,7 +25,7 @@ export default function PostUpdateForm({ onSubmit, post }) {
   return (
     <form>
       <div className="form-field">
-      <ResponsiveTextArea
+        <ResponsiveTextArea
           placeholder="Update your post here."
           contentText={contentText}
           onFormContentChange={onFormContentChange}
@@ -33,12 +33,12 @@ export default function PostUpdateForm({ onSubmit, post }) {
         />
       </div>
       <div>
-      <p className="length">{length == null ? 0 : length}/255</p>
-            <button className="button-post" onClick={handleSubmit}>
-              <img className="post" src={postURL} alt="Post" />
-              <span>Update Post</span>
-              </button>
-              </div>
+        <p className="length">{length == null ? 0 : length}/255</p>
+        <button className="button-post" onClick={handleSubmit}>
+          <img className="post" src={postURL} alt="Post" />
+          <span>Update Post</span>
+        </button>
+      </div>
     </form>
   );
 }
