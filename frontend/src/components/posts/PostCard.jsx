@@ -113,7 +113,6 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       })
       .catch((err) => console.error(err));
   }, [setCurrentUser]);
-  console.log(post);
   return (
     <div className="PostCard">
       <div>

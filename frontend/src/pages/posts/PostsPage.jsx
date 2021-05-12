@@ -29,10 +29,7 @@ export default function PostsPage() {
       let formData = new FormData();
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
-      const response = await PostsApi.createImagePost(formData);
-      const post = response.data;
-      const newPosts = posts.concat(post);
-      setPosts(newPosts);
+      await PostsApi.createImagePost(formData);
     } catch (e) {
       console.error(e);
     }
@@ -43,7 +40,6 @@ export default function PostsPage() {
     try {
       await PostsApi.deletePost(post.id);
       const newPosts = posts.filter((p) => p.id !== post.id);
-
       setPosts(newPosts);
     } catch (e) {
       console.error(e);
