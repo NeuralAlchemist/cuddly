@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.auth.AuthService;
+import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.posts.Post;
 
 /**
@@ -36,6 +37,7 @@ public class UserController {
 
     /**
      * Update user description for logged in user
+     *
      * @param userWithUpdatedDescription the user description
      * @return HTTP ok status and the updated user
      */
@@ -52,6 +54,7 @@ public class UserController {
 
     /**
      * Update user's accountType for logged in user
+     *
      * @param currentUser the user description
      * @return HTTP ok status and the updated user
      */
@@ -61,7 +64,14 @@ public class UserController {
         User user = userRepository.findByEmail(email);
         String accountType = currentUser.getAccountType();
         user.setAccountType(accountType);
-        User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
+        if (user.getAccountType().equals("human") ||
+                user.getAccountType().equals("pet") ||
+                user.getAccountType().equals("service provider") ||
+                user.getAccountType().equals("caretaker")) {
+            User updatedUser = userRepository.save(user);
+            return ResponseEntity.ok(updatedUser);
+        } else
+            throw new ForbiddenException();
+
     }
 }
