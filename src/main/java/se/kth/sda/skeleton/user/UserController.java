@@ -1,12 +1,10 @@
 package se.kth.sda.skeleton.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
-import se.kth.sda.skeleton.posts.Post;
 
 /**
  * Represents the controller layer (or the API). This exposes application functionality of User as RESTful webservices.

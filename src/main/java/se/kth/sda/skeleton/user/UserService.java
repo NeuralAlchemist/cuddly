@@ -3,7 +3,6 @@ package se.kth.sda.skeleton.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 
 @Service()
@@ -13,9 +12,6 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthService authService;
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
