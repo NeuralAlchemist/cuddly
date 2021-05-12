@@ -55,8 +55,8 @@ public class CommentController {
      * @return http status created and comment
      */
     @PostMapping("/posts/{postId}/comments/upload")
-    public ResponseEntity<Comment> createImageComment(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
-        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file));
+    public ResponseEntity<Comment> createImageComment(@RequestParam("file") MultipartFile file, @RequestParam("text") String text, @PathVariable Long postId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file, postId));
     }
 
     /**
