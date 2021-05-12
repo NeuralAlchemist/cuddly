@@ -28,6 +28,7 @@ export default function PostsPage() {
   async function createPostMedia(imageFile) {
     try {
       let formData = new FormData();
+      console.log(imageFile);
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
       await PostsApi.createImagePost(formData);
@@ -66,6 +67,7 @@ export default function PostsPage() {
     <PostCard
       key={post.id}
       post={post}
+      currentUser={currentUser}
       onDeleteClick={() => deletePost(post)}
     />
   ));
@@ -77,7 +79,7 @@ export default function PostsPage() {
           <PostForm
             className="postform"
             onSubmit={(postData) => createPost(postData)}
-            onSubmitMedia={(imageFile, textFile) => createPostMedia(imageFile, textFile)}
+            onSubmitMedia={(imageFile) => createPostMedia(imageFile)}
           />
           {CardsArray}
         </div>

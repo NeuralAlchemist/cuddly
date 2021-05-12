@@ -15,11 +15,6 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     // Local state
     const [comments, setComments] = useState([]);
     const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
-    const [currentUser, setCurrentUser] = useState({});
-    const hasImage =
-        post.mediaType == null ? false : post.mediaType.includes("image");
-    const hasVideo =
-        post.mediaType == null ? false : post.mediaType.includes("video");
 
   // Constants
   const postId = post.id;
