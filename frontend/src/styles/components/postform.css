@@ -23,6 +23,7 @@ textarea.form-input {
   font-family: 'Nunito', sans-serif;
   max-height: 200px;
   resize: none;
+  color: var(--color-black-brown);
 }
 
 .button-post {
