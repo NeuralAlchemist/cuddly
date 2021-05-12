@@ -17,6 +17,8 @@
 
 .word-wrap{
     word-wrap: break-word;
+    white-space: pre-line;
+    white-space: pre-wrap;
 }
 
 .button-post-card {
