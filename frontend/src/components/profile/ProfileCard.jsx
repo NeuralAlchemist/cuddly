@@ -9,7 +9,7 @@ export default function ProfileCard({ thisUser }) {
   // Local state
   const [toggleEdit, setToggleEdit] = useState(false);
 
-  // Consts
+  // Constants
   const userURL = require("../../assets/images/user.svg");
 
   // Methods

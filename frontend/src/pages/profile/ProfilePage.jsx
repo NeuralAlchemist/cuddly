@@ -69,6 +69,7 @@ export default function ProfilePage() {
     />
   ));
 
+  // Constants
   const hasCreatedPosts = userPostCards.length > 0;
   const hasLikedPosts = userLikesPostCards.length > 0;
 
