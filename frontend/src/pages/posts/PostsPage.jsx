@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import PostsApi from "../../api/PostsApi";
 import PostForm from "../../components/posts/PostForm";
 import PostCard from "../../components/posts/PostCard";
-import UserApi from "../../api/UserApi";
 
 export default function PostsPage() {
   // Local state
@@ -25,19 +24,21 @@ export default function PostsPage() {
     }
   }
 
-  async function createPostMedia(imageFile, textFile){
-    try{
+  async function createPostMedia(imageFile, textFile) {
+    try {
       let formData = new FormData();
-      console.log("should be same   ",imageFile.file);
-      formData.append('file', imageFile.file);
-      formData.append('text', imageFile.text);
+      console.log(imageFile);
+      console.log(textFile);
+      formData.append("file", imageFile.file);
+      formData.append("text", imageFile.text);
       const response = await PostsApi.createImagePost(formData);
       const post = response.data;
       const newPosts = posts.concat(post);
       setPosts(newPosts);
-    } catch (e){
+    } catch (e) {
       console.error(e);
     }
+    window.location.reload()
   }
 
   async function deletePost(post) {
@@ -51,46 +52,10 @@ export default function PostsPage() {
     }
   }
 
-  /*async function createImagePost(text, file) {
-    try {
-      const response = await PostsApi.createImagePost(text, file);
-      const post = response.data;
-      const newPosts = posts.concat(post);
-      setPosts(newPosts);
-    } catch (e) {
-      console.error(e);
-      alert("Post with Image failed to post");
-    }
-  }*/
-
-  /*async function uploadFile(file){
-    try{
-      const response = await PostsApi.uploadFile(file);
-      const post = response.data;
-      const newPosts = posts.concat(post);
-      setPosts(newPosts);
-    }catch (e) {
-      console.error(e);
-      alert("Image failed to upload");
-    }
-  }*/
-
-  async function uploadFile(file){
-    try{
-      const response = await PostsApi.uploadFile(file);
-      const post = response.data;
-      const newPosts = posts.concat(post);
-      setPosts(newPosts);
-    }catch (e) {
-      console.error(e);
-      alert("Image failed to upload");
-    }
-  }
-
   useEffect(() => {
     PostsApi.getAllPosts()
-        .then(({data}) => setPosts(data))
-        .catch((err) => console.error(err));
+      .then(({ data }) => setPosts(data))
+      .catch((err) => console.error(err));
   }, [setPosts]);
 
   useEffect(() => {
@@ -103,25 +68,25 @@ export default function PostsPage() {
 
   // Components
   const CardsArray = posts.map((post) => (
-      <PostCard
-          key={post.id}
-          post={post}
-          onDeleteClick={() => deletePost(post)}
-      />
+    <PostCard
+      key={post.id}
+      post={post}
+      onDeleteClick={() => deletePost(post)}
+    />
   ));
 
   return (
-      <div className="post-grid-item">
-        <div className="post-main-content">
-          <div className="postcard-container">
-            <PostForm
-                className="postform"
-                onSubmit={(postData) => createPost(postData)}
-                onSubmitMedia={(imageFile, textFile) => createPostMedia(imageFile, textFile)}
-            />
-            {CardsArray}
-          </div>
+    <div className="post-grid-item">
+      <div className="post-main-content">
+        <div className="postcard-container">
+          <PostForm
+            className="postform"
+            onSubmit={(postData) => createPost(postData)}
+            onSubmitMedia={(imageFile, textFile) => createPostMedia(imageFile, textFile)}
+          />
+          {CardsArray}
         </div>
       </div>
+    </div>
   );
 }
