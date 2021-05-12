@@ -92,7 +92,6 @@ export default function CommentForm({ post, onSubmit }) {
         <div>
             <input type="file" onChange={setCommentFile} />
             <button onClick={handleSubmit}>
-            <img className="comment" src={commentURL} alt="Comment" />
               <span>Comment</span>
               </button>
         </div>
