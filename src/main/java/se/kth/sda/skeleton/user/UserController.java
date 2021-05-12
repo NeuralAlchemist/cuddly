@@ -36,34 +36,23 @@ public class UserController {
     }
 
     /**
-     * Update user description for logged in user
+     * Update user name, description or accountType for logged in user
      *
-     * @param userWithUpdatedDescription the user description
+     * @param userToUpdate the user name, description or accountType
      * @return HTTP ok status and the updated user
      */
     @PutMapping("/users")
-    public ResponseEntity<User> updateUserDescription(@RequestBody User userWithUpdatedDescription) {
+    public ResponseEntity<User> updateUser(@RequestBody User userToUpdate) {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
-        String description = userWithUpdatedDescription.getDescription();
+        String name = userToUpdate.getName();
+        String description = userToUpdate.getDescription();
+        String accountType = userToUpdate.getAccountType();
+
+        user.setName(name);
         user.setDescription(description);
-        User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
-
-    }
-
-    /**
-     * Update user's accountType for logged in user
-     *
-     * @param currentUser the user description
-     * @return HTTP ok status and the updated user
-     */
-    @PutMapping("/users/edit")
-    public ResponseEntity<User> updateUserAccountType(@RequestBody User currentUser) {
-        String email = authService.getLoggedInUserEmail();
-        User user = userRepository.findByEmail(email);
-        String accountType = currentUser.getAccountType();
         user.setAccountType(accountType);
+
         if (user.getAccountType().equals("human") ||
                 user.getAccountType().equals("pet") ||
                 user.getAccountType().equals("service provider") ||
@@ -74,4 +63,5 @@ public class UserController {
             throw new ForbiddenException();
 
     }
+
 }
