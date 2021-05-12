@@ -2,7 +2,7 @@ package se.kth.sda.skeleton.comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
@@ -11,7 +11,13 @@ import se.kth.sda.skeleton.posts.PostRepository;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -129,7 +135,7 @@ public class CommentService {
         LocalDateTime createdTime = LocalDateTime.now();
         User loggedInUser = userRepository.findByEmail(email);
         newComment.setContentText(text);
-        newComment.setRelatedPostUser(loggedInUser);
+        newComment.setRelatedCommentUser(loggedInUser);
         newComment.setCreatedTime(createdTime);
         newComment.setMediaType(file.getContentType());
         if(!file.isEmpty()){
