@@ -24,7 +24,7 @@ export default function ProfileCard({ thisUser }) {
       <div className="user-fields">
         <div className="name-pair">
           <img className="user-avatar" src={userURL} alt="User" />
-          <h2>{thisUser.name}</h2>
+          <h2 className="name">{thisUser.name}</h2>
         </div>
         <div>
           <p className="field-label">Email </p>
