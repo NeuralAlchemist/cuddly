@@ -16,7 +16,7 @@ class CommentsApi {
     deleteComment(postId, commentId) {
         return Api.delete('/posts/' + postId + '/comments/' + commentId);
     }
-    createImageComment(contentFile){
+    createImageComment(postId, contentFile){
         return Api.post('/posts/' + postId + '/comments/upload', contentFile);
     }
 }
