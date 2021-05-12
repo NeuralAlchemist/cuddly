@@ -6,6 +6,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accountType, setAccountType] = useState("pet");
 
   // Methods
   const handleToggle = () => {
@@ -47,19 +48,31 @@ export default function RegisterForm({ onSubmit, onToggle }) {
             />
           </div>
 
+          <div className="field">
+            <label>I'm a:</label>
+            <select onChange={(e) => setAccountType(e.target.value)}>
+              <option value="pet">pet</option>
+              <option value="human">human</option>
+              <option value="service provider">service provider</option>
+              <option value="caretaker">caretaker</option>
+            </select>
+          </div>
+
           <button
             className="button-auth"
-            onClick={(e) => onSubmit({ name, email, password })}
+            onClick={(e) => onSubmit({ name, email, password, accountType })}
           >
             Create account
           </button>
         </div>
         <div className="toggle-register-login">
-            <span>
-              Already joined?
-              <span className="link" onClick={handleToggle}>Log in</span>
+          <span>
+            Already joined?
+            <span className="link" onClick={handleToggle}>
+              Log in
             </span>
-          </div>
+          </span>
+        </div>
       </div>
     </div>
   );

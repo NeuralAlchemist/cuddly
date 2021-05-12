@@ -1,11 +1,10 @@
 package se.kth.sda.skeleton.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.auth.AuthService;
-import se.kth.sda.skeleton.posts.Post;
+import se.kth.sda.skeleton.exception.ForbiddenException;
 
 /**
  * Represents the controller layer (or the API). This exposes application functionality of User as RESTful webservices.
@@ -15,11 +14,13 @@ public class UserController {
 
     private UserRepository userRepository;
     private AuthService authService;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository, AuthService authService) {
+    public UserController(UserRepository userRepository, AuthService authService, UserService userService) {
         this.userRepository = userRepository;
         this.authService = authService;
+        this.userService = userService;
     }
 
     /**
@@ -35,18 +36,29 @@ public class UserController {
     }
 
     /**
-     * Update user description for logged in user
-     * @param description the user description
+     * Update user name, description or accountType for logged in user
+     *
+     * @param userToUpdate the user name, description or accountType
      * @return HTTP ok status and the updated user
      */
     @PutMapping("/users")
-    public ResponseEntity<User> updateUserDescription(@RequestBody User userWithUpdatedDescription) {
+    public ResponseEntity<User> updateUser(@RequestBody User userToUpdate) {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
-        String description = userWithUpdatedDescription.getDescription();
+        String name = userToUpdate.getName();
+        String description = userToUpdate.getDescription();
+        String accountType = userToUpdate.getAccountType();
+
+        user.setName(name);
         user.setDescription(description);
-        User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
+        user.setAccountType(accountType);
+
+        if (userService.isAccountTypeValid(user)) {
+            User updatedUser = userRepository.save(user);
+            return ResponseEntity.ok(updatedUser);
+        } else
+            throw new ForbiddenException();
 
     }
+
 }

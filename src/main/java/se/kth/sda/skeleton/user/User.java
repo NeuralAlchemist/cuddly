@@ -58,6 +58,9 @@ public class User {
     @Column(name = "description", length = 1000)
     private String description;
 
+    @Column(name = "accountType")
+    private String accountType;
+
     // Hibernate needs a default constructor to function
     public User() {
     }
@@ -140,5 +143,13 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }
