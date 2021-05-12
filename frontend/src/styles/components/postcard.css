@@ -16,9 +16,10 @@
 }
 
 .word-wrap {
-  word-wrap: break-word;
+  word-wrap: normal;
   white-space: pre-line;
   white-space: pre-wrap;
+  text-align: justify;
 }
 
 .button-post-card {
