@@ -1,5 +1,5 @@
 // NPM Packages
-import React, { useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 
 export default function AutoFitContentPlaceholder({
   placeholder,
@@ -33,6 +33,6 @@ export default function AutoFitContentPlaceholder({
       value={contentText}
       onChange={(e) => onFormContentChange(e.target.value)}
       maxLength={maxLength}
-     />
-  )
+    />
+  );
 }
