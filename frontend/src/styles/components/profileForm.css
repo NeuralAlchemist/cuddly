@@ -1,0 +1,19 @@
+.button-update{
+    background-color: transparent;
+    border-width: 0px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.button-update:hover{
+    color: var(--color-red-brown);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.button-counter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

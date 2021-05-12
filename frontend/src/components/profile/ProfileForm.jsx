@@ -26,17 +26,23 @@ export default function ProfileForm({ desc, onSubmit }) {
   };
 
   return (
-    <form className="ProfileForm">
-      <ResponsiveTextArea
-        placeholder="Update your profile description"
-        contentText={description}
-        onFormContentChange={onFormContentChange}
-        maxLength="1000"
-      />
-      <p className="length">{length == null ? 0 : length}/1000</p>
-      <button className="button-update" onClick={handleSubmit}>
-        Update
-      </button>
-    </form>
+    <div className="form-container">
+      <form className="form">
+        <div className="form-field">
+          <ResponsiveTextArea
+            placeholder="Update your profile description"
+            contentText={description}
+            onFormContentChange={onFormContentChange}
+            maxLength="1000"
+          />
+        </div>
+        <div className="button-counter">
+          <button className="button" onClick={handleSubmit}>
+            <span>Update</span>            
+          </button>
+          <span className="length">{length == null ? 0 : length}/1000</span>{" "}
+        </div>
+      </form>
+    </div>
   );
 }
