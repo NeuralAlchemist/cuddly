@@ -1,0 +1,34 @@
+.ProfileCard{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.user-fields{
+    margin:var(--space-medium);
+}
+
+.user-avatar {
+    width: auto;
+    height: var(--space-xx-big);
+    color: var(--color-red-brown);
+}
+
+.name-pair{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field-label{
+    margin-bottom: var(--space-x-small);
+    font-weight: bold;
+}
+
+.field-data{
+    margin-top: var(--space-x-small);
+}
+
+.prompt{
+    font-style: italic;
+}

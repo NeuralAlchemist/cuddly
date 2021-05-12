@@ -6,6 +6,9 @@ import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
 export default function ProfileCard({ thisUser }) {
+  // Consts
+  const userURL = require("../../assets/images/user.svg");
+
   // Methods
   async function updateDescription(updatedUserDescription) {
     try {
@@ -18,23 +21,22 @@ export default function ProfileCard({ thisUser }) {
   return (
     <div className="ProfileCard">
       <div className="user-fields">
-        <h2>Your information</h2>
         <div className="name-pair">
-          <p>Name</p>
-          <p>{thisUser.name}</p>
+          <img className="user-avatar" src={userURL} alt="User" />
+          <h2>{thisUser.name}</h2>
         </div>
         <div className="email-pair">
-          <p>Email</p>
-          <p>{thisUser.email}</p>
+          <p className="field-label">Email </p>
+          <p className="field-data">{thisUser.email}</p>
         </div>
         <div className="description-pair">
-          <p>About</p>
+          <p className="field-label">About</p>
           {thisUser.description === null && (
-            <p>
+            <p className="field-data prompt">
               Let us know who you are! Add a short description to your profile
             </p>
           )}
-          {thisUser.description != null && <p>{thisUser.description}</p>}
+          {thisUser.description != null && <p className="field-data">{thisUser.description}</p>}
         </div>
       </div>
       <ProfileForm
