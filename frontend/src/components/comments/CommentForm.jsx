@@ -29,11 +29,11 @@ export default function CommentForm({ post, onSubmit }) {
           placeholder="Write your comment here."
           contentText={commentContentText}
           onFormContentChange={onFormContentChange}
-          maxLength="255"
+          maxLength="500"
         />
       </div>
       <div>
-        <p className="length">{length == null ? 0 : length}/255</p>
+        <p className="length">{length == null ? 0 : length}/500</p>
         <button className="button-comment" onClick={handleSubmit}>
           <img className="comment" src={commentURL} alt="Commment" />
           <span>Comment</span>
