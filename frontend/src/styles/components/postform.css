@@ -19,7 +19,7 @@
 }
 
 textarea.form-input {
-  font-size: var(--space-medium);
+  font-size: var(--font-size-medium-small);
   font-family: 'Nunito', sans-serif;
   max-height: 200px;
   resize: none;
