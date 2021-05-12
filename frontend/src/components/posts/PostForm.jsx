@@ -6,8 +6,7 @@ export default function PostForm({ onSubmit }) {
   // Local State
   const [contentText, setContentText] = useState('');
   const [length, setLength] = useState();
-  const postObject = require('../../assets/images/post.svg');
-  const postURL = postObject;
+  const postURL = require('../../assets/images/post.svg');
 
   // Methods
   const handleSubmit = () => {
