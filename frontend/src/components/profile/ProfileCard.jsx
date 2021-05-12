@@ -11,7 +11,7 @@ export default function ProfileCard({ thisUser }) {
 
   // Consts
   const userURL = require("../../assets/images/user.svg");
-  
+
   // Methods
   async function updateDescription(updatedUserDescription) {
     try {
@@ -38,14 +38,15 @@ export default function ProfileCard({ thisUser }) {
         </div>
         <div>
           <p className="field-label">About</p>
-          {thisUser.description === null && (
-            <p className="field-data prompt">
-              Let us know who you are! Add a short description to your profile...
-            </p>
-          )}
-          {thisUser.description != null && (
-            <p className="field-data">{thisUser.description}</p>
-          )}
+          <p
+            className={
+              thisUser.description === null ? "field-data prompt" : "field-data"
+            }
+          >
+            {thisUser.description === null &&
+              "Let us know who you are! Add a short description to your profile..."}
+            {thisUser.description != null && thisUser.description}
+          </p>
         </div>
       </div>
       <button
