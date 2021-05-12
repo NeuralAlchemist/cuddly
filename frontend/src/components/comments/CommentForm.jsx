@@ -6,8 +6,7 @@ export default function CommentForm({ post, onSubmit }) {
   // Local State
   const [commentContentText, setCommentContentText] = useState('');
   const [length, setLength] = useState();
-  const commentObject = require('../../assets/images/comment.svg');
-  const commentURL = commentObject;
+  const commentURL = require('../../assets/images/comment.svg');;
 
   // Methods
   const handleSubmit = () => {
