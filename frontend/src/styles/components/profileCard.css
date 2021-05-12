@@ -27,3 +27,7 @@
 .prompt{
     font-style: italic;
 }
+
+.edit-profile{
+    width: 150px !important;
+}

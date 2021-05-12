@@ -43,12 +43,12 @@ export default function ProfileCard({ thisUser }) {
         </div>
       </div>
       <button
-        className="button"
+        className="button edit-profile"
         onClick={() =>
           toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
         }
       >
-        {toggleEdit ? "Cancel" : "Edit description"}
+        {toggleEdit ? "Cancel edit" : "Edit description"}
       </button>
       {toggleEdit && (
         <ProfileForm
