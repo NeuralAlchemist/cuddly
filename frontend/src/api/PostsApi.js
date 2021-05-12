@@ -24,12 +24,6 @@ class PostsApi {
     createImagePost(contentFile){
         return Api.post('/posts/upload', contentFile);
     }
-
-    uploadFile(file){
-        return Api.post('/posts/test', file, {headers:{
-            'Content-type': `multipart/form-data ; boundary = ???`
-        }});
-    }
 }
 
 export default new PostsApi();

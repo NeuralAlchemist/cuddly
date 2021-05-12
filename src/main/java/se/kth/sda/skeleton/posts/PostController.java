@@ -51,7 +51,6 @@ public class PostController {
      */
     @PostMapping(value="/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Post> createImagePost(@RequestParam("contentFile") MultipartFile file, @RequestParam("contentText") String text){
-
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostImage(text, file));
     }
 

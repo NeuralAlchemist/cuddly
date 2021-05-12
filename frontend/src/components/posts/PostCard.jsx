@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import ReactPlayer from "react-player";
+
 // Project files
 import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
@@ -9,7 +10,6 @@ import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
-//import videoLocal from "../../videos/test@test.comVID_20190824_175056.mp4";
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
     // Local state
@@ -32,7 +32,6 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     post.mediaType == null ? false : post.mediaType.includes("video");
   
   // Methods
-  
   async function updatePost(updatedPost) {
     try {
       await PostsApi.updatePost(updatedPost, post.id);
@@ -106,13 +105,6 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       .catch((err) => console.error(err));
   }, [setComments, postId]);
 
-  useEffect(() => {
-    UserApi.getUser()
-      .then(({ data }) => {
-        setCurrentUser(data);
-      })
-      .catch((err) => console.error(err));
-  }, [setCurrentUser]);
   return (
     <div className="PostCard">
       <div>

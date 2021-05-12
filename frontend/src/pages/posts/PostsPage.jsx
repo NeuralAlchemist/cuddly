@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import PostsApi from "../../api/PostsApi";
 import PostForm from "../../components/posts/PostForm";
 import PostCard from "../../components/posts/PostCard";
+import UserApi from "../../api/UserApi";
 
 export default function PostsPage() {
   // Local state
