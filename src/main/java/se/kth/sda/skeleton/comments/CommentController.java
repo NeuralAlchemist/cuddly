@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class CommentController {
      * @param text  the contentText of the comment
      * @return http status created and comment
      */
-    @PostMapping(value="/upload")
+    @PostMapping("/posts/{postId}/comments/upload")
     public ResponseEntity<Comment> createImageComment(@RequestParam("file") MultipartFile file, @RequestParam("text") String text){
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file));
     }
