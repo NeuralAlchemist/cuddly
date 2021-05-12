@@ -26,7 +26,7 @@ public class Post {
     private Long id;
 
     @NotBlank
-    @Column(nullable = false)
+    @Column(nullable = false, name="contentText", length=1000)
     private String contentText;
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;

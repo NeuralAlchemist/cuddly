@@ -29,11 +29,11 @@ export default function PostUpdateForm({ onSubmit, post }) {
           placeholder="Update your post here."
           contentText={contentText}
           onFormContentChange={onFormContentChange}
-          maxLength="255"
+          maxLength="1000"
         />
       </div>
       <div>
-        <p className="length">{length == null ? 0 : length}/255</p>
+        <p className="length">{length == null ? 0 : length}/1000</p>
         <button className="button-post" onClick={handleSubmit}>
           <img className="post" src={postURL} alt="Post" />
           <span>Update Post</span>

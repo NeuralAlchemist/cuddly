@@ -23,7 +23,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length=1500)
+    @Column(nullable = false, name="contentText", length=500)
     @NotBlank
     private String contentText;
 

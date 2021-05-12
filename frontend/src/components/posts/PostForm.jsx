@@ -43,14 +43,12 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   return (
     <div className="form-container">
       <form className="form">
-        <div>
-          <div>
             <div className="form-field">
               <ResponsiveTextArea
                 placeholder="What's on your mind?"
                 contentText={contentText}
                 onFormContentChange={onFormContentChange}
-                maxLength="255"
+                maxLength="1000"
               />
             </div>
             <p className="length">{length == null ? 0 : length}/255</p>
@@ -59,8 +57,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
               <img className="post" src={postURL} alt="Post" />
               <span>Post</span>
             </button>
-          </div>
-        </div>
       </form>
     </div>
   );
