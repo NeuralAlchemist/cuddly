@@ -52,9 +52,7 @@ public class Post {
     public Post() {
     }
 
-
     // Getters and Setters
-
     public List<PostLike> getListOfPostLikes() {
         return listOfPostLikes;
     }

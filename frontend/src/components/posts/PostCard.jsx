@@ -12,9 +12,9 @@ import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
-    // Local state
-    const [comments, setComments] = useState([]);
-    const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
+  // Local state
+  const [comments, setComments] = useState([]);
+  const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
 
   // Constants
   const postId = post.id;
@@ -25,7 +25,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
     post.mediaType == null ? false : post.mediaType.includes("video");
-  
+
   // Methods
   async function updatePost(updatedPost) {
     try {

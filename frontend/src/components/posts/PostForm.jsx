@@ -1,12 +1,12 @@
 // NPM Packages
-
 import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
+
+// Project Files
 import PostsApi from "../../api/PostsApi";
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
-
   const [contentText, setContentText] = useState('');
   const [length, setLength] = useState();
   const postURL = require('../../assets/images/post.svg');
