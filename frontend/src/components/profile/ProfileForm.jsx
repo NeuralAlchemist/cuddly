@@ -4,35 +4,64 @@ import React, { useState, useEffect } from "react";
 // Project Files
 import ResponsiveTextArea from "../ResponsiveTextArea";
 
-export default function ProfileForm({ desc, onSubmit }) {
+export default function ProfileForm({ userDescription, userName, userAccountType, onSubmit }) {
   // Local state
   const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [accountType, setAccountType] = useState("");
   const [length, setLength] = useState();
 
   // Methods
-  const handleSubmit = () => {
-    onSubmit({ description: description });
+  const handleSubmit = (event) => {
+    console.log("handle submit called");
+    onSubmit({ name: name, accountType: accountType, description: description });
     setDescription("");
+    setName("");
+    setAccountType("");
   };
 
-  // Set the initial description passed as props
+  // Set the state passed as props
   useEffect(() => {
-    setDescription(desc);
-  }, [desc]);
+    setDescription(userDescription);
+    setName(userName);
+    setAccountType(userAccountType);
+  }, [userDescription, userName, userAccountType]);
 
-  const onFormContentChange = (value) => {
+  const onFormContentChangeDescription = (value) => {
     setDescription(value);
+    setLength(value.length);
+  };
+
+  const onFormContentChangeName = (value) => {
+    setName(value);
     setLength(value.length);
   };
 
   return (
     <div className="form-container">
       <form className="form">
+      <div className="form-field">
+          <ResponsiveTextArea
+            placeholder="Update your name"
+            contentText={name}
+            onFormContentChange={onFormContentChangeName}
+            maxLength="1000"
+          />
+        </div>
+        <div className="form-field">
+          <label>I'm a:</label>
+          <select selected={accountType} onChange={(e) => setAccountType(e.target.value)}>
+            <option value="pet">pet</option>
+            <option value="human">human</option>
+            <option value="service provider">service provider</option>
+            <option value="caretaker">caretaker</option>
+          </select>
+        </div>
         <div className="form-field">
           <ResponsiveTextArea
             placeholder="Update your profile description"
             contentText={description}
-            onFormContentChange={onFormContentChange}
+            onFormContentChange={onFormContentChangeDescription}
             maxLength="1000"
           />
         </div>

@@ -13,9 +13,9 @@ export default function ProfileCard({ thisUser }) {
   const userURL = require("../../assets/images/user.svg");
 
   // Methods
-  async function updateDescription(updatedUserDescription) {
+  async function updateUser(updatedUser) {
     try {
-      await UserApi.updateUserDescription(updatedUserDescription);
+      await UserApi.updateUser(updatedUser);
     } catch (e) {
       console.error(e);
     }
@@ -34,7 +34,7 @@ export default function ProfileCard({ thisUser }) {
         </div>
         <div>
           <p className="field-label">Account type </p>
-          <p className="field-data">PLACEHOLDER eg pet</p>
+          <p className="field-data">{thisUser.accountType}</p>
         </div>
         <div>
           <p className="field-label">About</p>
@@ -59,8 +59,10 @@ export default function ProfileCard({ thisUser }) {
       </button>
       {toggleEdit && (
         <ProfileForm
-          desc={thisUser.description}
-          onSubmit={(update) => updateDescription(update)}
+          userDescription={thisUser.description}
+          userName={thisUser.name}
+          userAccountType={thisUser.accountType}
+          onSubmit={(update) => updateUser(update)}
         />
       )}
     </div>
