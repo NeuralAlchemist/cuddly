@@ -15,7 +15,7 @@ import CommentsApi from "../../api/CommentsApi";
 export default function CommentForm({ post, onSubmit }) {
   // Local State
   const [commentContentText, setCommentContentText] = React.useState("");
-  const commentObject = require("../../assets/images/post.svg");
+  const commentObject = require("../../assets/images/comment.svg");
   const commentURL = commentObject;
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
