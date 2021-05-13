@@ -61,6 +61,12 @@ public class User {
     @Column(name = "accountType")
     private String accountType;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "relation",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private List<User> buddies;
+
     // Hibernate needs a default constructor to function
     public User() {
     }
@@ -151,5 +157,13 @@ public class User {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public List<User> getBuddies() {
+        return buddies;
+    }
+
+    public void setBuddies(List<User> buddies) {
+        this.buddies = buddies;
     }
 }

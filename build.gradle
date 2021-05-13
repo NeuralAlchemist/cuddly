@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok:1.18.16'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compile group: 'com.auth0', name: 'java-jwt', version: '3.8.3'
 	runtimeOnly 'org.postgresql:postgresql'
