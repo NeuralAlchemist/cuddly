@@ -1,0 +1,50 @@
+.ProfileCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-avatar {
+  width: auto;
+  height: var(--space-xx-big);
+  color: var(--color-red-brown);
+}
+
+.name-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field-label {
+  margin-bottom: var(--space-x-small);
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+  font-size: var(--font-size-medium-small);
+  color: var(--color-black-brown);
+}
+
+.field-data {
+  margin-top: var(--space-x-small);
+}
+
+.prompt {
+  font-style: italic;
+}
+
+.edit-profile {
+  width: 120px !important;
+  align-self: flex-end;
+  margin-top: var(--space-medium);
+}
+.name {
+  margin-bottom: 0;
+}
+
+.profile-field-pair {
+  margin-top: var(--space-medium);
+}
+
+.user-fields{
+  display: flex;
+  flex-direction: column;
+}

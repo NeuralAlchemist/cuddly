@@ -6,6 +6,7 @@
 /* Pages/Templates */
 @import url('./pages/authPage.css');
 @import url('./pages/postPage.css');
+@import url('./pages/profilePage.css');
 
 /* Modules */
 
@@ -20,4 +21,5 @@
 @import url('./components/commentCard.css');
 @import url('./components/postform.css');
 @import url('./components/commentform.css');
-
+@import url('./components/profileCard.css');
+@import url('./components/profileForm.css');
