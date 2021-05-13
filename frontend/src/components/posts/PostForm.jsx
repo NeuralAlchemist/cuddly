@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
 import FormFooter from "../FormFooter";
 
+
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
   const [contentText, setContentText] = useState("");
@@ -23,7 +24,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
       // Clear the input field
-      setContentText("");
+      setContentText('');
     }
   };
 
