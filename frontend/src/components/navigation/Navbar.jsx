@@ -20,11 +20,11 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <Link to="/posts">
-          <img className="homepageIcon" src={homeURL} alt="Home" />
+          <img className="homepageIcon nav-icon" src={homeURL} alt="Home" />
         </Link>
 
         <Link to="/profile">
-          <img className="user" src={userURL} alt="Profile" />
+          <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
 
         <Link to="/notification">
@@ -32,7 +32,7 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <Link onClick={onLogout}>
-          <img className="logout" src={logoutURL} alt="Logout" />
+          <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
 
         <div className="logout-button-container">

@@ -19,6 +19,7 @@ export default function LoginForm({ onSubmit, onToggle }) {
           <div className="field">
             <label>Email</label>
             <input
+              className="user-entered-input"
               type="email"
               placeholder=" Email"
               value={email}
@@ -29,6 +30,7 @@ export default function LoginForm({ onSubmit, onToggle }) {
           <div className="field">
             <label>Password</label>
             <input
+              className="user-entered-input"
               type="password"
               placeholder=" Password"
               value={password}
@@ -44,11 +46,13 @@ export default function LoginForm({ onSubmit, onToggle }) {
           </button>
         </div>
         <div className="toggle-register-login">
-            <span>
-              New to Cuddly?
-              <span className="link" onClick={handleToggle}>Register today!</span>
+          <span>
+            New to Cuddly?
+            <span className="link" onClick={handleToggle}>
+              Register today!
             </span>
-          </div>
+          </span>
+        </div>
       </div>
     </div>
   );

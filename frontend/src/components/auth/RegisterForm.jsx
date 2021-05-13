@@ -21,6 +21,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
           <div className="field">
             <label>Name</label>
             <input
+              className="user-entered-input"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -31,6 +32,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
           <div className="field">
             <label>Email</label>
             <input
+              className="user-entered-input"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -41,6 +43,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
           <div className="field">
             <label>Password</label>
             <input
+              className="user-entered-input"
               type="password"
               placeholder=" Password"
               value={password}

@@ -3,20 +3,20 @@ import React, { useState } from 'react';
 
 // Project Files
 import ResponsiveTextArea from '../ResponsiveTextArea';
+import FormFooter from "../FormFooter";
+
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
-  const [contentText, setContentText] = useState('');
+  const [contentText, setContentText] = useState("");
   const [length, setLength] = useState();
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-  const postURL = require('../../assets/images/post.svg');
 
   // Methods
   const handleSubmit = (event) => {
     if (isFilePicked) {
       event.preventDefault();
-      console.log(contentFile);
       onSubmitMedia({ contentFile, contentText });
       setContentFile(null);
       setIsFilePicked(false);
@@ -38,6 +38,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     setIsFilePicked(true);
   };
 
+
   return (
     <div className="form-container">
       <form className="form">
@@ -49,12 +50,13 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
             maxLength="1000"
           />
         </div>
-        <p className="length">{length == null ? 0 : length}/1000</p>
-        <input type="file" onChange={setFile} />
-        <button className="button-post" onClick={handleSubmit}>
-          <img className="post" src={postURL} alt="Post" />
-          <span>Post</span>
-        </button>
+        <FormFooter
+          isFilePicked={isFilePicked}
+          contentFile={contentFile}
+          length={length}
+          setFile={setFile}
+          handleSubmit={handleSubmit}
+        />
       </form>
     </div>
   );
