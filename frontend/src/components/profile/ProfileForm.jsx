@@ -18,7 +18,6 @@ export default function ProfileForm({
 
   // Methods
   const handleSubmit = (event) => {
-    console.log("handle submit called");
     onSubmit({
       name: name,
       accountType: accountType,
