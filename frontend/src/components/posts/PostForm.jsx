@@ -53,7 +53,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
                 maxLength="1000"
               />
             </div>
-            <p className="length">{length == null ? 0 : length}/255</p>
+            <p className="length">{length == null ? 0 : length}/1000git g</p>
             <input type="file" onChange={setFile}/>
             <button className="button-post" onClick={handleSubmit}>
               <img className="post" src={postURL} alt="Post" />
