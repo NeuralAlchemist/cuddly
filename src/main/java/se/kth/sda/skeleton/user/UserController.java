@@ -1,19 +1,13 @@
 package se.kth.sda.skeleton.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
-import se.kth.sda.skeleton.postlikes.PostLike;
 
-import java.security.Principal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Represents the controller layer (or the API). This exposes application functionality of User as RESTful webservices.
@@ -71,11 +65,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/follow/{userid}")
-    public ResponseEntity<User> follow(@PathVariable("userid") Long userid) {
+    public void follow(@PathVariable("userid") Long userid) {
         String email = authService.getLoggedInUserEmail();
         User loginUser = userRepository.findByEmail(email);
         User target = userRepository.findById(userid).orElseThrow(ResourceNotFoundException::new);
-        List<User> loginUserBuddies = loginUser.getBuddies();
+
+        List<User> loginUserBuddies = loginUser.getBuddiesFollowing();
+        List<User> targetUserFollowers = target.getFollowerBuddies();
 
         if (loginUser.getId().equals(userid)) {
             throw new ForbiddenException();
@@ -87,10 +83,13 @@ public class UserController {
         }
 
         loginUserBuddies.add(target);
-        loginUser.setBuddies(loginUserBuddies);
-        userRepository.save(loginUser);
+        targetUserFollowers.add(loginUser);
 
-        return ResponseEntity.ok(loginUser);
+        loginUser.setBuddiesFollowing(loginUserBuddies);
+        target.setFollowerBuddies(targetUserFollowers);
+
+        userRepository.save(loginUser);
+        userRepository.save(target);
 
     }
 

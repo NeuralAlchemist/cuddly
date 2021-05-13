@@ -28,13 +28,14 @@ public class Post {
     @NotBlank
     @Column(nullable = false, name="contentText", length=1000)
     private String contentText;
+
     @OneToMany(mappedBy = "relatedPost", cascade = CascadeType.ALL)
     private List<Comment> relatedComments;
     
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    @JsonIgnoreProperties("createdPosts")
+    @JsonIgnoreProperties({"createdPosts", "buddiesFollowing"})
     private User relatedPostUser;
     
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
