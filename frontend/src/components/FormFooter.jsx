@@ -22,7 +22,7 @@ export default function FormFooter({
           <span role="img" aria-label="file pin" className="media-name-full">
             📎 {isFilePicked ? getNiceName(35) : "nothing selected"}
           </span>
-          <span className="media-name-mobile">
+          <span role="img" aria-label="file pin" className="media-name-mobile">
             📎 {isFilePicked ? getNiceName(16) : "nothing selected"}
           </span>
         </div>
