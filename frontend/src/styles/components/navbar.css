@@ -50,21 +50,22 @@
 }
 
 .button {
-  background-color: white;
-  color: #bc3908;
-  border-radius: 8px;
+  background-color: var(--color-red-brown);
+  color: white;
+  border-radius: 2em;
   border-width: 0px;
   align-items: center;
   font-family: 'Nunito', sans-serif;
   font-size: medium;
+  transition: all .3s ease-in-out;
 }
 
 .nav-icon{
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .button:hover, .nav-icon:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   cursor: pointer;
 }
 

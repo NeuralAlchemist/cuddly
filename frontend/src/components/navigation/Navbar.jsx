@@ -28,7 +28,7 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <Link to="/notification">
-          <img className="notification nav-icon" src={bellURL} alt="Notification" />
+          <img className="notification" src={bellURL} alt="Notification" />
         </Link>
 
         <Link onClick={onLogout}>
