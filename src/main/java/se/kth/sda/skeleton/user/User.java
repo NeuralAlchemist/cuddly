@@ -67,7 +67,7 @@ public class User {
     private List<User> buddiesFollowing;
 
     @ManyToMany(mappedBy = "buddiesFollowing")
-    @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments", "buddiesFollowing"})
+    @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments", "buddiesFollowing", "followerBuddies"})
     private List<User> followerBuddies;
 
     // Hibernate needs a default constructor to function

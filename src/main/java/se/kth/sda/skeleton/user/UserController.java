@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/follow/{userid}")
-    public void follow(@PathVariable("userid") Long userid) {
+    public void createBuddyRelationship(@PathVariable("userid") Long userid) {
         String email = authService.getLoggedInUserEmail();
         User loginUser = userRepository.findByEmail(email);
         User target = userRepository.findById(userid).orElseThrow(ResourceNotFoundException::new);
@@ -91,6 +91,36 @@ public class UserController {
         userRepository.save(loginUser);
         userRepository.save(target);
 
+    }
+
+    @DeleteMapping(value = "/follow/{userid}")
+    public void deleteBuddyRelationship(@PathVariable("userid") Long userid) {
+        String email = authService.getLoggedInUserEmail();
+        User loginUser = userRepository.findByEmail(email);
+        User target = userRepository.findById(userid).orElseThrow(ResourceNotFoundException::new);
+
+        List<User> loginUserBuddies = loginUser.getBuddiesFollowing();
+        List<User> targetUserFollowers = target.getFollowerBuddies();
+
+        if (loginUser.getId().equals(userid)) {
+            throw new ForbiddenException();
+        }
+
+        for (User buddy : loginUserBuddies) {
+            if (buddy.getId().equals(userid)) {
+
+                loginUserBuddies.remove(target);
+                targetUserFollowers.remove(loginUser);
+
+                loginUser.setBuddiesFollowing(loginUserBuddies);
+                target.setFollowerBuddies(targetUserFollowers);
+
+                userRepository.save(loginUser);
+                userRepository.save(target);
+                return;
+            }
+        }
+        throw new ForbiddenException();
     }
 
 }
