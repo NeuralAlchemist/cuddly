@@ -61,7 +61,7 @@ export default function ProfileForm({
             <label className="field-label">I'm a</label>
             <select
               className="select-profile"
-              selected={accountType}
+              value={accountType}
               onChange={(e) => setAccountType(e.target.value)}
             >
               <option value="pet">pet</option>
