@@ -7,6 +7,7 @@ export default function FormFooter({
   setFile,
   handleSubmit,
 }) {
+  
   // Method
   function getNiceName(requiredLength) {
     if (requiredLength >= contentFile.name.length) {
