@@ -28,16 +28,16 @@
   font-size: var(--font-size-small);
   width: var(--space-medium-big);
   height: var(--space-medium-big);
-  margin: 0 0 10px 10px;
+  margin-left: 10px;
 }
 
 .delete-icon {
-  background-image: url(../../assets/images/delete.svg);
+  background-image: url(../../assets/images/trash-solid.svg);
   background-repeat: no-repeat;
   background-size: var(--space-medium-big) var(--space-medium-big);
 }
 .active {
-  background-image: url(../../assets/images/edit.svg);
+  background-image: url(../../assets/images/edit-solid.svg);
   background-repeat: no-repeat;
   background-size: var(--space-medium-big) var(--space-medium-big);
 }
