@@ -1,15 +1,21 @@
 // NPM packages
-import React from "react";
+import React, { useState } from "react";
 
 // Project files
 import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
 export default function ProfileCard({ thisUser }) {
+  // Local state
+  const [toggleEdit, setToggleEdit] = useState(false);
+
+  // Constants
+  const userURL = require("../../assets/images/user.svg");
+
   // Methods
-  async function updateDescription(updatedUserDescription) {
+  async function updateUser(updatedUser) {
     try {
-      await UserApi.updateUserDescription(updatedUserDescription);
+      await UserApi.updateUser(updatedUser);
     } catch (e) {
       console.error(e);
     }
@@ -18,29 +24,54 @@ export default function ProfileCard({ thisUser }) {
   return (
     <div className="ProfileCard">
       <div className="user-fields">
-        <h2>Your information</h2>
         <div className="name-pair">
-          <p>Name</p>
-          <p>{thisUser.name}</p>
+          <img className="user-avatar" src={userURL} alt="User" />
+          <h2 className="name">{thisUser.name}</h2>
         </div>
-        <div className="email-pair">
-          <p>Email</p>
-          <p>{thisUser.email}</p>
-        </div>
-        <div className="description-pair">
-          <p>About</p>
-          {thisUser.description === null && (
-            <p>
-              Let us know who you are! Add a short description to your profile
-            </p>
-          )}
-          {thisUser.description != null && <p>{thisUser.description}</p>}
-        </div>
+        <button
+          className="button edit-profile"
+          onClick={() =>
+            toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
+          }
+        >
+          {toggleEdit ? "Cancel edit" : "Edit profile"}
+        </button>
+        {!toggleEdit && (
+          <section>
+            <div className="profile-field-pair">
+              <span className="field-label">I'm a: </span>
+              <span className="field-data">{thisUser.accountType}</span>
+            </div>
+            <div className="profile-field-pair">
+              <span className="field-label">About me: </span>
+              <span
+                className={
+                  thisUser.description === null
+                    ? "field-data prompt"
+                    : "field-data word-wrap"
+                }
+              >
+                {thisUser.description === null &&
+                  "Let us know who you are! Add a short description to your profile..."}
+                {thisUser.description != null && thisUser.description}
+              </span>
+            </div>
+            <div className="profile-field-pair">
+              <span className="field-label">Email: </span>
+              <span className="field-data">{thisUser.email}</span>
+            </div>
+          </section>
+        )}
       </div>
-      <ProfileForm
-        desc={thisUser.description}
-        onSubmit={(update) => updateDescription(update)}
-      />
+
+      {toggleEdit && (
+        <ProfileForm
+          userDescription={thisUser.description}
+          userName={thisUser.name}
+          userAccountType={thisUser.accountType}
+          onSubmit={(update) => updateUser(update)}
+        />
+      )}
     </div>
   );
 }

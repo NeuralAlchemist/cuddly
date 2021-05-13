@@ -73,7 +73,7 @@ export default function PostsPage() {
   ));
 
   return (
-    <div className="post-grid-item">
+    <div className="main-container-item">
       <div className="post-main-content">
         <div className="postcard-container">
           <PostForm
