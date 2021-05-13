@@ -1,6 +1,7 @@
 package se.kth.sda.skeleton.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.auth.AuthService;
@@ -64,7 +65,13 @@ public class UserController {
 
     }
 
+    /**
+     * Handler method for endpoint "/follow/{userid}" with POST HttpRequest. Invokes a HTTP {@link ResponseStatus} of
+     * NO_CONTENT. Creates the buddy relationship between two users.
+     * @param userid the User for who is to be followed
+     */
     @PostMapping(value = "/follow/{userid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void createBuddyRelationship(@PathVariable("userid") Long userid) {
         String email = authService.getLoggedInUserEmail();
         User loginUser = userRepository.findByEmail(email);
@@ -93,7 +100,13 @@ public class UserController {
 
     }
 
-    @DeleteMapping(value = "/follow/{userid}")
+    /**
+     * Handler method for endpoint "/follow/{userid}" with DELETE HttpRequest. Invokes a HTTP {@link ResponseStatus} of
+     * NO_CONTENT. Deletes the buddy relationship between two users.
+     * @param userid the user who will no longer be followed
+     */
+    @DeleteMapping(value = "/unfollow/{userid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBuddyRelationship(@PathVariable("userid") Long userid) {
         String email = authService.getLoggedInUserEmail();
         User loginUser = userRepository.findByEmail(email);
