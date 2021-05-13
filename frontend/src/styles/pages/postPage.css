@@ -1,6 +1,7 @@
 .main-container{
     display: grid;
     grid-template-columns:  1fr minmax(300px,600px) 1fr;
+    flex-grow: 1;
 }
 
 .main-container-item{
