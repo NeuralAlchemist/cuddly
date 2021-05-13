@@ -17,16 +17,14 @@
 
 .word-wrap {
   word-wrap: normal;
-  white-space: pre-line;
   white-space: pre-wrap;
-  text-align: justify;
 }
 
 .button-post-card {
   background-color: white;
   border-width: 0;
   align-items: center;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: var(--font-size-small);
   width: var(--space-medium-big);
   height: var(--space-medium-big);
@@ -53,7 +51,7 @@
   color: var(--color-red-brown);
   font-size: var(--font-size-medium);
   font-weight: 700;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   margin-top: 0;
 }
 

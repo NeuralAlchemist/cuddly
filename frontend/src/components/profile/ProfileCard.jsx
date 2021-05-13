@@ -48,7 +48,7 @@ export default function ProfileCard({ thisUser }) {
                 className={
                   thisUser.description === null
                     ? "field-data prompt"
-                    : "field-data"
+                    : "field-data word-wrap"
                 }
               >
                 {thisUser.description === null &&
