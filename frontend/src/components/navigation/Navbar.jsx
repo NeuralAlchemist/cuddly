@@ -32,7 +32,7 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <Link onClick={onLogout}>
-          <img className="logout" src={logoutURL} alt="Logout" />
+          <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
 
         <div className="logout-button-container">
