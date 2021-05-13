@@ -27,7 +27,7 @@ export default function FormFooter({
             📎 {isFilePicked ? getNiceName(16) : "nothing selected"}
           </span>
         </div>
-        <p className="length">{length == null ? 0 : length}/255</p>
+        <p className="length">{length == null ? 0 : length}/1000</p>
       </div>
       <div className="form-footer">
         <button className="button-post" onClick={handleSubmit}>
