@@ -13,7 +13,7 @@ export default function ProfileForm({
   // Local state
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
-  const [accountType, setAccountType] = useState("");
+  const [accountType, setAccountType] = useState("pet");
   const [length, setLength] = useState();
 
   // Methods
@@ -25,7 +25,7 @@ export default function ProfileForm({
     });
     setDescription("");
     setName("");
-    setAccountType("");
+    setAccountType("pet");
   };
 
   // Set the state passed as props
