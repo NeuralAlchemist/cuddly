@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
-
 import java.util.List;
 
 /**

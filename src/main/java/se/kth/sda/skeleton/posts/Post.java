@@ -35,7 +35,7 @@ public class Post {
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
-    @JsonIgnoreProperties({"createdPosts", "buddiesFollowing"})
+    @JsonIgnoreProperties({"createdPosts", "buddiesFollowing", "followerBuddies"})
     private User relatedPostUser;
     
     @OneToMany(mappedBy = "likedPost", cascade = CascadeType.ALL)
