@@ -3,16 +3,12 @@ import React, { useState } from 'react';
 
 // Project Files
 import ResponsiveTextArea from '../ResponsiveTextArea';
-
-// Project Files
-import PostsApi from "../../api/PostsApi";
 import FormFooter from "../FormFooter";
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
   const [contentText, setContentText] = useState("");
   const [length, setLength] = useState();
-  const postURL = require("../../assets/images/post.svg");
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 

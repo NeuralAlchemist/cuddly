@@ -1,3 +1,4 @@
+// NPM Packages
 import React from "react";
 export default function FormFooter({
   isFilePicked,
@@ -6,6 +7,7 @@ export default function FormFooter({
   setFile,
   handleSubmit,
 }) {
+  // Method
   function getNiceName(requiredLength) {
     if (requiredLength >= contentFile.name.length) {
       return contentFile.name;
@@ -17,7 +19,7 @@ export default function FormFooter({
     <>
       <div className="media-name-character-limit-display">
         <div className={`${isFilePicked ? "file-selected" : "no-file"}`}>
-          <span className="media-name-full">
+          <span role="img" aria-label="file pin" className="media-name-full">
             📎 {isFilePicked ? getNiceName(35) : "nothing selected"}
           </span>
           <span className="media-name-mobile">
