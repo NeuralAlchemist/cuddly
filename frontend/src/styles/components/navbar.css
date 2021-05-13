@@ -55,13 +55,16 @@
   border-radius: 8px;
   border-width: 0px;
   align-items: center;
-
   font-family: 'Nunito', sans-serif;
   font-size: medium;
 }
 
-.button:hover {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.nav-icon{
+  transition: all .5s ease-in-out;
+}
+
+.button:hover, .nav-icon:hover {
+  transform: scale(1.2);
   cursor: pointer;
 }
 
