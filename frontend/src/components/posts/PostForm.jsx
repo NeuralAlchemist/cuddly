@@ -1,10 +1,9 @@
 // NPM Packages
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // Project Files
-import ResponsiveTextArea from '../ResponsiveTextArea';
+import ResponsiveTextArea from "../ResponsiveTextArea";
 import FormFooter from "../FormFooter";
-
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
@@ -24,7 +23,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
       // Clear the input field
-      setContentText('');
+      setContentText("");
     }
   };
 
@@ -34,27 +33,30 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   };
 
   const setFile = (event) => {
-    if(isFilePicked){
+    if (isFilePicked) {
       alert("Only one attachment allowed!");
     } else {
       setIsFilePicked(false);
-      if (getFileSizeInMB(event.target.files[0].size) > 10) {
-        alert("Files larger than 10MB are not allowed");
+      const file = event.target.files[0];
+      if (getFileSizeInMB(file.size) > 10) {
+        alert("Files larger than 10MB are not allowed!");
+      } else if (file.size === 0) {
+        alert("Empty files are not allowed!");
       } else {
-        setContentFile(event.target.files[0]);
+        setContentFile(file);
         setIsFilePicked(true);
       }
     }
   };
 
-  function getFileSizeInMB(bytes){
-    if(bytes === 0){
+  function getFileSizeInMB(bytes) {
+    if (bytes === 0) {
       return 0;
-    }else {
-      return (bytes)/Math.pow(10,6).toFixed(1);
+    } else {
+      return bytes / Math.pow(10, 6).toFixed(1);
     }
   }
-console.log(contentFile);
+  console.log(contentFile);
 
   return (
     <div className="form-container">
