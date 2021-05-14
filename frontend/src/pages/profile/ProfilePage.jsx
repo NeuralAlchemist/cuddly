@@ -1,33 +1,24 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Project files
 import ProfileCard from "../../components/profile/ProfileCard";
-import UserApi from "../../api/UserApi";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
 import { postsState, allPosts } from "../../state/postsData";
+import { currentUserValue } from "../../state/currentUserData";
 
 export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
   const postsGlobal = useRecoilValue(allPosts);
 
-  // Local state
-  const [thisUser, setThisUser] = useState({});
+
+  const currentUserGlobal = useRecoilValue(currentUserValue);
 
   // Variables
   let userPostLikes = [];
-
-  // Methods
-  useEffect(() => {
-    UserApi.getUser()
-      .then(({ data }) => {
-        setThisUser(data);
-      })
-      .catch((err) => console.error(err));
-  }, [setThisUser]);
 
   async function deletePost(post) {
     try {
@@ -42,19 +33,20 @@ export default function ProfilePage() {
 
   // Components
   const userPostCards = postsGlobal
-    .filter((post) => thisUser.id === post.relatedPostUser.id)
+    .filter((post) => currentUserGlobal.id === post.relatedPostUser.id)
     .map((post) => (
       <PostCard
-        key={post.id}
-        post={post}
-        currentUser={thisUser}
-        onDeleteClick={() => deletePost(post)}
-      />
+      key={post.id}
+      post={post}
+      currentUser={currentUserGlobal}
+      buddies={currentUserGlobal.buddiesFollowing}
+      onDeleteClick={() => deletePost(post)}
+    />
     ));
 
   for (let i = 0; i < postsGlobal.length; i++) {
     for (let j = 0; j < postsGlobal[i].listOfLikes.length; j++) {
-      if (postsGlobal[i].listOfLikes[j].likedUser.id === thisUser.id) {
+      if (postsGlobal[i].listOfLikes[j].likedUser.id === currentUserGlobal.id) {
         userPostLikes.push(postsGlobal[i]);
       }
     }
@@ -64,7 +56,8 @@ export default function ProfilePage() {
     <PostCard
       key={post.id}
       post={post}
-      currentUser={thisUser}
+      currentUser={currentUserGlobal}
+      buddies={currentUserGlobal.buddiesFollowing}
       onDeleteClick={() => deletePost(post)}
     />
   ));
@@ -76,7 +69,7 @@ export default function ProfilePage() {
   return (
     <div className="main-container-item ProfilePage">
       <h1 className="page-name">Profile</h1>
-      <ProfileCard thisUser={thisUser} />
+      <ProfileCard thisUser={currentUserGlobal} />
       <div className="user-feed">
         <h3>My posts</h3>
         {hasCreatedPosts && userPostCards}

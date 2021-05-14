@@ -24,32 +24,34 @@ export default function App() {
   // Components
   const loggedInRouter = (
     <RecoilRoot>
-    <BrowserRouter>
-      <Navbar onLogout={() => Auth.logout()} />
+      <BrowserRouter>
+        <Navbar onLogout={() => Auth.logout()} />
 
-      <div className="main-container">
-        <Switch>
-          <Route path="/posts">
-            <PostsPage />
-          </Route>
+        <div className="main-container">
+          <Switch>
+            <Route path="/posts">
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <PostsPage />
+              </React.Suspense>
+            </Route>
 
-          <Route path="/chat">
-            <ChatPage />
-          </Route>
+            <Route path="/chat">
+              <ChatPage />
+            </Route>
 
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <React.Suspense fallback={<div>Loading...</div>}>
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
-          </React.Suspense>
-        </Switch>
-      </div>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/profile">
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <ProfilePage />
+              </React.Suspense>
+            </Route>
+          </Switch>
+        </div>
 
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
     </RecoilRoot>
   );
 

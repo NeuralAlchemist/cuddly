@@ -1,16 +1,20 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // Project files
 import PostsApi from "../../api/PostsApi";
 import PostForm from "../../components/posts/PostForm";
 import PostCard from "../../components/posts/PostCard";
-import UserApi from "../../api/UserApi";
+import { postsState, allPosts } from "../../state/postsData";
+import { currentUserValue } from "../../state/currentUserData";
 
 export default function PostsPage() {
   // Local state
-  const [posts, setPosts] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  const [posts, setPosts] = useRecoilState(postsState);
+  const postsGlobal = useRecoilValue(allPosts);
+
+  const currentUserGlobal = useRecoilValue(currentUserValue);
 
   // Methods
   async function createPost(postData) {
@@ -48,26 +52,13 @@ export default function PostsPage() {
     }
   }
 
-  useEffect(() => {
-    PostsApi.getAllPosts()
-      .then(({ data }) => setPosts(data))
-      .catch((err) => console.error(err));
-  }, [setPosts]);
-
-  useEffect(() => {
-    UserApi.getUser()
-      .then(({ data }) => {
-        setCurrentUser(data);
-      })
-      .catch((err) => console.error(err));
-  }, [setCurrentUser]);
-
   // Components
-  const CardsArray = posts.map((post) => (
+  const CardsArray = postsGlobal.map((post) => (
     <PostCard
       key={post.id}
       post={post}
-      currentUser={currentUser}
+      currentUser={currentUserGlobal}
+      buddies={currentUserGlobal.buddiesFollowing}
       onDeleteClick={() => deletePost(post)}
     />
   ));

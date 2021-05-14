@@ -12,10 +12,12 @@ import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 import UserApi from "../../api/UserApi";
 
-export default function PostCard({ post, currentUser, onDeleteClick }) {
+export default function PostCard({ post, currentUser, onDeleteClick, buddies }) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
+  // const [buddies, setBuddies] = useState([]);
+  const [user, setUser] = useState({});
 
   // Constants
   const postId = post.id;
@@ -23,6 +25,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const postCreatorEmail = post.relatedPostUser.email;
   const postCreatorId = post.relatedPostUser.id;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
+  let listOfBuddyIds = buddies.map(bud => bud.id);
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
@@ -111,12 +114,23 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     );
     return likedEmail != null;
   }
+  console.log("LIST", listOfBuddyIds)
+
+  // function buddyCheck() {
+  //   const buddyId = 
+  // }
 
   useEffect(() => {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments, postId]);
+
+  useEffect(() => {
+    UserApi.getUser()
+      .then(({ data }) => setUser(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="PostCard">
