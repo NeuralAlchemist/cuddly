@@ -34,10 +34,11 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   };
 
   const setFile = (event) => {
+    setIsFilePicked(false);
     setContentFile(event.target.files[0]);
     setIsFilePicked(true);
   };
-
+console.log(contentFile);
 
   return (
     <div className="form-container">
