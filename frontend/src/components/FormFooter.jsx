@@ -42,7 +42,7 @@ export default function FormFooter({
             onChange={setFile}
             accept="image/*"
           />
-          <label for="pick-media-image" className="proxy-button pick-image">
+          <label htmlFor="pick-media-image" className="proxy-button pick-image">
             <span className="tooltiptext">pick image</span>
           </label>
           <input
@@ -53,7 +53,7 @@ export default function FormFooter({
             onChange={setFile}
             accept="video/*"
           />
-          <label for="pick-media-video" className="proxy-button pick-video">
+          <label htmlFor="pick-media-video" className="proxy-button pick-video">
             <div></div>
             <span className="tooltiptext">pick video</span>
           </label>
