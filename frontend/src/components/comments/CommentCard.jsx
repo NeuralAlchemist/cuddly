@@ -76,7 +76,7 @@ export default function CommentCard({
   return (
     <div className="comment-card">
       <div className="postcard-header">
-        <div className="post-info">{commentCreatorName}</div>
+        <div className="post-info">{commentCreatorName} commented</div>
         <div className="delete-edit-icons">
           {checkCommentUserEmail() && (
             <span>
