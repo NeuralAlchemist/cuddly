@@ -2,7 +2,7 @@ package se.kth.sda.skeleton.comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
@@ -11,7 +11,11 @@ import se.kth.sda.skeleton.posts.PostRepository;
 import se.kth.sda.skeleton.user.User;
 import se.kth.sda.skeleton.user.UserRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class CommentService {
+    private static String videoDirectory = System.getProperty("user.dir") + "/frontend/src/videos/comment";
     private CommentRepository commentRepository;
     private PostRepository postRepository;
     private AuthService authService;
@@ -113,5 +118,53 @@ public class CommentService {
 
         relatedUser.getCreatedComments().add(comment);
         return commentRepository.save(comment);
+    }
+
+    /**
+     * Create a comment with file
+     *
+     * @param text the contentText of the comment
+     * @param file the contentFile to be added to the comment
+     * @return newly created comment
+     */
+    public Comment createCommentImage(String text, MultipartFile file, Long postId){
+        Comment newComment = new Comment();
+        String email = authService.getLoggedInUserEmail();
+        LocalDateTime createdTime = LocalDateTime.now();
+        User loggedInUser = userRepository.findByEmail(email);
+        newComment.setContentText(text);
+        newComment.setRelatedCommentUser(loggedInUser);
+        newComment.setCreatedTime(createdTime);
+        Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
+        newComment.setRelatedPost(relatedPost);
+        newComment.setFileType(file.getContentType());
+        if(!file.isEmpty()){
+            if(file.getContentType().contains("image")){
+                byte[] bytes;
+                try {
+                    bytes = new byte[file.getBytes().length];
+                    int i = 0;
+                    for (byte b : file.getBytes()){
+                        bytes[i++] = b;
+                    }
+                    newComment.setFileByte(bytes);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    File directory = new File(videoDirectory);
+                    if(!directory.exists()){
+                        directory.mkdir();
+                    }
+                    Path fileName = Paths.get(videoDirectory, loggedInUser.getEmail().concat(file.getOriginalFilename()));
+                    Files.write(fileName, file.getBytes());
+                    newComment.setFileName(fileName.getFileName().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return commentRepository.save(newComment);
     }
 }
