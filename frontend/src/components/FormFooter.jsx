@@ -6,6 +6,8 @@ export default function FormFooter({
   length,
   setFile,
   handleSubmit,
+  buttonText,
+  maxFormTextLength
 }) {
   
   // Method
@@ -27,11 +29,11 @@ export default function FormFooter({
             📎 {isFilePicked ? getNiceName(16) : "nothing selected"}
           </span>
         </div>
-        <p className="length">{length == null ? 0 : length}/1000</p>
+        <p className="length">{length == null ? 0 : length}/{maxFormTextLength}</p>
       </div>
       <div className="form-footer">
         <button className="button-post" onClick={handleSubmit}>
-          Post
+          {buttonText}
         </button>
         <div className="form-footer-extras">
           <input
