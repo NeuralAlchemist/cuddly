@@ -12,7 +12,12 @@ import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 import UserApi from "../../api/UserApi";
 
-export default function PostCard({ post, currentUser, onDeleteClick, buddies }) {
+export default function PostCard({
+  post,
+  currentUser,
+  onDeleteClick,
+  buddies,
+}) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
@@ -25,7 +30,7 @@ export default function PostCard({ post, currentUser, onDeleteClick, buddies }) 
   const postCreatorEmail = post.relatedPostUser.email;
   const postCreatorId = post.relatedPostUser.id;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
-  let listOfBuddyIds = buddies.map(bud => bud.id);
+  const listOfBuddyIds = buddies.map((bud) => bud.id);
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
@@ -114,23 +119,17 @@ export default function PostCard({ post, currentUser, onDeleteClick, buddies }) 
     );
     return likedEmail != null;
   }
-  console.log("LIST", listOfBuddyIds)
 
-  // function buddyCheck() {
-  //   const buddyId = 
-  // }
+  function buddyCheck() {
+    const buddyId = listOfBuddyIds.find((budId) => budId === postCreatorId);
+    return buddyId != null;
+  }
 
   useEffect(() => {
     CommentsApi.getAllComments(postId)
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments, postId]);
-
-  useEffect(() => {
-    UserApi.getUser()
-      .then(({ data }) => setUser(data))
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <div className="PostCard">
@@ -156,8 +155,10 @@ export default function PostCard({ post, currentUser, onDeleteClick, buddies }) 
                 ></button>
               </span>
             )}
-            <button onClick={startFollowing}>follow this buddy</button>
-            <button onClick={unfollow}>unfollow this buddy</button>
+            {!buddyCheck() && !checkUserEmail() ? 
+                <button onClick={startFollowing}>follow this buddy</button> :
+                <button onClick={unfollow}>unfollow this buddy</button>}
+            
           </div>
         </div>
         <Moment className="time-lapse" fromNow>
