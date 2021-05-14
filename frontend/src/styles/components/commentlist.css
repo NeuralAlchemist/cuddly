@@ -18,8 +18,8 @@
 }
 
 details.CommentList[open] .commentlist-heading::after {
-  content: 'Click to hide';
+  content: 'Hide comments';
 }
 details.CommentList:not([open]) .commentlist-heading::after {
-  content: 'Click to show';
+  content: 'Show comments';
 }
