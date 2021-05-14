@@ -138,7 +138,7 @@ public class CommentService {
         newComment.setCreatedTime(createdTime);
         Post relatedPost = postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new);
         newComment.setRelatedPost(relatedPost);
-        newComment.setFileType(file.getContentType());
+        newComment.setMediaType(file.getContentType());
         if(!file.isEmpty()){
             if(file.getContentType().contains("image")){
                 byte[] bytes;
@@ -148,7 +148,7 @@ public class CommentService {
                     for (byte b : file.getBytes()){
                         bytes[i++] = b;
                     }
-                    newComment.setFileByte(bytes);
+                    newComment.setImage(bytes);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -160,7 +160,7 @@ public class CommentService {
                     }
                     Path fileName = Paths.get(videoDirectory, loggedInUser.getEmail().concat(file.getOriginalFilename()));
                     Files.write(fileName, file.getBytes());
-                    newComment.setFileName(fileName.getFileName().toString());
+                    newComment.setVideoName(fileName.getFileName().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

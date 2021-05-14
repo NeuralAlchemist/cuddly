@@ -47,9 +47,9 @@ public class Comment {
     LocalDateTime createdTime;
 
     @Lob
-    private byte[] fileByte;
-    private String fileType;
-    private String fileName;
+    private byte[] image;
+    private String mediaType;
+    private String videoName;
 
     public Comment() {
     }
@@ -102,28 +102,29 @@ public class Comment {
         this.listOfCommentLikes = listOfCommentLikes;
     }
 
-    public byte[] getFileByte() {
-        return fileByte;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setFileByte(byte[] fileByte) {
-        this.fileByte = fileByte;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getMediaType() {
+        return mediaType;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getVideoName() {
+        return videoName;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
+    
     
 }
