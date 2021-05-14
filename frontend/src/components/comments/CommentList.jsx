@@ -22,10 +22,8 @@ export default function CommentList({
   ));
 
   return (
-    <details className="CommentList">
-      <summary className="commentlist-heading">
-        Show comments
-      </summary>
+    <details className="CommentList" open>
+      <summary className="commentlist-heading"></summary>
       {CommentCardArray}
     </details>
   );

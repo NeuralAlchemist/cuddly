@@ -5,6 +5,10 @@
   border-radius: 1em;
 }
 
+.comment-card:nth-child(2) {
+  margin-top: var(--space-medium) 0;
+}
+
 .comment-content {
   margin-top: var(--space-small);
 }
