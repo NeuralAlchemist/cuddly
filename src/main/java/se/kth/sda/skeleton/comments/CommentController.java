@@ -59,6 +59,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file, postId));
     }
 
+    
     /**
      * Handler method for endpoint "posts/{postId}/comments/{postId}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
      * relating to the given {@code postId} and HTTP status {@code OK}.
