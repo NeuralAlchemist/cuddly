@@ -10,6 +10,7 @@ import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
+import UserApi from "../../api/UserApi";
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
   // Local state
@@ -20,6 +21,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
   const postCreatorEmail = post.relatedPostUser.email;
+  const postCreatorId = post.relatedPostUser.id;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
@@ -83,6 +85,22 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     }
   }
 
+  async function startFollowing() {
+    try {
+      await UserApi.followBuddy(postCreatorId);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function unfollow() {
+    try {
+      await UserApi.unfollowBuddy(postCreatorId);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkUserEmail() {
     return postCreatorEmail === currentUser.email;
   }
@@ -124,6 +142,8 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                 ></button>
               </span>
             )}
+            <button onClick={startFollowing}>follow this buddy</button>
+            <button onClick={unfollow}>unfollow this buddy</button>
           </div>
         </div>
         <Moment className="time-lapse" fromNow>
