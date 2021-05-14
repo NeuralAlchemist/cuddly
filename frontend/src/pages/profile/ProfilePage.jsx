@@ -1,33 +1,47 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useParams } from "react-router-dom";
 
 // Project files
-import ProfileCard from "../../components/profile/ProfileCard";
+import Profile from "../../components/profile/Profile";
 import UserApi from "../../api/UserApi";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
 import { postsState, allPosts } from "../../state/postsData";
+import { allUsers } from "../../state/usersData";
 
 export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
   const postsGlobal = useRecoilValue(allPosts);
+  const usersGlobal = useRecoilValue(allUsers);
 
   // Local state
   const [thisUser, setThisUser] = useState({});
+
+  // Constants
+  const { id } = useParams();
+  console.log("id", id);
+  console.log("usersGlobal", usersGlobal);
+  const userProfile = usersGlobal.find((user) => user.id == id);
+  console.log("userProfile", userProfile);
 
   // Variables
   let userPostLikes = [];
 
   // Methods
   useEffect(() => {
-    UserApi.getUser()
-      .then(({ data }) => {
-        setThisUser(data);
-      })
-      .catch((err) => console.error(err));
-  }, [setThisUser]);
+    if (id === "mine") {
+      UserApi.getUser()
+        .then(({ data }) => {
+          setThisUser(data);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      setThisUser(userProfile);
+    }
+  }, [setThisUser, userProfile, id]);
 
   async function deletePost(post) {
     try {
@@ -69,22 +83,11 @@ export default function ProfilePage() {
     />
   ));
 
-  // Constants
-  const hasCreatedPosts = userPostCards.length > 0;
-  const hasLikedPosts = userLikesPostCards.length > 0;
-
   return (
-    <div className="main-container-item ProfilePage">
-      <h1 className="page-name">Profile</h1>
-      <ProfileCard thisUser={thisUser} />
-      <div className="user-feed">
-        <h3>My posts</h3>
-        {hasCreatedPosts && userPostCards}
-        {!hasCreatedPosts && <p className="prompt">You haven't created any posts yet</p>}
-        <h3>My liked posts</h3>
-        {hasLikedPosts && userLikesPostCards}
-        {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
-      </div>
-    </div>
+    <Profile
+      thisUser={thisUser}
+      userPostCards={userPostCards}
+      userLikesPostCards={userLikesPostCards}
+    />
   );
 }

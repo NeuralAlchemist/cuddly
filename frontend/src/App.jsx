@@ -7,10 +7,8 @@ import { RecoilRoot } from "recoil";
 import Auth from "./services/Auth";
 import Navbar from "./components/navigation/Navbar";
 import AuthPage from "./pages/auth/AuthPage";
-import HomePage from "./pages/home/HomePage";
 import PostsPage from "./pages/posts/PostsPage";
 import ProfilePage from "./pages/profile/ProfilePage";
-import OtherProfilePage from "./pages/profile/OtherProfilePage";
 import ChatPage from "./pages/chat/ChatPage";
 import Footer from "./components/Footer";
 import "./styles/style.css";
@@ -30,22 +28,20 @@ export default function App() {
 
         <div className="main-container">
           <Switch>
-            <Route path="/posts">
-              <PostsPage />
-            </Route>
-
-            <Route path="/chat">
-              <ChatPage />
-            </Route>
-
-            <Route exact path="/">
-              <HomePage />
-            </Route>
             <React.Suspense fallback={<div>Loading...</div>}>
+              <Route path="/posts">
+                <PostsPage />
+              </Route>
+              <Route path="/chat">
+                <ChatPage />
+              </Route>
+              <Route exact path="/">
+                <PostsPage />
+              </Route>
               <Route path="/profile" exact>
                 <ProfilePage />
               </Route>
-              <Route path="/profile/:id" exact component={OtherProfilePage}/>
+              <Route path="/profile/:id" exact component={ProfilePage} />
             </React.Suspense>
           </Switch>
         </div>
