@@ -7,9 +7,8 @@ export default function FormFooter({
   setFile,
   handleSubmit,
   buttonText,
-  maxFormTextLength
+  maxFormTextLength,
 }) {
-  
   // Method
   function getNiceName(requiredLength) {
     if (requiredLength >= contentFile.name.length) {
@@ -29,10 +28,16 @@ export default function FormFooter({
             📎 {isFilePicked ? getNiceName(16) : "nothing selected"}
           </span>
         </div>
-        <p className="length">{length == null ? 0 : length}/{maxFormTextLength}</p>
+        <p className="length">
+          {length == null ? 0 : length}/{maxFormTextLength}
+        </p>
       </div>
       <div className="form-footer">
-        <button className="button-post" onClick={handleSubmit}>
+        <button
+          className="button-post"
+          onClick={handleSubmit}
+          disabled={length == null || length == 0}
+        >
           {buttonText}
         </button>
         <div className="form-footer-extras">
