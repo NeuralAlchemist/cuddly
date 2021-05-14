@@ -58,7 +58,6 @@ public class CommentService {
         updatedComment.setId(commentId);
         updatedComment.setCreatedTime(createdTime);
         updatedComment.setRelatedCommentUser(loggedInUser);
-
         return commentRepository.save(updatedComment);
     }
 
