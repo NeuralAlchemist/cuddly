@@ -161,7 +161,7 @@ public class CommentService {
                     }
                     Path fileName = Paths.get(videoDirectory, loggedInUser.getEmail().concat(file.getOriginalFilename()));
                     Files.write(fileName, file.getBytes());
-                    newComment.setVideoName(fileName.getFileName().toString());
+                    newComment.setFileName(fileName.getFileName().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
