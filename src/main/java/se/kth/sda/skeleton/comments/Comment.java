@@ -48,9 +48,7 @@ public class Comment {
 
     @Lob
     private byte[] fileByte;
-
     private String fileType;
-
     private String fileName;
 
     public Comment() {
