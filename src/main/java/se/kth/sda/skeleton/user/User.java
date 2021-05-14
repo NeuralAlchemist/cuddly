@@ -1,6 +1,7 @@
 package se.kth.sda.skeleton.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
@@ -12,9 +13,6 @@ import se.kth.sda.skeleton.posts.Post;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -60,6 +58,17 @@ public class User {
 
     @Column(name = "accountType")
     private String accountType;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "buddyRelationship",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "buddyId"))
+    @JsonIgnoreProperties({"likedPosts", "likedComments"})
+    private List<User> buddiesFollowing;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments", "buddiesFollowing", "followerBuddies"})
+    private List<User> followerBuddies;
 
     // Hibernate needs a default constructor to function
     public User() {
@@ -151,5 +160,21 @@ public class User {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public List<User> getBuddiesFollowing() {
+        return buddiesFollowing;
+    }
+
+    public void setBuddiesFollowing(List<User> buddies) {
+        this.buddiesFollowing = buddies;
+    }
+
+    public List<User> getFollowerBuddies() {
+        return followerBuddies;
+    }
+
+    public void setFollowerBuddies(List<User> followerBuddies) {
+        this.followerBuddies = followerBuddies;
     }
 }
