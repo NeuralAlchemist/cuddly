@@ -1,6 +1,7 @@
 .commentlist-heading {
   font-family: 'Nunito', sans-serif;
   font-size: var(--font-size-medium);
-  color: var(--color-black-brown);
-  margin: var(--font-size-small);
+  color: var(--color-red-brown);
+  margin-top: var(--font-size-small);
+  margin-bottom: var(--font-size-small);
 }
