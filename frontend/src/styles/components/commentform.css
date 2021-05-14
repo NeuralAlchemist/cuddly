@@ -1,12 +1,3 @@
-.comment {
-  margin-right: var(--space-xx-small);
-  height: var(--space-medium);
-}
-
-.icon-container {
-  display: flex;
-}
-
 .length {
   text-align: right;
   font-size: small;

@@ -33,8 +33,8 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
       </div>
       <div>
         <p className="length">{length == null ? 0 : length}/500</p>
-        <button className="button-comment" onClick={handleSubmit}>
-          <span>Update Comment</span>
+        <button className="button" onClick={handleSubmit}>
+          Update Comment
         </button>
       </div>
     </form>
