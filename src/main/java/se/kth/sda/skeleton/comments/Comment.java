@@ -46,7 +46,6 @@ public class Comment {
 
     LocalDateTime createdTime;
 
-    @Lob
     private byte[] image;
     private String mediaType;
     private String videoName;
