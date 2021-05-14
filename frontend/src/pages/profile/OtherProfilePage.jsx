@@ -1,15 +1,16 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useParams } from "react-router-dom";
 
 // Project files
 import ProfileCard from "../../components/profile/ProfileCard";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
 import { postsState, allPosts } from "../../state/postsData";
-import {usersState, allUsers } from"../../state/usersData";
+import { usersState, allUsers } from "../../state/usersData";
 
-export default function OtherProfilePage({match}) {
+export default function OtherProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
   const postsGlobal = useRecoilValue(allPosts);
@@ -19,16 +20,18 @@ export default function OtherProfilePage({match}) {
   const [thisUser, setThisUser] = useState({});
 
   // Constants
-  const routerID = match.params.id;
-  const userProfile = usersGlobal.find((user) => user.id === routerID);
-  console.log(userProfile);
+  const { id } = useParams();
+  console.log('id', id);
+  console.log('usersGlobal', usersGlobal);
+  const userProfile = usersGlobal.find((user) => user.id == id);
+  console.log('userProfile', userProfile);
 
   // Variables
   let userPostLikes = [];
 
   // Methods
   useEffect(() => {
-    setThisUser(userProfile)
+    setThisUser(userProfile);
   }, [setThisUser, userProfile]);
 
   async function deletePost(post) {
@@ -82,10 +85,14 @@ export default function OtherProfilePage({match}) {
       <div className="user-feed">
         <h3>My posts</h3>
         {hasCreatedPosts && userPostCards}
-        {!hasCreatedPosts && <p className="prompt">You haven't created any posts yet</p>}
+        {!hasCreatedPosts && (
+          <p className="prompt">You haven't created any posts yet</p>
+        )}
         <h3>My liked posts</h3>
         {hasLikedPosts && userLikesPostCards}
-        {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
+        {!hasLikedPosts && (
+          <p className="prompt">You haven't liked any posts yet</p>
+        )}
       </div>
     </div>
   );
