@@ -1,11 +1,69 @@
-.comment-card{
-    margin: var(--space-medium) 0;
-    padding: var(--space-medium);
-    border: 2px solid var(--color-light-red);
-    border-radius: 1em;
+.comment-card {
+  margin: var(--space-medium) 0;
+  padding: var(--space-medium);
+  /* border: 0px solid var(--color-light-red); */
+  border-radius: 1em;
 }
 
-.comment-content{
-    border-top: solid 1px var(--color-light-grey);
-    padding: var(--space-small) 0;
+/* Adjustments for toggleable comments */
+
+details.comment-card summary {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+}
+details.comment-card summary::-webkit-details-marker {
+  display: none;
+}
+details.comment-card:not([open]) .comment-heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.comment-heading::after {
+  display: flex;
+  position: absolute;
+  right: 5px;
+  align-self: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+}
+details.comment-card[open] .comment-heading::after {
+  content: 'Click to hide';
+  align-content: left;
+}
+details.comment-card:not([open]) .comment-heading::after {
+  content: 'Click to show';
+}
+
+/* Adjustment for Internet Explorer */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* Resets cursor, and removes prompt text on Internet Explorer */
+  .comment-heading {
+    cursor: default;
+  }
+  details.comment-card[open] .comment-heading::after,
+  details.comment-card:not([open]) .comment-heading::after {
+    content: ' ';
+  }
+}
+
+.comment-heading {
+  display: block;
+  grid-template-columns: auto 80px;
+  align-items: center;
+  border-top: solid 1px var(--color-light-grey);
+  padding: var(--space-small) 0;
+}
+
+.delete-edit-icons {
+  display: flex;
+  justify-content: left;
+}
+
+.button-post-card.delete-icon {
+  margin: 0px;
+}
+
+.like-button.button-post-card {
+  align-items: center;
 }

@@ -1,11 +1,11 @@
 // NPM Packages
-import React, { useState } from "react";
-import CommentsApi from "../../api/CommentsApi";
-import Moment from "react-moment";
+import React, { useState } from 'react';
+import CommentsApi from '../../api/CommentsApi';
+import Moment from 'react-moment';
 
 // Components
-import CommentUpdateForm from "./CommentUpdateForm";
-import CommentLikeApi from "../../api/CommentLikeApi";
+import CommentUpdateForm from './CommentUpdateForm';
+import CommentLikeApi from '../../api/CommentLikeApi';
 
 export default function CommentCard({
   postId,
@@ -74,27 +74,16 @@ export default function CommentCard({
   }
 
   return (
-    <div className="comment-card">
-      <div className="postcard-header">
-        <div className="post-info">{commentCreatorName} commented</div>
-        <div className="delete-edit-icons">
-          {checkCommentUserEmail() && (
-            <span>
-              <button
-                className="button-post-card delete-icon"
-                onClick={handleDelete}
-              />
-              <button
-                className={`button-post-card ${toggle ? " cancel" : " active"}`}
-                onClick={() => (toggle ? setToggle(false) : setToggle(true))}
-              />
-            </span>
-          )}
+    <details className="comment-card" open>
+      <summary>
+        <div className="comment-heading">
+          <div className="post-info">{commentCreatorName} commented</div>
+
+          <Moment className="time-lapse" fromNow>
+            {comment.createdTime}
+          </Moment>
         </div>
-        <Moment className="time-lapse" fromNow>
-          {comment.createdTime}
-        </Moment>
-      </div>
+      </summary>
       <div className="word-wrap comment-content">
         {!toggle ? (
           <p>{comment.contentText}</p>
@@ -107,13 +96,32 @@ export default function CommentCard({
           </div>
         )}
       </div>
-      <button
-        onClick={commentLikeAction}
-        className={`like-button button-post-card ${
-          checkForCommentLikeUser() ? "liked" : "not-liked"
-        }`}
-      ></button>
-      <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
-    </div>
+      <div className="delete-edit-icons">
+        {checkCommentUserEmail() && (
+          <span>
+            <button
+              className="button-post-card delete-icon"
+              onClick={handleDelete}
+            />
+            <button
+              className={`button-post-card ${toggle ? ' cancel' : ' active'}`}
+              onClick={() => (toggle ? setToggle(false) : setToggle(true))}
+            />
+          </span>
+        )}
+      </div>
+      <div className="like-container">
+        <button
+          onClick={commentLikeAction}
+          className={`like-button button-post-card ${
+            checkForCommentLikeUser() ? 'liked' : 'not-liked'
+          }`}
+        ></button>
+        <span className="like-counter">
+          {' '}
+          {comment.listOfCommentLikes.length}
+        </span>
+      </div>
+    </details>
   );
 }
