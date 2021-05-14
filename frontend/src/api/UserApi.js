@@ -13,7 +13,7 @@ class UserApi {
     return Api.get('/users/' + userId);
   }
 
-  listAllUsers() {
+  getAllUsers() {
     return Api.get('/users/all');
   }
 }
