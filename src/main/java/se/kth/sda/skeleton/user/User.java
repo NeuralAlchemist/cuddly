@@ -59,14 +59,14 @@ public class User {
     @Column(name = "accountType")
     private String accountType;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "relation",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "following_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "buddyRelationship",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "buddyId"))
     @JsonIgnoreProperties({"likedPosts", "likedComments"})
     private List<User> buddiesFollowing;
 
-    @ManyToMany(mappedBy = "buddiesFollowing")
+    @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments", "buddiesFollowing", "followerBuddies"})
     private List<User> followerBuddies;
 
