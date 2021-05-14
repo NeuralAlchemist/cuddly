@@ -48,10 +48,8 @@ public class Comment {
 
     @Lob
     private byte[] image;
-
     private String mediaType;
-
-    private String videoName;
+    private String fileName;
 
     public Comment() {
     }
@@ -118,11 +116,11 @@ public class Comment {
     public void setMediaType(String imageType) {
         this.mediaType = imageType;
     }
-    public String getVideoName() {
-        return videoName;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setVideoName(String videoURL) {
-        this.videoName = videoURL;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
