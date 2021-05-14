@@ -10,5 +10,7 @@ export default function CommentList({ postId, comments, onDelete, currentUser })
     <CommentCard key={comment.id} postId={postId} comment={comment} currentUser={currentUser} onDeleteClick={onDelete} />
   ));
 
-  return <div className="CommentList">{CommentCardArray}</div>;
+  return <details className="CommentList"> 
+  <summary>Click to show all comments</summary>
+  {CommentCardArray}</details>;
 }
