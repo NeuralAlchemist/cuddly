@@ -46,6 +46,13 @@ public class Comment {
 
     LocalDateTime createdTime;
 
+    @Lob
+    private byte[] fileByte;
+
+    private String fileType;
+
+    private String fileName;
+
     public Comment() {
     }
 
@@ -96,4 +103,29 @@ public class Comment {
     public void setListOfCommentLikes(List<CommentLike> listOfCommentLikes) {
         this.listOfCommentLikes = listOfCommentLikes;
     }
+
+    public byte[] getFileByte() {
+        return fileByte;
+    }
+
+    public void setFileByte(byte[] fileByte) {
+        this.fileByte = fileByte;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+    
 }
