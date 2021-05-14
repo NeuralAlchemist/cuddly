@@ -97,7 +97,7 @@ export default function CommentCard({
       </div>
       <div className="word-wrap comment-content">
         {!toggle ? (
-          <p>{comment.contentText}</p>
+          <p className="comment-content">{comment.contentText}</p>
         ) : (
           <div>
             <CommentUpdateForm

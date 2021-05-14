@@ -1,11 +1,10 @@
-.comment-card{
-    margin: var(--space-medium) 0;
-    padding: var(--space-medium);
-    border: 2px solid var(--color-light-red);
-    border-radius: 1em;
+.comment-card {
+  margin: var(--space-medium) 0;
+  padding: var(--space-medium);
+  border: 2px solid var(--color-light-red);
+  border-radius: 1em;
 }
 
-.comment-content{
-    border-top: solid 1px var(--color-light-grey);
-    padding: var(--space-small) 0;
+.comment-content {
+  margin-top: var(--space-small);
 }
