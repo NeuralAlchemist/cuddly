@@ -24,7 +24,7 @@ export default function CommentList({
   return (
     <details className="CommentList">
       <summary className="commentlist-heading">
-        Click to show all comments
+        Show comments
       </summary>
       {CommentCardArray}
     </details>
