@@ -34,12 +34,16 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
   };
 
   const setFile = (event) => {
-    setIsFilePicked(false);
-    if(getFileSizeInMB(event.target.files[0].size) > 10){
-      alert("Files larger than 10MB are not allowed");
+    if(isFilePicked){
+      alert("Only one attachment allowed!");
     } else {
-      setContentFile(event.target.files[0]);
-      setIsFilePicked(true);
+      setIsFilePicked(false);
+      if (getFileSizeInMB(event.target.files[0].size) > 10) {
+        alert("Files larger than 10MB are not allowed");
+      } else {
+        setContentFile(event.target.files[0]);
+        setIsFilePicked(true);
+      }
     }
   };
 
