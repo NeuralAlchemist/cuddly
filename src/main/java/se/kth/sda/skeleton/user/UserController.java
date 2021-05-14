@@ -114,10 +114,6 @@ public class UserController {
         List<User> loginUserBuddies = loginUser.getBuddiesFollowing();
         List<User> targetUserFollowers = target.getFollowerBuddies();
 
-        if (loginUser.getId().equals(userid)) {
-            throw new ForbiddenException();
-        }
-
         for (User buddy : loginUserBuddies) {
             if (buddy.getId().equals(userid)) {
 
