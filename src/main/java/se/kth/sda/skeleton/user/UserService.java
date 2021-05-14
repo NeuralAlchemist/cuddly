@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.kth.sda.skeleton.exception.ForbiddenException;
+import se.kth.sda.skeleton.exception.ResourceNotFoundException;
+import se.kth.sda.skeleton.posts.Post;
 
 @Service()
 public class UserService {
@@ -45,5 +47,16 @@ public class UserService {
             userRepository.save(user);
         } else
             throw new ForbiddenException();
+    }
+
+    /**
+     * Return a user specified by id
+     * @param id id of the user to be found
+     * @return the User specified
+     * @throws ResourceNotFoundException if the user id does not exist
+     */
+    public User getUserById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return user;
     }
 }

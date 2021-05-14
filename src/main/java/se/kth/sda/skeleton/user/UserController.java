@@ -39,6 +39,17 @@ public class UserController {
     }
 
     /**
+     * Return a specific user by id.
+     *
+     * @return HTTP ok status and the user
+     */
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+        User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
+    }
+
+    /**
      * Update user name, description or accountType for logged in user
      *
      * @param userToUpdate the user name, description or accountType
