@@ -46,6 +46,10 @@ public class Comment {
 
     LocalDateTime createdTime;
 
+    private byte[] image;
+    private String mediaType;
+    private String videoName;
+
     public Comment() {
     }
 
@@ -96,4 +100,30 @@ public class Comment {
     public void setListOfCommentLikes(List<CommentLike> listOfCommentLikes) {
         this.listOfCommentLikes = listOfCommentLikes;
     }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
+    }
+    
+    
 }

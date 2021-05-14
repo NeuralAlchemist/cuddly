@@ -1,9 +1,10 @@
 package se.kth.sda.skeleton.comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -45,6 +46,17 @@ public class CommentController {
     @PostMapping("/posts/{postId}/comments")
     public ResponseEntity<Comment> createComment(@PathVariable Long postId, @RequestBody Comment comment){
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createComment(postId, comment));
+    }
+
+    /**
+     * Create a new comment with image/video
+     * @param file the contentFile to be added to the comment
+     * @param text  the contentText of the comment
+     * @return http status created and comment
+     */
+    @PostMapping("/posts/{postId}/comments/upload")
+    public ResponseEntity<Comment> createImageComment(@RequestParam("file") MultipartFile file, @RequestParam("text") String text, @PathVariable Long postId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createCommentImage(text, file, postId));
     }
 
     /**
