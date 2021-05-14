@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 >>>>>>> c3bb370 (remove empty lines)
 import React, { useState } from "react";
 import PostsApi from "../../api/PostsApi";
+<<<<<<< HEAD
 >>>>>>> 419884e (remove commented lines and console.log)
 
 <<<<<<< HEAD
@@ -22,6 +23,9 @@ import PostsApi from "../../api/PostsApi";
 import ResponsiveTextArea from '../ResponsiveTextArea';
 import FormFooter from "../FormFooter";
 
+=======
+import FormFooter from "../FormFooter";
+>>>>>>> 7ffbbd3 (Before git rebase)
 
 <<<<<<< HEAD
 export default function PostForm({ onSubmit, onSubmitMedia }) {
@@ -99,6 +103,7 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
     const [contentFile, setContentFile] = useState();
     const [isFilePicked, setIsFilePicked] = useState(false);
     const formData = new FormData();
+    const [length, setLength] = useState();
 
     // Methods
     const handleSubmit = (event) => {

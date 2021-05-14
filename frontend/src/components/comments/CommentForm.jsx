@@ -20,22 +20,19 @@ import FormFooter from "../FormFooter";
 
 export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
   // Local State
-  const [commentContentText, setCommentContentText] = React.useState("");
-  const commentObject = require("../../assets/images/comment.svg");
-  const commentURL = commentObject;
+  const [commentContentText, setCommentContentText] = useState("");
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
-  const formData = new FormData();
   const postId = post.postId;
+<<<<<<< HEAD
 >>>>>>> 4daca27 (Update the methods to insert the image on Comment Form)
 
   const [contentText, setContentText] = useState('');
+=======
+>>>>>>> 7ffbbd3 (Before git rebase)
   const [length, setLength] = useState();
-  const commentURL = require('../../assets/images/comment.svg');;
-  //const [length, setLength] = useState();
-  const [contentFile, setContentFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
   // Methods
+<<<<<<< HEAD
   /*
   const handleSubmit = () => {
     // Invoke the passed in event callback
@@ -52,52 +49,26 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
 =======
   };*/
 
+=======
+ 
+>>>>>>> 7ffbbd3 (Before git rebase)
   const handleSubmit = (event) => {
     if (isFilePicked) {
       event.preventDefault();
-      onSubmitMedia({ contentFile, contentText });
+      onSubmitMedia({ contentFile, commentContentText });
       setContentFile(null);
       setIsFilePicked(false);
     } else {
       // Invoke the passed in event callback
-      onSubmit({ contentText: contentText });
+      onSubmit({ commentContentText: commentContentText });
       // Clear the input field
-      setContentText('');
+      setCommentContentText('');
     }
 >>>>>>> e453629 (Applied stash from main)
   };
 
- const handleSubmit = (event) => {
-    if (isFilePicked) {
-        handleImagePostSubmit(event);
-      } else {
-      // Invoke the passed in event callback
-        onSubmit({ commentContentText: commentContentText });
-      }
-      // Clear the input field
-      setCommentContentText("");
-  };
-
-  const handleImagePostSubmit = (event) => {
-      event.preventDefault();
-      formData.append("file", contentFile);
-      formData.append("text", commentContentText);
-      CommentsApi.createImageComment(postId, formData).catch((err) => {
-          alert("FAILED");
-          console.error(err);
-      });
-      setContentFile(null);
-      setIsFilePicked(false);
-      window.location.reload();
-  };
-
-  const setCommentFile = async (event) => {
-      setContentFile(event.target.files[0]);
-      setIsFilePicked(true);
-      console.log(`selected file is now: ${event.target.files[0]}`);
-  };
   const onFormContentChange = (value) => {
-    setContentText(value);
+    setCommentContentText(value);
     setLength(value.length);
   };
 
@@ -111,6 +82,7 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
       <div className="form-field">
         <ResponsiveTextArea
           placeholder="Write your comment here."
+<<<<<<< HEAD
 <<<<<<< HEAD
           contentText={commentContentText}
           onFormContentChange={onFormContentChange}
@@ -136,6 +108,9 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
 >>>>>>> 4daca27 (Update the methods to insert the image on Comment Form)
 =======
           contentText={contentText}
+=======
+          contentText={commentContentText}
+>>>>>>> 7ffbbd3 (Before git rebase)
           onFormContentChange={onFormContentChange}
           maxLength="500"
         />
