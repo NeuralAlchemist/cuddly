@@ -249,7 +249,8 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
 =======
 >>>>>>> db5676e (force reload after image upload)
     return (
-        <div className="postform-container">
+ <div>
+     <div className="postform-container">
             <form className="postform">
                 <div className="postform-field">
                     <textarea
@@ -259,13 +260,22 @@ export default function PostForm({ onSubmit, onImagePostSubmit }) {
                         onChange={(e) => setContentText(e.target.value)}
                     />
                 </div>
-                <input type="file" onChange={setFile} />
-                <button className="button-post" onClick={handleSubmit}>
-                    <img className="post" src={postURL} alt="Post" />
-                    <span>Post</span>
-                </button>
             </form>
         </div>
+<<<<<<< HEAD
     );
 >>>>>>> 419884e (remove commented lines and console.log)
+=======
+        <FormFooter
+          isFilePicked={isFilePicked}
+          contentFile={contentFile}
+          length={length}
+          setFile={setFile}
+          handleSubmit={handleSubmit}
+          action="Post"
+          maxLength="1000"
+        />
+ </div>
+  );
+>>>>>>> e453629 (Applied stash from main)
 }

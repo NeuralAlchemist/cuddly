@@ -6,6 +6,11 @@ export default function FormFooter({
   length,
   setFile,
   handleSubmit,
+<<<<<<< HEAD
+=======
+  action,
+  maxLength,
+>>>>>>> e453629 (Applied stash from main)
 }) {
   
   // Method
@@ -27,11 +32,19 @@ export default function FormFooter({
             📎 {isFilePicked ? getNiceName(16) : "nothing selected"}
           </span>
         </div>
+<<<<<<< HEAD
         <p className="length">{length == null ? 0 : length}/1000</p>
       </div>
       <div className="form-footer">
         <button className="button-post" onClick={handleSubmit}>
           Post
+=======
+        <p className="length">{length == null ? 0 : length}/{maxLength}</p>
+      </div>
+      <div className="form-footer">
+        <button className="button-post" onClick={handleSubmit}>
+        {action}
+>>>>>>> e453629 (Applied stash from main)
         </button>
         <div className="form-footer-extras">
           <input

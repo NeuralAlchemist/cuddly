@@ -1,5 +1,6 @@
 // NPM Packages
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import ResponsiveTextArea from '../ResponsiveTextArea';
 
@@ -11,8 +12,13 @@ export default function CommentForm({ post, onSubmit }) {
 =======
 import React, { useState } from "react";
 import CommentsApi from "../../api/CommentsApi";
+=======
+import React, { useState } from 'react';
+import ResponsiveTextArea from '../ResponsiveTextArea';
+import FormFooter from "../FormFooter";
+>>>>>>> e453629 (Applied stash from main)
 
-export default function CommentForm({ post, onSubmit }) {
+export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
   // Local State
   const [commentContentText, setCommentContentText] = React.useState("");
   const commentObject = require("../../assets/images/comment.svg");
@@ -23,6 +29,12 @@ export default function CommentForm({ post, onSubmit }) {
   const postId = post.postId;
 >>>>>>> 4daca27 (Update the methods to insert the image on Comment Form)
 
+  const [contentText, setContentText] = useState('');
+  const [length, setLength] = useState();
+  const commentURL = require('../../assets/images/comment.svg');;
+  //const [length, setLength] = useState();
+  const [contentFile, setContentFile] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
   // Methods
   /*
   const handleSubmit = () => {
@@ -31,13 +43,29 @@ export default function CommentForm({ post, onSubmit }) {
 
     // Clear the input field
     setCommentContentText('');
+<<<<<<< HEAD
   };
 
   const onFormContentChange = (value) => {
     setCommentContentText(value);
     setLength(value.length);
+=======
+  };*/
+
+  const handleSubmit = (event) => {
+    if (isFilePicked) {
+      event.preventDefault();
+      onSubmitMedia({ contentFile, contentText });
+      setContentFile(null);
+      setIsFilePicked(false);
+    } else {
+      // Invoke the passed in event callback
+      onSubmit({ contentText: contentText });
+      // Clear the input field
+      setContentText('');
+    }
+>>>>>>> e453629 (Applied stash from main)
   };
-*/
 
  const handleSubmit = (event) => {
     if (isFilePicked) {
@@ -68,12 +96,22 @@ export default function CommentForm({ post, onSubmit }) {
       setIsFilePicked(true);
       console.log(`selected file is now: ${event.target.files[0]}`);
   };
+  const onFormContentChange = (value) => {
+    setContentText(value);
+    setLength(value.length);
+  };
+
+  const setFile = (event) => {
+    setContentFile(event.target.files[0]);
+    setIsFilePicked(true);
+  };
 
   return (
     <form>
       <div className="form-field">
         <ResponsiveTextArea
           placeholder="Write your comment here."
+<<<<<<< HEAD
           contentText={commentContentText}
           onFormContentChange={onFormContentChange}
           maxLength="500"
@@ -96,6 +134,22 @@ export default function CommentForm({ post, onSubmit }) {
               </button>
         </div>
 >>>>>>> 4daca27 (Update the methods to insert the image on Comment Form)
+=======
+          contentText={contentText}
+          onFormContentChange={onFormContentChange}
+          maxLength="500"
+        />
+      </div>
+      <FormFooter
+          isFilePicked={isFilePicked}
+          contentFile={contentFile}
+          length={length}
+          setFile={setFile}
+          handleSubmit={handleSubmit}
+          action="Comment"
+          maxLength="500"
+        />
+>>>>>>> e453629 (Applied stash from main)
     </form>
   );
 }
