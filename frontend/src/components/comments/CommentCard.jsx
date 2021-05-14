@@ -1,11 +1,11 @@
 // NPM Packages
-import React, { useState } from "react";
-import CommentsApi from "../../api/CommentsApi";
-import Moment from "react-moment";
+import React, { useState } from 'react';
+import CommentsApi from '../../api/CommentsApi';
+import Moment from 'react-moment';
 
 // Components
-import CommentUpdateForm from "./CommentUpdateForm";
-import CommentLikeApi from "../../api/CommentLikeApi";
+import CommentUpdateForm from './CommentUpdateForm';
+import CommentLikeApi from '../../api/CommentLikeApi';
 
 export default function CommentCard({
   postId,
@@ -85,7 +85,7 @@ export default function CommentCard({
                 onClick={handleDelete}
               />
               <button
-                className={`button-post-card ${toggle ? " cancel" : " active"}`}
+                className={`button-post-card ${toggle ? ' cancel' : ' active'}`}
                 onClick={() => (toggle ? setToggle(false) : setToggle(true))}
               />
             </span>
@@ -108,13 +108,16 @@ export default function CommentCard({
         )}
       </div>
       <div className="like-container">
-      <button
-        onClick={commentLikeAction}
-        className={`like-button button-post-card ${
-          checkForCommentLikeUser() ? "liked" : "not-liked"
-        }`}
-      ></button>
-      <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
+        <button
+          onClick={commentLikeAction}
+          className={`like-button button-post-card ${
+            checkForCommentLikeUser() ? 'liked' : 'not-liked'
+          }`}
+        ></button>
+        <span className="like-counter">
+          {' '}
+          {comment.listOfCommentLikes.length}
+        </span>
       </div>
     </div>
   );
