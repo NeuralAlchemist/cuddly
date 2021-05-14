@@ -107,6 +107,7 @@ export default function CommentCard({
           </div>
         )}
       </div>
+      <div className="like-container">
       <button
         onClick={commentLikeAction}
         className={`like-button button-post-card ${
@@ -114,6 +115,7 @@ export default function CommentCard({
         }`}
       ></button>
       <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
+      </div>
     </div>
   );
 }
