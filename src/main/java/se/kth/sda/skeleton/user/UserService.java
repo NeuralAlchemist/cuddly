@@ -7,6 +7,9 @@ import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service()
 public class UserService {
     @Autowired
@@ -51,6 +54,7 @@ public class UserService {
 
     /**
      * Return a user specified by id
+     *
      * @param id id of the user to be found
      * @return the User specified
      * @throws ResourceNotFoundException if the user id does not exist
@@ -58,5 +62,15 @@ public class UserService {
     public User getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return user;
+    }
+
+    /**
+     * Returns a list of all users
+     *
+     * @return list of all users
+     */
+    public List<User> listAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users;
     }
 }

@@ -39,7 +39,7 @@ public class UserController {
     }
 
     /**
-     * Return a specific user by id.
+     * Gets a specific user by id.
      *
      * @return HTTP ok status and the user
      */
@@ -47,6 +47,16 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
         User user = userService.getUserById(userId);
         return ResponseEntity.ok(user);
+    }
+
+    /**
+     * Gets all users
+     *
+     * @return HTTP ok status and list of users
+     */
+    @GetMapping("/users/all")
+    public ResponseEntity<List<User>> listAllUsers() {
+        return ResponseEntity.ok(userService.listAllUsers());
     }
 
     /**
