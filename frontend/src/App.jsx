@@ -38,9 +38,6 @@ export default function App() {
               <Route exact path="/">
                 <PostsPage />
               </Route>
-              <Route path="/profile" exact>
-                <ProfilePage />
-              </Route>
               <Route path="/profile/:id" exact component={ProfilePage} />
             </React.Suspense>
           </Switch>
