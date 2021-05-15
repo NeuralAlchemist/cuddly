@@ -8,7 +8,6 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
   // Local State
   const [contentText, setContentText] = useState("");
   const [length, setLength] = useState();
-  const commentURL = require("../../assets/images/comment.svg");
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   // Methods
@@ -63,6 +62,7 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
         setFile={setFile}
         handleSubmit={handleSubmit}
         buttonText="Comment"
+        maxFormTextLength="500"
       />
     </form>
   );
