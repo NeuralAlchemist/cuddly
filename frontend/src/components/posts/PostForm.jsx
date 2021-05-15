@@ -72,7 +72,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
           setFile={setFile}
           handleSubmit={handleSubmit}
           maxFormTextLength="1000"
-          buttonText="post"
+          buttonText="Post"
         />
       </form>
     </div>
