@@ -121,7 +121,7 @@ export default function CommentCard({
       )}
       {hasVideo && (
         <ReactPlayer
-          url={require(`../../videos/${comment.videoName}`)}
+          url={require(`../../videos/comment/${comment.videoName}`)}
           width="100%"
           height="100%"
           controls={true}
