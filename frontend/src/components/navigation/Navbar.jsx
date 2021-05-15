@@ -7,7 +7,6 @@ export default function Navbar({ onLogout }) {
   const logoURL = require('../../assets/images/logo.svg');
   const homeURL = require('../../assets/images/homepage.svg');
   const userURL = require('../../assets/images/user.svg');
-  // const bellURL = require('../../assets/images/bell.svg');
   const logoutURL = require('../../assets/images/logout.svg');
 
   return (
@@ -24,10 +23,6 @@ export default function Navbar({ onLogout }) {
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
-
-        {/* <Link to="/notification">
-          <img className="notification" src={bellURL} alt="Notification" />
-        </Link> */}
 
         <Link onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
