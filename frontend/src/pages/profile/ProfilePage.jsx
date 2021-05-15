@@ -18,30 +18,42 @@ export default function ProfilePage() {
   const usersGlobal = useRecoilValue(allUsers);
 
   // Local state
-  const [thisUser, setThisUser] = useState({});
+  const [userWithProfile, setUserWithProfile] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [isUsersProfile, setIsUsersProfile] = useState(false);
 
   // Constants
   const { id } = useParams();
-  console.log("id", id);
-  console.log("usersGlobal", usersGlobal);
-  const userProfile = usersGlobal.find((user) => user.id == id);
-  console.log("userProfile", userProfile);
 
   // Variables
   let userPostLikes = [];
 
   // Methods
   useEffect(() => {
+    UserApi.getUser()
+      .then(({ data }) => {
+        setLoggedInUser(data);        
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    console.log('logged in ', loggedInUser);
     if (id === "mine") {
-      UserApi.getUser()
-        .then(({ data }) => {
-          setThisUser(data);
-        })
-        .catch((err) => console.error(err));
+      setUserWithProfile(loggedInUser);
+      setUserWithProfile(loggedInUser);
+      setIsUsersProfile(true);
     } else {
-      setThisUser(userProfile);
+      const userProfile = usersGlobal.find((user) => user.id == id);
+      console.log("userProfile", userProfile);
+      setUserWithProfile(userProfile);
+      if (userProfile === loggedInUser) {
+        setIsUsersProfile(true);
+      }
     }
-  }, [setThisUser, userProfile, id]);
+  }, [setUserWithProfile, id, usersGlobal, loggedInUser]);
+
+
 
   async function deletePost(post) {
     try {
@@ -56,19 +68,19 @@ export default function ProfilePage() {
 
   // Components
   const userPostCards = postsGlobal
-    .filter((post) => thisUser.id === post.relatedPostUser.id)
+    .filter((post) => userWithProfile.id === post.relatedPostUser.id)
     .map((post) => (
       <PostCard
         key={post.id}
         post={post}
-        currentUser={thisUser}
+        currentUser={loggedInUser}
         onDeleteClick={() => deletePost(post)}
       />
     ));
 
   for (let i = 0; i < postsGlobal.length; i++) {
     for (let j = 0; j < postsGlobal[i].listOfLikes.length; j++) {
-      if (postsGlobal[i].listOfLikes[j].likedUser.id === thisUser.id) {
+      if (postsGlobal[i].listOfLikes[j].likedUser.id === userWithProfile.id) {
         userPostLikes.push(postsGlobal[i]);
       }
     }
@@ -78,16 +90,17 @@ export default function ProfilePage() {
     <PostCard
       key={post.id}
       post={post}
-      currentUser={thisUser}
+      currentUser={loggedInUser}
       onDeleteClick={() => deletePost(post)}
     />
   ));
 
   return (
     <Profile
-      thisUser={thisUser}
+      thisUser={userWithProfile}
       userPostCards={userPostCards}
       userLikesPostCards={userLikesPostCards}
+      isLoggedInUser={isUsersProfile}
     />
   );
 }

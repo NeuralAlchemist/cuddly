@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
-export default function ProfileCard({ thisUser }) {
+export default function ProfileCard({ thisUser, isLoggedInUser }) {
   // Local state
   const [toggleEdit, setToggleEdit] = useState(false);
 
@@ -28,14 +28,16 @@ export default function ProfileCard({ thisUser }) {
           <img className="user-avatar" src={userURL} alt="User" />
           <h2 className="name">{thisUser.name}</h2>
         </div>
-        <button
-          className="button edit-profile"
-          onClick={() =>
-            toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
-          }
-        >
-          {toggleEdit ? "Cancel edit" : "Edit profile"}
-        </button>
+        {isLoggedInUser && (
+          <button
+            className="button edit-profile"
+            onClick={() =>
+              toggleEdit ? setToggleEdit(false) : setToggleEdit(true)
+            }
+          >
+            {toggleEdit ? "Cancel edit" : "Edit profile"}
+          </button>
+        )}
         {!toggleEdit && (
           <section>
             <div className="profile-field-pair">
