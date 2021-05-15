@@ -1,13 +1,13 @@
 // NPM Packages
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ onLogout }) {
   // Constants
-  const logoURL = require('../../assets/images/logo.svg');
-  const homeURL = require('../../assets/images/homepage.svg');
-  const userURL = require('../../assets/images/user.svg');
-  const logoutURL = require('../../assets/images/logout.svg');
+  const logoURL = require("../../assets/images/logo.svg");
+  const homeURL = require("../../assets/images/homepage.svg");
+  const userURL = require("../../assets/images/user.svg");
+  const logoutURL = require("../../assets/images/logout.svg");
 
   return (
     <nav className="navbar">
@@ -24,15 +24,15 @@ export default function Navbar({ onLogout }) {
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
 
-        <Link onClick={onLogout}>
+        <Link to="/" onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
 
-        <div className="logout-button-container">
+        <Link to="/" className="logout-button-container">
           <button className="button" onClick={onLogout}>
             Logout
           </button>
-        </div>
+        </Link>
 
         {/* <input type="text" class="searchTerm" id="input_text"></input>
         <button className="button-search" type="search">
