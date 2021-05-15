@@ -46,8 +46,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     }
   };
 
-  console.log(contentFile);
-
   return (
     <div className="form-container">
       <form className="form">
