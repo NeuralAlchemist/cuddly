@@ -10,6 +10,7 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
   const [length, setLength] = useState();
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
+  
   // Methods
   const handleSubmit = (event) => {
     if (isFilePicked) {
