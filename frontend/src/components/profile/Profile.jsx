@@ -27,7 +27,7 @@ export default function Profile({
             <a href="/posts" className="post-link">
               posts
             </a>{" "}
-            to see them here
+            to see them here!
           </p>
         )}
         <h3>Liked posts</h3>
@@ -38,7 +38,7 @@ export default function Profile({
             <a href="/posts" className="post-link">
               posts
             </a>{" "}
-            to see them here
+            to see them here!
           </p>
         )}
       </div>
