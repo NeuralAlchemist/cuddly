@@ -1,6 +1,7 @@
 // NPM Packages
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../search/SearchBar";
 
 export default function Navbar({ onLogout }) {
   // Constants
@@ -8,7 +9,7 @@ export default function Navbar({ onLogout }) {
   const homeURL = require("../../assets/images/homepage.svg");
   const userURL = require("../../assets/images/user.svg");
   const logoutURL = require("../../assets/images/logout.svg");
-
+  
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -23,6 +24,8 @@ export default function Navbar({ onLogout }) {
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
+
+        <SearchBar />
 
         <Link to="/" onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
