@@ -41,7 +41,6 @@ export default function ProfilePage() {
     console.log('logged in ', loggedInUser);
     if (id === "mine") {
       setUserWithProfile(loggedInUser);
-      setUserWithProfile(loggedInUser);
       setIsUsersProfile(true);
     } else {
       const userProfile = usersGlobal.find((user) => user.id == id);
