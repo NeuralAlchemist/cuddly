@@ -38,13 +38,11 @@ export default function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    console.log('logged in ', loggedInUser);
     if (id === "mine") {
       setUserWithProfile(loggedInUser);
       setIsUsersProfile(true);
     } else {
       const userProfile = usersGlobal.find((user) => user.id == id);
-      console.log("userProfile", userProfile);
       setUserWithProfile(userProfile);
       if (userProfile === loggedInUser) {
         setIsUsersProfile(true);
