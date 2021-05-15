@@ -4,7 +4,7 @@ import React from "react";
 // Project files
 import ProfileCard from "./ProfileCard";
 
-export default function ProfilePage({thisUser, userPostCards, userLikesPostCards, isLoggedInUser}) {
+export default function Profile({thisUser, userPostCards, userLikesPostCards, isLoggedInUser}) {
 
   // Constants
   const hasCreatedPosts = userPostCards.length > 0;
