@@ -19,7 +19,7 @@ export default function FormFooter({
   }
   return (
     <>
-      <div className="media-name-character-limit-display">
+      <div className={`media-name-character-limit-display ${buttonText}`}>
         <div className={`${isFilePicked ? "file-selected" : "no-file"}`}>
           <span role="img" aria-label="file pin" className="media-name-full">
             📎 {isFilePicked ? getNiceName(35) : "nothing selected"}
@@ -36,31 +36,37 @@ export default function FormFooter({
         <button
           className="button-post"
           onClick={handleSubmit}
-          disabled={length == null || length == 0}
+          disabled={length === null || length === 0}
         >
           {buttonText}
         </button>
         <div className="form-footer-extras">
           <input
             hidden
-            id="pick-media-image"
+            id={`pick-media-image ${buttonText}`}
             className="pick-media"
             type="file"
             onChange={setFile}
             accept="image/*"
           />
-          <label htmlFor="pick-media-image" className="proxy-button pick-image">
+          <label
+            htmlFor={`pick-media-image ${buttonText}`}
+            className="proxy-button pick-image"
+          >
             <span className="tooltiptext">pick image</span>
           </label>
           <input
             hidden
-            id="pick-media-video"
+            id={`pick-media-video ${buttonText}`}
             className="pick-media"
             type="file"
             onChange={setFile}
             accept="video/*"
           />
-          <label htmlFor="pick-media-video" className="proxy-button pick-video">
+          <label
+            htmlFor={`pick-media-video ${buttonText}`}
+            className="proxy-button pick-video"
+          >
             <div></div>
             <span className="tooltiptext">pick video</span>
           </label>

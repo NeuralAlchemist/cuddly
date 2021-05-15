@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import CommentsApi from "../../api/CommentsApi";
 import Moment from "react-moment";
+import ReactPlayer from "react-player";
 
 // Components
 import CommentUpdateForm from "./CommentUpdateForm";
@@ -15,6 +16,10 @@ export default function CommentCard({
 }) {
   // Local State
   const [toggle, setToggle] = useState(false);
+  const hasImage =
+    comment.mediaType == null ? false : comment.mediaType.includes("image");
+  const hasVideo =
+    comment.mediaType == null ? false : comment.mediaType.includes("video");
 
   // Constants
   const commentCreatorName = comment.relatedCommentUser.name;
@@ -107,6 +112,21 @@ export default function CommentCard({
           </div>
         )}
       </div>
+      {hasImage && (
+        <img
+          src={`data:${comment.imageType};base64, ${comment.image}`}
+          height="100%"
+          width="100%"
+        />
+      )}
+      {hasVideo && (
+        <ReactPlayer
+          url={require(`../../videos/comment/${comment.videoName}`)}
+          width="100%"
+          height="100%"
+          controls={true}
+        />
+      )}
       <button
         onClick={commentLikeAction}
         className={`like-button button-post-card ${

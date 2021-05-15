@@ -46,6 +46,19 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     }
   }
 
+  async function createImageMedia(postId, imageFile) {
+    try {
+      let formData = new FormData();
+      console.log(imageFile);
+      formData.append("file", imageFile.contentFile);
+      formData.append("text", imageFile.contentText);
+      await CommentsApi.createImageComment(postId, formData);
+    } catch (e) {
+      console.error(e);
+    }
+    window.location.reload();
+  }
+
   async function deleteComment(postId, commentToDelete) {
     try {
       await CommentsApi.deleteComment(postId, commentToDelete.id);
@@ -174,7 +187,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           currentUser={currentUser}
           onDelete={deleteComment}
         />
-        <CommentForm post={post} onSubmit={createComment} />
+        <CommentForm post={post} onSubmit={createComment} onSubmitMedia={createImageMedia}/>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // Project Files
 import ResponsiveTextArea from "../ResponsiveTextArea";
 import FormFooter from "../FormFooter";
+import getFileSizeInMB from "../../functions/getFileSizeInMB";
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
@@ -44,15 +45,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       setIsFilePicked(true);
     }
   };
-
-  function getFileSizeInMB(bytes) {
-    if (bytes === 0) {
-      return 0;
-    } else {
-      return bytes / Math.pow(10, 6).toFixed(1);
-    }
-  }
-  console.log(contentFile);
 
   return (
     <div className="form-container">
