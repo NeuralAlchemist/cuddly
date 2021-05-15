@@ -47,6 +47,7 @@
 
 .logout-button-container {
   display: none;
+  text-decoration: none;
 }
 
 .button {
