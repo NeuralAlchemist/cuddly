@@ -16,6 +16,11 @@ export default function CommentCard({
 }) {
   // Local State
   const [toggle, setToggle] = useState(false);
+  const [likes, setLikes] = useState(comment.listOfCommentLikes.length);
+  const [listOfCommentLikedUsers, setListOfCommentLikedUsers] = useState(
+    comment.listOfCommentLikes.map(
+    (commentLike) => commentLike.likedCommentUser
+  ));
   const hasImage =
     comment.mediaType == null ? false : comment.mediaType.includes("image");
   const hasVideo =
@@ -24,9 +29,6 @@ export default function CommentCard({
   // Constants
   const commentCreatorName = comment.relatedCommentUser.name;
   const commentCreatorEmail = comment.relatedCommentUser.email;
-  const listOfCommentLikedUsers = comment.listOfCommentLikes.map(
-    (commentLike) => commentLike.likedCommentUser
-  );
 
   // Methods
   const handleDelete = () => {
@@ -45,6 +47,10 @@ export default function CommentCard({
   async function addCommentLike() {
     try {
       await CommentLikeApi.addCommentLike(comment.id);
+      const newLikes = likes+1;
+      setLikes(newLikes);
+      const newListOfCommentLikedUsers = listOfCommentLikedUsers.concat(currentUser);
+      setListOfCommentLikedUsers(newListOfCommentLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -53,6 +59,10 @@ export default function CommentCard({
   async function removeCommentLike() {
     try {
       await CommentLikeApi.removeCommentLike(comment.id);
+      const newLikes = likes-1;
+      setLikes(newLikes);
+      const newListOfCommentLikedUsers = listOfCommentLikedUsers.filter((p) => p.email !== currentUser.email);
+      setListOfCommentLikedUsers(newListOfCommentLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -64,7 +74,6 @@ export default function CommentCard({
     } else {
       addCommentLike();
     }
-    window.location.reload();
   }
 
   function checkCommentUserEmail() {
@@ -133,7 +142,7 @@ export default function CommentCard({
           checkForCommentLikeUser() ? "liked" : "not-liked"
         }`}
       ></button>
-      <span className="like-counter"> {comment.listOfCommentLikes.length}</span>
+      <span className="like-counter"> {likes}</span>
     </div>
   );
 }
