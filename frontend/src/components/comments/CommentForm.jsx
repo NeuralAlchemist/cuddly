@@ -62,7 +62,7 @@ export default function CommentForm({ post, onSubmit, onSubmitMedia }) {
         length={length}
         setFile={setFile}
         handleSubmit={handleSubmit}
-        buttonText="Comment"
+        buttonText={`comment ${post.id}`}
         maxFormTextLength="500"
       />
     </form>
