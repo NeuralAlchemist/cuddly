@@ -80,12 +80,12 @@ public class PostController {
      * Update a post based on ID
      *
      * @param postId ID of the post to edit
-     * @param updatedPost newly created body to update the post
+     * @param contentText  body content to be updated to the post
      * @return status 200 and updated post
      */
     @PutMapping("/{postId}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long postId, @RequestBody Post updatedPost) {
-        Post post = postService.updatePost(postId, updatedPost);
+    public ResponseEntity<Post> updatePost(@PathVariable Long postId, @RequestParam("text") String contentText) {
+        Post post = postService.updatePost2(postId, contentText);
         return ResponseEntity.ok(post);
     }
 

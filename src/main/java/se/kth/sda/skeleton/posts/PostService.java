@@ -134,24 +134,17 @@ public class PostService {
      * Update a post based on ID
      *
      * @param id          ID of the post to edit
-     * @param updatedPost newly created body to update the post
+     * @param contentText  body content to be updated to the post
      * @return updated post
      */
-    public Post updatePost(Long id, Post updatedPost) {
+    public Post updatePost2(Long id, String contentText){
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        LocalDateTime createdTime = LocalDateTime.now();
         String loggedInUserEmail = authService.getLoggedInUserEmail();
-
-        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
         if (!loggedInUserEmail.equals(post.getRelatedPostUser().getEmail())) {
             throw new ForbiddenException();
         }
-        updatedPost.setId(id);
-        updatedPost.setCreatedTime(createdTime);
-        updatedPost.setRelatedPostUser(loggedInUser);
-
-        Post newPost = postRepository.save(updatedPost);
-        return newPost;
+        post.setContentText(contentText);
+        return postRepository.save(post);
     }
 
     /**
