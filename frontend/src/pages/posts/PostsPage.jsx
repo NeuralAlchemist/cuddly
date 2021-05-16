@@ -31,12 +31,16 @@ export default function PostsPage() {
       console.log(imageFile);
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
-      await PostsApi.createImagePost(formData);
+      const response = await PostsApi.createImagePost(formData);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      const currPost = newPosts.pop();
+      newPosts.unshift(currPost);
       await new Promise((r) => setTimeout(r, 1000));
+      setPosts(newPosts);
     } catch (e) {
       console.error(e);
     }
-    window.location.reload()
   }
 
   async function deletePost(post) {
@@ -50,6 +54,7 @@ export default function PostsPage() {
   }
 
   useEffect(() => {
+    console.log("GETTING ALL POSTS");
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
