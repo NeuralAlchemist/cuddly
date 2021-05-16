@@ -18,7 +18,6 @@ export default function PostsPage() {
       const response = await PostsApi.createPost(postData);
       const post = response.data;
       const newPosts = posts.concat(post);
-
       setPosts(newPosts);
     } catch (e) {
       console.error(e);
@@ -72,6 +71,7 @@ export default function PostsPage() {
   }
 
   useEffect(() => {
+    console.log("fetching all posts")
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
