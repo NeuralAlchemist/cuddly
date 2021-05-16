@@ -53,6 +53,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
       await CommentsApi.createImageComment(postId, formData);
+      await new Promise((r) => setTimeout(r, 1000));
     } catch (e) {
       console.error(e);
     }
