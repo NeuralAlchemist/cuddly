@@ -30,9 +30,13 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     post.mediaType == null ? false : post.mediaType.includes("video");
 
   // Methods
-  async function updatePost(updatedPost) {
+  async function updatePost(contentText) {
     try {
-      await PostsApi.updatePost(updatedPost, post.id);
+      let formData = new FormData();
+      console.log(contentText);
+      formData.append("text", contentText);
+      console.log(formData);
+      await PostsApi.updatePost(formData, postId);
     } catch (e) {
       console.error(e);
     }
@@ -162,7 +166,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
             <div>
               <span>
                 <PostUpdateForm
-                  onSubmit={(postData) => updatePost(postData)}
+                  onSubmit={updatePost}
                   post={post}
                 />
               </span>
