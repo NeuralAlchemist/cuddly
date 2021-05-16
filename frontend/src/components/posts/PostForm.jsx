@@ -9,7 +9,7 @@ import getFileSizeInMB from "../../functions/getFileSizeInMB";
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
   const [contentText, setContentText] = useState("");
-  const [length, setLength] = useState();
+  const [length, setLength] = useState(0);
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
@@ -24,8 +24,9 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
       // Clear the input field
-      setContentText("");
+      
     }
+    setContentText("");
   };
 
   const onFormContentChange = (value) => {
