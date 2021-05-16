@@ -16,12 +16,14 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
   const [likes, setLikes] = useState(post.listOfLikes.length);
+  const [listOfLikedUsers, setListOfLikedUsers] = useState(
+    post.listOfLikes.map((like) => like.likedUser)
+  );
 
   // Constants
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
   const postCreatorEmail = post.relatedPostUser.email;
-  const [listOfLikedUsers,setListOfLikedUsers] = useState(post.listOfLikes.map((like) => like.likedUser));
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
@@ -88,7 +90,6 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       setLikes(newLikes);
       const newListOfLikedUsers = listOfLikedUsers.concat(currentUser);
       setListOfLikedUsers(newListOfLikedUsers);
-      console.log(listOfLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -99,8 +100,9 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       await PostLikeApi.removeLike(postId);
       const newLikes = likes - 1;
       setLikes(newLikes);
-      const newListOfLikedUsers = listOfLikedUsers.filter((p) => p.email !== currentUser.email);
-      console.log(newListOfLikedUsers);
+      const newListOfLikedUsers = listOfLikedUsers.filter(
+        (p) => p.email !== currentUser.email
+      );
       setListOfLikedUsers(newListOfLikedUsers);
     } catch (e) {
       console.error(e);
@@ -198,7 +200,11 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           currentUser={currentUser}
           onDelete={deleteComment}
         />
-        <CommentForm post={post} onSubmit={createComment} onSubmitMedia={createImageMedia}/>
+        <CommentForm
+          post={post}
+          onSubmit={createComment}
+          onSubmitMedia={createImageMedia}
+        />
       </div>
     </div>
   );
