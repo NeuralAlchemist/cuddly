@@ -25,19 +25,42 @@ export default function PostsPage() {
     }
   }
 
+  /* async function createPostMedia(imageFile) {
+    try {
+      let formData = new FormData();
+      console.log(imageFile);
+      formData.append("file", imageFile.contentFile);
+      formData.append("text", imageFile.contentText);
+      const response = await PostsApi.createImagePost(formData);
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      const currPost = newPosts.pop();
+      newPosts.unshift(currPost);
+      setPosts(newPosts);
+    } catch (e) {
+      console.error(e);
+    }
+  } */
+
   async function createPostMedia(imageFile) {
     try {
       let formData = new FormData();
       console.log(imageFile);
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
-      await PostsApi.createImagePost(formData);
+      const response = await PostsApi.createImagePost(formData);
+      // Sleep for one second before setting the returned post
+      await new Promise((r) => setTimeout(r, 1000));
+      const post = response.data;
+      const newPosts = posts.concat(post);
+      const currPost = newPosts.pop();
+      newPosts.unshift(currPost);
+      
+      setPosts(newPosts);
     } catch (e) {
       console.error(e);
     }
-    window.location.reload()
   }
-
   async function deletePost(post) {
     try {
       await PostsApi.deletePost(post.id);
