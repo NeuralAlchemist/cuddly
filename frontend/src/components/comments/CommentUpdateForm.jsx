@@ -11,7 +11,7 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
   // Methods
   const handleSubmit = () => {
     // Invoke the passed in event callback
-    onSubmit({ contentText: contentText });
+    onSubmit(contentText);
 
     // Clear the input field
     setContentText('');

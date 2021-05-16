@@ -36,9 +36,13 @@ export default function CommentCard({
     onDeleteClick(postId, comment);
   };
 
-  async function updateComment(updatedComment) {
+  async function updateComment(contentText) {
     try {
-      await CommentsApi.updateComment(postId, comment.id, updatedComment);
+      let formData = new FormData();
+      console.log(contentText);
+      formData.append("text", contentText);
+      console.log(formData);
+      await CommentsApi.updateComment(postId, comment.id, formData);
     } catch (e) {
       console.error(e);
     }
@@ -115,7 +119,7 @@ export default function CommentCard({
         ) : (
           <div>
             <CommentUpdateForm
-              onSubmit={(commentData) => updateComment(commentData)}
+              onSubmit={updateComment}
               comment={comment}
             />
           </div>
