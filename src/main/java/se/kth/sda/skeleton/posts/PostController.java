@@ -85,7 +85,7 @@ public class PostController {
      */
     @PutMapping("/{postId}")
     public ResponseEntity<Post> updatePost(@PathVariable Long postId, @RequestParam("text") String contentText) {
-        Post post = postService.updatePost2(postId, contentText);
+        Post post = postService.updatePost(postId, contentText);
         return ResponseEntity.ok(post);
     }
 

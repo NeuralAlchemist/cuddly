@@ -137,7 +137,7 @@ public class PostService {
      * @param contentText  body content to be updated to the post
      * @return updated post
      */
-    public Post updatePost2(Long id, String contentText){
+    public Post updatePost(Long id, String contentText){
         Post post = postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         String loggedInUserEmail = authService.getLoggedInUserEmail();
         if (!loggedInUserEmail.equals(post.getRelatedPostUser().getEmail())) {
