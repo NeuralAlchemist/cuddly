@@ -1,5 +1,5 @@
 // NPM Packages
-import React from "react";
+import React, {useState} from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Project files
@@ -13,9 +13,10 @@ export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
   const postsGlobal = useRecoilValue(allPosts);
-
-
   const currentUserGlobal = useRecoilValue(currentUserValue);
+
+  // Local State
+  const [buddiesPosts, setBuddiesPosts] = useState(currentUserGlobal.buddiesFollowing.map(buddy => buddy.createdPosts));
 
   // Variables
   let userPostLikes = [];
@@ -62,6 +63,20 @@ export default function ProfilePage() {
     />
   ));
 
+    const buddiesPostCards = buddiesPosts.map(arr => arr.map(post => 
+      <PostCard
+      key={post.id}
+      post={post}
+      currentUser={currentUserGlobal}
+      buddies={currentUserGlobal.buddiesFollowing}
+      onDeleteClick={() => deletePost(post)}
+    />
+      ))
+
+
+
+  
+
   // Constants
   const hasCreatedPosts = userPostCards.length > 0;
   const hasLikedPosts = userLikesPostCards.length > 0;
@@ -77,6 +92,8 @@ export default function ProfilePage() {
         <h3>My liked posts</h3>
         {hasLikedPosts && userLikesPostCards}
         {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
+        <h3>Buddies Posts</h3>
+        {buddiesPostCards}
       </div>
     </div>
   );
