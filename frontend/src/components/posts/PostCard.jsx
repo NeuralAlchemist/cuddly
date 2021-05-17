@@ -29,7 +29,6 @@ export default function PostCard({
   const postCreatorEmail = post.relatedPostUser.email;
   const postCreatorId = post.relatedPostUser.id;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
-  const listOfBuddyIds = buddies.map((bud) => bud.id);
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
@@ -96,7 +95,6 @@ export default function PostCard({
     try {
       await UserApi.followBuddy(postCreatorId);
       const newBuddiesFollowingIds = buddiesFollowingIds.concat(postCreatorId)
-      // debugger
       setBuddiesFollowingIds(newBuddiesFollowingIds)
 
     } catch (e) {
@@ -107,6 +105,8 @@ export default function PostCard({
   async function unfollow() {
     try {
       await UserApi.unfollowBuddy(postCreatorId);
+      const newBuddiesFollowingIds = buddiesFollowingIds.filter(budId => budId !== postCreatorId)
+      setBuddiesFollowingIds(newBuddiesFollowingIds)
     } catch (e) {
       console.error(e);
     }
@@ -124,7 +124,7 @@ export default function PostCard({
   }
 
   function buddyCheck() {
-    const buddyId = buddiesFollowingIds.find((budId) => budId == postCreatorId);
+    const buddyId = buddiesFollowingIds.find((budId) => budId === postCreatorId);
     return buddyId != null;
   }
 
@@ -133,11 +133,6 @@ export default function PostCard({
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments, postId]);
-
-// useEffect(() => {
-//   setBuddiesFollowingIds(listOfBuddyIds)
-// }, [setBuddiesFollowingIds])
-
 
   return (
     <div className="PostCard">

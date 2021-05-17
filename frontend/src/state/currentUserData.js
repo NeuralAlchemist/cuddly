@@ -1,5 +1,4 @@
 import { atom, selector } from "recoil";
-import PostsApi from "../api/PostsApi"
 import UserApi from "../api/UserApi";
 
 export const currentUsersState = atom({
