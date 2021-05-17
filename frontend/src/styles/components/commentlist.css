@@ -1,0 +1,24 @@
+/* Adjustments for toggleable comments */
+.commentlist-heading {
+  font-family: 'Nunito', sans-serif;
+  font-size: var(--font-size-medium);
+  color: var(--color-red-brown);
+}
+
+.commentlist-heading:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.commentlist-heading::after {
+  display: inline-block;
+  margin-top: var(--space-small);
+  margin-bottom: var(--space-small);
+}
+
+details.CommentList[open] .commentlist-heading::after {
+  content: 'Hide comments';
+}
+details.CommentList:not([open]) .commentlist-heading::after {
+  content: 'Show comments';
+}
