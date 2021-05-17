@@ -21,8 +21,7 @@ export default function PostCard({
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
-  // const [buddies, setBuddies] = useState([]);
-  const [user, setUser] = useState({});
+  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState(buddies.map((bud) => bud.id));
 
   // Constants
   const postId = post.id;
@@ -96,6 +95,10 @@ export default function PostCard({
   async function startFollowing() {
     try {
       await UserApi.followBuddy(postCreatorId);
+      const newBuddiesFollowingIds = buddiesFollowingIds.concat(postCreatorId)
+      // debugger
+      setBuddiesFollowingIds(newBuddiesFollowingIds)
+
     } catch (e) {
       console.error(e);
     }
@@ -121,7 +124,7 @@ export default function PostCard({
   }
 
   function buddyCheck() {
-    const buddyId = listOfBuddyIds.find((budId) => budId === postCreatorId);
+    const buddyId = buddiesFollowingIds.find((budId) => budId == postCreatorId);
     return buddyId != null;
   }
 
@@ -130,6 +133,11 @@ export default function PostCard({
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments, postId]);
+
+// useEffect(() => {
+//   setBuddiesFollowingIds(listOfBuddyIds)
+// }, [setBuddiesFollowingIds])
+
 
   return (
     <div className="PostCard">
@@ -155,10 +163,13 @@ export default function PostCard({
                 ></button>
               </span>
             )}
-            {!buddyCheck() && !checkUserEmail() ? 
-                <button onClick={startFollowing}>follow this buddy</button> :
-                <button onClick={unfollow}>unfollow this buddy</button>}
-            
+            {!checkUserEmail() && (
+              <div>
+                <button onClick={() => buddyCheck() ? unfollow() : startFollowing()}>
+                  {buddyCheck() ? "unfollow" : "follow this buddy"}
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <Moment className="time-lapse" fromNow>
