@@ -33,7 +33,7 @@ export default function PostUpdateForm({ onSubmit, post }) {
       </div>
       <div>
         <p className="length">{length == null ? 0 : length}/1000</p>
-        <button className="button-post" onClick={handleSubmit}>
+        <button className="button-submit" onClick={handleSubmit}>
           Update post
         </button>
       </div>

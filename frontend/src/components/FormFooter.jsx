@@ -34,7 +34,7 @@ export default function FormFooter({
       </div>
       <div className="form-footer">
         <button
-          className="button-post"
+          className="button-submit"
           onClick={handleSubmit}
           disabled={length === undefined || length === 0}
         >

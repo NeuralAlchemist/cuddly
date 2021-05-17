@@ -33,7 +33,7 @@ textarea.form-input {
   outline: none;
 } 
 
-.button-post {
+.button-submit {
   background-color: var(--color-red-brown);
   content:"post";
   color: white;
@@ -44,7 +44,7 @@ textarea.form-input {
   border-radius: 2em;
 }
 
-.button-post:hover {
+.button-submit:hover {
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   cursor: pointer;
 }
