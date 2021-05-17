@@ -28,7 +28,6 @@ export default function ProfileForm({
         name: name,
         accountType: accountType,
         description: description,
-        image: image,
       });
 
     } else {
