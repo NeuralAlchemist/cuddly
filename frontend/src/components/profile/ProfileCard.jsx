@@ -76,7 +76,12 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
           />
         )}
           <h2 className="name">{thisUser.name}</h2>
-          <input type="file" onChange={setFile}/><button onClick={uploadImage}>Upload</button>
+          {isLoggedInUser && (
+         <input type="file" onChange={setFile}/>
+        )}
+        {isLoggedInUser && (
+         <button onClick={uploadImage}>Upload</button>
+        )}
         </div>
         {isLoggedInUser && (
           <button
