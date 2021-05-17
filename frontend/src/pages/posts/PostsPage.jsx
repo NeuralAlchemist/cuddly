@@ -50,7 +50,6 @@ export default function PostsPage() {
   }
 
   useEffect(() => {
-    console.log("GETTING ALL POSTS");
     PostsApi.getAllPosts()
       .then(({ data }) => setPosts(data))
       .catch((err) => console.error(err));
