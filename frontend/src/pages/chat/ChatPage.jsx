@@ -15,7 +15,7 @@ function ChatPage() {
   const loggedInUser = window.sessionStorage.getItem('userEmail');
   const receiverEmail =
     loggedInUser === thread.p1Email ? thread.p2Email : thread.p1Email;
-  const [messageText, setMessageText] = useState({ text: '' });
+  const [messageText, setMessageText] = useState('');
   const [messageArray, setMessageArray] = useState(thread.thread);
   const [length, setLength] = useState();
 
@@ -36,12 +36,12 @@ function ChatPage() {
   const sendMessage = async () => {
     try {
       const response = await ChatApi.createMessage(id, receiverEmail, {
-        messageBody: messageText.text,
+        messageBody: messageText,
         thread: { id: id },
         date: format(new Date(), 'dd-MMM-yyyy HH:MM'),
       });
       setMessageArray([...messageArray, response.data]);
-      setMessageText({ text: '' });
+      setMessageText('');
     } catch (e) {
       console.log(e);
     }
@@ -107,7 +107,7 @@ function ChatPage() {
           <div className="form-field">
             <ResponsiveTextArea
               placeholder="Type a message."
-              contentText={messageText.text}
+              contentText={messageText}
               onFormContentChange={onFormContentChange}
               maxLength="1000"
             />

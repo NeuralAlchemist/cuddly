@@ -35,6 +35,12 @@ function ThreadPage() {
       <div className="inbox_chat scroll">
         {threads === [] ? 'loading...' : listOfThreads}
       </div>
+
+      <div className="mesgs">
+        {messageBox.thread === '' ? null : (
+          <ChatPage id={messageBox.threadId} thread={messageBox.thread} />
+        )}
+      </div>
     </div>
   );
 }

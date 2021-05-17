@@ -18,17 +18,13 @@ export default function LoginPage() {
   const welcomeImageURL = welcomeImageObject;
 
   // Methods
+
   async function login(loginData) {
     const loginSuccess = await Auth.login(loginData);
     if (!loginSuccess) {
       alert('Invalid credentials');
     } else {
-      UserApi.getUser()
-        .then(({ data }) => {
-          const sessionStorage = window.sessionStorage;
-          sessionStorage.setItem('userEmail', data.email);
-        })
-        .catch((err) => console.error(err));
+      window.sessionStorage.setItem('userEmail', loginData.email);
     }
   }
 
@@ -36,6 +32,8 @@ export default function LoginPage() {
     const registerSuccess = await Auth.register(registrationData);
     if (!registerSuccess) {
       alert("Couldn't register check credentials and try again");
+    } else {
+      window.sessionStorage.setItem('userEmail', registrationData.email);
     }
   }
 

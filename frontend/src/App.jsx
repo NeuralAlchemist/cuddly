@@ -22,11 +22,16 @@ export default function App() {
   // Constants
   Auth.bindLoggedInStateSetter(setLoggedIn);
 
+  const onLogout = () => {
+    window.sessionStorage.removeItem('userEmail');
+    Auth.logout();
+  };
+
   // Components
   const loggedInRouter = (
     <RecoilRoot>
       <BrowserRouter>
-        <Navbar onLogout={() => Auth.logout()} />
+        <Navbar onLogout={() => onLogout()} />
 
         <div className="main-container">
           <Switch>
