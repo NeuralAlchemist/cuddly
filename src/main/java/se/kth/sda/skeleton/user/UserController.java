@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
@@ -152,4 +154,8 @@ public class UserController {
         throw new ForbiddenException();
     }
 
+    @PutMapping("/users/image/{userid}")
+    public ResponseEntity<User> uploadProfileImage(@RequestParam("file") MultipartFile file, @PathVariable("userid") Long userId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.uploadImageProfile(userId, file));
+    }
 }
