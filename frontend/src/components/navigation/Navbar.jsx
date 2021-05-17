@@ -1,6 +1,8 @@
 // NPM Packages
 import React from "react";
 import { Link } from "react-router-dom";
+
+// Project files
 import SearchBar from "../search/SearchBar";
 
 export default function Navbar({ onLogout }) {
@@ -24,9 +26,7 @@ export default function Navbar({ onLogout }) {
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
-
         <SearchBar />
-
         <Link to="/" onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
