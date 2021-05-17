@@ -11,7 +11,6 @@ export default function Navbar({ onLogout }) {
 
   // Constants
   const logoURL = require("../../assets/images/logo.svg");
-  /*   const homeURL = require("../../assets/images/homepage.svg"); */
   const userURL = require("../../assets/images/user.svg");
   const logoutURL = require("../../assets/images/logout.svg");
   const searchURL = require("../../assets/images/search-solid.svg");
@@ -32,9 +31,6 @@ export default function Navbar({ onLogout }) {
         <Link to="/posts">
           <img className="logo" src={logoURL} alt="Logo" />
         </Link>
-        {/*         <Link to="/posts">
-          <img className="homepageIcon nav-icon" src={homeURL} alt="Home" />
-        </Link> */}
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>

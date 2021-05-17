@@ -15,14 +15,6 @@
   height: 32px;
 }
 
-/* .homepageIcon {
-  width: auto;
-  height: 24px;
-  fill: #bc3908;
-  margin-left: var(--space-medium-small);
-  margin-right: var(--space-medium-small);
-} */
-
 .user {
   width: auto;
   height: 24px;
@@ -88,10 +80,6 @@
 
   .logo {
     height: 48px;
-  }
-
-  .homepageIcon {
-    margin-left: 24px;
   }
 
   .button {
