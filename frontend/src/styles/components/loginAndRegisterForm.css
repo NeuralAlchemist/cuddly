@@ -5,13 +5,13 @@ label {
 
 .user-entered-input,
 .register {
-  border-radius: 100px ;
-  height: var(--space-big);
+  height: Calc( var(--space-big) + 2px);
   border: 1px solid var(--color-black-brown);
   box-sizing: border-box;
 }
 
 .user-entered-input {
+  border-radius: 100px ;
   padding: var(--font-size-small);
 }
 
