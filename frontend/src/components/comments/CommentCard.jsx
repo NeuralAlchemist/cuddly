@@ -39,9 +39,7 @@ export default function CommentCard({
   async function updateComment(contentText) {
     try {
       let formData = new FormData();
-      console.log(contentText);
       formData.append("text", contentText);
-      console.log(formData);
       await CommentsApi.updateComment(postId, comment.id, formData);
     } catch (e) {
       console.error(e);
