@@ -23,8 +23,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     } else {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
-      // Clear the input field
-      
+      // Clear the input field 
     }
     setContentText("");
   };
