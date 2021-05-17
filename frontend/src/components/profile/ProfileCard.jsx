@@ -26,14 +26,14 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
     }
   }
 
-  async function uploadImage(event){
+  async function uploadImage(event) {
     console.log("Sending");
     event.preventDefault();
-    try{
+    try {
       const formData = new FormData();
       formData.append("file", selectedFile);
       await UserApi.uploadImage(thisUser.id, formData);
-    } catch (e){
+    } catch (e) {
       console.error(e);
     }
     window.location.reload();
@@ -52,36 +52,57 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
     }
   };
 
+  function getNiceName(requiredLength) {
+    if (requiredLength >= selectedFile.name.length) {
+      return selectedFile.name;
+    } else {
+      return selectedFile.name.substring(0, requiredLength) + "..";
+    }
+  }
+
   return (
     <div className="ProfileCard">
       <div className="user-fields">
         <div className="name-pair">
           {!hasImage && (
-          <img
-            className="user-avatar"
-            src={userURL}
-            height="100%"
-            width="100%"
-            alt="User"
-          />
-        )}
-
+            <img className="user-avatar" src={userURL} alt="User" />
+          )}
           {hasImage && (
-          <img
-            className="user-avatar"
-            src={`data:${thisUser.imageType};base64, ${thisUser.image}`}
-            height="100%"
-            width="100%"
-            alt="User"
-          />
-        )}
+            <img
+              className="user-image"
+              src={`data:${thisUser.imageType};base64, ${thisUser.image}`}
+              alt="User"
+            />
+          )}
           <h2 className="name">{thisUser.name}</h2>
+
           {isLoggedInUser && (
-         <input type="file" onChange={setFile}/>
-        )}
-        {isLoggedInUser && (
-         <button onClick={uploadImage}>Upload</button>
-        )}
+            <div className="profile-image-buttons">
+              <span role="img" aria-label="file pin">
+                📎 {isFileSelected ? getNiceName(16) : "no file selected"}
+              </span>
+              <div className="profile-image-div">
+                <label
+                  htmlFor="profile-image-input"
+                  className="profile-image-label"
+                >
+                  Choose image
+                </label>
+
+                <input
+                  hidden
+                  id="profile-image-input"
+                  className="profile-image-button"
+                  type="file"
+                  onChange={setFile}
+                  accept="image/*"
+                />
+                <button className="profile-image-button" onClick={uploadImage}>
+                  Upload
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         {isLoggedInUser && (
           <button
