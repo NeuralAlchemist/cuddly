@@ -2,16 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar({ onLogout }) {
-  const logoObject = require('../../assets/images/logo.svg');
-  const logoURL = logoObject;
-  const homeObject = require('../../assets/images/homepage.svg');
-  const homeURL = homeObject;
-  const userObject = require('../../assets/images/user.svg');
-  const userURL = userObject;
-  const bellObject = require('../../assets/images/bell.svg');
-  const bellURL = bellObject;
-  const logoutObject = require('../../assets/images/logout.svg');
-  const logoutURL = logoutObject;
+  const logoURL = require('../../assets/images/logo.svg');
+  const homeURL = require('../../assets/images/homepage.svg');
+  const userURL = require('../../assets/images/user.svg');
+  const bellURL = require('../../assets/images/bell.svg');
+  const logoutURL = require('../../assets/images/logout.svg');
+  const chatURL = require('../../assets/images/chat.svg');
   return (
     <nav className="navbar">
       <div className="navbar-container">
