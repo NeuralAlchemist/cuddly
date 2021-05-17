@@ -5,6 +5,11 @@
   color: var(--color-red-brown);
 }
 
+.commentlist-heading:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .commentlist-heading::after {
   display: inline-block;
   margin-top: var(--space-small);
