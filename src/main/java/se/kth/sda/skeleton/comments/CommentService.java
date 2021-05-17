@@ -46,25 +46,19 @@ public class CommentService {
     /**
      * Updates a Comment for the given Comment {@code commentId} or throws a {@link ResourceNotFoundException} if there is no Post with the given {@code commentId}.
      *
+     * @param postId the postId used to find the Post associated with the Comment
      * @param commentId      the Comment which will be updated
-     * @param updatedComment the Comment that will added to the Comment given by {@code commentId}
+     * @param contentText the text that will be updated to the Comment given by {@code commentId}
      * @throws ResourceNotFoundException if there is no Post with the given {@code commentId}
      */
-    public Comment updateComment(Long postId, Long commentId, Comment updatedComment) {
+    public Comment updateComment(Long postId, Long commentId, String contentText) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(ResourceNotFoundException::new);
         String loggedInUserEmail = authService.getLoggedInUserEmail();
-        User loggedInUser = userRepository.findByEmail(loggedInUserEmail);
-        LocalDateTime createdTime = LocalDateTime.now();
-
         if (!loggedInUserEmail.equals(comment.getRelatedCommentUser().getEmail())) {
             throw new ForbiddenException();
         }
-        updatedComment.setRelatedPost(postRepository.findById(postId).orElseThrow(ResourceNotFoundException::new));
-        updatedComment.setId(commentId);
-        updatedComment.setCreatedTime(createdTime);
-        updatedComment.setRelatedCommentUser(loggedInUser);
-
-        return commentRepository.save(updatedComment);
+       comment.setContentText(contentText);
+        return commentRepository.save(comment);
     }
 
     /**

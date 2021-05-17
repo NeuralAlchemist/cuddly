@@ -36,9 +36,9 @@ export default function FormFooter({
         <button
           className="button-post"
           onClick={handleSubmit}
-          disabled={length === null || length === 0}
+          disabled={length === undefined || length === 0}
         >
-          {buttonText}
+          {buttonText.includes("comment") ? "Comment" : "Post"}
         </button>
         <div className="form-footer-extras">
           <input
