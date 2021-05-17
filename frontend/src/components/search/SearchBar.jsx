@@ -12,7 +12,7 @@ export default function SearchBar(){
     const history = useHistory();
 
     useEffect(() => {
-      UserApi.getUserById()
+      UserApi.getAllUsers()
       .then(({ data }) => {
         setUsers(data);
       })
@@ -23,7 +23,8 @@ export default function SearchBar(){
     function searchUser(event) {
         event.preventDefault();
         //Find out the user by the Id
-        history.push(`/profile/${query}`);
+        const userId = users.filter((user) => user.name.toUpperCase().match(query.toUpperCase()));
+        history.push(`/profile/${userId[0].id}`);
     }
 
     return (
