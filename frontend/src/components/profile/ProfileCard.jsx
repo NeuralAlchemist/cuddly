@@ -41,6 +41,11 @@ export default function ProfileCard({ thisUser }) {
             <div className="profile-field-pair">
               <span className="field-label">I'm a: </span>
               <span className="field-data">{thisUser.accountType}</span>
+            </div> 
+            <div className="profile-field-pair">
+              <p>{`Following ${thisUser.buddiesFollowing.length} Buddies`}</p>
+              <p>{`${thisUser.followerBuddies.length} Buddies are in your pack`}</p>
+
             </div>
             <div className="profile-field-pair">
               <span className="field-label">About me: </span>
