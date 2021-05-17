@@ -17,7 +17,12 @@ export default function ProfilePage() {
 
   // Local State
   const [buddiesPosts, setBuddiesPosts] = useState(currentUserGlobal.buddiesFollowing.map(buddy => buddy.createdPosts));
+  const [suggestedFollowers, setSuggestedFollowers] = useState(currentUserGlobal.buddiesFollowing.map(users => users).filter(bud => bud.buddiesFollowing != []))
 
+  let arrayUsers = (currentUserGlobal.buddiesFollowing.map(users => users[0]))
+  // let suggest = arrayUsers.filter(bud => bud.buddiesFollowing != []);
+  // console.log("MEEE", suggest)
+  console.log("ARR", arrayUsers)
   // Variables
   let userPostLikes = [];
 
@@ -63,19 +68,15 @@ export default function ProfilePage() {
     />
   ));
 
-    const buddiesPostCards = buddiesPosts.map(arr => arr.map(post => 
-      <PostCard
-      key={post.id}
-      post={post}
-      currentUser={currentUserGlobal}
-      buddies={currentUserGlobal.buddiesFollowing}
-      onDeleteClick={() => deletePost(post)}
-    />
-      ))
-
-
-
-  
+    // const buddiesPostCards = buddiesPosts.map(arr => arr.map(post => 
+    //   <PostCard
+    //   key={post.id}
+    //   post={post}
+    //   currentUser={currentUserGlobal}
+    //   buddies={currentUserGlobal.buddiesFollowing}
+    //   onDeleteClick={() => deletePost(post)}
+    // />
+    //   ))  
 
   // Constants
   const hasCreatedPosts = userPostCards.length > 0;
@@ -93,7 +94,7 @@ export default function ProfilePage() {
         {hasLikedPosts && userLikesPostCards}
         {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
         <h3>Buddies Posts</h3>
-        {buddiesPostCards}
+        {/* {buddiesPostCards} */}
       </div>
     </div>
   );
