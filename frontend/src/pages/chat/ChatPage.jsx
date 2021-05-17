@@ -17,11 +17,9 @@ function ChatPage() {
     loggedInUser === thread.p1Email ? thread.p2Email : thread.p1Email;
   const [messageText, setMessageText] = useState('');
   const [messageArray, setMessageArray] = useState(thread.thread);
-  const [length, setLength] = useState();
 
   const onFormContentChange = (value) => {
     setMessageText(value);
-    setLength(value.length);
   };
 
   // Methods
@@ -112,7 +110,7 @@ function ChatPage() {
               maxLength="1000"
             />
           </div>
-          <p className="length">{length == null ? 0 : length}/1000</p>
+          <p className="length">{messageText.length}/1000</p>
           <button
             className="button-post"
             onClick={(e) => handleClick(e)}
