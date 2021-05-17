@@ -22,15 +22,6 @@ export default function ProfileForm({
 
   // Methods
   const handleSubmit = (event) => {
-    if(isFilePicked){
-      event.preventDefault();
-      onSubmit({
-        name: name,
-        accountType: accountType,
-        description: description,
-      });
-
-    } else {
       onSubmit({
         name: name,
         accountType: accountType,
@@ -39,7 +30,6 @@ export default function ProfileForm({
       setDescription("");
       setName("");
       setAccountType("pet");
-    }
   };
 
   const setFile = (event) => {
@@ -75,7 +65,6 @@ export default function ProfileForm({
     <div className="ProfileForm">
       <form className="form">
         <div className="profile-fields">
-        <label>Upload image: </label> <input type="file" onChange={setFile}/>
           <div className="form-field">
             <label className="field-label">Name</label>
             <ResponsiveTextArea
