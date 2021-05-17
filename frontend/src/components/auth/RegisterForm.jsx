@@ -57,10 +57,10 @@ export default function RegisterForm({ onSubmit, onToggle }) {
               className="register"
               onChange={(e) => setAccountType(e.target.value)}
             >
-              <option value="pet">pet</option>
-              <option value="human">human</option>
-              <option value="service provider">service provider</option>
-              <option value="caretaker">caretaker</option>
+              <option value="pet">Pet</option>
+              <option value="human">Human</option>
+              <option value="service provider">Service Provider</option>
+              <option value="caretaker">Caretaker</option>
             </select>
           </div>
 
