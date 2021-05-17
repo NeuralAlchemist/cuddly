@@ -54,4 +54,5 @@ public class MessageController {
         newMessage.setSenderEmail(senderEmail);
         return messageService.create(newMessage);
     }
+
 }
