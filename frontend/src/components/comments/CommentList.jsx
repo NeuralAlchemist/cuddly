@@ -22,7 +22,7 @@ export default function CommentList({
   ));
 
   return (
-    <details className="CommentList" open>
+    <details className="CommentList">
       <summary className="commentlist-heading"></summary>
       {CommentCardArray}
     </details>
