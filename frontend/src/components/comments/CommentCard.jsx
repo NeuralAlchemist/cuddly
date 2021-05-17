@@ -1,7 +1,8 @@
 // NPM Packages
-import React, { useState } from 'react';
-import CommentsApi from '../../api/CommentsApi';
-import Moment from 'react-moment';
+import React, { useState } from "react";
+import CommentsApi from "../../api/CommentsApi";
+import Moment from "react-moment";
+import ReactPlayer from "react-player";
 
 // Components
 import CommentUpdateForm from './CommentUpdateForm';
@@ -15,13 +16,19 @@ export default function CommentCard({
 }) {
   // Local State
   const [toggle, setToggle] = useState(false);
+  const [likes, setLikes] = useState(comment.listOfCommentLikes.length);
+  const [listOfCommentLikedUsers, setListOfCommentLikedUsers] = useState(
+    comment.listOfCommentLikes.map(
+    (commentLike) => commentLike.likedCommentUser
+  ));
+  const hasImage =
+    comment.mediaType == null ? false : comment.mediaType.includes("image");
+  const hasVideo =
+    comment.mediaType == null ? false : comment.mediaType.includes("video");
 
   // Constants
   const commentCreatorName = comment.relatedCommentUser.name;
   const commentCreatorEmail = comment.relatedCommentUser.email;
-  const listOfCommentLikedUsers = comment.listOfCommentLikes.map(
-    (commentLike) => commentLike.likedCommentUser
-  );
 
   // Methods
   const handleDelete = () => {
@@ -29,9 +36,11 @@ export default function CommentCard({
     onDeleteClick(postId, comment);
   };
 
-  async function updateComment(updatedComment) {
+  async function updateComment(contentText) {
     try {
-      await CommentsApi.updateComment(postId, comment.id, updatedComment);
+      let formData = new FormData();
+      formData.append("text", contentText);
+      await CommentsApi.updateComment(postId, comment.id, formData);
     } catch (e) {
       console.error(e);
     }
@@ -40,6 +49,10 @@ export default function CommentCard({
   async function addCommentLike() {
     try {
       await CommentLikeApi.addCommentLike(comment.id);
+      const newLikes = likes+1;
+      setLikes(newLikes);
+      const newListOfCommentLikedUsers = listOfCommentLikedUsers.concat(currentUser);
+      setListOfCommentLikedUsers(newListOfCommentLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -48,6 +61,10 @@ export default function CommentCard({
   async function removeCommentLike() {
     try {
       await CommentLikeApi.removeCommentLike(comment.id);
+      const newLikes = likes-1;
+      setLikes(newLikes);
+      const newListOfCommentLikedUsers = listOfCommentLikedUsers.filter((p) => p.email !== currentUser.email);
+      setListOfCommentLikedUsers(newListOfCommentLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -59,7 +76,6 @@ export default function CommentCard({
     } else {
       addCommentLike();
     }
-    window.location.reload();
   }
 
   function checkCommentUserEmail() {
@@ -101,24 +117,34 @@ export default function CommentCard({
         ) : (
           <div>
             <CommentUpdateForm
-              onSubmit={(commentData) => updateComment(commentData)}
+              onSubmit={updateComment}
               comment={comment}
             />
           </div>
         )}
       </div>
-      <div className="like-container">
-        <button
-          onClick={commentLikeAction}
-          className={`like-button button-post-card ${
-            checkForCommentLikeUser() ? 'liked' : 'not-liked'
-          }`}
-        ></button>
-        <span className="like-counter">
-          {' '}
-          {comment.listOfCommentLikes.length}
-        </span>
-      </div>
+      {hasImage && (
+        <img
+          src={`data:${comment.imageType};base64, ${comment.image}`}
+          height="100%"
+          width="100%"
+        />
+      )}
+      {hasVideo && (
+        <ReactPlayer
+          url={require(`../../videos/comment/${comment.videoName}`)}
+          width="100%"
+          height="100%"
+          controls={true}
+        />
+      )}
+      <button
+        onClick={commentLikeAction}
+        className={`like-button button-post-card ${
+          checkForCommentLikeUser() ? "liked" : "not-liked"
+        }`}
+      ></button>
+      <span className="like-counter"> {likes}</span>
     </div>
   );
 }

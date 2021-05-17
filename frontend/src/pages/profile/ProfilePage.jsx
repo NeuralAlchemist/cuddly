@@ -1,21 +1,29 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { useParams } from "react-router-dom";
 
 // Project files
-import ProfileCard from "../../components/profile/ProfileCard";
+import Profile from "../../components/profile/Profile";
 import UserApi from "../../api/UserApi";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
 import { postsState, allPosts } from "../../state/postsData";
+import { allUsers } from "../../state/usersData";
 
 export default function ProfilePage() {
   // Global state
   const [posts, setPosts] = useRecoilState(postsState);
   const postsGlobal = useRecoilValue(allPosts);
+  const usersGlobal = useRecoilValue(allUsers);
 
   // Local state
-  const [thisUser, setThisUser] = useState({});
+  const [userWithProfile, setUserWithProfile] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [isUsersProfile, setIsUsersProfile] = useState(false);
+
+  // Constants
+  const { id } = useParams();
 
   // Variables
   let userPostLikes = [];
@@ -24,10 +32,25 @@ export default function ProfilePage() {
   useEffect(() => {
     UserApi.getUser()
       .then(({ data }) => {
-        setThisUser(data);
+        setLoggedInUser(data);        
       })
       .catch((err) => console.error(err));
-  }, [setThisUser]);
+  }, []);
+
+  useEffect(() => {
+    if (id === "mine") {
+      setUserWithProfile(loggedInUser);
+      setIsUsersProfile(true);
+    } else {
+      const userProfile = usersGlobal.find((user) => user.id == id);
+      setUserWithProfile(userProfile);
+      if (userProfile === loggedInUser) {
+        setIsUsersProfile(true);
+      }
+    }
+  }, [setUserWithProfile, id, usersGlobal, loggedInUser]);
+
+
 
   async function deletePost(post) {
     try {
@@ -42,19 +65,19 @@ export default function ProfilePage() {
 
   // Components
   const userPostCards = postsGlobal
-    .filter((post) => thisUser.id === post.relatedPostUser.id)
+    .filter((post) => userWithProfile.id === post.relatedPostUser.id)
     .map((post) => (
       <PostCard
         key={post.id}
         post={post}
-        currentUser={thisUser}
+        currentUser={loggedInUser}
         onDeleteClick={() => deletePost(post)}
       />
     ));
 
   for (let i = 0; i < postsGlobal.length; i++) {
     for (let j = 0; j < postsGlobal[i].listOfLikes.length; j++) {
-      if (postsGlobal[i].listOfLikes[j].likedUser.id === thisUser.id) {
+      if (postsGlobal[i].listOfLikes[j].likedUser.id === userWithProfile.id) {
         userPostLikes.push(postsGlobal[i]);
       }
     }
@@ -64,27 +87,17 @@ export default function ProfilePage() {
     <PostCard
       key={post.id}
       post={post}
-      currentUser={thisUser}
+      currentUser={loggedInUser}
       onDeleteClick={() => deletePost(post)}
     />
   ));
 
-  // Constants
-  const hasCreatedPosts = userPostCards.length > 0;
-  const hasLikedPosts = userLikesPostCards.length > 0;
-
   return (
-    <div className="main-container-item ProfilePage">
-      <h1 className="page-name">Profile</h1>
-      <ProfileCard thisUser={thisUser} />
-      <div className="user-feed">
-        <h3>My posts</h3>
-        {hasCreatedPosts && userPostCards}
-        {!hasCreatedPosts && <p className="prompt">You haven't created any posts yet</p>}
-        <h3>My liked posts</h3>
-        {hasLikedPosts && userLikesPostCards}
-        {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
-      </div>
-    </div>
+    <Profile
+      thisUser={userWithProfile}
+      userPostCards={userPostCards}
+      userLikesPostCards={userLikesPostCards}
+      isLoggedInUser={isUsersProfile}
+    />
   );
 }

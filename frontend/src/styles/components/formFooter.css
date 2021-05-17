@@ -10,6 +10,11 @@
   margin-left: 5px;
 }
 
+.button-post:disabled{
+  cursor:not-allowed ;
+  background-color: var(--color-light-grey);
+}
+
 .pick-image {
   background-image: url(../../assets/images/image-solid.svg);
 }

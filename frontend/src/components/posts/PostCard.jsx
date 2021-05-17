@@ -15,21 +15,26 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
+  const [likes, setLikes] = useState(post.listOfLikes.length);
+  const [listOfLikedUsers, setListOfLikedUsers] = useState(
+    post.listOfLikes.map((like) => like.likedUser)
+  );
 
   // Constants
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
   const postCreatorEmail = post.relatedPostUser.email;
-  const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
   const hasVideo =
     post.mediaType == null ? false : post.mediaType.includes("video");
 
   // Methods
-  async function updatePost(updatedPost) {
+  async function updatePost(contentText) {
     try {
-      await PostsApi.updatePost(updatedPost, post.id);
+      let formData = new FormData();
+      formData.append("text", contentText);
+      await PostsApi.updatePost(formData, postId);
     } catch (e) {
       console.error(e);
     }
@@ -44,6 +49,20 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  async function createImageMedia(postId, imageFile) {
+    try {
+      let formData = new FormData();
+      console.log(imageFile);
+      formData.append("file", imageFile.contentFile);
+      formData.append("text", imageFile.contentText);
+      await CommentsApi.createImageComment(postId, formData);
+      await new Promise((r) => setTimeout(r, 1000));
+    } catch (e) {
+      console.error(e);
+    }
+    window.location.reload();
   }
 
   async function deleteComment(postId, commentToDelete) {
@@ -64,12 +83,15 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     } else {
       addLike();
     }
-    window.location.reload();
   }
 
   async function addLike() {
     try {
       await PostLikeApi.addLike(postId);
+      const newLikes = likes + 1;
+      setLikes(newLikes);
+      const newListOfLikedUsers = listOfLikedUsers.concat(currentUser);
+      setListOfLikedUsers(newListOfLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -78,6 +100,12 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   async function removeLike() {
     try {
       await PostLikeApi.removeLike(postId);
+      const newLikes = likes - 1;
+      setLikes(newLikes);
+      const newListOfLikedUsers = listOfLikedUsers.filter(
+        (p) => p.email !== currentUser.email
+      );
+      setListOfLikedUsers(newListOfLikedUsers);
     } catch (e) {
       console.error(e);
     }
@@ -136,7 +164,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
             <div>
               <span>
                 <PostUpdateForm
-                  onSubmit={(postData) => updatePost(postData)}
+                  onSubmit={updatePost}
                   post={post}
                 />
               </span>
@@ -166,7 +194,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
               checkForLikedUser() ? "liked" : "not-liked"
             }`}
           ></button>
-          <span className="like-counter"> {post.listOfLikes.length}</span>
+          <span className="like-counter"> {likes}</span>
         </div>
         <CommentList
           postId={postId}
@@ -174,7 +202,11 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           currentUser={currentUser}
           onDelete={deleteComment}
         />
-        <CommentForm post={post} onSubmit={createComment} />
+        <CommentForm
+          post={post}
+          onSubmit={createComment}
+          onSubmitMedia={createImageMedia}
+        />
       </div>
     </div>
   );

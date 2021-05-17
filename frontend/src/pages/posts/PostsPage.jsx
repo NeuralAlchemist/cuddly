@@ -32,10 +32,11 @@ export default function PostsPage() {
       formData.append("file", imageFile.contentFile);
       formData.append("text", imageFile.contentText);
       await PostsApi.createImagePost(formData);
+      await new Promise((r) => setTimeout(r, 1000));
     } catch (e) {
       console.error(e);
     }
-    window.location.reload()
+    window.location.reload();
   }
 
   async function deletePost(post) {
