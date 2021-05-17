@@ -88,7 +88,6 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
                 >
                   Choose image
                 </label>
-
                 <input
                   hidden
                   id="profile-image-input"
