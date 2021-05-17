@@ -23,6 +23,10 @@ export default function Navbar({ onLogout }) {
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
 
+        <Link to="/chat">
+          <img className="chat" src={chatURL} alt="Chat" />
+        </Link>
+
         <Link to="/notification">
           <img className="notification" src={bellURL} alt="Notification" />
         </Link>
