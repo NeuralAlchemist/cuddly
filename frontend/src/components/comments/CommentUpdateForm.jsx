@@ -6,7 +6,6 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
   // Local State
   const [contentText, setContentText] = useState(comment.contentText);
   const [length, setLength] = useState(comment.contentText.length);
-  const commentURL = require('../../assets/images/comment.svg');
 
   // Methods
   const handleSubmit = () => {
@@ -34,9 +33,8 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
       </div>
       <div>
         <p className="length">{length == null ? 0 : length}/500</p>
-        <button className="button-comment" onClick={handleSubmit}>
-          <img className="comment" src={commentURL} alt="Commment" />
-          <span>Update Comment</span>
+        <button className="button" onClick={handleSubmit}>
+          Update Comment
         </button>
       </div>
     </form>
