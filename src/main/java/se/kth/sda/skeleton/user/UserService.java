@@ -77,6 +77,15 @@ public class UserService {
         return users;
     }
 
+    /**
+     * Return a user specified by id with image
+     *
+     * @param id id of the user to be found
+     * @param file image of the user to be uploaded
+     * @return the User specified
+     * @throws ResourceNotFoundException if the user id does not exist
+     * @throws ForbiddenException if video is upload for user image
+     */
     public User uploadImageProfile(Long id, MultipartFile file){
         User user = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         user.setMediaType(file.getContentType());

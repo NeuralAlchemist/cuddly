@@ -154,6 +154,13 @@ public class UserController {
         throw new ForbiddenException();
     }
 
+    /**
+     * Update user image for logged in user
+     *
+     * @param userId the User for who will upload image
+     * @param file the image to be upload on the user
+     * @return HTTP ok status and the updated user
+     */
     @PutMapping("/users/image/{userid}")
     public ResponseEntity<User> uploadProfileImage(@RequestParam("file") MultipartFile file, @PathVariable("userid") Long userId){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.uploadImageProfile(userId, file));
