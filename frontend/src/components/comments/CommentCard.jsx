@@ -116,10 +116,7 @@ export default function CommentCard({
           <p>{comment.contentText}</p>
         ) : (
           <div>
-            <CommentUpdateForm
-              onSubmit={updateComment}
-              comment={comment}
-            />
+            <CommentUpdateForm onSubmit={updateComment} comment={comment} />
           </div>
         )}
       </div>
@@ -138,13 +135,15 @@ export default function CommentCard({
           controls={true}
         />
       )}
-      <button
-        onClick={commentLikeAction}
-        className={`like-button button-post-card ${
-          checkForCommentLikeUser() ? "liked" : "not-liked"
-        }`}
-      ></button>
-      <span className="like-counter"> {likes}</span>
+      <div className="like-container">
+        <button 
+          onClick={commentLikeAction}
+          className={`like-button button-post-card ${
+            checkForCommentLikeUser() ? "liked" : "not-liked"
+          }`}
+        ></button>
+        <span className="like-counter"> {likes}</span>
+      </div>
     </div>
   );
 }
