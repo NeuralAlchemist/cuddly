@@ -8,6 +8,7 @@ label {
   height: var(--space-big);
   border: 1px solid var(--color-black-brown);
   box-sizing: border-box;
+  padding: var(--font-size-small);
 }
 
 input:focus, select.register:focus {
