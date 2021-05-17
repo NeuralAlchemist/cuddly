@@ -34,7 +34,7 @@ export default function Navbar({ onLogout }) {
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
-        <img className="chat nav-icon" src={chatURL} alt="Chat" />
+        {/* <img className="chat nav-icon" src={chatURL} alt="Chat" /> */}
         <img
           onClick={toggle}
           className="search nav-icon"
