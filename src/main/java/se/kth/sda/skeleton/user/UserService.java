@@ -3,10 +3,13 @@ package se.kth.sda.skeleton.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
 import se.kth.sda.skeleton.posts.Post;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -72,5 +75,31 @@ public class UserService {
     public List<User> listAllUsers() {
         List<User> users = userRepository.findAll();
         return users;
+    }
+
+    public User uploadImageProfile(Long id, MultipartFile file){
+        User user = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        user.setMediaType(file.getContentType());
+        user.setImageName(file.getOriginalFilename());
+        if(!file.isEmpty()){
+            if(file.getContentType().contains("image")){
+                byte[] bytes;
+                try {
+                    bytes = new byte[file.getBytes().length];
+                    int i = 0;
+                    for (byte b : file.getBytes()){
+                        bytes[i++] = b;
+                    }
+                    user.setImage(bytes);
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            } else {
+                throw new ForbiddenException();
+            }
+        }
+        
+        
+        return userRepository.save(user);
     }
 }
