@@ -1,20 +1,30 @@
+// NPM Packages
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
+// Project Files
 import ChatApi from '../../api/ChatApi';
+import ResponsiveTextArea from '../../components/ResponsiveTextArea';
 
 function ChatPage() {
+  // Local State
   const { id } = useParams();
   const { state } = useLocation();
   const thread = state.thread;
-
   const loggedInUser = window.sessionStorage.getItem('userEmail');
   const receiverEmail =
     loggedInUser === thread.p1Email ? thread.p2Email : thread.p1Email;
   const [messageText, setMessageText] = useState({ text: '' });
   const [messageArray, setMessageArray] = useState(thread.thread);
+  const [length, setLength] = useState();
 
+  const onFormContentChange = (value) => {
+    setMessageText(value);
+    setLength(value.length);
+  };
+
+  // Methods
   useEffect(() => {
     const updateThread = async () => {
       const response = await ChatApi.getThreadById(id);
@@ -59,25 +69,29 @@ function ChatPage() {
       : messageArray.map((message) => {
           if (message.senderEmail === loggedInUser) {
             return (
-              <div className="outgoing_msg" key={message.id}>
-                <div className="sent_msg">
-                  <p>{message.messageBody}</p>
-                  <span className="time_date"> {message.date}</span>{' '}
+              <div className="PostCard" key={message.id}>
+                <span className="post-info">
+                  Outgoing Message to {receiverEmail}
+                </span>
+                <div className="message-container">
+                  <p className="time-lapse"> {message.date}</p>{' '}
+                  <span className="content-text word-wrap-chatpage">
+                    {message.messageBody}
+                  </span>
                 </div>
               </div>
             );
           } else {
             return (
-              <div className="incoming_msg" key={message.id}>
-                <div className="incoming_msg_img">
-                  {' '}
-                  <img src="/images/sender.jpeg" alt="name" />{' '}
-                </div>
-                <div className="received_msg">
-                  <div className="received_withd_msg">
-                    <p>{message.messageBody}</p>
-                    <span className="time_date"> {message.date}</span>
-                  </div>
+              <div className="PostCard" key={message.id}>
+                <span className="post-info">
+                  Incoming Message from {message.senderEmail}
+                </span>
+                <div className="message-container">
+                  <p className="time-lapse"> {message.date}</p>
+                  <span className="content-text word-wrap-chatpage">
+                    {message.messageBody}
+                  </span>
                 </div>
               </div>
             );
@@ -85,30 +99,30 @@ function ChatPage() {
         });
 
   return (
-    <form>
-      <div className="msg_history">{messages}</div>
-      <div className="type_msg">
-        <div className="input_msg_write">
-          <textarea
-            autoFocus
-            value={messageText.text}
-            id="chatInput"
-            type="text"
-            className="write_msg"
-            onChange={(e) => setMessageText({ text: e.target.value })}
-            placeholder="Type a message"
-          />
+    <div className="main-container-item">
+      <div>{messages}</div>
+
+      <div className="form-container">
+        <form className="form">
+          <div className="form-field">
+            <ResponsiveTextArea
+              placeholder="Type a message."
+              contentText={messageText.text}
+              onFormContentChange={onFormContentChange}
+              maxLength="1000"
+            />
+          </div>
+          <p className="length">{length == null ? 0 : length}/1000</p>
           <button
-            className="button"
-            className="msg_send_btn"
+            className="button-post"
             onClick={(e) => handleClick(e)}
             type="submit"
           >
             Send Message
           </button>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 }
 

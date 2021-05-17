@@ -1,0 +1,9 @@
+.message-container {
+  grid-template-columns: auto 80px;
+  align-items: center;
+}
+
+.content-text.word-wrap-chatpage {
+  display: block;
+  width: 100%;
+}
