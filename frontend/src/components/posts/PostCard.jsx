@@ -33,9 +33,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   async function updatePost(contentText) {
     try {
       let formData = new FormData();
-      console.log(contentText);
       formData.append("text", contentText);
-      console.log(formData);
       await PostsApi.updatePost(formData, postId);
     } catch (e) {
       console.error(e);
