@@ -1,6 +1,8 @@
 // NPM Packages
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
+// Project files
 import UserApi from "../../api/UserApi";
 
 export default function SearchBar(){
