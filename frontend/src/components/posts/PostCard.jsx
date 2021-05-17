@@ -163,10 +163,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           ) : (
             <div>
               <span>
-                <PostUpdateForm
-                  onSubmit={updatePost}
-                  post={post}
-                />
+                <PostUpdateForm onSubmit={updatePost} post={post} />
               </span>
               <span></span>
             </div>
@@ -177,14 +174,15 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
             src={`data:${post.imageType};base64, ${post.image}`}
             height="100%"
             width="100%"
+            className="post-image"
           />
         )}
         {hasVideo && (
           <ReactPlayer
             url={require(`../../videos/${post.videoName}`)}
             width="100%"
-            height="100%"
             controls={true}
+            className="post-video"
           />
         )}
         <div className="like-container">
