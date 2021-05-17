@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import ChatApi from '../../api/ChatApi';
 import ChatPage from './ChatPage';
-import Thread from './Thread';
+import Thread from '../../components/chat/Thread';
 
 // Todo: We should still filter out message threads based on user.
 // Also, sometimes a second thread is generated even though one between the participants exist.

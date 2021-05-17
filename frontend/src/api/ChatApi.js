@@ -10,7 +10,7 @@ class ChatApi {
   }
 
   createThread(receiverEmail, thread) {
-    return Api.post(`/chat?receiverEmail=${receiverEmail}`, thread);
+    return Api.post(`/chat?receiverEmail=${receiverEmail}`);
   }
 
   createMessage(threadId, receiverEmail, message) {

@@ -21,7 +21,10 @@ function Thread({ thread, setMessageBox }) {
       </div>
       <div className="chat_ib">
         <h5>
-          <Link to="/chat" onClick={clickHandler}>
+          <Link
+            to={{ pathname: `/chat/${thread.id}`, state: { thread } }}
+            onClick={clickHandler}
+          >
             {receiverEmail}
           </Link>
           <span className="chat_date">{lastDate}</span>

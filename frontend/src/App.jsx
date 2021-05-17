@@ -10,6 +10,7 @@ import AuthPage from './pages/auth/AuthPage';
 import HomePage from './pages/home/HomePage';
 import PostsPage from './pages/posts/PostsPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import ThreadPage from './pages/chat/ThreadPage';
 import ChatPage from './pages/chat/ChatPage';
 import Footer from './components/Footer';
 import './styles/style.css';
@@ -35,6 +36,10 @@ export default function App() {
 
             <Route path="/chat/:id">
               <ChatPage />
+            </Route>
+
+            <Route path="/threads">
+              <ThreadPage />
             </Route>
 
             <Route exact path="/">

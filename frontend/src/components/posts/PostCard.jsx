@@ -11,7 +11,7 @@ import CommentsApi from '../../api/CommentsApi';
 import PostsApi from '../../api/PostsApi';
 import PostUpdateForm from './PostUpdateForm';
 import PostLikeApi from '../../api/PostLikeApi';
-import { Link } from 'react-router-dom';
+import ChatApi from '../../api/ChatApi';
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
   const history = useHistory();
@@ -105,10 +105,16 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   }, [setComments, postId]);
 
   const onUserClick = () => {
-    // create thread with postCreatorEmail
-    const threadId = '123';
-    // redirect to chart page thread id
-    history.push(`/chat/${threadId}`);
+    const createOrDirect = async () => {
+      try {
+        const response = await ChatApi.createThread(postCreatorEmail, {});
+        const thread = response.data;
+        history.push({ pathname: `/chat/${thread.id}`, state: { thread } });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    createOrDirect();
   };
 
   return (
@@ -116,7 +122,9 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       <div>
         <div className="postcard-header">
           <div>
-            <span className="post-userinfo" onClick={() => onUserClick()}>{postCreatorName}</span>
+            <span className="post-userinfo" onClick={() => onUserClick()}>
+              {postCreatorName}
+            </span>
             <span className="post-info"> posted</span>
           </div>
           <div className="delete-edit-icons">

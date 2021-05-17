@@ -1,13 +1,13 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // Project Files
-import ResponsiveTextArea from "../ResponsiveTextArea";
-import FormFooter from "../FormFooter";
+import ResponsiveTextArea from '../ResponsiveTextArea';
+import FormFooter from '../FormFooter';
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
-  const [contentText, setContentText] = useState("");
+  const [contentText, setContentText] = useState('');
   const [length, setLength] = useState();
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
@@ -23,7 +23,7 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
       // Clear the input field
-      setContentText("");
+      setContentText('');
     }
   };
 
@@ -36,9 +36,9 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     setIsFilePicked(false);
     const file = event.target.files[0];
     if (getFileSizeInMB(file.size) > 10) {
-      alert("Files larger than 10MB are not allowed!");
+      alert('Files larger than 10MB are not allowed!');
     } else if (file.size === 0) {
-      alert("Empty files are not allowed!");
+      alert('Empty files are not allowed!');
     } else {
       setContentFile(file);
       setIsFilePicked(true);
@@ -52,7 +52,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
       return bytes / Math.pow(10, 6).toFixed(1);
     }
   }
-  console.log(contentFile);
 
   return (
     <div className="form-container">

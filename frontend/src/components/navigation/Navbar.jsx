@@ -24,7 +24,7 @@ export default function Navbar({ onLogout }) {
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
 
-        <Link to="/chat">
+        <Link to="/threads">
           <FontAwesomeIcon className="chat nav-icon" icon="comment-dots" />
           {/* <img className="chat nav-icon" src={chatURL} alt="Chat" /> */}
         </Link>
@@ -33,7 +33,7 @@ export default function Navbar({ onLogout }) {
           <img className="notification" src={bellURL} alt="Notification" />
         </Link>
 
-        <Link onClick={onLogout}>
+        <Link to="/" onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
 
