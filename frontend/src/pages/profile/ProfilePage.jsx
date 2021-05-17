@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 // Project files
 import ProfileCard from "../../components/profile/ProfileCard";
+import BuddyCard from "../../components/profile/BuddyCard";
 import PostsApi from "../../api/PostsApi";
 import PostCard from "../../components/posts/PostCard";
 import { postsState, allPosts } from "../../state/postsData";
@@ -17,14 +18,15 @@ export default function ProfilePage() {
 
   // Local State
   const [buddiesPosts, setBuddiesPosts] = useState(currentUserGlobal.buddiesFollowing.map(buddy => buddy.createdPosts));
-  const [suggestedFollowers, setSuggestedFollowers] = useState(currentUserGlobal.buddiesFollowing.map(users => users).filter(bud => bud.buddiesFollowing != []))
+  // const [suggestedFollowers, setSuggestedFollowers] = useState(currentUserGlobal.buddiesFollowing.map(users => users).filter(bud => bud.buddiesFollowing != []))
 
-  let arrayUsers = (currentUserGlobal.buddiesFollowing.map(users => users[0]))
+  // let arrayUsers = (currentUserGlobal.buddiesFollowing.map(users => users[0]))
   // let suggest = arrayUsers.filter(bud => bud.buddiesFollowing != []);
   // console.log("MEEE", suggest)
-  console.log("ARR", arrayUsers)
+  // console.log("ARR", arrayUsers)
   // Variables
   let userPostLikes = [];
+  let suggestedFollowers = [];
 
   async function deletePost(post) {
     try {
@@ -58,6 +60,15 @@ export default function ProfilePage() {
     }
   }
 
+  for (let i = 0; i < currentUserGlobal.buddiesFollowing.length; i++) {
+    for (let j = 0; j < currentUserGlobal.buddiesFollowing[i].buddiesFollowing.length; j++) {
+      if (currentUserGlobal.buddiesFollowing[i].buddiesFollowing[j].id !== currentUserGlobal.id && currentUserGlobal.buddiesFollowing[i].id !== currentUserGlobal.buddiesFollowing[i].buddiesFollowing[j].id) {
+        suggestedFollowers.push(currentUserGlobal.buddiesFollowing[i].buddiesFollowing[j]);
+      }
+    }
+  }
+
+console.log("SUGG", suggestedFollowers)
   const userLikesPostCards = userPostLikes.map((post) => (
     <PostCard
       key={post.id}
@@ -65,6 +76,13 @@ export default function ProfilePage() {
       currentUser={currentUserGlobal}
       buddies={currentUserGlobal.buddiesFollowing}
       onDeleteClick={() => deletePost(post)}
+    />
+  ));
+
+  const suggestedFollowingCard = suggestedFollowers.map((buddy) => (
+    <BuddyCard
+      key={buddy.id}
+      buddy={buddy}
     />
   ));
 
@@ -93,8 +111,8 @@ export default function ProfilePage() {
         <h3>My liked posts</h3>
         {hasLikedPosts && userLikesPostCards}
         {!hasLikedPosts && <p className="prompt">You haven't liked any posts yet</p>}
-        <h3>Buddies Posts</h3>
-        {/* {buddiesPostCards} */}
+        <h3>Suggested Buddies</h3>
+        {suggestedFollowingCard}
       </div>
     </div>
   );
