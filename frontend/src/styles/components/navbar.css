@@ -32,6 +32,12 @@
   margin-right: var(--space-medium-small);
 }
 
+.chat {
+  font-size: 24px;
+  color: #bc3908;
+  margin-right: var(--space-medium-small);
+}
+
 .notification {
   width: auto;
   height: 24px;
@@ -57,14 +63,15 @@
   align-items: center;
   font-family: 'Nunito', sans-serif;
   font-size: medium;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-icon{
-  transition: all .3s ease-in-out;
+.nav-icon {
+  transition: all 0.3s ease-in-out;
 }
 
-.button:hover, .nav-icon:hover {
+.button:hover,
+.nav-icon:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
@@ -99,6 +106,11 @@
 
   .user {
     height: 32px;
+    margin-right: 32px;
+  }
+
+  .chat {
+    font-size: 32px;
     margin-right: 32px;
   }
 

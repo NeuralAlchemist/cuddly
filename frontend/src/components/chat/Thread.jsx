@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Thread({ thread, setMessageBox }) {
   const senderMail = window.sessionStorage.getItem('userEmail');
-  const receiverEmail = senderMail === thread.p1Email ? thread.p2Email : thread.p1Email;
+  const receiverEmail =
+    senderMail === thread.p1Email ? thread.p2Email : thread.p1Email;
   const receiverMessage = thread.receiverMessage;
 
   const clickHandler = () => {

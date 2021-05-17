@@ -1,17 +1,21 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
-import Moment from "react-moment";
-import ReactPlayer from "react-player";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Moment from 'react-moment';
+import ReactPlayer from 'react-player';
 
 // Project files
-import CommentForm from "../comments/CommentForm";
-import CommentList from "../comments/CommentList";
-import CommentsApi from "../../api/CommentsApi";
-import PostsApi from "../../api/PostsApi";
-import PostUpdateForm from "./PostUpdateForm";
-import PostLikeApi from "../../api/PostLikeApi";
+import CommentForm from '../comments/CommentForm';
+import CommentList from '../comments/CommentList';
+import CommentsApi from '../../api/CommentsApi';
+import PostsApi from '../../api/PostsApi';
+import PostUpdateForm from './PostUpdateForm';
+import PostLikeApi from '../../api/PostLikeApi';
+import { Link } from 'react-router-dom';
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
+  const history = useHistory();
+
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
@@ -22,9 +26,9 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const postCreatorEmail = post.relatedPostUser.email;
   const listOfLikedUsers = post.listOfLikes.map((like) => like.likedUser);
   const hasImage =
-    post.mediaType == null ? false : post.mediaType.includes("image");
+    post.mediaType == null ? false : post.mediaType.includes('image');
   const hasVideo =
-    post.mediaType == null ? false : post.mediaType.includes("video");
+    post.mediaType == null ? false : post.mediaType.includes('video');
 
   // Methods
   async function updatePost(updatedPost) {
@@ -100,11 +104,21 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       .catch((err) => console.error(err));
   }, [setComments, postId]);
 
+  const onUserClick = () => {
+    // create thread with postCreatorEmail
+    const threadId = '123';
+    // redirect to chart page thread id
+    history.push(`/chat/${threadId}`);
+  };
+
   return (
     <div className="PostCard">
       <div>
         <div className="postcard-header">
-          <div className="post-info">{postCreatorName} posted</div>
+          <div>
+            <span className="post-userinfo" onClick={() => onUserClick()}>{postCreatorName}</span>
+            <span className="post-info"> posted</span>
+          </div>
           <div className="delete-edit-icons">
             {checkUserEmail() && (
               <span>
@@ -114,7 +128,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                 ></button>
                 <button
                   className={`button-post-card ${
-                    toggleUpdatePost ? " cancel" : " active"
+                    toggleUpdatePost ? ' cancel' : ' active'
                   }`}
                   onClick={() =>
                     toggleUpdatePost
@@ -163,7 +177,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           <button
             onClick={likeAction}
             className={`like-button button-post-card ${
-              checkForLikedUser() ? "liked" : "not-liked"
+              checkForLikedUser() ? 'liked' : 'not-liked'
             }`}
           ></button>
           <span className="like-counter"> {post.listOfLikes.length}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Navbar({ onLogout }) {
   const logoURL = require('../../assets/images/logo.svg');
@@ -24,7 +25,8 @@ export default function Navbar({ onLogout }) {
         </Link>
 
         <Link to="/chat">
-          <img className="chat" src={chatURL} alt="Chat" />
+          <FontAwesomeIcon className="chat nav-icon" icon="comment-dots" />
+          {/* <img className="chat nav-icon" src={chatURL} alt="Chat" /> */}
         </Link>
 
         <Link to="/notification">
