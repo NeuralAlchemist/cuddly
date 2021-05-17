@@ -26,7 +26,11 @@ export default function SearchBar(){
         event.preventDefault();
         //Find out the user by the Id
         const userId = users.filter((user) => user.name.toUpperCase().match(query.toUpperCase()));
-        history.push(`/profile/${userId[0].id}`);
+        if(userId[0] == null){
+          alert("User not found!");
+        } else{
+          history.push(`/profile/${userId[0].id}`);
+        }     
     }
 
     return (
