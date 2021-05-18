@@ -14,7 +14,6 @@ export default function Navbar({ onLogout }) {
   const userURL = require("../../assets/images/user.svg");
   const logoutURL = require("../../assets/images/logout.svg");
   const searchURL = require("../../assets/images/search-solid.svg");
-  const chatURL = require("../../assets/images/message.svg");
 
   // Methods
   function toggle() {
@@ -34,7 +33,6 @@ export default function Navbar({ onLogout }) {
         <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
-        {/* <img className="chat nav-icon" src={chatURL} alt="Chat" /> */}
         <img
           onClick={toggle}
           className="search nav-icon"
