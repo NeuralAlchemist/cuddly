@@ -1,5 +1,5 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // Project Files
 import ResponsiveTextArea from "../ResponsiveTextArea";
@@ -23,7 +23,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     } else {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
-      // Clear the input field 
     }
     setContentText("");
   };
@@ -37,9 +36,9 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     setIsFilePicked(false);
     const file = event.target.files[0];
     if (getFileSizeInMB(file.size) > 10) {
-      alert("Files larger than 10MB are not allowed!");
+      alert('Files larger than 10MB are not allowed!');
     } else if (file.size === 0) {
-      alert("Empty files are not allowed!");
+      alert('Empty files are not allowed!');
     } else {
       setContentFile(file);
       setIsFilePicked(true);

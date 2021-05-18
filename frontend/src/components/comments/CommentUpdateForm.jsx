@@ -1,6 +1,6 @@
 // NPM Packages
-import React, { useState } from 'react';
-import ResponsiveTextArea from '../ResponsiveTextArea';
+import React, { useState } from "react";
+import ResponsiveTextArea from "../ResponsiveTextArea";
 
 export default function CommentUpdateForm({ onSubmit, comment }) {
   // Local State
@@ -13,7 +13,7 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
     onSubmit(contentText);
 
     // Clear the input field
-    setContentText('');
+    setContentText("");
   };
 
   const onFormContentChange = (value) => {
@@ -33,8 +33,8 @@ export default function CommentUpdateForm({ onSubmit, comment }) {
       </div>
       <div>
         <p className="length">{length == null ? 0 : length}/500</p>
-        <button className="button" onClick={handleSubmit}>
-          Update Comment
+        <button className="button-submit" onClick={handleSubmit}>
+          Update comment
         </button>
       </div>
     </form>

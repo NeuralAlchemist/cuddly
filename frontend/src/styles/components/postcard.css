@@ -31,6 +31,14 @@
   margin-left: 10px;
 }
 
+.post-video{
+  max-height: 700px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+
 .delete-icon {
   background-image: url(../../assets/images/trash-solid.svg);
   background-repeat: no-repeat;
@@ -53,6 +61,20 @@
   font-weight: 700;
   font-family: "Nunito", sans-serif;
   margin-top: 0;
+}
+
+.post-userinfo {
+  color: var(--color-red-brown);
+  font-size: var(--font-size-medium);
+  font-family: "Nunito", sans-serif;
+  margin-top: 0;
+}
+
+.post-userinfo:hover{
+  transform: scale(1.5);
+  cursor: pointer;
+  font-weight: 2100;
+  color: var(--color-brown);
 }
 
 .postcard-header {

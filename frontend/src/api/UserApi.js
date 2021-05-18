@@ -32,6 +32,10 @@ class UserApi {
   getFollowers() {
     return Api.get('/users/followers');
   }
+  
+  uploadImage(userId, file){
+    return Api.put('/users/image/' + userId, file);
+  }
 
 }
 

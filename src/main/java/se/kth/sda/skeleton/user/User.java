@@ -70,6 +70,10 @@ public class User {
     @JsonIgnoreProperties({"createdPosts", "likedPosts", "likedComments", "buddiesFollowing", "followerBuddies"})
     private List<User> followerBuddies;
 
+    private byte[] image;
+    private String mediaType;
+    private String imageName;
+
     // Hibernate needs a default constructor to function
     public User() {
     }
@@ -177,4 +181,29 @@ public class User {
     public void setFollowerBuddies(List<User> followerBuddies) {
         this.followerBuddies = followerBuddies;
     }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+    
 }

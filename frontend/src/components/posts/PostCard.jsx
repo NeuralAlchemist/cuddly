@@ -1,9 +1,11 @@
 // NPM Packages
-import React, { useEffect, useState } from "react";
-import Moment from "react-moment";
-import ReactPlayer from "react-player";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Moment from 'react-moment';
+import ReactPlayer from 'react-player';
 
 // Project files
+
 import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
 import CommentsApi from "../../api/CommentsApi";
@@ -11,8 +13,11 @@ import PostsApi from "../../api/PostsApi";
 import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
+import ChatApi from '../../api/ChatApi';
 
 export default function PostCard({ post, currentUser, onDeleteClick }) {
+  const history = useHistory();
+
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
@@ -29,9 +34,9 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const postCreatorId = post.relatedPostUser.id;
   const postCreatorEmail = post.relatedPostUser.email;
   const hasImage =
-    post.mediaType == null ? false : post.mediaType.includes("image");
+    post.mediaType == null ? false : post.mediaType.includes('image');
   const hasVideo =
-    post.mediaType == null ? false : post.mediaType.includes("video");
+    post.mediaType == null ? false : post.mediaType.includes('video');
 
   // Methods
   async function updatePost(contentText) {
@@ -167,11 +172,29 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       .catch((err) => console.error(err));
   }, []);
 
+  const onUserClick = () => {
+    const createOrDirect = async () => {
+      try {
+        const response = await ChatApi.createThread(postCreatorEmail, {});
+        const thread = response.data;
+        history.push({ pathname: `/chat/${thread.id}`, state: { thread } });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    createOrDirect();
+  };
+
   return (
     <div className="PostCard">
       <div>
         <div className="postcard-header">
-          <div className="post-info">{postCreatorName} posted</div>
+          <div>
+            <span className="post-userinfo" onClick={() => onUserClick()}>
+              {postCreatorName}
+            </span>
+            <span className="post-info"> posted</span>
+          </div>
           <div className="delete-edit-icons">
             {checkUserEmail() && (
               <span>
@@ -181,7 +204,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                 ></button>
                 <button
                   className={`button-post-card ${
-                    toggleUpdatePost ? " cancel" : " active"
+                    toggleUpdatePost ? ' cancel' : ' active'
                   }`}
                   onClick={() =>
                     toggleUpdatePost
@@ -222,21 +245,22 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
             src={`data:${post.imageType};base64, ${post.image}`}
             height="100%"
             width="100%"
+            className="post-image"
           />
         )}
         {hasVideo && (
           <ReactPlayer
             url={require(`../../videos/${post.videoName}`)}
             width="100%"
-            height="100%"
             controls={true}
+            className="post-video"
           />
         )}
         <div className="like-container">
           <button
             onClick={likeAction}
             className={`like-button button-post-card ${
-              checkForLikedUser() ? "liked" : "not-liked"
+              checkForLikedUser() ? 'liked' : 'not-liked'
             }`}
           ></button>
           <span className="like-counter"> {likes}</span>
