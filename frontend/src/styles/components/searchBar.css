@@ -1,0 +1,30 @@
+.search-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-x-small);
+}
+
+.search-term {
+  font-size: var(--font-size-medium-small);
+  font-family: "Nunito", sans-serif;
+    color: var(--color-black-brown);
+}
+
+.search-button {
+  background-color: var(--color-red-brown);
+  color: white;
+  border-width: 0px;
+  line-height: normal;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 2em;
+}
+
+.search-button:hover {
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.SearchBar {
+  padding: var(--space-medium);
+}
