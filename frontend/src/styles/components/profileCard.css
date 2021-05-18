@@ -9,6 +9,12 @@
   color: var(--color-red-brown);
 }
 
+.user-image {
+  max-width: 250px;
+  height: auto;
+  max-height: 300px;
+}
+
 .name-pair {
   display: flex;
   flex-direction: column;
@@ -31,6 +37,10 @@
   font-style: italic;
 }
 
+.post-link:hover {
+  font-weight: bold;
+}
+
 .edit-profile {
   width: 120px !important;
   align-self: flex-end;
@@ -44,7 +54,40 @@
   margin-top: var(--space-medium);
 }
 
-.user-fields{
+.user-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-image-button,
+.profile-image-label {
+  background-color: var(--color-red-brown);
+  color: white;
+  border-width: 0px;
+  line-height: normal;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 2em;
+  font-size: var(--font-size-small);
+  font-family: "Open Sans", sans-serif;
+  margin: var(--space-medium-small);
+}
+
+.profile-image-button:hover,
+.profile-image-label:hover {
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.profile-image-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--space-medium);
+}
+
+.image-selector {
   display: flex;
   flex-direction: column;
 }

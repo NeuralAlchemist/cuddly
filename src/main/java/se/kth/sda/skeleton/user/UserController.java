@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.exception.ForbiddenException;
 import se.kth.sda.skeleton.exception.ResourceNotFoundException;
@@ -36,6 +38,27 @@ public class UserController {
         String email = authService.getLoggedInUserEmail();
         User user = userRepository.findByEmail(email);
         return ResponseEntity.ok(user);
+    }
+
+    /**
+     * Gets a specific user by id.
+     *
+     * @return HTTP ok status and the user
+     */
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+        User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
+    }
+
+    /**
+     * Gets all users
+     *
+     * @return HTTP ok status and list of users
+     */
+    @GetMapping("/users/all")
+    public ResponseEntity<List<User>> listAllUsers() {
+        return ResponseEntity.ok(userService.listAllUsers());
     }
 
     /**
@@ -131,4 +154,15 @@ public class UserController {
         throw new ForbiddenException();
     }
 
+    /**
+     * Update user image for logged in user
+     *
+     * @param userId the User for who will upload image
+     * @param file the image to be upload on the user
+     * @return HTTP ok status and the updated user
+     */
+    @PutMapping("/users/image/{userid}")
+    public ResponseEntity<User> uploadProfileImage(@RequestParam("file") MultipartFile file, @PathVariable("userid") Long userId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.uploadImageProfile(userId, file));
+    }
 }

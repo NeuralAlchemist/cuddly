@@ -62,13 +62,14 @@ public class CommentController {
     /**
      * Handler method for endpoint "posts/{postId}/comments/{postId}" with PUT HttpRequest. Returns a {@link ResponseEntity} containing the updated Comment
      * relating to the given {@code postId} and HTTP status {@code OK}.
+     * @param contentText the text that will be updated to the Comment given by {@code commentId}
      * @param commentId the postId used to find the Comment associated with it
-     * @param postId the postId used to find the Post associated with the Comment.
+     * @param postId the postId used to find the Post associated with the Comment
      * @return {@link ResponseEntity} containing updated Comment of the given {@code postId} and HTTP status {@code OK}
      */
     @PutMapping("/posts/{postId}/comments/{commentId}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody Comment updatedComment){
-        return ResponseEntity.ok(commentService.updateComment(postId, commentId, updatedComment));
+    public ResponseEntity<Comment> updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestParam("text") String contentText){
+        return ResponseEntity.ok(commentService.updateComment(postId, commentId, contentText));
     }
 
     /**

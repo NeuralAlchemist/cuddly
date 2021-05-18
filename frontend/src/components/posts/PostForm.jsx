@@ -2,13 +2,14 @@
 import React, { useState } from 'react';
 
 // Project Files
-import ResponsiveTextArea from '../ResponsiveTextArea';
-import FormFooter from '../FormFooter';
+import ResponsiveTextArea from "../ResponsiveTextArea";
+import FormFooter from "../FormFooter";
+import getFileSizeInMB from "../../functions/getFileSizeInMB";
 
 export default function PostForm({ onSubmit, onSubmitMedia }) {
   // Local State
-  const [contentText, setContentText] = useState('');
-  const [length, setLength] = useState();
+  const [contentText, setContentText] = useState("");
+  const [length, setLength] = useState(0);
   const [contentFile, setContentFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
@@ -22,9 +23,8 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     } else {
       // Invoke the passed in event callback
       onSubmit({ contentText: contentText });
-      // Clear the input field
-      setContentText('');
     }
+    setContentText("");
   };
 
   const onFormContentChange = (value) => {
@@ -45,14 +45,6 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
     }
   };
 
-  function getFileSizeInMB(bytes) {
-    if (bytes === 0) {
-      return 0;
-    } else {
-      return bytes / Math.pow(10, 6).toFixed(1);
-    }
-  }
-
   return (
     <div className="form-container">
       <form className="form">
@@ -70,6 +62,8 @@ export default function PostForm({ onSubmit, onSubmitMedia }) {
           length={length}
           setFile={setFile}
           handleSubmit={handleSubmit}
+          maxFormTextLength="1000"
+          buttonText="Post"
         />
       </form>
     </div>

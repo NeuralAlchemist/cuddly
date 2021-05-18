@@ -21,7 +21,7 @@ export default function LoginForm({ onSubmit, onToggle }) {
             <input
               className="user-entered-input"
               type="email"
-              placeholder=" Email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -32,7 +32,7 @@ export default function LoginForm({ onSubmit, onToggle }) {
             <input
               className="user-entered-input"
               type="password"
-              placeholder=" Password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

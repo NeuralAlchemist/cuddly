@@ -1,53 +1,60 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+// NPM Packages
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+// Project files
+import SearchBar from "../search/SearchBar";
+
 export default function Navbar({ onLogout }) {
-  const logoURL = require('../../assets/images/logo.svg');
-  const homeURL = require('../../assets/images/homepage.svg');
-  const userURL = require('../../assets/images/user.svg');
-  const bellURL = require('../../assets/images/bell.svg');
-  const logoutURL = require('../../assets/images/logout.svg');
+  // Local state
+  const [toggleSearch, setToggleSearch] = useState(false);
+
+  // Constants
+  const logoURL = require("../../assets/images/logo.svg");
+  const userURL = require("../../assets/images/user.svg");
+  const logoutURL = require("../../assets/images/logout.svg");
+  const searchURL = require("../../assets/images/search-solid.svg");
   const chatURL = require('../../assets/images/chat.svg');
+
+  // Methods
+  function toggle() {
+    if (toggleSearch) {
+      setToggleSearch(false);
+    } else {
+      setToggleSearch(true);
+    }
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/posts">
           <img className="logo" src={logoURL} alt="Logo" />
         </Link>
-
-        <Link to="/posts">
-          <img className="homepageIcon nav-icon" src={homeURL} alt="Home" />
-        </Link>
-
-        <Link to="/profile">
+        <Link to="/profile/mine">
           <img className="user nav-icon" src={userURL} alt="Profile" />
         </Link>
 
         <Link to="/threads">
           <FontAwesomeIcon className="chat nav-icon" icon="comment-dots" />
-          {/* <img className="chat nav-icon" src={chatURL} alt="Chat" /> */}
         </Link>
-
-        <Link to="/notification">
-          <img className="notification" src={bellURL} alt="Notification" />
-        </Link>
-
+        <img
+          onClick={toggle}
+          className="search nav-icon"
+          src={searchURL}
+          alt="Search"
+        />
         <Link to="/" onClick={onLogout}>
           <img className="logout nav-icon" src={logoutURL} alt="Logout" />
         </Link>
-
-        <div className="logout-button-container">
+        <Link to="/" className="logout-button-container">
           <button className="button" onClick={onLogout}>
             Logout
           </button>
-        </div>
-
-        {/* <input type="text" class="searchTerm" id="input_text"></input>
-        <button className="button-search" type="search">
-          Search
-        </button> */}
+        </Link>
       </div>
+      <div className="search-container">{toggleSearch && <SearchBar />}</div>
     </nav>
   );
 }

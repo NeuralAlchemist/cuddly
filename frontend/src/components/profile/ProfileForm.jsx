@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 
 // Project Files
 import ResponsiveTextArea from "../ResponsiveTextArea";
+import getFileSizeInMB from "../../functions/getFileSizeInMB";
 
 export default function ProfileForm({
   userDescription,
   userName,
   userAccountType,
+  userImage,
   onSubmit,
 }) {
   // Local state
@@ -15,17 +17,32 @@ export default function ProfileForm({
   const [name, setName] = useState("");
   const [accountType, setAccountType] = useState("pet");
   const [length, setLength] = useState();
+  const [isFilePicked, setIsFilePicked] = useState(false);
+  const [contentFile, setContentFile] = useState();
 
   // Methods
   const handleSubmit = (event) => {
-    onSubmit({
-      name: name,
-      accountType: accountType,
-      description: description,
-    });
-    setDescription("");
-    setName("");
-    setAccountType("pet");
+      onSubmit({
+        name: name,
+        accountType: accountType,
+        description: description,
+      });
+      setDescription("");
+      setName("");
+      setAccountType("pet");
+  };
+
+  const setFile = (event) => {
+    setIsFilePicked(false);
+    const file = event.target.files[0];
+    if (getFileSizeInMB(file.size) > 10) {
+      alert("Files larger than 10MB are not allowed!");
+    } else if (file.size === 0) {
+      alert("Empty files are not allowed!");
+    } else {
+      setContentFile(file);
+      setIsFilePicked(true);
+    }
   };
 
   // Set the state passed as props
