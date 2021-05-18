@@ -35,7 +35,7 @@ public class Message {
 
     @Column(name = "date")
     private String date;
-    doc
+
     public Long getId() {
         return id;
     }

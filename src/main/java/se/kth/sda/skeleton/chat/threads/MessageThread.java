@@ -6,8 +6,10 @@ import se.kth.sda.skeleton.chat.messages.Message;
 import javax.persistence.*;
 import java.util.List;
 
-/* To get around the issue of a thread being deleted, and both parties losing the messages,
-   we could explore creating a thread for each user with references to the same messages  */
+/**
+ * Represents a messageThread in a cuddly app as a JPA entity. This implementation of message will autogenerate a primary key of type
+ * {@link Long} to indicate the current Message entity. A Message has a {@link String} p1_email and p2_email.
+ */
 
 @Entity
 @Table(name = "message_thread")
