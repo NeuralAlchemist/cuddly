@@ -33,6 +33,7 @@ export default function SearchBar() {
     } else {
       history.push(`/profile/${userId[0].id}`);
     }
+    setQuery("");
   }
 
   return (
