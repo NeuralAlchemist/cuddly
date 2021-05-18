@@ -5,7 +5,12 @@ import React, { useState } from "react";
 import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
-export default function ProfileCard({ thisUser, isLoggedInUser, buddiesFollowing }) {
+export default function ProfileCard({
+  thisUser,
+  isLoggedInUser,
+  buddiesFollowing,
+  followers,
+}) {
   // Local state
   const [toggleEdit, setToggleEdit] = useState(false);
 
@@ -44,9 +49,12 @@ export default function ProfileCard({ thisUser, isLoggedInUser, buddiesFollowing
               <span className="field-label">I'm a: </span>
               <span className="field-data">{thisUser.accountType}</span>
             </div>
-            <div>
-              <span>Following {buddiesFollowing.length} buddies</span>
-            </div>
+            {isLoggedInUser && (
+              <div>
+                <p>Following {buddiesFollowing.length} buddies</p>
+                <p>You have {followers.length} buddies following you</p>
+              </div>
+            )}
             <div className="profile-field-pair">
               <span className="field-label">About me: </span>
               <span

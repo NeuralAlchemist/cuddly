@@ -29,6 +29,10 @@ class UserApi {
     return Api.get('/users/buddies');
   }
 
+  getFollowers() {
+    return Api.get('/users/followers');
+  }
+
 }
 
 export default new UserApi();

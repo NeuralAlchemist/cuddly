@@ -1,5 +1,5 @@
 // NPM Packages
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 // Project files
 import ProfileCard from "./ProfileCard";
@@ -11,9 +11,10 @@ export default function Profile({
   userLikesPostCards,
   isLoggedInUser,
 }) {
-
+  
+  // Local State
   const [buddiesFollowing, setBuddiesFollowing] = useState([]);
-
+  const [followers, setFollowers] = useState([]);
 
   // Constants
   const hasCreatedPosts = userPostCards.length > 0;
@@ -25,10 +26,21 @@ export default function Profile({
       .catch((err) => console.error(err));
   }, []);
 
+  useEffect(() => {
+    UserApi.getFollowers()
+      .then(({ data }) => setFollowers(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <div className="main-container-item ProfilePage">
       <h1 className="page-name">Profile</h1>
-      <ProfileCard thisUser={thisUser} isLoggedInUser={isLoggedInUser} buddiesFollowing={buddiesFollowing} />
+      <ProfileCard
+        thisUser={thisUser}
+        isLoggedInUser={isLoggedInUser}
+        buddiesFollowing={buddiesFollowing}
+        followers={followers}
+      />
 
       <div className="user-feed">
         <h3>Posts</h3>
