@@ -3,6 +3,9 @@ package se.kth.sda.skeleton.chat.threads;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Represents the database of domain type MessageThread as a JPA Repository
+ */
 @Repository
 public interface MessageThreadRepository extends JpaRepository<MessageThread, Long> {
 
