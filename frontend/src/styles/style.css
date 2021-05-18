@@ -7,6 +7,8 @@
 @import url('./pages/authPage.css');
 @import url('./pages/postPage.css');
 @import url('./pages/profilePage.css');
+@import url('./pages/chatpage.css');
+@import url('./pages/threadPage.css');
 
 /* Modules */
 
@@ -25,4 +27,4 @@
 @import url('./components/profileForm.css');
 @import url('./components/formFooter.css');
 @import url('./components/commentlist.css');
-
+@import url('./components/searchBar.css');

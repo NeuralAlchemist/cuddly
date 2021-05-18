@@ -10,7 +10,7 @@
   margin-left: 5px;
 }
 
-.button-post:disabled{
+.button-submit:disabled{
   cursor:not-allowed ;
   background-color: var(--color-light-grey);
 }

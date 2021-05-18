@@ -135,17 +135,19 @@ export default function CommentCard({
         <ReactPlayer
           url={require(`../../videos/comment/${comment.videoName}`)}
           width="100%"
-          height="100%"
+          className="post-video"
           controls={true}
         />
       )}
-      <button
-        onClick={commentLikeAction}
-        className={`like-button button-post-card ${
-          checkForCommentLikeUser() ? 'liked' : 'not-liked'
-        }`}
-      ></button>
-      <span className="like-counter"> {likes}</span>
+      <div className="like-container">
+        <button 
+          onClick={commentLikeAction}
+          className={`like-button button-post-card ${
+            checkForCommentLikeUser() ? "liked" : "not-liked"
+          }`}
+        ></button>
+        <span className="like-counter"> {likes}</span>
+      </div>
     </div>
   );
 }

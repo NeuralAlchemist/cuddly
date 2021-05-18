@@ -6,7 +6,6 @@ export default function PostUpdateForm({ onSubmit, post }) {
   // Local State
   const [contentText, setContentText] = useState(post.contentText);
   const [length, setLength] = useState(post.contentText.length);
-  const postURL = require('../../assets/images/post.svg');
 
   // Methods
   const handleSubmit = () => {
@@ -34,9 +33,8 @@ export default function PostUpdateForm({ onSubmit, post }) {
       </div>
       <div>
         <p className="length">{length == null ? 0 : length}/1000</p>
-        <button className="button-post" onClick={handleSubmit}>
-          <img className="post" src={postURL} alt="Post" />
-          <span>Update Post</span>
+        <button className="button-submit" onClick={handleSubmit}>
+          Update post
         </button>
       </div>
     </form>
