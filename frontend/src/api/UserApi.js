@@ -16,6 +16,14 @@ class UserApi {
   getAllUsers() {
     return Api.get('/users/all');
   }
+
+  followBuddy(userId) {
+    return Api.post('/follow/' + userId);
+  }
+
+  unfollowBuddy(userId) {
+    return Api.delete('/unfollow/' + userId);
+  }
 }
 
 export default new UserApi();

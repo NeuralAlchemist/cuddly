@@ -69,6 +69,7 @@ export default function PostsPage() {
       key={post.id}
       post={post}
       currentUser={currentUser}
+      buddies={currentUser.buddiesFollowing}
       onDeleteClick={() => deletePost(post)}
     />
   ));

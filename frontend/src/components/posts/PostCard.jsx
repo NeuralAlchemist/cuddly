@@ -8,10 +8,16 @@ import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
 import CommentsApi from "../../api/CommentsApi";
 import PostsApi from "../../api/PostsApi";
+import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 
-export default function PostCard({ post, currentUser, onDeleteClick }) {
+export default function PostCard({
+  post,
+  currentUser,
+  onDeleteClick,
+  buddies
+}) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
@@ -19,10 +25,14 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
   const [listOfLikedUsers, setListOfLikedUsers] = useState(
     post.listOfLikes.map((like) => like.likedUser)
   );
+  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState(
+    buddies.map((bud) => bud.id)
+  );
 
   // Constants
   const postId = post.id;
   const postCreatorName = post.relatedPostUser.name;
+  const postCreatorId = post.relatedPostUser.id;
   const postCreatorEmail = post.relatedPostUser.email;
   const hasImage =
     post.mediaType == null ? false : post.mediaType.includes("image");
@@ -111,6 +121,28 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
     }
   }
 
+  async function startFollowing() {
+    try {
+      await UserApi.followBuddy(postCreatorId);
+      const newBuddiesFollowingIds = buddiesFollowingIds.concat(postCreatorId);
+      setBuddiesFollowingIds(newBuddiesFollowingIds);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function unfollow() {
+    try {
+      await UserApi.unfollowBuddy(postCreatorId);
+      const newBuddiesFollowingIds = buddiesFollowingIds.filter(
+        (budId) => budId !== postCreatorId
+      );
+      setBuddiesFollowingIds(newBuddiesFollowingIds);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function checkUserEmail() {
     return postCreatorEmail === currentUser.email;
   }
@@ -120,6 +152,13 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
       (user) => user.email === currentUser.email
     );
     return likedEmail != null;
+  }
+
+  function buddyCheck() {
+    const buddyId = buddiesFollowingIds.find(
+      (budId) => budId === postCreatorId
+    );
+    return buddyId != null;
   }
 
   useEffect(() => {
@@ -152,6 +191,15 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
                 ></button>
               </span>
             )}
+            {!checkUserEmail() && (
+              <div>
+                <button
+                  onClick={() => (buddyCheck() ? unfollow() : startFollowing())}
+                >
+                  {buddyCheck() ? "unfollow" : "follow this buddy"}
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <Moment className="time-lapse" fromNow>
@@ -163,10 +211,7 @@ export default function PostCard({ post, currentUser, onDeleteClick }) {
           ) : (
             <div>
               <span>
-                <PostUpdateForm
-                  onSubmit={updatePost}
-                  post={post}
-                />
+                <PostUpdateForm onSubmit={updatePost} post={post} />
               </span>
               <span></span>
             </div>
