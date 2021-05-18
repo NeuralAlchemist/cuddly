@@ -10,7 +10,7 @@ import se.kth.sda.skeleton.chat.threads.MessageThreadService;
 import java.util.List;
 
 /**
- * Represents the controller layer (or the API). This exposes application functionality of Post as RESTful webservices.
+ * Represents the controller layer (or the API). This exposes application functionality of MessageController as RESTful webservices.
  */
 
 @RestController
