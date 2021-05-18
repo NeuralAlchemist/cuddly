@@ -3,14 +3,24 @@ label {
   font-family: "Nunito", sans-serif;
 }
 
-.user-entered-input, select.register {
-  border-radius: 100px;
-  height: var(--space-big);
+.user-entered-input,
+.register {
+  height: Calc( var(--space-big) + 2px);
   border: 1px solid var(--color-black-brown);
   box-sizing: border-box;
 }
 
-input:focus, select.register:focus {
+.user-entered-input {
+  border-radius: 100px ;
+  padding: var(--font-size-small);
+}
+
+.register{
+  border-radius : 5px;
+}
+
+input:focus,
+select.register:focus {
   outline: none;
   border: 2px solid var(--color-teal);
 }

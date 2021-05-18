@@ -25,7 +25,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder=" Name"
+              placeholder="Name"
             />
           </div>
 
@@ -36,7 +36,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder=" Email"
+              placeholder="Email"
             />
           </div>
 
@@ -45,7 +45,7 @@ export default function RegisterForm({ onSubmit, onToggle }) {
             <input
               className="user-entered-input"
               type="password"
-              placeholder=" Password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -53,11 +53,14 @@ export default function RegisterForm({ onSubmit, onToggle }) {
 
           <div className="field">
             <label>I'm a:</label>
-            <select className="register" onChange={(e) => setAccountType(e.target.value)}>
-              <option value="pet">pet</option>
-              <option value="human">human</option>
-              <option value="service provider">service provider</option>
-              <option value="caretaker">caretaker</option>
+            <select
+              className="register"
+              onChange={(e) => setAccountType(e.target.value)}
+            >
+              <option value="pet">Pet</option>
+              <option value="human">Human</option>
+              <option value="service provider">Service Provider</option>
+              <option value="caretaker">Caretaker</option>
             </select>
           </div>
 

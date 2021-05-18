@@ -30,7 +30,7 @@
 }
 
 .logo-auth {
-  margin-bottom: var(--space-x-small);
+  margin: var(--space-x-small) 0;
 }
 
 .link {
