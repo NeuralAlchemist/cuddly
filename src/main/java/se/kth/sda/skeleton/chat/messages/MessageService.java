@@ -37,16 +37,20 @@ MessageService {
     }
 
     /**
-     * Return a specific post based on ID
+     * Create a message
      *
-     * @param id the id of the specific post
-     * @return a post
+     * @param newMessage newly created message
+     * @return newly created message
      */
-
     public Message create(Message newMessage) {
         return repository.save(newMessage);
     }
 
+    /**
+     * Delete a message based on ID
+     *
+     * @param id ID of the message to delete
+     */
     public void delete(Long id) {
         repository.deleteById(id);
     }
