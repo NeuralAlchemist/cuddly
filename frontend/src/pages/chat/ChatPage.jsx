@@ -104,7 +104,7 @@ function ChatPage() {
         <form className="form">
           <div className="form-field">
             <ResponsiveTextArea
-              placeholder="Type a message."
+              placeholder={`Type a message to ${receiverEmail}`}
               contentText={messageText}
               onFormContentChange={onFormContentChange}
               maxLength="1000"
