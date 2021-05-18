@@ -164,4 +164,16 @@ public class UserController {
         return ResponseEntity.ok(loginUser.getBuddiesFollowing());
     }
 
+    /**
+     * Gets all followers from a loginUser
+     *
+     * @return HTTP ok status and list of users
+     */
+    @GetMapping("/users/followers")
+    public ResponseEntity<List<User>> listAllFollowers() {
+        String email = authService.getLoggedInUserEmail();
+        User loginUser = userRepository.findByEmail(email);
+        return ResponseEntity.ok(loginUser.getFollowerBuddies());
+    }
+
 }
