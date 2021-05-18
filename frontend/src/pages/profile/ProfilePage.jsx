@@ -21,6 +21,7 @@ export default function ProfilePage() {
   const [userWithProfile, setUserWithProfile] = useState({});
   const [loggedInUser, setLoggedInUser] = useState({});
   const [isUsersProfile, setIsUsersProfile] = useState(false);
+  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState([]);
 
   // Constants
   const { id } = useParams();
@@ -49,8 +50,6 @@ export default function ProfilePage() {
       }
     }
   }, [setUserWithProfile, id, usersGlobal, loggedInUser]);
-
-
 
   async function deletePost(post) {
     try {
@@ -94,10 +93,12 @@ export default function ProfilePage() {
 
   return (
     <Profile
+      posts={postsGlobal}
       thisUser={userWithProfile}
       userPostCards={userPostCards}
       userLikesPostCards={userLikesPostCards}
       isLoggedInUser={isUsersProfile}
+      buddies={loggedInUser.buddiesFollowing}
     />
   );
 }

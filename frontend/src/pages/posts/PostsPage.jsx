@@ -6,6 +6,7 @@ import PostsApi from "../../api/PostsApi";
 import PostForm from "../../components/posts/PostForm";
 import PostCard from "../../components/posts/PostCard";
 import UserApi from "../../api/UserApi";
+import { RecoilState } from "recoil";
 
 export default function PostsPage() {
   // Local state
@@ -50,18 +51,17 @@ export default function PostsPage() {
   }
 
   useEffect(() => {
-    PostsApi.getAllPosts()
-      .then(({ data }) => setPosts(data))
-      .catch((err) => console.error(err));
-  }, [setPosts]);
 
-  useEffect(() => {
     UserApi.getUser()
-      .then(({ data }) => {
-        setCurrentUser(data);
-      })
+    .then(({ data }) => {
+     setCurrentUser(data);
+    })
+    .catch((err) => console.error(err));
+
+    PostsApi.getAllPosts()
+      .then(({ data }) => { setPosts(data)})
       .catch((err) => console.error(err));
-  }, [setCurrentUser]);
+  }, [setPosts, setCurrentUser]);
 
   // Components
   const CardsArray = posts.map((post) => (

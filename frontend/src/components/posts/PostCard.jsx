@@ -16,7 +16,6 @@ export default function PostCard({
   post,
   currentUser,
   onDeleteClick,
-  buddies
 }) {
   // Local state
   const [comments, setComments] = useState([]);
@@ -26,7 +25,7 @@ export default function PostCard({
     post.listOfLikes.map((like) => like.likedUser)
   );
   const [buddiesFollowingIds, setBuddiesFollowingIds] = useState(
-    buddies.map((bud) => bud.id)
+    currentUser.buddiesFollowing.map((bud) => bud.id)
   );
 
   // Constants
@@ -166,6 +165,12 @@ export default function PostCard({
       .then(({ data }) => setComments(data))
       .catch((err) => console.error(err));
   }, [setComments, postId]);
+
+//   useEffect(() => {
+//     if (buddies !== undefined) {
+//       setBuddiesFollowingIds(buddies.map((bud) => bud.id));
+//     }
+// }, [setBuddiesFollowingIds]);
 
   return (
     <div className="PostCard">

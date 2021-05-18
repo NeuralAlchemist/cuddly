@@ -10,14 +10,17 @@ export default function Profile({
   userLikesPostCards,
   isLoggedInUser,
 }) {
+
   // Constants
   const hasCreatedPosts = userPostCards.length > 0;
   const hasLikedPosts = userLikesPostCards.length > 0;
+
 
   return (
     <div className="main-container-item ProfilePage">
       <h1 className="page-name">Profile</h1>
       <ProfileCard thisUser={thisUser} isLoggedInUser={isLoggedInUser} />
+
       <div className="user-feed">
         <h3>Posts</h3>
         {hasCreatedPosts && userPostCards}
