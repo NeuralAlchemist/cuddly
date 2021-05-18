@@ -155,7 +155,7 @@ public class UserController {
     /**
      * Gets all buddies following from a loginUser
      *
-     * @return HTTP ok status and list of users
+     * @return HTTP ok status and list buddies following
      */
     @GetMapping("/users/buddies")
     public ResponseEntity<List<User>> listAllBuddies() {
@@ -167,7 +167,7 @@ public class UserController {
     /**
      * Gets all followers from a loginUser
      *
-     * @return HTTP ok status and list of users
+     * @return HTTP ok status and list of followers
      */
     @GetMapping("/users/followers")
     public ResponseEntity<List<User>> listAllFollowers() {
