@@ -24,6 +24,11 @@ class UserApi {
   unfollowBuddy(userId) {
     return Api.delete('/unfollow/' + userId);
   }
+
+  getBuddies() {
+    return Api.get('/users/buddies');
+  }
+
 }
 
 export default new UserApi();

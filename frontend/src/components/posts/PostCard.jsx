@@ -12,11 +12,7 @@ import UserApi from "../../api/UserApi";
 import PostUpdateForm from "./PostUpdateForm";
 import PostLikeApi from "../../api/PostLikeApi";
 
-export default function PostCard({
-  post,
-  currentUser,
-  onDeleteClick,
-}) {
+export default function PostCard({ post, currentUser, onDeleteClick }) {
   // Local state
   const [comments, setComments] = useState([]);
   const [toggleUpdatePost, setToggleUpdatePost] = useState(false);
@@ -24,9 +20,8 @@ export default function PostCard({
   const [listOfLikedUsers, setListOfLikedUsers] = useState(
     post.listOfLikes.map((like) => like.likedUser)
   );
-  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState(
-    currentUser.buddiesFollowing.map((bud) => bud.id)
-  );
+  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState([]);
+  // debugger
 
   // Constants
   const postId = post.id;
@@ -166,11 +161,11 @@ export default function PostCard({
       .catch((err) => console.error(err));
   }, [setComments, postId]);
 
-//   useEffect(() => {
-//     if (buddies !== undefined) {
-//       setBuddiesFollowingIds(buddies.map((bud) => bud.id));
-//     }
-// }, [setBuddiesFollowingIds]);
+  useEffect(() => {
+    UserApi.getBuddies()
+      .then(({ data }) => setBuddiesFollowingIds(data.map((bud) => bud.id)))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="PostCard">

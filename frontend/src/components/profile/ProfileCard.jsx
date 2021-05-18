@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import UserApi from "../../api/UserApi";
 import ProfileForm from "../../components/profile/ProfileForm";
 
-export default function ProfileCard({ thisUser, isLoggedInUser }) {
+export default function ProfileCard({ thisUser, isLoggedInUser, buddiesFollowing }) {
   // Local state
   const [toggleEdit, setToggleEdit] = useState(false);
 
@@ -43,6 +43,9 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
             <div className="profile-field-pair">
               <span className="field-label">I'm a: </span>
               <span className="field-data">{thisUser.accountType}</span>
+            </div>
+            <div>
+              <span>Following {buddiesFollowing.length} buddies</span>
             </div>
             <div className="profile-field-pair">
               <span className="field-label">About me: </span>

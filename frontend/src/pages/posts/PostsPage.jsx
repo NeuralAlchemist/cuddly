@@ -13,6 +13,7 @@ export default function PostsPage() {
   const [posts, setPosts] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
+
   // Methods
   async function createPost(postData) {
     try {
@@ -57,11 +58,12 @@ export default function PostsPage() {
      setCurrentUser(data);
     })
     .catch((err) => console.error(err));
-
     PostsApi.getAllPosts()
       .then(({ data }) => { setPosts(data)})
       .catch((err) => console.error(err));
+
   }, [setPosts, setCurrentUser]);
+
 
   // Components
   const CardsArray = posts.map((post) => (
@@ -69,7 +71,6 @@ export default function PostsPage() {
       key={post.id}
       post={post}
       currentUser={currentUser}
-      buddies={currentUser.buddiesFollowing}
       onDeleteClick={() => deletePost(post)}
     />
   ));

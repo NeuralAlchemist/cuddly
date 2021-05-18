@@ -21,7 +21,6 @@ export default function ProfilePage() {
   const [userWithProfile, setUserWithProfile] = useState({});
   const [loggedInUser, setLoggedInUser] = useState({});
   const [isUsersProfile, setIsUsersProfile] = useState(false);
-  const [buddiesFollowingIds, setBuddiesFollowingIds] = useState([]);
 
   // Constants
   const { id } = useParams();
@@ -98,7 +97,6 @@ export default function ProfilePage() {
       userPostCards={userPostCards}
       userLikesPostCards={userLikesPostCards}
       isLoggedInUser={isUsersProfile}
-      buddies={loggedInUser.buddiesFollowing}
     />
   );
 }
