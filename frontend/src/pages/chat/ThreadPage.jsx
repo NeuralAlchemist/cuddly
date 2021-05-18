@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import ChatApi from '../../api/ChatApi';
+import UserApi from '../../api/UserApi';
 import ChatPage from './ChatPage';
 import Thread from '../../components/chat/Thread';
 
@@ -14,6 +15,7 @@ function ThreadPage() {
     threadId: id,
     thread: locationState,
   });
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const getThreads = async () => {
@@ -22,10 +24,25 @@ function ThreadPage() {
     };
     getThreads();
   }, []);
+ 
+  useEffect(() => {
+    UserApi.getUser()
+      .then(({ data }) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => console.error(err));
+  }, [setCurrentUser]);
 
-  const listOfThreads = threads.map((thread) => (
+  const userThreads = threads.filter(
+    (thread) =>
+      currentUser.email === thread.p1Email ||
+      currentUser.email === thread.p2Email
+  );
+  const listOfThreads = userThreads.map((thread) => (
     <Thread key={thread.id} setMessageBox={setMessageBox} thread={thread} />
   ));
+
+
   return (
     <div className="main-container-item">
       <div className="post-info">
