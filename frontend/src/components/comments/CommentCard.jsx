@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import CommentsApi from '../../api/CommentsApi';
 import Moment from 'react-moment';
 import ReactPlayer from 'react-player';
+import { useHistory } from 'react-router-dom';
 
 // Components
 import CommentUpdateForm from './CommentUpdateForm';
 import CommentLikeApi from '../../api/CommentLikeApi';
+import ChatApi from '../../api/ChatApi';
 
 export default function CommentCard({
   postId,
@@ -14,6 +16,8 @@ export default function CommentCard({
   onDeleteClick,
   currentUser,
 }) {
+  const history = useHistory();
+
   // Local State
   const [toggle, setToggle] = useState(false);
   const [likes, setLikes] = useState(comment.listOfCommentLikes.length);
@@ -93,10 +97,27 @@ export default function CommentCard({
     return likeUserEmail != null;
   }
 
+  const onUserClick = () => {
+    const createOrDirect = async () => {
+      try {
+        const response = await ChatApi.createThread(commentCreatorEmail, {});
+        const thread = response.data;
+        history.push({ pathname: `/chat/${thread.id}`, state: { thread } });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    createOrDirect();
+  };
+
   return (
     <div className="comment-card">
       <div className="postcard-header">
-        <div className="post-info">{commentCreatorName}</div>
+      <div>
+        <span className="post-userinfo" onClick={() => onUserClick()}>
+          {commentCreatorName}
+        </span>
+        </div>
         <div className="delete-edit-icons">
           {checkCommentUserEmail() && (
             <span>
@@ -140,10 +161,10 @@ export default function CommentCard({
         />
       )}
       <div className="like-container">
-        <button 
+        <button
           onClick={commentLikeAction}
           className={`like-button button-post-card ${
-            checkForCommentLikeUser() ? "liked" : "not-liked"
+            checkForCommentLikeUser() ? 'liked' : 'not-liked'
           }`}
         ></button>
         <span className="like-counter"> {likes}</span>
