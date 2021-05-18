@@ -16,6 +16,10 @@ class UserApi {
   getAllUsers() {
     return Api.get('/users/all');
   }
+  
+  uploadImage(userId, file){
+    return Api.put('/users/image/' + userId, file);
+  }
 }
 
 export default new UserApi();
