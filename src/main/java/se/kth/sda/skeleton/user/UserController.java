@@ -152,4 +152,16 @@ public class UserController {
         throw new ForbiddenException();
     }
 
+    /**
+     * Gets all buddies following from a loginUser
+     *
+     * @return HTTP ok status and list of users
+     */
+    @GetMapping("/users/buddies")
+    public ResponseEntity<List<User>> listAllBuddies() {
+        String email = authService.getLoggedInUserEmail();
+        User loginUser = userRepository.findByEmail(email);
+        return ResponseEntity.ok(loginUser.getBuddiesFollowing());
+    }
+
 }
