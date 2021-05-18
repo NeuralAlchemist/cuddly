@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MessageService {
+public class
+
+MessageService {
 
     private final MessageRepository repository;
 
