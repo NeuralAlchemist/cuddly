@@ -46,7 +46,7 @@ function ThreadPage() {
   return (
     <div className="main-container-item">
       <div className="post-info">
-        <h2>Recent chats</h2>
+        <h2 className="chat-header">Recent chats</h2>
       </div>
 
       <div className="inbox_chat scroll">
