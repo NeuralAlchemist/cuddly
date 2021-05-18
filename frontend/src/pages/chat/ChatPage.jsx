@@ -112,7 +112,7 @@ function ChatPage() {
           </div>
           <p className="length">{messageText.length}/1000</p>
           <button
-            className="button-post"
+            className="button-submit"
             onClick={(e) => handleClick(e)}
             type="submit"
           >
