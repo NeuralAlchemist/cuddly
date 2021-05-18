@@ -5,6 +5,12 @@ import se.kth.sda.skeleton.chat.threads.MessageThread;
 
 import javax.persistence.*;
 
+/**
+ * Represents a message in a cuddly app as a JPA entity. This implementation of message will autogenerate a primary key of type
+ * {@link Long} to indicate the current Message entity. A Message has a {@link String} sender_email, receiver_email, message_body,
+ * and date.
+ */
+
 @Table(name = "messages")
 @Entity
 public class Message {
@@ -29,7 +35,7 @@ public class Message {
 
     @Column(name = "date")
     private String date;
-
+    doc
     public Long getId() {
         return id;
     }

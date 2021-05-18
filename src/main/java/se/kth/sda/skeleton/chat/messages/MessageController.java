@@ -7,8 +7,9 @@ import org.springframework.web.server.ResponseStatusException;
 import se.kth.sda.skeleton.auth.AuthService;
 import se.kth.sda.skeleton.chat.threads.MessageThread;
 import se.kth.sda.skeleton.chat.threads.MessageThreadService;
-
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/chat")
