@@ -32,7 +32,9 @@ export default function SearchBar() {
       alert("No such user found");
     } else {
       history.push(`/profile/${userId[0].id}`);
+      setQuery("");
     }
+    
   }
 
   return (
