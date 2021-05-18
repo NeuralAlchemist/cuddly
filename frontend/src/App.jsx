@@ -53,8 +53,6 @@ export default function App() {
             </React.Suspense>
           </Switch>
         </div>
-
-        <Footer />
       </BrowserRouter>
     </RecoilRoot>
   );
