@@ -98,7 +98,9 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
                   onChange={setFile}
                   accept="image/*"
                 />
-                <button className="profile-image-button" onClick={uploadImage}>
+                <button className="button-submit" 
+                onClick={uploadImage}
+                disabled={!isFileSelected}>
                   Upload
                 </button>
               </div>

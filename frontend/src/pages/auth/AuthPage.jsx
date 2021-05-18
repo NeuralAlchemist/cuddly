@@ -1,10 +1,11 @@
 // NPM Packages
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // Project files
-import LoginForm from "../../components/auth/LoginForm";
-import RegisterForm from "../../components/auth/RegisterForm";
-import Auth from "../../services/Auth";
+import UserApi from '../../api/UserApi';
+import LoginForm from '../../components/auth/LoginForm';
+import RegisterForm from '../../components/auth/RegisterForm';
+import Auth from '../../services/Auth';
 
 export default function LoginPage() {
   // Local state
@@ -17,10 +18,13 @@ export default function LoginPage() {
   const welcomeImageURL = welcomeImageObject;
 
   // Methods
+
   async function login(loginData) {
     const loginSuccess = await Auth.login(loginData);
     if (!loginSuccess) {
-      alert("Invalid credentials");
+      alert('Invalid credentials');
+    } else {
+      window.sessionStorage.setItem('userEmail', loginData.email);
     }
   }
 
@@ -28,6 +32,8 @@ export default function LoginPage() {
     const registerSuccess = await Auth.register(registrationData);
     if (!registerSuccess) {
       alert("Couldn't register check credentials and try again");
+    } else {
+      window.sessionStorage.setItem('userEmail', registrationData.email);
     }
   }
 
@@ -37,7 +43,7 @@ export default function LoginPage() {
         <img className="logo logo-auth" src={logoURL} alt="Cuddly logo" />
       </div>
       <div className="main-content">
-        {" "}
+        {' '}
         <img
           className="image-welcome"
           src={welcomeImageURL}

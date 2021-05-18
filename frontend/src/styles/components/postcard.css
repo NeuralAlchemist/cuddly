@@ -63,6 +63,20 @@
   margin-top: 0;
 }
 
+.post-userinfo {
+  color: var(--color-red-brown);
+  font-size: var(--font-size-medium);
+  font-family: "Nunito", sans-serif;
+  margin-top: 0;
+}
+
+.post-userinfo:hover{
+  transform: scale(1.5);
+  cursor: pointer;
+  font-weight: 2100;
+  color: var(--color-brown);
+}
+
 .postcard-header {
   display: grid;
   grid-template-columns: auto 80px;
