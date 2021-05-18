@@ -1,11 +1,15 @@
+// NPM Packages
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+
+// Project Files
 import ChatApi from '../../api/ChatApi';
 import UserApi from '../../api/UserApi';
 import ChatPage from './ChatPage';
 import Thread from '../../components/chat/Thread';
 
 function ThreadPage() {
+  // Local State
   const [threads, setThreads] = useState([]);
   const { id } = useParams();
   const { state } = useLocation();
@@ -17,6 +21,7 @@ function ThreadPage() {
   });
   const [currentUser, setCurrentUser] = useState({});
 
+  // Methods
   useEffect(() => {
     const getThreads = async () => {
       const response = await ChatApi.getAllThread();
@@ -41,7 +46,6 @@ function ThreadPage() {
   const listOfThreads = userThreads.map((thread) => (
     <Thread key={thread.id} setMessageBox={setMessageBox} thread={thread} />
   ));
-
 
   return (
     <div className="main-container-item">

@@ -1,11 +1,12 @@
+// NPM Packages
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Thread({ thread, setMessageBox }) {
+  // Local state
   const senderMail = window.sessionStorage.getItem('userEmail');
   const receiverEmail =
     senderMail === thread.p1Email ? thread.p2Email : thread.p1Email;
-
   const clickHandler = () => {
     setMessageBox({ threadId: thread.id, thread: thread });
   };
