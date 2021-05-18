@@ -31,6 +31,11 @@ public class MessageController {
         return threadService.getAll();
     }
 
+    @GetMapping("/{userId}")
+    public List<MessageThread> getMyThreads(@PathVariable Long userId){
+        return threadService.getMyThreads(userId);
+    }
+
     @GetMapping("/{id}")
     public MessageThread getThread(@PathVariable Long id) {
         return threadService.getById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
