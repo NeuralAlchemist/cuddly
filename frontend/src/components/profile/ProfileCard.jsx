@@ -78,9 +78,11 @@ export default function ProfileCard({ thisUser, isLoggedInUser }) {
 
           {isLoggedInUser && (
             <div className="profile-image-buttons">
-              <span role="img" aria-label="file pin">
-                📎 {isFileSelected ? getNiceName(16) : "no file selected"}
-              </span>
+              {isFileSelected && (
+                <span role="img" aria-label="file pin">
+                  📎 {getNiceName(16)}
+                </span>
+              )}
               <div className="profile-image-div">
                 <label
                   htmlFor="profile-image-input"
