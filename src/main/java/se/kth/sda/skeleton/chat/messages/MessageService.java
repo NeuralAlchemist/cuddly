@@ -29,7 +29,7 @@ MessageService {
     /**
      * Return a list of all messages
      *
-     * @return list of messages in reverse order from repository
+     * @return list of messages from repository
      */
     public List<Message> getAll() {
         return repository.findAll();

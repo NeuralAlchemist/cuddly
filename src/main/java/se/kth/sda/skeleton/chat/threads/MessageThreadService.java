@@ -6,16 +6,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Represents the service layer. It contains defined functionalities according to business logic for MessageThreads.
+ */
 @Service
 public class MessageThreadService {
 
     private final MessageThreadRepository repository;
 
+    /**
+     * Constructs a MessageThreadService and automatically assigns its messageThreadRepository field
+     *
+     * @param repository an object that implements interface MessageThreadRepository
+     */
     @Autowired
     public MessageThreadService(MessageThreadRepository repository) {
         this.repository = repository;
     }
 
+    /**
+     * Return a list of all message threads
+     *
+     * @return list of message threads in reverse order from repository
+     */
     public List<MessageThread> getAll() {
         return repository.findAll();
     }
