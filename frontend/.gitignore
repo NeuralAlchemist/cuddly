@@ -23,4 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 src/videos/*
+src/videos/comment/*
 !src/videos/README.md
+!src/videos/comment/
+!src/videos/comment/README.md
