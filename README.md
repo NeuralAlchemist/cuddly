@@ -21,7 +21,7 @@ The Cuddly Team believes that pets are not just animals, but that pets are famil
 
 ## Features
 
-- Register your account 
+- Register your account as a pet/human/service provider/care taker
 - Create posts/comments with text and attached video/image (up to 10MB)
 - Edit the text of your posts/comments
 - Delete posts/comments you created
