@@ -2,6 +2,10 @@
 
 Cuddly is a social media platform for everything pet related made by [Decio Candido](https://github.com/deciocandido), [En-Chi Liu](https://github.com/eeels22), [Janko Radakovic](https://github.com/janko101), [Pei Nen Esther Chee](https://github.com/estherchee) and [Yash Seeta](https://github.com/NeuralAlchemist).
 
+## Demo Video
+
+This website was pitched to the jury of SDA9 and the pitch is available [here](https://youtu.be/Ts-Rs4EMb_Q?t=3918). To skip to the demo part, click [here](https://www.youtube.com/watch?v=Ts-Rs4EMb_Q&t=4213s).
+
 ## Contents
 
 - [Vision](#vision)
