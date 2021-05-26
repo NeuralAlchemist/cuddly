@@ -1,37 +1,98 @@
-# Cuddly App
+# Cuddly - Sharing the joy of pets
+
+Cuddly is a social media platform for everything pet related made by [Decio Candido](https://github.com/deciocandido), [En-Chi Liu](https://github.com/eeels22), [Janko Radakovic](https://github.com/janko101), [Pei Nen Esther Chee](https://github.com/estherchee) and [Yash Seeta](https://github.com/NeuralAlchemist).
+
+## Demo Video
+
+This website was pitched to the jury of SDA9 and the pitch is available [here](https://youtu.be/Ts-Rs4EMb_Q?t=3918). To skip to the demo part, click [here](https://www.youtube.com/watch?v=Ts-Rs4EMb_Q&t=4213s).
+
+## Contents
+
+- [Vision](#vision)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Contributing](#contributing)
+
+## Vision
+
+The Cuddly Team believes that pets are not just animals, but that pets are family. We want to help spread the joy that pets bring to our lives and facilitate trusted connections to improve pet care. So we made a social media application that allows pet fans to share experiences and expertise, and grow relationships.
+
+## Features
+
+- Register your account as a pet/human/service provider/care taker
+- Create posts/comments with text and attached video/image (up to 10MB)
+- Edit the text of your posts/comments
+- Delete posts/comments you created
+- Add/remove likes to posts/comments
+- Personalize your profile with an image and description
+- Get your created and liked posts as a feed on your profile page
+- Private chat with other users or yourself
+- Search for other user profiles
+
+## Technologies
+
+- JDK
+- Gradle
+- Docker
+- NodeJS
+- React
+- JavaScript
+- Spring
+- Hibernate
+- PostgreSQL
 
 ## Setup
-Our development environment for a full-stack web application will consist of three main parts:
 
-1. Database (Postgres).
-2. Backend server (Spring).
-3. Frontend development server (React).
+To run this website
 
-### Prerequisites
-- `docker` and `docker-compose`.
-- `nodejs`.
+1.  Clone this repository into your desired location by running
 
-### Starting the database
-In the root folder, run
-```
-docker-compose up
-```
+   `git clone https://github.com/NeuralAlchemist/cuddly.git  `
 
-### Starting the backend server
-Open the root folder and run
-```
-./gradlew bootRun
-```
+2. Navigate to the project folder on your machine
 
-### Starting the frontend development server
-The frontend application is in the directory `frontend`. From there, run 
-```
-npm install
-```
-to install all the dependencies needed for the project.
+3. To start the database go to the root directory, run `docker compose up`
 
-Then start the frontend application by running
-```
-npm start
-```
+4. Start the backend server by running `./gradlew bootRun`
 
+5. Change the current directory to `frontend` by using `cd frontend` from the root directory
+
+6. Run `npm install` to install all the dependencies needed
+
+7. Run `npm start` . This will locally host the application at [localhost](localhost:3000) and should open automatically.
+
+## Usage
+
+### Register/Login 
+
+![cuddly_register](/readme-media/cuddly_register.png)
+
+### Create a post/comment with image/video attachment
+
+![cuddly_video_selector](/readme-media/cuddly_video_selector.png)
+
+### Check your chats
+
+The left side view shows the receiver view and the right side shows the sender view 
+
+![cuddly_chat_page](/readme-media/cuddly_chat_page.png)
+
+### Personalize your profile
+
+![cuddly_profile_page](/readme-media/cuddly_profile_page.png)
+
+## Contributing
+
+Developers are welcome to create pull requests, create an issues on bugs or features.
+
+## Credits
+
+Demo images/videos taken from [Unsplash](https://unsplash.com/).
+
+Icons made by [Font Awesome](https://fontawesome.com/v4.7.0/icons/).
+
+Skeleton code provided by [Software Development Academy](https://github.com/softwaredevacademy/be-mini-group-project).
+
+Thanks to the staff and teaching assistants of SDA, Novare Potential and KTH.
