@@ -63,21 +63,21 @@ To run this website
 
 ### Register/Login 
 
-![cuddly_register](\readme-media\cuddly_register.png)
+![cuddly_register](/readme-media/cuddly_register.png)
 
 ### Create a post/comment with image/video attachment
 
-![cuddly_video_selector](\readme-media\cuddly_video_selector.png)
+![cuddly_video_selector](/readme-media/cuddly_video_selector.png)
 
 ### Check your chats
 
 The left side view shows the receiver view and the right side shows the sender view 
 
-![cuddly_chat_page](\readme-media\cuddly_chat_page.png)
+![cuddly_chat_page](/readme-media/cuddly_chat_page.png)
 
 ### Personalize your profile
 
-![cuddly_profile_page](\readme-media\cuddly_profile_page.png)
+![cuddly_profile_page](/readme-media/cuddly_profile_page.png)
 
 ## Contributing
 
